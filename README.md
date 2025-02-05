@@ -1,5 +1,5 @@
 # Andrew Johnson Roomley Project
---------------------------------
+
 ## Problem Statement
 
 Living with roommates can sometimes be a hassle. Dividing up chores can be tough when its so easy to forget who does what and when. 
@@ -16,5 +16,3 @@ Roomley handles reminders, grocery shopping together, and hopefully splitting bi
 3. Ability to create lists (grocery lists etc) collaboratively
 4. Ability to attach context to each task
 5. *Ability to easily find bills to split via plaid* (If this is possible)
-
--------------------------------------------------------------
