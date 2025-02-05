@@ -9,7 +9,7 @@ Keeping consistent is key in keeping clean living spaces and a fair distribution
 Enter Roomley, an app that handles the annoying task of keeping track of tasks to get done. 
 Roomley handles reminders, grocery shopping together, and hopefully splitting bills easily.
 
-## The main features that I'd like to implement are:
+## Main Features
 
 1. Ability to fairly assign tasks weekly
 2. Notifications that are sent out at set intervals to each member of the group
