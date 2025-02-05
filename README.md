@@ -16,3 +16,16 @@ Roomley handles reminders, grocery shopping together, and hopefully splitting bi
 3. Ability to create lists (grocery lists etc) collaboratively
 4. Ability to attach context to each task
 5. *Ability to easily find bills to split via plaid* (If this is possible)
+
+## Tech Stack
+
+- Database
+  - MySQL
+- CSS
+  - Tailwind
+- Dependency Management 
+  - Maven
+- Technology I would like to explore
+  - Tailwind
+  - JQuery
+  - AWS
