@@ -29,3 +29,4 @@ Roomley handles reminders, grocery shopping together, and hopefully splitting bi
     - Tailwind
     - JQuery
     - AWS
+    - React Native
