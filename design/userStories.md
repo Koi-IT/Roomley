@@ -80,6 +80,10 @@ As a user I would like to remind at regular intervals or at specific times other
 
 As a user I may want to set up meal plans ahead of time so that people in my household can easily find that information.
 
+### Shopping list
+
+As a user I may want to collaborate with my roomate on creating a grocerylist for the meals we will make.
+
 ### Point System?
 
 As a user I might want some flashy point system to encourage younger adults to follow through with tasks.
