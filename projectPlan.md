@@ -7,9 +7,8 @@ Week 3
 Week 4
 - [X] Create project plan
 - [X] Create user stories
-- [ ] Design webpage frameworks
-- [ ] Update journal
-- [ ] Research possible API's/Web services to use
+- [X] Design webpage frameworks
+- [X] Update journal
 
 Week 5
 - [ ] Search for free assets to use
@@ -23,6 +22,7 @@ Week 6
 - [ ] Create fair task distribution system
 - [ ] Finalize database design
 - [ ] Work on AWS integration
+- [ ] Research possible API's/Web services to use
 
 Week 7
 - [ ] Work on beautifying webpages
