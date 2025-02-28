@@ -1,4 +1,4 @@
-package Roomley.Entities;
+package Roomley.entities;
 
 /**
  *
