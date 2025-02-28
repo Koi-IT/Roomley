@@ -1,6 +1,7 @@
 package Roomley.Entities;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class TaskTest {
 
     @org.junit.jupiter.api.Test
