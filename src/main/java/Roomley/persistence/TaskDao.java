@@ -1,45 +1,72 @@
 package Roomley.persistence;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import Roomley.entities.Task;
+import org.hibernate.Transaction;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+
+
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Root;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import Roomley.entities.Task;
+
 
 public class TaskDao {
 
-    public TaskDao() {
-        SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    private final Logger logger = LogManager.getLogger(this.getClass());
+    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
-
-        sessionFactory.close();
-    }
-
-    public void createTask(){
-
-    }
-
-    public void deleteTask() {
+    public void update(Task task) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(task);
+        transaction.commit();
+        session.close();
 
     }
 
-    public void updateTask() {
+    public int insert(Task task) {
+        int id = 0;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.persist(task);
+        transaction.commit();
+        session.close();
+        return id;
 
     }
 
-    public void insertTask() {
+
+
+    public void delete(Task task) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(task);
+        transaction.commit();
+        session.close();
 
     }
 
     public List<Task> getAllTasks() {
 
+        Session session = sessionFactory.openSession();
 
-        List<Task> allTasks = new ArrayList<>();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Task> criteriaQuery = builder.createQuery(Task.class);
+        Root<Task> root = criteriaQuery.from(Task.class);
+        List<Task> allTasks = session.createQuery(criteriaQuery).getResultList();
 
-
+        logger.info("Total tasks: " + allTasks.size());
+        session.close();
 
         return allTasks;
     }
