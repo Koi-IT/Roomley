@@ -1,5 +1,8 @@
 package Roomley.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  */
@@ -11,6 +14,8 @@ public class Task {
     String taskDescription;
 
     public void Task() {
+        task = new Task();
+        task.setTaskStatus(false);
 
     }
 
@@ -30,8 +35,6 @@ public class Task {
 
     public void setTaskDescription(String taskDescription) {
 
-
     }
-
 
 }
