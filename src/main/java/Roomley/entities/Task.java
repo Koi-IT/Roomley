@@ -10,7 +10,7 @@ public class Task {
     boolean taskStatus;
     String taskDescription;
 
-    public void Task(){
+    public void Task() {
 
     }
 
@@ -23,7 +23,7 @@ public class Task {
     public boolean getTaskStatus() { return this.taskStatus; }
 
     public void setTaskStatus(boolean taskStatus) {
-
+        this.taskStatus = taskStatus;
     }
 
     public String getTaskDescription() { return this.taskDescription; }

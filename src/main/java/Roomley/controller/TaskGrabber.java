@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author pwaite
  */
 
-public class SearchUser extends HttpServlet {
+public class TaskGrabber extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -21,7 +21,7 @@ public class SearchUser extends HttpServlet {
         TaskDao taskDao = new TaskDao();
 
         // Check if there is a lastName request search parameter
-        req.setAttribute("users", taskDao.getAllTasks());
+//        req.setAttribute("users", taskDao.getAllTasks());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("results.jsp");
         dispatcher.forward(req, resp);
