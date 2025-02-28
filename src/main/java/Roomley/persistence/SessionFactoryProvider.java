@@ -32,6 +32,7 @@ public class SessionFactoryProvider {
 
         // Create SessionFactory
         sessionFactory = metadata.getSessionFactoryBuilder().build();
+
     }
 
     /**
@@ -42,7 +43,9 @@ public class SessionFactoryProvider {
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             createSessionFactory();
+
         }
+
         return sessionFactory;
 
     }
