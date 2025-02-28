@@ -17,10 +17,10 @@ public class TaskGrabber extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // Create UserDao object
+        // Create taskDao object
         TaskDao taskDao = new TaskDao();
 
-        // Check if there is a lastName request search parameter
+        // Get all tasks
         req.setAttribute("users", taskDao.getAllTasks());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("results.jsp");
