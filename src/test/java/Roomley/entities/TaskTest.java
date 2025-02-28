@@ -1,6 +1,4 @@
-package Roomley.Entities;
-
-import static org.junit.jupiter.api.Assertions.*;
+package Roomley.entities;
 
 class TaskTest {
 
