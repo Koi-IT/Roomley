@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * A simple servlet to find all users in the database.
- * @author pwaite
+ * A simple servlet to find all tasks in the database.
+ * @author Koi-dev
  */
-
 public class TaskGrabber extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,9 +20,9 @@ public class TaskGrabber extends HttpServlet {
         TaskDao taskDao = new TaskDao();
 
         // Get all tasks
-        req.setAttribute("users", taskDao.getAllTasks());
+        req.setAttribute("tasks", taskDao.getAllTasks());
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("results.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("tasks.jsp");
         dispatcher.forward(req, resp);
     }
 }

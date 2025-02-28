@@ -41,11 +41,10 @@ public class TaskDao {
         session.persist(task);
         transaction.commit();
         session.close();
+
         return id;
 
     }
-
-
 
     public void delete(Task task) {
         Session session = sessionFactory.openSession();
@@ -69,6 +68,7 @@ public class TaskDao {
         session.close();
 
         return allTasks;
+
     }
 
 }
