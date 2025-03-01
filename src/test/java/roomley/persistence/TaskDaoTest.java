@@ -1,19 +1,24 @@
-package Roomley.persistence;
+package roomley.persistence;
 
-import Roomley.entities.Task;
-import Roomley.util.Database;
+
+
+import roomley.entities.Task;
+import roomley.util.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class TaskDaoTest {
 
     @BeforeEach
     void setUp() {
-        Database database = database.getInstance();
+        Database database = new Database();
+        Database dbconnection = database.getInstance();
         database.runSQL("cleandb.sql");
         TaskDao taskDao = new TaskDao();
 
@@ -49,7 +54,7 @@ class TaskDaoTest {
         Task taskToDelete = taskDao.getById(2);
         taskDao.delete(taskToDelete);
 
-        assertNull(taskToDelete);
+        assertNull(taskDao.getById(2));
 
     }
 

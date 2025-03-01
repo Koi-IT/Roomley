@@ -1,4 +1,4 @@
-package Roomley.util;
+package roomley.util;
 
 import java.io.*;
 import java.util.*;
@@ -30,7 +30,7 @@ public interface PropertiesLoader {
             properties.load(this.getClass().getResourceAsStream(propertiesFilePath));
 
         } catch (IOException ioException) {
-            logger.error("There was an issue loading this file", ioException);
+            logger.error("There was an issue reading this file", ioException);
 
         } catch (Exception exception) {
             logger.error("There was an issue loading this file", exception);
