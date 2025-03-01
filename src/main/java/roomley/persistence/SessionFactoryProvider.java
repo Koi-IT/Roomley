@@ -1,4 +1,4 @@
-package Roomley.persistence;
+package roomley.persistence;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
