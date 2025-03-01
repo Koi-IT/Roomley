@@ -1,4 +1,7 @@
-package Roomley.util;
+package roomley.util;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -7,34 +10,28 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import Roomley.util.PropertiesLoader;
 
-public class Database {
+public class Database implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     private static Database instance = new Database();
-    private Properties properties;
     private Connection connection;
+    private Properties properties;
 
-    PropertiesLoader loader = new PropertiesLoader() {
 
-        public Properties loadProperties(String propertiesFilePath) {
-            return super.loadProperties(propertiesFilePath);
+    public Database() {
+        properties = loadProperties("/database.properties");
 
-        }
-
-    };
-
-    private Database() {
-        this.properties = this.loader.loadProperties("/database.properties");
     }
 
-    public static Database getInstance() {
-        return instance;
-    }
+    /** get the only Database object available
+     @return the single database object
+     */
+    public static Database getInstance() { return instance; }
 
+    /** get the database connection
+     @return the database connection
+     */
     public Connection getConnection() {
         return this.connection;
     }

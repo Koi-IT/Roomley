@@ -3,15 +3,4 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 <display-name>Roomley</display-name>
-
-<servlet>
-  <servlet-name>TaskGrabber</servlet-name>
-  <servlet-class>Roomley.controller.TaskGrabber</servlet-class>
-</servlet>
-
-<servlet-mapping>
-  <servlet-name>TaskGrabber</servlet-name>
-  <url-pattern>/taskGrabber</url-pattern>
-</servlet-mapping>
-
 </web-app>

@@ -1,4 +1,4 @@
-package Roomley.entities;
+package roomley.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -21,10 +21,11 @@ public class Task {
     @Column(name = "task_description")
     private String taskDescription;
 
-    public Task() {
+    public Task () {
+
     }
 
-    public Task(String taskName,  String taskDescription, boolean taskStatus) {
+    public Task (String taskName,  String taskDescription, boolean taskStatus) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
@@ -48,4 +49,5 @@ public class Task {
     public int getId() { return this.id; }
 
     public void setId(int id) { this.id = id; }
+
 }
