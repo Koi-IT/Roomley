@@ -1,7 +1,5 @@
 package roomley.persistence;
 
-
-
 import roomley.entities.Task;
 import roomley.util.*;
 
@@ -12,7 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 
-
+/**
+ * Test for the TaskDao class
+ */
 class TaskDaoTest {
 
     @BeforeEach
@@ -41,12 +41,12 @@ class TaskDaoTest {
         TaskDao taskDao = new TaskDao();
         Task insertedTask = new Task();
         insertedTask.setTaskName("test2");
-        insertedTask.setTaskStatus(false);
+        insertedTask.setTaskStatus(true);
         insertedTask.setTaskDescription("This is a test");
 
         taskDao.insert(insertedTask);
 
-        assertFalse(insertedTask.getTaskStatus());
+        assertTrue(insertedTask.getTaskStatus());
 
     }
 
