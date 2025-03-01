@@ -20,7 +20,7 @@ public class TaskGrabber extends HttpServlet {
         TaskDao taskDao = new TaskDao();
 
         // Get all tasks
-        req.setAttribute("tasks", taskDao.getAllTasks());
+        req.setAttribute("tasks", taskDao.getAll());
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("tasks.jsp");
         dispatcher.forward(req, resp);
