@@ -52,7 +52,6 @@ public class TaskDao {
     /**
      * Insert task column
      * @param task Task object
-     * @return task id
      */
     public void insert(Task task) {
         Session session = sessionFactory.openSession();
