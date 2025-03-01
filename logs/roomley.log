@@ -5,3 +5,5 @@
 [INFO ] 2025-03-01 11:52:38.122 [main] TaskDao - Total tasks: 4
 [INFO ] 2025-03-01 11:53:15.223 [main] TaskDao - Total tasks: 4
 [INFO ] 2025-03-01 12:14:13.789 [http-nio-8080-exec-4] TaskDao - Total tasks: 4
+[INFO ] 2025-03-01 12:26:56.068 [main] TaskDao - Total tasks: 4
+[INFO ] 2025-03-01 12:27:21.118 [http-nio-8080-exec-7] TaskDao - Total tasks: 4
