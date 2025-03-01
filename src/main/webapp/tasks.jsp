@@ -10,12 +10,12 @@
         <th>Task Description</th>
         </thead>
         <tbody>
-        <c:forEach var="tasks" items="${task}">
+        <c:forEach var="task" items="${tasks}">
             <tr>
-                <td>${tasks.id}</td>
-                <td>${tasks.task_name}</td>
-                <td>${tasks.complete}</td>
-                <td>${tasks.task_description}</td>
+                <td>${task.id}</td>
+                <td>${task.taskName}</td>
+                <td>${task.taskStatus}</td>
+                <td>${task.taskDescription}</td>
             </tr>
         </c:forEach>
         </tbody>
