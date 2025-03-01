@@ -29,6 +29,8 @@ class TaskDaoTest {
         TaskDao taskDao = new TaskDao();
         Task updatedTask = taskDao.getById(1);
         updatedTask.setTaskStatus(true);
+        taskDao.update(updatedTask);
+
 
         assert(updatedTask.getTaskStatus());
 
