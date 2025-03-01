@@ -15,12 +15,19 @@ import java.util.List;
 
 import roomley.entities.*;
 
-
+/**
+ * Task Dao to run CRUD operations for tasks and search operations using session factory
+ */
 public class TaskDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
+    /**
+     * Gets a task by its id
+     * @param id The tasks id
+     * @return The task
+     */
     public Task getById(int id) {
         Session session = sessionFactory.openSession();
         Task task = session.get(Task.class, id);
@@ -29,6 +36,10 @@ public class TaskDao {
 
     }
 
+    /**
+     * Updates task
+     * @param task Task object
+     */
     public void update(Task task) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -38,18 +49,24 @@ public class TaskDao {
 
     }
 
-    public int insert(Task task) {
-        int id = 0;
+    /**
+     * Insert task column
+     * @param task Task object
+     * @return task id
+     */
+    public void insert(Task task) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(task);
         transaction.commit();
         session.close();
 
-        return id;
-
     }
 
+    /**
+     * Deletes task
+     * @param task task to be deleted
+     */
     public void delete(Task task) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -59,6 +76,10 @@ public class TaskDao {
 
     }
 
+    /**
+     * Gets all tasks
+     * @return all tasks
+     */
     public List<Task> getAll() {
 
         Session session = sessionFactory.openSession();

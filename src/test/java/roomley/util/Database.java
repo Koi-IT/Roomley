@@ -11,6 +11,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
+/**
+ * Creates a database connection through a properties file
+ * and allows for running of SQL files
+ */
 public class Database implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -18,19 +22,24 @@ public class Database implements PropertiesLoader {
     private Connection connection;
     private Properties properties;
 
-
+    /**
+     * Database constructor
+     * instantiates properties file
+     */
     public Database() {
         properties = loadProperties("/database.properties");
 
     }
 
-    /** get the only Database object available
-     @return the single database object
+    /**
+     *  get the only Database object available
+     *  @return the single database object
      */
     public static Database getInstance() { return instance; }
 
-    /** get the database connection
-     @return the database connection
+    /**
+     * get the database connection
+     * @return the database connection
      */
     public Connection getConnection() {
         return this.connection;
@@ -49,6 +58,9 @@ public class Database implements PropertiesLoader {
         }
     }
 
+    /**
+     * Disconnects from DB
+     */
     public void disconnect() {
         if (this.connection != null) {
             try {
@@ -61,6 +73,10 @@ public class Database implements PropertiesLoader {
         this.connection = null;
     }
 
+    /**
+     * Runs SQL from a file
+     * @param sqlFile SQL file to be ran
+     */
     public void runSQL(String sqlFile) {
         Statement stmt = null;
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
