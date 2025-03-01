@@ -15,6 +15,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 public class SessionFactoryProvider {
 
     private static SessionFactory sessionFactory;
+    private static StandardServiceRegistry registry;
 
     /**
      * Create session factory.
@@ -22,7 +23,7 @@ public class SessionFactoryProvider {
     public static void createSessionFactory() {
 
         // Create registry
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
+        registry = new StandardServiceRegistryBuilder().configure().build();
 
         // Create MetadataSources
         MetadataSources sources = new MetadataSources(registry);

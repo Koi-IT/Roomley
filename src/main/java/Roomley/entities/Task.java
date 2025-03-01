@@ -3,9 +3,6 @@ package Roomley.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "tasks")
 public class Task {
@@ -24,16 +21,14 @@ public class Task {
     @Column(name = "task_description")
     private String taskDescription;
 
-    public void Task() {
-        Task task = new Task();
-        task.setTaskStatus(false);
-
+    public Task() {
     }
 
-    public void Task(String taskName,  String taskDescription, boolean taskStatus) {
+    public Task(String taskName,  String taskDescription, boolean taskStatus) {
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
+
     }
 
     public String getTaskName() { return this.taskName; }
@@ -50,4 +45,7 @@ public class Task {
 
     public void setTaskDescription(String taskDescription) { this.taskDescription = taskDescription; }
 
+    public int getId() { return this.id; }
+
+    public void setId(int id) { this.id = id; }
 }

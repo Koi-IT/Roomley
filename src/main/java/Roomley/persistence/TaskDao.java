@@ -6,7 +6,6 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
-
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Root;
@@ -24,6 +23,14 @@ public class TaskDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+    public Task getById(int id) {
+        Session session = sessionFactory.openSession();
+        Task task = session.get(Task.class, id);
+        session.close();
+        return task;
+
+    }
 
     public void update(Task task) {
         Session session = sessionFactory.openSession();
@@ -55,14 +62,14 @@ public class TaskDao {
 
     }
 
-    public List<Task> getAllTasks() {
+    public List<Task> getAll() {
 
         Session session = sessionFactory.openSession();
 
         HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<Task> criteriaQuery = builder.createQuery(Task.class);
-        Root<Task> root = criteriaQuery.from(Task.class);
-        List<Task> allTasks = session.createQuery(criteriaQuery).getResultList();
+        CriteriaQuery<Task> query = builder.createQuery(Task.class);
+        Root<Task> root = query.from(Task.class);
+        List<Task> allTasks = session.createSelectionQuery( query ).getResultList();
 
         logger.info("Total tasks: " + allTasks.size());
         session.close();
