@@ -32,7 +32,7 @@ As a user I want to see all the tasks in my entire group.
 
 ### View "Owned" Tasks
 
-As a user I want to view all of the tasks I need to take care of.
+As a user I want to view all the tasks I need to take care of.
 
 ### Split Tasks Fairly
 
@@ -58,7 +58,7 @@ As a user I might need to delete a task that is no longer needed.
 
 As a user I will need to check tasks off as they are completed
 
-### Head of Houshold Privilages
+### Head of Household Privileges
 
 As a head of household I would want to Delete or Move tasks if needed.
 
@@ -82,7 +82,7 @@ As a user I may want to set up meal plans ahead of time so that people in my hou
 
 ### Shopping list
 
-As a user I may want to collaborate with my roomate on creating a grocerylist for the meals we will make.
+As a user I may want to collaborate with my roommate on creating a grocery list for the meals we will make.
 
 ### Point System?
 
