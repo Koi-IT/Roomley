@@ -11,14 +11,14 @@ Week 4
 - [X] Update journal
 
 Week 5
-- [ ] Search for free assets to use
-- [ ] First draft of database design
-- [ ] Create task entity
-- [ ] Build crud functionality for the task system
-- [ ] Work on hibernate
+- [X] First draft of database design
+- [X] Create task entity
+- [X] Build crud functionality for the task system
+- [X] Work on hibernate
+- [X] Create barebones webpage
 
 Week 6
-- [ ] Create barebones webpage
+- [ ] Search for free assets to use
 - [ ] Create fair task distribution system
 - [ ] Finalize database design
 - [ ] Work on AWS integration
