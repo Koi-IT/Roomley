@@ -1,71 +1,166 @@
-Week 3
+# Week 3
 - [X] Create project repository
 - [X] Create project structure in Intellij
 - [X] Create problem statement
 
 
-Week 4
+# Week 4
 - [X] Create project plan
 - [X] Create user stories
 - [X] Design webpage frameworks
 - [X] Update journal
 
-Week 5
+# Week 5
 - [X] First draft of database design
 - [X] Create task entity
-- [X] Build crud functionality for the task system
 - [X] Work on hibernate
 - [X] Create barebones webpage
 
-Week 6
-- [ ] Search for free assets to use
-- [ ] Create fair task distribution system
-- [ ] Finalize database design
+# Week 6
+- [X] Create fair task distribution system
+- [X] Finalize database design
+- [X] Research possible API's/Web services to use
+
+# Week 7
+## User stories:
+    - Register Account
+    - Sign in
+    - Password Reset
+
+
 - [ ] Work on AWS integration
-- [ ] Research possible API's/Web services to use
-
-Week 7
-- [ ] Work on beautifying webpages
-- [ ] Create profile entity
-- [ ] Build crud functionality for profiles
-
-
-Week 8
-- [ ] Build profile sign in/out functionality
+- [ ] Setup basic account functionality
+- [ ] Look into creating a password recovery system
+- [ ] Build password recovery webpage and functionality
+- [ ] Build profile sign in/out webpages and functionality
 - [ ] Create authentication
+
+## Files:
+    Controller - UserGrabber
+    Entities   - User
+
+    DAO        - UserDao
+    Test       - createUser
+    Test       - deleteUser
+    Test       - editUser
+    
+
+    Webpage    - signIn
+    Webpage    - register
+    Webpage    - passwordReset
+
+# Week 8
+## User Stories:
+    - Edit Profile
+    - View Profile
+    - Create "Household" Groups
+    - Edit "Household" Groups
+    - Delete "Household" Groups
+    - Head of Household Privileges
+
+- [ ] Build crud functionality for profiles
+- [ ] Create profile entity
 - [ ] Build sign up/sign in webpage
 - [ ] Review Progress and update project plan
-
-Week 9
-- [ ] Look for API's that may be useful
-- [ ] Look into creating a password recovery system
-- [ ] Build password recovery webpage
-
-Week 10
 - [ ] Work on create group functionality
-- [ ] Look for API's and tools that may be useful for this
 - [ ] Create user permissions
-- [ ] Look into mobile app development
 
-Week 11
-- [ ] Create meal planner function
-- [ ] Look into creating a point system
+## Files:
+    Controller - HouseholdGrabber
+    Entities   - Household
 
-Week 12
+    DAO        - HouseholdDao
+    Test       - createGroup
+    Test       - addGroup
+    Test       - createGroup
+    Test       - addUserToGroup
+    Test       - removeUserFromGroup
+
+    JSP        - createGroup
+    JSP        - editGroup
+    JSP        - deleteGroup
+    JSP        - editProfile
+    JSP        - viewProfile
+
+# Week 9
+## User Stories:
+    - Create Task
+    - Edit Task
+    - Delete Task
+    - Complete Task
+
+- [ ] Build CRUD functionality for the task system
+- [ ] Build webpages for task CRUD operations
+
+## Files:
+    Controller - TaskGrabber
+    Entities   - Task
+
+    Dao        - TaskDao
+    Test       - deleteTask
+    Test       - addTask
+    Test       - updateTask
+    Test       - getAll
+    Test       - getById
+
+    JSP        - createTask
+    JSP        - deleteTask
+    JSP        - editTask
+
+# Week 10
+## User Stories:
+    - View Tasks
+    - View All Tasks
+    - View "Owned" Tasks
+    - Split Tasks Fairly
+
+- [ ] Setup and debug different task views
+- [ ] Build Task distribution system
+
+## Files:
+    Task Entity Function - splitTasksFairly
+
+    JSP     - viewTasks
+    JSP     - task
+
+# Week 11
+## User Stories:
+    - Set Notifications via JS Notification API
+    - Set Notification Times via JS Notification API
+
+
 - [ ] Create notification system
 - [ ] Add full group notification
-- [ ] Allow for setting notificaitons by heads of groups
+- [ ] Allow for setting notifications by heads of groups
+- [ ] Look into creating a point system
 
-Week 13
+# Week 12
+## User Stories:
+    - Meal Planner
+    - Shopping List
+
+- [ ] Retest and debug project MVP
 - [ ] Revisit project plan and adjust as needed
+- [ ] Look into mobile app development
+- [ ] Create meal planner function
+
+# Week 13
+## User Stories:
+    - Mobile App
+
+- [ ] Search for free assets to use
+- [ ] Work on beautifying webpages
 - [ ] Start on mobile development if time allows
 
-Week 14
+# Week 14
 - [ ] Review page design and make final adjustments/bugfixes
 - [ ] Look for edgecases in profile creation and password recovery
 - [ ] Finish mobile barebones application
 
-Week 15
+# Week 15
+## User Stories:
+    - Splitting Bills Easily
+
 - [ ] Finish mobile application
 - [ ] Finalize website design
 - [ ] Review progress
