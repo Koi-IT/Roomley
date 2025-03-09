@@ -16,7 +16,14 @@
 - Created MVC and setup basic webpage
 3/1 - 8 hrs
 - Week 4
-- Week 5
 - Improving project design specs
-3/2 - 2 hrs
+
+
+# Week 7
+3/8 - 6 hrs
+- Updated DB and added drop/create sql 
+- Updated User stories
+- Updated Project plan to fully cover user stories
+- Added delete, complete, moving, and household grouping pages to the first draft design docs
+3/9 - 6 hrs
 - Peer review
