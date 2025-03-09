@@ -20,7 +20,7 @@ As a user I want to customize my profile to distinguish myself from the other me
 
 ### View Profile
 
-As a user I want to view my own profile and that of others aswell. 
+As a user I want to view my own profile and that of others as well. 
 
 ### View Task
 
@@ -42,6 +42,14 @@ As a user I want split the tasks evenly and fairly throughout the household.
 
 As a user need to create a household group to connect all of the users in my household together.
 
+### Edit "Household" Groups
+
+As a user I need to add users to my group and edit the group details.
+
+### Delete "Household" Groups
+
+As a user I want to delete an old group and join a new one.
+
 ### Create Task
 
 As a user I need to create a task and fill in the details.
@@ -62,19 +70,19 @@ As a user I will need to check tasks off as they are completed
 
 As a head of household I would want to Delete or Move tasks if needed.
 
+### Send Group Notifications via JS Notification API
+
+As a user I would like to remind other members of my household to complete tasks.
+
+### Set Notification Times via JS Notification API
+
+As a user I would like to remind at regular intervals or at specific times other members of my household to do tasks.
+
 ## Bonus Features
 
 ### Split Bills Easily
 
 As a user i would like to split bills easily at a moments notice.
-
-### Send Group Notifications
-
-As a user I would like to remind other members of my household to complete tasks.
-
-### Set Notification Times
-
-As a user I would like to remind at regular intervals or at specific times other members of my household to do tasks.
 
 ### Meal Planner
 
