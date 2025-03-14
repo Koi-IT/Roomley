@@ -3,6 +3,9 @@ package roomley.entities;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +27,14 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "name")
-    private String userRealName;
+    @Column(name = "first_name")
+    private String userFirstName;
+
+    @Column(name = "last_name")
+    private String userLastName;
+
+    @Column(name = "birthdate")
+    private String userBirthDate;
 
     @Column(name = "email")
     private String userEmail;
@@ -47,16 +56,22 @@ public class User {
     }
 
     /**
-     * Constructor to build User object
+     * Instantiates a new User.
      *
-     * @param username        The name of the User
-     * @param userDescription The description of the User
-     * @param userStatus      The status of the User
+     * @param username      the username
+     * @param password      the password
+     * @param userFirstName the user first name
+     * @param userLastName  the user last name
+     * @param userEmail     the user email
+     * @param userLevel     the user level
+     * @param userType      the user type
      */
-    public User (String username,  String userDescription, boolean userStatus) {
+    public User (String username,  String password, String userFirstName, String userLastName,String userBirthDate, String userEmail, int userLevel, String userType) {
         this.username = username;
         this.password = password;
-        this.userRealName = userRealName;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userBirthDate = userBirthDate;
         this.userEmail = userEmail;
         this.userLevel = userLevel;
         this.userType = userType;
@@ -90,15 +105,6 @@ public class User {
      */
     public String getPassword() {
         return password;
-    }
-
-    /**
-     * Gets user real name.
-     *
-     * @return the user real name
-     */
-    public String getUserRealName() {
-        return userRealName;
     }
 
     /**
@@ -165,15 +171,6 @@ public class User {
     }
 
     /**
-     * Sets user real name.
-     *
-     * @param userRealName the user real name
-     */
-    public void setUserRealName(String userRealName) {
-        this.userRealName = userRealName;
-    }
-
-    /**
      * Sets user email.
      *
      * @param userEmail the user email
@@ -207,5 +204,90 @@ public class User {
      */
     public void setTask(List<Task> task) {
         this.task = task;
+    }
+
+    /**
+     * Gets user first name.
+     *
+     * @return the user first name
+     */
+    public String getUserFirstName() {
+        return userFirstName;
+    }
+
+    /**
+     * Sets user first name.
+     *
+     * @param userFirstName the user first name
+     */
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
+    }
+
+    /**
+     * Gets user last name.
+     *
+     * @return the user last name
+     */
+    public String getUserLastName() {
+        return userLastName;
+    }
+
+    /**
+     * Sets user last name.
+     *
+     * @param userLastName the user last name
+     */
+    public void setUserLastName(String userLastName) {
+        this.userLastName = userLastName;
+    }
+
+    /**
+     * Gets user birthDate.
+     *
+     * @return the user birthDate
+     */
+    public String getUserBirthDate() {
+        return userBirthDate;
+    }
+
+    /**
+     * Sets user birth date.
+     *
+     * @param userBirthDate the user birth date
+     */
+    public void setUserBirthDate(String userBirthDate) {
+        this.userBirthDate = userBirthDate;
+    }
+
+    /**
+     * Gets Age
+     *
+     * @return the age
+     */
+    public String getAge() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate birthDate = LocalDate.parse(userBirthDate, formatter);
+        LocalDate currentDate = LocalDate.now();
+
+        int age = Period.between(birthDate, currentDate).getYears();
+        return String.valueOf(age);
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userFirstName='" + userFirstName + '\'' +
+                ", userLastName='" + userLastName + '\'' +
+                ", userBirthDate='" + userBirthDate + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userLevel=" + userLevel +
+                ", userType='" + userType + '\'' +
+                ", task=" + task +
+                '}';
     }
 }

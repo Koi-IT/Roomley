@@ -79,7 +79,7 @@ public class TaskDao {
      * Gets all tasks
      * @return all tasks
      */
-    public List<Task> getAll() {
+    public List<Task> getAllTasks() {
 
         Session session = sessionFactory.openSession();
 
