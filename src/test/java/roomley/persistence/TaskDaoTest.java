@@ -15,15 +15,21 @@ import java.util.List;
  */
 class TaskDaoTest {
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = new Database();
         Database dbconnection = database.getInstance();
-        database.runSQL("cleandb.sql");
+        database.runSQL("roomley/cleandb.sql");
         TaskDao taskDao = new TaskDao();
 
     }
 
+    /**
+     * Update.
+     */
     @Test
     void update() {
         TaskDao taskDao = new TaskDao();
@@ -31,11 +37,13 @@ class TaskDaoTest {
         updatedTask.setTaskStatus(true);
         taskDao.update(updatedTask);
 
-
         assert(updatedTask.getTaskStatus());
 
     }
 
+    /**
+     * Insert.
+     */
     @Test
     void insert() {
         TaskDao taskDao = new TaskDao();
@@ -50,6 +58,9 @@ class TaskDaoTest {
 
     }
 
+    /**
+     * Delete.
+     */
     @Test
     void delete() {
         TaskDao taskDao = new TaskDao();
@@ -60,10 +71,13 @@ class TaskDaoTest {
 
     }
 
+    /**
+     * Gets all tasks.
+     */
     @Test
     void getAllTasks() {
         TaskDao taskDao = new TaskDao();
-        List<Task> taskList = taskDao.getAll();
+        List<Task> taskList = taskDao.getAllTasks();
 
         assertFalse(taskList.isEmpty());
 
