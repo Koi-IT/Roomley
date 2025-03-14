@@ -54,7 +54,7 @@ public class Database implements PropertiesLoader {
             }
 
             String url = this.properties.getProperty("url");
-            this.connection = DriverManager.getConnection(url, this.properties.getProperty("username"), this.properties.getProperty("password"));
+            this.connection = DriverManager.getConnection(url, this.properties.getProperty(""), this.properties.getProperty("password"));
         }
     }
 
