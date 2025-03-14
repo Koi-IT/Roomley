@@ -154,7 +154,7 @@
 
 # Week 14
 - [ ] Review page design and make final adjustments/bugfixes
-- [ ] Look for edgecases in profile creation and password recovery
+- [ ] Look for edge cases in profile creation and password recovery
 - [ ] Finish mobile barebones application
 
 # Week 15
