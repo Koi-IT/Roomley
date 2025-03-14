@@ -12,13 +12,14 @@ import java.util.List;
 /**
  * The type User.
  */
-@Entity
+@Entity(name = "User")
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "user_id")
     private int id;
 
     @Column(name = "username")
@@ -45,13 +46,19 @@ public class User {
     @Column(name = "user_type")
     private String userType;
 
+    @Column(name = "household")
+    private String userHousehold;
+
+    @Column(name = "Households_household_id")
+    private int householdId;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> task = new ArrayList<>();
 
     /**
      * No argument constructor for User
      */
-    public User () {
+    public User() {
 
     }
 
@@ -62,11 +69,13 @@ public class User {
      * @param password      the password
      * @param userFirstName the user first name
      * @param userLastName  the user last name
+     * @param userBirthDate the user birth date
      * @param userEmail     the user email
      * @param userLevel     the user level
      * @param userType      the user type
+     * @param userHousehold the user household
      */
-    public User (String username,  String password, String userFirstName, String userLastName,String userBirthDate, String userEmail, int userLevel, String userType) {
+    public User(String username,  String password, String userFirstName, String userLastName,String userBirthDate, String userEmail, int userLevel, String userType , String userHousehold, int householdId) {
         this.username = username;
         this.password = password;
         this.userFirstName = userFirstName;
@@ -75,7 +84,8 @@ public class User {
         this.userEmail = userEmail;
         this.userLevel = userLevel;
         this.userType = userType;
-
+        this.userHousehold = userHousehold;
+        this.householdId = householdId;
 
     }
 
@@ -259,6 +269,47 @@ public class User {
     public void setUserBirthDate(String userBirthDate) {
         this.userBirthDate = userBirthDate;
     }
+
+    /**
+     * Gets user household.
+     *
+     * @return the user household
+     */
+    public String getUserHousehold() { return userHousehold; }
+
+    /**
+     * Sets user household.
+     *
+     * @param userHousehold the user household
+     */
+    public void setUserHousehold(String userHousehold) {  this.userHousehold = userHousehold; }
+
+    /**
+     * Add task.
+     */
+    public void addTask() {
+        Task task = new Task();
+        this.task.add(task);
+    }
+
+    /**
+     * Remove task.
+     */
+    public void removeTask() { this.task.remove(this.task.get(0)); }
+
+    /**
+     * Sets tasks.
+     *
+     * @param tasks the tasks
+     */
+    public void setTasks(List<Task> tasks) { this.task = tasks; }
+
+    /**
+     * Gets tasks.
+     *
+     * @return the tasks
+     */
+    public List<Task> getTasks() {  return this.task; }
 
     /**
      * Gets Age

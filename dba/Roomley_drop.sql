@@ -20,7 +20,7 @@ ALTER TABLE Users
 -- tables
 DROP TABLE Households;
 
-DROP TABLE Lists;
+# DROP TABLE Lists;
 
 DROP TABLE Meals;
 
