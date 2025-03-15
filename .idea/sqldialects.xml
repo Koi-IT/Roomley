@@ -5,6 +5,5 @@
     <file url="file://$PROJECT_DIR$/dba/Roomley_create.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/dba/Roomley_drop (1).sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/dba/Roomley_drop.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/src/test/java/roomley/cleandb.sql" dialect="MySQL" />
   </component>
 </project>
