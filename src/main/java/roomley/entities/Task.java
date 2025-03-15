@@ -48,7 +48,7 @@ public class Task {
      * @param taskStatus      The status of the Task
      * @param taskType        the task type
      */
-    public Task (User user,String taskName,  String taskDescription, boolean taskStatus, int taskType) {
+    public Task (User user, String taskName,  String taskDescription, boolean taskStatus, int taskType) {
         this.user = user;
         this.taskName = taskName;
         this.taskDescription = taskDescription;

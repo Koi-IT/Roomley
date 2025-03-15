@@ -14,6 +14,7 @@
 2/28 - 6 hrs
 - Week 4
 - Created MVC and setup basic webpage
+
 3/1 - 8 hrs
 - Week 4
 - Improving project design specs
@@ -25,5 +26,17 @@
 - Updated User stories
 - Updated Project plan to fully cover user stories
 - Added delete, complete, moving, and household grouping pages to the first draft design docs
+
 3/9 - 6 hrs
 - Peer review
+
+# Week 8
+3/13 - 2 hrs
+- Week 5 work
+
+3/14 - 4 hrs
+- Week 5 debugging
+
+3/15 - 6 hrs
+- Finished Week 5
+- Updated Issues for previous weeks
