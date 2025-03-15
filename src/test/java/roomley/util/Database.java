@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Objects;
 import java.util.Properties;
 
 /**
@@ -82,7 +83,7 @@ public class Database implements PropertiesLoader {
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream(sqlFile)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(Objects.requireNonNull(classloader.getResourceAsStream(sqlFile))));
 
             try {
                 this.connect();

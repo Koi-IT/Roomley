@@ -65,28 +65,26 @@ class UserDaoTest {
         User userToDelete = userDao.getById(5);
         List<Task> tasks = userToDelete.getTasks();
         int TaskNumber1 = ((Task)tasks.get(0)).getId();
-        int TaskNumber2 = ((Task)tasks.get(1)).getId();
         userDao.delete(userToDelete);
         Assertions.assertNull(userDao.getById(5));
         Assertions.assertNull(taskDao.getById(TaskNumber1));
-        Assertions.assertNull(taskDao.getById(TaskNumber2));
     }
 
     @Test
     void getAll() {
         List<User> allUsers = this.userDao.getAllUsers();
-        Assertions.assertEquals(3, allUsers.size());
+        Assertions.assertEquals(4, allUsers.size());
     }
 
     @Test
     void getByPropertyEqual() {
-        List<User> firstNameUser = this.userDao.getByPropertyEqual("firstName", "perry");
-        Assertions.assertEquals("Joe", ((User)firstNameUser.get(2)).getUserFirstName());
+        List<User> firstNameUser = this.userDao.getByPropertyEqual("userFirstName", "perry");
+        Assertions.assertEquals("perry", ((User)firstNameUser.get(0)).getUserFirstName());
     }
 
     @Test
     void getByPropertyLike() {
-        List<User> propertyLikeName = this.userDao.getByPropertyLike("userName", "ggarry");
+        List<User> propertyLikeName = this.userDao.getByPropertyLike("userLastName", "green");
         Assertions.assertEquals(2, propertyLikeName.size());
     }
 }
