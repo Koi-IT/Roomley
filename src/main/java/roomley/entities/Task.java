@@ -13,7 +13,8 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native",strategy = "native")
-    private int task_id;
+    @Column(name = "task_id")
+    private int taskId;
 
     @Column(name = "task_name")
     private String taskName;
@@ -23,6 +24,9 @@ public class Task {
 
     @Column(name = "task_description")
     private String taskDescription;
+
+    @Column(name = "task_type")
+    private int taskType;
 
     @ManyToOne
     @JoinColumn(name = "Users_user_id")
@@ -42,11 +46,12 @@ public class Task {
      * @param taskDescription The description of the Task
      * @param taskStatus      The status of the Task
      */
-    public Task (String taskName,  String taskDescription, boolean taskStatus, User user) {
+    public Task (User user,String taskName,  String taskDescription, boolean taskStatus, int taskType) {
+        this.user = user;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
-        this.user = user;
+        this.taskType = taskType;
 
     }
 
@@ -99,14 +104,14 @@ public class Task {
      *
      * @return Task id
      */
-    public int getId() { return this.task_id; }
+    public int getTaskId() { return this.taskId; }
 
     /**
      * Sets task id
      *
-     * @param task_id Task id
+     * @param taskId Task id
      */
-    public void setId(int task_id) { this.task_id = task_id; }
+    public void setTaskId(int taskId) { this.taskId = taskId; }
 
     /**
      * Gets user.
@@ -121,5 +126,13 @@ public class Task {
      * @param user the user
      */
     public void setUser(User user) { this.user = user; }
+
+    public int getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(int taskType) {
+        this.taskType = taskType;
+    }
 
 }

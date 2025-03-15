@@ -1,6 +1,7 @@
 package roomley.persistence;
 
 import roomley.entities.Task;
+import roomley.entities.User;
 import roomley.util.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +16,8 @@ import java.util.List;
  */
 class TaskDaoTest {
 
+    TaskDao taskDao;
+
     /**
      * Sets up.
      */
@@ -22,8 +25,8 @@ class TaskDaoTest {
     void setUp() {
         Database database = new Database();
         Database dbconnection = database.getInstance();
-        database.runSQL("roomley/cleandb.sql");
-        TaskDao taskDao = new TaskDao();
+        database.runSQL("cleandb.sql");
+        this.taskDao = new TaskDao();
 
     }
 
@@ -32,8 +35,7 @@ class TaskDaoTest {
      */
     @Test
     void update() {
-        TaskDao taskDao = new TaskDao();
-        Task updatedTask = taskDao.getById(1);
+        Task updatedTask = taskDao.getById(4);
         updatedTask.setTaskStatus(true);
         taskDao.update(updatedTask);
 
@@ -46,12 +48,23 @@ class TaskDaoTest {
      */
     @Test
     void insert() {
-        TaskDao taskDao = new TaskDao();
+        // Create Task to be inserted
         Task insertedTask = new Task();
+
+        // Create User Dao
+        UserDao userDao = new UserDao();
+
+        // Get User
+        User user = userDao.getById(5);
+
+        // Set task columns
+        insertedTask.setUser(user);
         insertedTask.setTaskName("test2");
         insertedTask.setTaskStatus(true);
         insertedTask.setTaskDescription("This is a test");
+        insertedTask.setTaskType(0);
 
+        //Insert task
         taskDao.insert(insertedTask);
 
         assertTrue(insertedTask.getTaskStatus());
@@ -63,11 +76,10 @@ class TaskDaoTest {
      */
     @Test
     void delete() {
-        TaskDao taskDao = new TaskDao();
-        Task taskToDelete = taskDao.getById(2);
+        Task taskToDelete = taskDao.getById(5);
         taskDao.delete(taskToDelete);
 
-        assertNull(taskDao.getById(2));
+        assertNull(taskDao.getById(5));
 
     }
 
@@ -76,7 +88,6 @@ class TaskDaoTest {
      */
     @Test
     void getAllTasks() {
-        TaskDao taskDao = new TaskDao();
         List<Task> taskList = taskDao.getAllTasks();
 
         assertFalse(taskList.isEmpty());

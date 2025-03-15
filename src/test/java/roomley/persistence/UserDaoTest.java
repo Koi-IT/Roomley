@@ -9,10 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserDaoTest {
-    UserDao userDao;
 
-    UserDaoTest() {
-    }
+    UserDao userDao;
 
     @BeforeEach
     public void setUp() {
@@ -64,7 +62,7 @@ class UserDaoTest {
         TaskDao taskDao = new TaskDao();
         User userToDelete = userDao.getById(5);
         List<Task> tasks = userToDelete.getTasks();
-        int TaskNumber1 = ((Task)tasks.get(0)).getId();
+        int TaskNumber1 = (tasks.get(0)).getTaskId();
         userDao.delete(userToDelete);
         Assertions.assertNull(userDao.getById(5));
         Assertions.assertNull(taskDao.getById(TaskNumber1));
