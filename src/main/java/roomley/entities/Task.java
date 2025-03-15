@@ -42,9 +42,11 @@ public class Task {
     /**
      * Constructor to build Task object
      *
+     * @param user            the user
      * @param taskName        The name of the Task
      * @param taskDescription The description of the Task
      * @param taskStatus      The status of the Task
+     * @param taskType        the task type
      */
     public Task (User user,String taskName,  String taskDescription, boolean taskStatus, int taskType) {
         this.user = user;
@@ -127,12 +129,18 @@ public class Task {
      */
     public void setUser(User user) { this.user = user; }
 
-    public int getTaskType() {
-        return taskType;
-    }
+    /**
+     * Gets task type.
+     *
+     * @return the task type
+     */
+    public int getTaskType() { return taskType; }
 
-    public void setTaskType(int taskType) {
-        this.taskType = taskType;
-    }
+    /**
+     * Sets task type.
+     *
+     * @param taskType the task type
+     */
+    public void setTaskType(int taskType) { this.taskType = taskType; }
 
 }
