@@ -83,7 +83,10 @@ class TaskDaoTest {
         Task taskToDelete = taskDao.getById(5);
         taskDao.delete(taskToDelete);
 
+        UserDao userDao = new UserDao();
+
         assertNull(taskDao.getById(5));
+        assertNotNull(userDao.getById(5));
 
     }
 
