@@ -2,6 +2,7 @@ package roomley.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import roomley.persistence.UserDao;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -341,4 +342,28 @@ public class User {
                 ", task=" + task +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        User other = (User) o;
+
+        return username.equals(other.username) &&
+                password.equals(other.password) &&
+                userFirstName.equals(other.userFirstName) &&
+                userLastName.equals(other.userLastName) &&
+                userBirthDate.equals(other.userBirthDate) &&
+                userEmail.equals(other.userEmail) &&
+                userLevel == other.userLevel &&
+                userType.equals(other.userType) &&
+                userHousehold.equals(other.userHousehold) &&
+                householdId == other.householdId;
+    }
+
 }
