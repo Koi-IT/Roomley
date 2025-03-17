@@ -67,7 +67,11 @@ class TaskDaoTest {
         //Insert task
         taskDao.insert(insertedTask);
 
+        assertEquals(user, insertedTask.getUser());
+        assertEquals("test2", insertedTask.getTaskName());
         assertTrue(insertedTask.getTaskStatus());
+        assertEquals("This is a test", insertedTask.getTaskDescription());
+        assertEquals(0, insertedTask.getTaskType());
 
     }
 
