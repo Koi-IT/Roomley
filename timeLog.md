@@ -39,4 +39,8 @@
 
 3/15 - 6 hrs
 - Finished Week 5
-- Updated Issues for previous weeks
+
+# Week 9
+3/17 - 3 hrs
+- Resolved Issues for previous weeks
+- Started Week 6
