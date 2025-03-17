@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@include file="header.jsp" %>
+<c:import url="header.jsp" />
 <main>
 
     <table>
@@ -22,5 +22,5 @@
     </table>
 
 </main>
-<%@include file="footer.jsp"%>
+<c:import url="footer.jsp" />
 
