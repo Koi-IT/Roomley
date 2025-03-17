@@ -22,6 +22,7 @@
     <tomcat-version>11.0.3</tomcat-version>
     <javax-servlet-version>3.0.1</javax-servlet-version>
     <jstl-verison>1.2</jstl-verison>
+    <hibernate-version>6.4.3.Final</hibernate-version>
   </properties>
 
   <build>
@@ -92,6 +93,7 @@
       <artifactId>log4j-api</artifactId>
       <version>${log4j-version}</version>
     </dependency>
+
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
@@ -109,7 +111,7 @@
     <dependency>
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>6.4.3.Final</version>
+      <version>${hibernate-version}</version>
     </dependency>
 
     <!-- c3p0 - used to handle connection pooling with hibernate -->
@@ -117,7 +119,7 @@
     <dependency>
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-c3p0</artifactId>
-      <version>6.4.3.Final</version>
+      <version>${hibernate-version}</version>
     </dependency>
 
   </dependencies>
