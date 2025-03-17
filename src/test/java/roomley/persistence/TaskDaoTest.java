@@ -95,6 +95,7 @@ class TaskDaoTest {
         List<Task> taskList = taskDao.getAllTasks();
 
         assertFalse(taskList.isEmpty());
+        assertEquals(2, taskList.size());
 
     }
 }
