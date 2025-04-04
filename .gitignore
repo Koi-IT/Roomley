@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### DBC ###
+.properties
+.cfg.xml
