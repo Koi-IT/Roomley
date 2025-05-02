@@ -41,5 +41,5 @@ build/
 resources/*.properties
 *.json
 /pom.xml
-/.ebextensions/
-/.platform/
+/.ebextensions/*.config
+/.platform/httpd/conf.d/*.conf
