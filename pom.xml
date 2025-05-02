@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
-  <artifactId>aws-cognito-exercise</artifactId>
+  <artifactId>Roomley</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>aws-cognito-exercise</name>
+  <name>Roomley</name>
   <url>https://exercise-week7-env.eba-6p3cncv7.us-east-2.elasticbeanstalk.com/auth</url>
 
   <properties>
