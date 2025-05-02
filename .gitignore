@@ -41,5 +41,5 @@ build/
 *.properties
 *.json
 *.xml
-/ebextensions/
-/platform/
+/.ebextensions/
+/.platform/
