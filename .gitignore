@@ -43,4 +43,4 @@ build/
 /src/main/.platform/
 /src/main/resources/
 /src/main/java/.ebextensions/*.config
-/src/main/java/.platform/httpd/conf.d/ssl.conf
+/src/main/.platform/httpd/conf.d/ssl.conf
