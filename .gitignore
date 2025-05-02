@@ -43,3 +43,6 @@ resources/*.properties
 /pom.xml
 /.ebextensions/*.config
 /.platform/httpd/conf.d/*.conf
+/src/main/.ebextensions/
+/src/main/.platform/
+/src/main/resources/
