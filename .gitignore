@@ -38,7 +38,12 @@ build/
 .DS_Store
 
 ### DBC ###
-cognito.properties
-jwks.json
-https-instance.config
-pom.xml
+resources/*.properties
+resources/*.xml
+*.json
+/pom.xml
+/.ebextensions/*.config
+/.platform/httpd/conf.d/*.conf
+/src/main/.ebextensions/
+/src/main/.platform/
+/src/main/resources/
