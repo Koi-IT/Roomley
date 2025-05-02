@@ -39,6 +39,7 @@ build/
 
 ### DBC ###
 resources/*.properties
+resources/*.xml
 *.json
 /pom.xml
 /.ebextensions/*.config
