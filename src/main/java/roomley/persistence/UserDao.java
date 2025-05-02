@@ -1,9 +1,11 @@
 package roomley.persistence;
 
 import roomley.entities.User;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
-import jakarta.persistence.criteria.Root;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Root;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -90,10 +92,10 @@ public class UserDao {
 
         Session session = sessionFactory.openSession();
 
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
-        List<User> users = session.createSelectionQuery( query ).getResultList();
+        List<User> users = session.createQuery(query).getResultList();
 
         logger.debug("The list of users " + users);
         session.close();
@@ -114,11 +116,11 @@ public class UserDao {
 
         logger.debug("Searching for user with " + propertyName + " = " + value);
 
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<User> users = session.createSelectionQuery( query ).getResultList();
+        List<User> users = session.createQuery(query).getResultList();
 
         session.close();
         return users;
@@ -137,7 +139,7 @@ public class UserDao {
 
         logger.debug("Searching for user with {} = {}",  propertyName, value);
 
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery(User.class);
         Root<User> root = query.from(User.class);
         Expression<String> propertyPath = root.get(propertyName);

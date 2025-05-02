@@ -3,10 +3,10 @@ package roomley.persistence;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -83,10 +83,10 @@ public class TaskDao {
 
         Session session = sessionFactory.openSession();
 
-        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Task> query = builder.createQuery(Task.class);
         Root<Task> root = query.from(Task.class);
-        List<Task> allTasks = session.createSelectionQuery( query ).getResultList();
+        List<Task> allTasks = session.createQuery(query).getResultList();
 
         logger.info("Total tasks: " + allTasks.size());
         session.close();
