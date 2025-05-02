@@ -1,6 +1,6 @@
 package roomley.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import roomley.persistence.UserDao;
 

@@ -30,4 +30,8 @@ public class TaskGrabber extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("tasks.jsp");
         dispatcher.forward(req, resp);
     }
+
+    static {
+        System.out.println("TaskGrabber static block loaded.");
+    }
 }
