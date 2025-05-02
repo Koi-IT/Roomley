@@ -38,12 +38,9 @@ build/
 .DS_Store
 
 ### DBC ###
-resources/*.properties
-resources/*.xml
-*.json
 /pom.xml
-/.ebextensions/*.config
-/.platform/httpd/conf.d/*.conf
 /src/main/.ebextensions/
 /src/main/.platform/
 /src/main/resources/
+/src/main/java/.ebextensions/*.config
+/src/main/java/.platform/httpd/conf.d/ssl.conf
