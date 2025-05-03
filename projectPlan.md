@@ -28,12 +28,12 @@
     - Password Reset
 
 
-- [ ] Work on AWS integration
-- [ ] Setup basic account functionality
-- [ ] Look into creating a password recovery system
-- [ ] Build password recovery webpage and functionality
-- [ ] Build profile sign in/out webpages and functionality
-- [ ] Create authentication
+- [X] Work on AWS integration
+- [X] Setup basic account functionality
+- [X] Look into creating a password recovery system
+- [X] Build password recovery webpage and functionality
+- [X] Build profile sign in/out webpages and functionality
+- [X] Create authentication
 
 ## Files:
     Controller - UserGrabber
