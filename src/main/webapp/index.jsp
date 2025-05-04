@@ -43,25 +43,87 @@
             </article>
 
             <div class="grid">
-                <article>Tasks to-do</article>
-                <article>Assigned to me</article>
-                <article>Finished tasks</article>
+
+                    <button type="button" onclick="">
+                        Tasks to-do
+                        <a href=""><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
+                    </button>
+
+                    <button type="button" onclick="">
+                        Assigned to me
+                        <a href=""><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
+                    </button>
+
+                    <button type="button" onclick="">
+                        Finished tasks
+                        <a href=""><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
+                    </button>
 
             </div>
             <div class="grid">
-                <article>task</article>
-                <article>task</article>
-                <article>task</article>
+            <c:forEach var="task" items="${tasks}">
+                <article>
+                    <table>
+                        <tr>
+                            <td>${task.taskId}</td>
+                            <td>${task.taskName}</td>
+                            <td>${task.taskStatus}</td>
+                            <td>${task.taskDescription}</td>
+                        </tr>
+                    </table>
+                </article>
+            </c:forEach>
             </div>
             <div class="grid">
-                <article>task</article>
-                <article>task</article>
-                <article>task</article>
+                <c:forEach var="task" items="${userAssignedTasks}">
+                    <article>
+                        <table>
+                            <tr>
+                                <td>${task.taskId}</td>
+                                <td>${task.taskName}</td>
+                                <td>${task.taskStatus}</td>
+                                <td>${task.taskDescription}</td>
+                            </tr>
+                        </table>
+                    </article>
+                </c:forEach>
             </div>
             <div class="grid">
-                <article>task</article>
-                <article>task</article>
-                <article>task</article>
+                <c:forEach var="task" items="${completedTasks}">
+                    <article>
+                        <table>
+                            <tr>
+                                <td>${task.taskId}</td>
+                                <td>${task.taskName}</td>
+                                <td>${task.taskStatus}</td>
+                                <td>${task.taskDescription}</td>
+                                <a href=""><img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle"></a>
+                            </tr>
+                        </table>
+                    </article>
+                </c:forEach>
+                <c:forEach var="task" items="${tasks}">
+                    <tr>
+                        <td>${task.taskId}</td>
+                        <td>${task.taskName}</td>
+                        <td>${task.taskStatus}</td>
+                        <td>${task.taskDescription}</td>
+                    </tr>
+                </c:forEach>
+            </div>
+            <div class="grid">
+                <article style="display: flex; flex-direction: row;">
+                    task
+                    <a class="task-buttons" href=""><img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle"></a>
+                </article>
+                <article style="display: flex; flex-direction: row;">
+                    task
+                    <a class="task-buttons" href=""><img src="images/assignment_ind_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle"></a>
+                </article>
+                <article style="display: flex; flex-direction: row;">
+                    task
+                    <a style="justify-content: space-between; align-self: flex-end;" href=""><img style="justify-content: space-between; align-self: flex-end;" src="images/check_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle"></a>
+                </article>
             </div>
         </c:otherwise>
     </c:choose>

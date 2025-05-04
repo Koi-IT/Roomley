@@ -30,6 +30,15 @@ footer {
     margin-bottom: 1rem;
 }
 
+.task-elements {
+    display: flex;
+    flex-direction: row;
+}
+
+.task-buttons {
+    justify-content: right;
+}
+
 .grid article {
     padding: 0.75rem;
     background-color: #f5f5f5;

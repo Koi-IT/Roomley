@@ -44,3 +44,5 @@ build/
 /src/main/resources/
 /src/main/java/.ebextensions/*.config
 /src/main/.platform/httpd/conf.d/ssl.conf
+/server.crt
+/server.key
