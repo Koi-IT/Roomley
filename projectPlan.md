@@ -58,12 +58,12 @@
     - Delete "Household" Groups
     - Head of Household Privileges
 
-- [ ] Build crud functionality for profiles
-- [ ] Create profile entity
-- [ ] Build sign up/sign in webpage
-- [ ] Review Progress and update project plan
-- [ ] Work on create group functionality
-- [ ] Create user permissions
+- [X] Build crud functionality for profiles
+- [X] Create profile entity
+- [X] Build sign up/sign in webpage
+- [X] Review Progress and update project plan
+- [] Work on create group functionality
+- [] Create user permissions
 
 ## Files:
     Controller - HouseholdGrabber
@@ -89,7 +89,7 @@
     - Delete Task
     - Complete Task
 
-- [ ] Build CRUD functionality for the task system
+- [X] Build CRUD functionality for the task system
 - [ ] Build webpages for task CRUD operations
 
 ## Files:
