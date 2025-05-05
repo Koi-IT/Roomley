@@ -199,6 +199,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         if (users.isEmpty()) {
             fetchDataFromRDS(userSub, userEmail, username, role, req);
 
+        } else {
+            createUserSession(req, userSub);
         }
 
 

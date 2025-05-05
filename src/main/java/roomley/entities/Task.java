@@ -25,8 +25,8 @@ public class Task {
     @Column(name = "task_description")
     private String taskDescription;
 
-    @Column(name = "task_type")
-    private int taskType;
+    @Column(name = "task_difficulty")
+    private int taskDifficulty;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -46,14 +46,14 @@ public class Task {
      * @param taskName        The name of the Task
      * @param taskDescription The description of the Task
      * @param taskStatus      The status of the Task
-     * @param taskType        the task type
+     * @param taskDifficulty  the task difficulty
      */
-    public Task (User user, String taskName,  String taskDescription, boolean taskStatus, int taskType) {
+    public Task (User user, String taskName,  String taskDescription, boolean taskStatus, int taskDifficulty) {
         this.user = user;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
-        this.taskType = taskType;
+        this.taskDifficulty = taskDifficulty;
 
     }
 
@@ -130,17 +130,17 @@ public class Task {
     public void setUser(User user) { this.user = user; }
 
     /**
-     * Gets task type.
+     * Gets difficulty
      *
-     * @return the task type
+     * @return the difficulty
      */
-    public int getTaskType() { return taskType; }
+    public int getTaskDifficulty() { return taskDifficulty; }
 
     /**
      * Sets task type.
      *
-     * @param taskType the task type
+     * @param taskDifficulty the task type
      */
-    public void setTaskType(int taskType) { this.taskType = taskType; }
+    public void setTaskDifficulty(int taskDifficulty) { this.taskDifficulty = taskDifficulty; }
 
 }

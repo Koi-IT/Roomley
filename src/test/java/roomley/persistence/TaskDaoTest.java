@@ -62,7 +62,7 @@ class TaskDaoTest {
         insertedTask.setTaskName("test2");
         insertedTask.setTaskStatus(true);
         insertedTask.setTaskDescription("This is a test");
-        insertedTask.setTaskType(0);
+        insertedTask.setTaskDifficulty(0);
 
         //Insert task
         taskDao.insert(insertedTask);
@@ -71,7 +71,7 @@ class TaskDaoTest {
         assertEquals("test2", insertedTask.getTaskName());
         assertTrue(insertedTask.getTaskStatus());
         assertEquals("This is a test", insertedTask.getTaskDescription());
-        assertEquals(0, insertedTask.getTaskType());
+        assertEquals(0, insertedTask.getTaskDifficulty());
 
     }
 

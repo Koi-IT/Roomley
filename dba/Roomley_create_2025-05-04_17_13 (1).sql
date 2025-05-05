@@ -51,7 +51,7 @@ CREATE TABLE tasks (
     task_name varchar(50)  NOT NULL,
     status bool  NOT NULL,
     task_description varchar(250)  NOT NULL,
-    task_type varchar(30)  NOT NULL,
+    task_difficulty int NOT NULL,
     CONSTRAINT tasks_pk PRIMARY KEY (task_id)
 );
 

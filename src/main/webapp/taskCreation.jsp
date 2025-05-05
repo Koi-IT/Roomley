@@ -6,23 +6,22 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@include file="header.jsp"%>
 <article>
     <form action="${pageContext.request.contextPath}/taskCreator" method="post">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName">
         <label for="taskDescription">Task Description:</label>
         <input type="text" id="taskDescription" name="taskDescription">
+        <label for="taskDifficulty">Task Difficulty:</label>
+        <select name="taskDifficulty" id="taskDifficulty">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
         <button type="submit">Create Task</button>
     </form>
 
 </article>
-
-
-
-</body>
-</html>
+<%@include file="footer.jsp"%>

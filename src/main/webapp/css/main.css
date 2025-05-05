@@ -30,21 +30,45 @@ footer {
     margin-bottom: 1rem;
 }
 
+.task-card {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
 .task-elements {
     display: flex;
-    flex-direction: row;
+    width: 100%;  /* Ensure it takes up full width */
+    justify-content: space-between;  /* Evenly space items */
+    align-items: center; /* Center them vertically */
+}
+
+.task-text {
+    flex-grow: 1;  /* Allow the text to take up available space on the left */
+    text-align: left;  /* Align the text to the left */
+}
+
+.edit-button {
+    text-align: center;  /* Center the edit link */
+    margin: 0 auto; /* Ensures it stays centered in the available space */
 }
 
 .task-buttons {
-    justify-content: right;
+    display: flex;
+    justify-content: flex-end;  /* Align the task button to the right */
+    margin-left: auto;  /* Pushes it to the right */
 }
 
-.grid article {
-    padding: 0.75rem;
-    background-color: #f5f5f5;
-    border-radius: 0.5rem;
-    font-size: 0.9rem;
-}
+
+
+/*.grid article {*/
+/*    padding: 0.75rem;*/
+/*    background-color: #f5f5f5;*/
+/*    border-radius: 0.5rem;*/
+/*    font-size: 0.9rem;*/
+/*}*/
 
 body {
     font-size: 16px;
@@ -61,11 +85,12 @@ main {
     align-items: center;
 }
 
-article {
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Ensures the article fills the available space */
-}
+/*article.page-content {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    height: 100%;*/
+/*}*/
+
 
 .home-page {
     display: flex;
@@ -132,7 +157,7 @@ article {
 /* <weight>: Use a value from 300 to 900
    <uniquifier>: Use a unique and descriptive class name */
 
-    .merriweather-paragraph, p, li, article {
+    .merriweather-paragraph, p, li {
                        font-family: "Merriweather", serif;
                        font-optical-sizing: auto;
                        font-weight: 300;

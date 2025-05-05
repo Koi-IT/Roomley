@@ -25,7 +25,8 @@
                             <li class="nav-font"><a href = "logIn">Log in</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li class="nav-font"><a href="index.jsp">Sign out</a></li>
+                            <li class="nav-font"><a href="logout">Sign out</a></li>
+                            <%--Close Session--%>
                         </c:otherwise>
                     </c:choose>
                 </ul>

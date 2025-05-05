@@ -66,6 +66,6 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
     }
 
     static {
-        System.out.println("TaskGrabber static block loaded.");
+        System.out.println("LogIn static block loaded.");
     }
 }
