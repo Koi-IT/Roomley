@@ -2,11 +2,8 @@ package roomley.entities;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import roomley.persistence.UserDao;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
+import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,37 +18,25 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "user_id")
-    private int id;
+    private int user_id;
+
+    @Column(name = "cognito_sub")
+    private String cognito_sub;
 
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "first_name")
-    private String userFirstName;
-
-    @Column(name = "last_name")
-    private String userLastName;
-
-    @Column(name = "birthdate")
-    private String userBirthDate;
+    @Column(name = "created_at")
+    private Timestamp created_at;
 
     @Column(name = "email")
-    private String userEmail;
+    private String email;
 
-    @Column(name = "user_level")
-    private int userLevel;
+    @Column(name = "last_login")
+    private java.sql.Timestamp last_login;
 
-    @Column(name = "user_type")
-    private String userType;
-
-    @Column(name = "household")
-    private String userHousehold;
-
-    @Column(name = "Households_household_id")
-    private int householdId;
+    @Column(name = "role")
+    private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> task = new ArrayList<>();
@@ -64,29 +49,20 @@ public class User {
     }
 
     /**
-     * Instantiates a new User.
+     * User constructor
      *
-     * @param username      the username
-     * @param password      the password
-     * @param userFirstName the user first name
-     * @param userLastName  the user last name
-     * @param userBirthDate the user birth date
-     * @param userEmail     the user email
-     * @param userLevel     the user level
-     * @param userType      the user type
-     * @param userHousehold the user household
+     * @param cognito_sub Cognito Sub
+     * @param username Username
+     * @param email Email
+     * @param last_login Last Login
+     * @param role User Role
      */
-    public User(String username,  String password, String userFirstName, String userLastName,String userBirthDate, String userEmail, int userLevel, String userType , String userHousehold, int householdId) {
+    public User( String cognito_sub, String username, String email, java.sql.Timestamp last_login, String role) {
+        this.cognito_sub = cognito_sub;
         this.username = username;
-        this.password = password;
-        this.userFirstName = userFirstName;
-        this.userLastName = userLastName;
-        this.userBirthDate = userBirthDate;
-        this.userEmail = userEmail;
-        this.userLevel = userLevel;
-        this.userType = userType;
-        this.userHousehold = userHousehold;
-        this.householdId = householdId;
+        this.email = email;
+        this.last_login = last_login;
+        this.role = role;
 
     }
 
@@ -97,8 +73,15 @@ public class User {
      * @return the id
      */
     public int getId() {
-        return id;
+        return user_id;
     }
+
+    /**
+     * Gets Cognito Sub
+     *
+     * @return the Cognito Sub
+     */
+    public String getCognito_sub() { return cognito_sub; }
 
     /**
      * Gets username.
@@ -110,21 +93,12 @@ public class User {
     }
 
     /**
-     * Gets password.
-     *
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
      * Gets user email.
      *
      * @return the user email
      */
     public String getUserEmail() {
-        return userEmail;
+        return email;
     }
 
     /**
@@ -132,8 +106,8 @@ public class User {
      *
      * @return the user level
      */
-    public int getUserLevel() {
-        return userLevel;
+    public Timestamp getCreatedAt() {
+        return created_at;
     }
 
     /**
@@ -141,229 +115,67 @@ public class User {
      *
      * @return the user type
      */
-    public String getUserType() {
-        return userType;
+    public java.sql.Timestamp getLastLogin() {
+        return last_login;
     }
 
     /**
-     * Gets task.
+     * Gets user role.
      *
-     * @return the task
+     * @return  the user type
      */
-    public List<Task> getTask() {
-        return task;
-    }
+    public String getRole() { return role; }
 
     /**
-     * Sets id.
+     * Sets cognito_sub.
      *
-     * @param id the id
+     * @param cognito_sub the cognito_sub
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setCognitoSub(String cognito_sub) {
+        this.cognito_sub = cognito_sub;
     }
 
     /**
-     * Sets username.
+     * Sets email.
+     *
+     * @param email the email
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * Sets user created_at.
+     *
+     * @param created_at at the user created_at
+     */
+    public void setCreateAt(java.security.Timestamp created_at) {
+        this.created_at = created_at;
+    }
+
+    /**
+     * Sets last_login.
+     *
+     * @param last_login the last_login
+     */
+    public void setLastLogin(java.sql.Timestamp last_login) {
+        this.last_login = last_login;
+    }
+
+    /**
+     * Sets user role.
+     *
+     * @param role the user role
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    /**
+     * Sets username
      *
      * @param username the username
      */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
-     * Sets password.
-     *
-     * @param password the password
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Sets user email.
-     *
-     * @param userEmail the user email
-     */
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    /**
-     * Sets user level.
-     *
-     * @param userLevel the user level
-     */
-    public void setUserLevel(int userLevel) {
-        this.userLevel = userLevel;
-    }
-
-    /**
-     * Sets user type.
-     *
-     * @param userType the user type
-     */
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
-
-    /**
-     * Sets task.
-     *
-     * @param task the task
-     */
-    public void setTask(List<Task> task) {
-        this.task = task;
-    }
-
-    /**
-     * Gets user first name.
-     *
-     * @return the user first name
-     */
-    public String getUserFirstName() {
-        return userFirstName;
-    }
-
-    /**
-     * Sets user first name.
-     *
-     * @param userFirstName the user first name
-     */
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    /**
-     * Gets user last name.
-     *
-     * @return the user last name
-     */
-    public String getUserLastName() {
-        return userLastName;
-    }
-
-    /**
-     * Sets user last name.
-     *
-     * @param userLastName the user last name
-     */
-    public void setUserLastName(String userLastName) {
-        this.userLastName = userLastName;
-    }
-
-    /**
-     * Gets user birthDate.
-     *
-     * @return the user birthDate
-     */
-    public String getUserBirthDate() {
-        return userBirthDate;
-    }
-
-    /**
-     * Sets user birth date.
-     *
-     * @param userBirthDate the user birth date
-     */
-    public void setUserBirthDate(String userBirthDate) {
-        this.userBirthDate = userBirthDate;
-    }
-
-    /**
-     * Gets user household.
-     *
-     * @return the user household
-     */
-    public String getUserHousehold() { return userHousehold; }
-
-    /**
-     * Sets user household.
-     *
-     * @param userHousehold the user household
-     */
-    public void setUserHousehold(String userHousehold) {  this.userHousehold = userHousehold; }
-
-    /**
-     * Add task.
-     */
-    public void addTask() {
-        Task task = new Task();
-        this.task.add(task);
-    }
-
-    /**
-     * Remove task.
-     */
-    public void removeTask() { this.task.remove(this.task.get(0)); }
-
-    /**
-     * Sets tasks.
-     *
-     * @param tasks the tasks
-     */
-    public void setTasks(List<Task> tasks) { this.task = tasks; }
-
-    /**
-     * Gets tasks.
-     *
-     * @return the tasks
-     */
-    public List<Task> getTasks() {  return this.task; }
-
-    /**
-     * Gets Age
-     *
-     * @return the age
-     */
-    public String getAge() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate birthDate = LocalDate.parse(userBirthDate, formatter);
-        LocalDate currentDate = LocalDate.now();
-
-        int age = Period.between(birthDate, currentDate).getYears();
-        return String.valueOf(age);
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", userFirstName='" + userFirstName + '\'' +
-                ", userLastName='" + userLastName + '\'' +
-                ", userBirthDate='" + userBirthDate + '\'' +
-                ", userEmail='" + userEmail + '\'' +
-                ", userLevel=" + userLevel +
-                ", userType='" + userType + '\'' +
-                ", task=" + task +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        User other = (User) o;
-
-        return username.equals(other.username) &&
-                password.equals(other.password) &&
-                userFirstName.equals(other.userFirstName) &&
-                userLastName.equals(other.userLastName) &&
-                userBirthDate.equals(other.userBirthDate) &&
-                userEmail.equals(other.userEmail) &&
-                userLevel == other.userLevel &&
-                userType.equals(other.userType) &&
-                userHousehold.equals(other.userHousehold) &&
-                householdId == other.householdId;
-    }
+    public void setUsername(String username) { this.username = username; }
 
 }

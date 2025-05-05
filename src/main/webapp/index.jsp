@@ -46,17 +46,17 @@
 
                     <button type="button" onclick="">
                         Tasks to-do
-                        <a href=""><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
+                        <a href="taskCreator"><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
                     </button>
 
                     <button type="button" onclick="">
                         Assigned to me
-                        <a href=""><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
+                        <a href="taskCreator"><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
                     </button>
 
                     <button type="button" onclick="">
                         Finished tasks
-                        <a href=""><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
+                        <a href="taskCreator"><img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task"></a>
                     </button>
 
             </div>

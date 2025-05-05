@@ -7,6 +7,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import roomley.auth.*;
+import roomley.entities.User;
+import roomley.persistence.UserDao;
 import roomley.util.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -190,7 +192,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("Assigned role: " + role);
 
         // Setup Data for aws RDS
-        fetchUserDataFromRDS(userSub,userEmail,username,role);
+        fetchDataFromRDS(userSub, userEmail, username, role);
 
         logger.debug(jwt.getClaim("sub").asString());
         logger.debug("here are all the available claims: " + jwt.getClaims());
@@ -230,7 +232,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     /**
      * Gets the JSON Web Key Set (JWKS) for the user pool from cognito and loads it
-     * into objects for easier use.
+ * into objects for easier use.
      *
      * JSON Web Key Set (JWKS) location: https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json
      * Demo url: https://cognito-idp.us-east-2.amazonaws.com/us-east-2_XaRYHsmKB/.well-known/jwks.json
@@ -281,57 +283,41 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     }
 
     /**
+     * Fetch data from aws rds
      *
-     * @param userSub
-     * @param userEmail
-     * @param username
-     * @param role
-     * @return
+     * @param userSub Cognito Sub
+     * @param userEmail User Email
+     * @param username Username
+     * @param role role
      */
-    private String fetchUserDataFromRDS(String userSub, String userEmail, String username, String role) {
+    private String fetchDataFromRDS(String userSub, String userEmail, String username, String role) {
         loadProperties();
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
+
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            try (Connection connection = DriverManager.getConnection(JDBC_URL, DB_USERNAME, DB_PASSWORD)) {
-                String query = "SELECT * FROM users WHERE cognito_sub = ?";
-                PreparedStatement stmt = connection.prepareStatement(query);
-                stmt.setString(1, userSub);
+            User newUser = new User();
+            newUser.setCognitoSub(userSub);
+            newUser.setUsername(username);
+            newUser.setEmail(userEmail);
+            newUser.setLastLogin(new Timestamp(System.currentTimeMillis()));
+            newUser.setRole(role);
 
-                ResultSet rs = stmt.executeQuery();
+            UserDao userDao = new UserDao();
+            userDao.insert(newUser);
 
-                if (rs.next()) {
-                    // Extract user data from RDS
-                    return userEmail;
-                } else {
-                    // User doesn't exist, insert into database
-                    String insertQuery = "INSERT INTO users (cognito_sub, username, email, last_login, role) VALUES (?, ?, ?, ?, ?)";
-                    PreparedStatement insertStmt = connection.prepareStatement(insertQuery);
-                    insertStmt.setString(1, userSub);
-                    insertStmt.setString(2, username);
-                    insertStmt.setString(3, userEmail);
-                    insertStmt.setTimestamp(4, timestamp);
-                    insertStmt.setString(5, role);
+            return userSub;
 
-                    int rowsAffected = insertStmt.executeUpdate();
-                    if (rowsAffected > 0) {
-                        logger.debug("Inserted new user into database.");
-                    } else {
-                        logger.error("Failed to insert user into database.");
-                    }
-                    return userEmail;
-                }
-            } catch (SQLException e) {
+            } catch (ClassNotFoundException e) {
                 logger.error("Database connection error: " + e.getMessage(), e);
                 return null;
+
             }
-        } catch (ClassNotFoundException e) {
-            logger.error("JDBC Driver not found: " + e.getMessage(), e);
-            return null;
-        }
+        
     }
 }
 

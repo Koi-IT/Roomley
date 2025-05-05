@@ -39,7 +39,7 @@ class TaskDaoTest {
         updatedTask.setTaskStatus(true);
         taskDao.update(updatedTask);
 
-        assert(updatedTask.getTaskStatus());
+        assertTrue(updatedTask.getTaskStatus());
 
     }
 

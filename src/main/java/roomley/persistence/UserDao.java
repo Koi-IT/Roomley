@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -32,9 +33,22 @@ public class UserDao {
      * @param id the id
      * @return the by id
      */
-    public User getById(int id) {
+    User getById(int id) {
         Session session = sessionFactory.openSession();
         User user = session.get(User.class, id);
+        session.close();
+        return user;
+    }
+
+    /**
+     * Get user by sub
+     *
+     * @param sub the sub
+     * @return the by sub
+     */
+    public User getBySub(String sub) {
+        Session session = sessionFactory.openSession();
+        User user = session.get(User.class, sub);
         session.close();
         return user;
     }
@@ -58,15 +72,15 @@ public class UserDao {
      * @param user User to be inserted
      * @return the int
      */
-    public int insert(User user) {
-        int id = 0;
+    public String insert(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.persist(user);
         transaction.commit();
-        id = user.getId();
+        String sub = user.getCognito_sub();
         session.close();
-        return id;
+        return sub;
+
     }
 
     /**
