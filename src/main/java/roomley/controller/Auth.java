@@ -14,12 +14,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.*;
 
+import javax.faces.context.ExternalContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.URI;
@@ -92,7 +94,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
-                userName = validate(tokenResponse);
+                userName = validate(tokenResponse, req);
                 req.setAttribute("userName", userName);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
@@ -139,7 +141,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse) throws IOException {
+    private String validate(TokenResponse tokenResponse, HttpServletRequest req) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -163,7 +165,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             logger.error("Algorithm Error " + e.getMessage(), e);
         }
 
-        // get an algorithm instance
+        // Get an algorithm instance
         Algorithm algorithm = Algorithm.RSA256((RSAPublicKey) publicKey, null);
 
         // Verify ISS field of the token to make sure it's from the Cognito source
@@ -191,8 +193,14 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("User groups: " + userGroups);
         logger.debug("Assigned role: " + role);
 
-        // Setup Data for aws RDS
-        fetchDataFromRDS(userSub, userEmail, username, role);
+        // Setup Data for aws RDS if the user hasn't been already created
+        UserDao userDao = new UserDao();
+        List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
+        if (users.isEmpty()) {
+            fetchDataFromRDS(userSub, userEmail, username, role, req);
+
+        }
+
 
         logger.debug(jwt.getClaim("sub").asString());
         logger.debug("here are all the available claims: " + jwt.getClaims());
@@ -285,21 +293,21 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     /**
      * Fetch data from aws rds
      *
-     * @param userSub Cognito Sub
+     * @param userSub   Cognito Sub
      * @param userEmail User Email
-     * @param username Username
-     * @param role role
+     * @param username  Username
+     * @param role      role
      */
-    private String fetchDataFromRDS(String userSub, String userEmail, String username, String role) {
+    private void fetchDataFromRDS(String userSub, String userEmail, String username, String role, HttpServletRequest req) {
         loadProperties();
-
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
+            // Create user session to hold cognito sub
+            createUserSession(req, userSub);
+
+            // Create new user in aws RDS from cognito sub
             User newUser = new User();
             newUser.setCognitoSub(userSub);
             newUser.setUsername(username);
@@ -310,14 +318,20 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             UserDao userDao = new UserDao();
             userDao.insert(newUser);
 
-            return userSub;
-
-            } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
                 logger.error("Database connection error: " + e.getMessage(), e);
-                return null;
 
-            }
+        }
         
     }
+
+    public void createUserSession(HttpServletRequest req, String userSub) {
+        HttpSession session = req.getSession(true);
+        logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
+        session.setAttribute("userSub", userSub);
+
+    }
+
+
 }
 

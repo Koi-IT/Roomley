@@ -61,7 +61,7 @@ CREATE TABLE users (
     cognito_sub varchar(255)  NOT NULL,
     username varchar(255)  NOT NULL,
     email varchar(255)  NOT NULL,
-    created_at timestamp  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at timestamp  NULL DEFAULT CURRENT_TIMESTAMP,
     last_login timestamp  NOT NULL,
     role varchar(20)  NOT NULL,
     UNIQUE INDEX unique_cognito_sub (cognito_sub),

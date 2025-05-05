@@ -31,14 +31,47 @@ public class TaskCreator extends HttpServlet {
 
         // Get Cognito sub from user session
         HttpSession session = req.getSession(false);
+        if (session != null) {
+            String userSub = (String) session.getAttribute("userSub");
+            if (userSub == null) {
+                System.out.println("userSub is null in session. Something went wrong.");
+            } else {
+                System.out.println("userSub found in session: " + userSub);
+            }
+        } else {
+            System.out.println("Session is null.");
+        }
+
+        System.out.println("Session ID: " + session.getId());
+        System.out.println("Session exists: " + (session != null));
+        System.out.println("UserSub from session: " + session.getAttribute("userSub"));
+
+
+
         if (session == null || session.getAttribute("userSub") == null) {
             resp.sendRedirect("logIn"); // or error
+            System.out.println("TaskCreator error.");
             return;
         }
+
         // Set userSub
         String userSub = (String) session.getAttribute("userSub");
 
-        // Get user by using cognito sub to match it
+        // Create task using userSub, taskName, and TaskDescription
+        Task newTask = createTask(userSub, taskName, taskDescription);
+
+        // Insert new task into rds
+        TaskDao taskDao = new TaskDao();
+        taskDao.insert(newTask);
+
+        // Send tasks to webpage
+        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+        dispatcher.forward(req, resp);
+    }
+
+    private static Task createTask(String userSub, String taskName, String taskDescription) throws ServletException {
+
+        // Get currentUser
         UserDao userDao = new UserDao();
         List<User> matches = userDao.getByPropertyEqual("cognitoSub", userSub);
         if (matches.isEmpty()) {
@@ -54,17 +87,11 @@ public class TaskCreator extends HttpServlet {
         newTask.setTaskDescription(taskDescription);
         newTask.setTaskStatus(false);
         newTask.setUser(currentUser);
-
-        // Insert new task into rds
-        TaskDao taskDao = new TaskDao();
-        taskDao.insert(newTask);
-
-        // Send tasks to webpage
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-        dispatcher.forward(req, resp);
+        return newTask;
     }
 
     static {
         System.out.println("TaskCreator static block loaded.");
     }
+
 }

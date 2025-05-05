@@ -12,12 +12,12 @@
 </head>
 <body>
 <article>
-    <form action="taskCreator" method="post">
+    <form action="${pageContext.request.contextPath}/taskCreator" method="post">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName">
         <label for="taskDescription">Task Description:</label>
         <input type="text" id="taskDescription" name="taskDescription">
-        <button type="submit"></button>
+        <button type="submit">Create Task</button>
     </form>
 
 </article>

@@ -23,9 +23,12 @@ ALTER TABLE meals
 ALTER TABLE tasks
     DROP FOREIGN KEY fk_tasks_users;
 
-
+ALTER TABLE notifications
+    DROP FOREIGN KEY Notifications_Users;
 
 -- tables
+DROP TABLE notifications
+
 DROP TABLE groceries;
 
 DROP TABLE household_members;
@@ -39,8 +42,6 @@ DROP TABLE meals;
 DROP TABLE tasks;
 
 DROP TABLE users;
-
-
 
 -- End of file.
 
