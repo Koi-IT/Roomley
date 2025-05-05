@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/target/test-classes/cleandb.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/dba/Roomley_create_2025-05-04_17_13 (1).sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/dba/Roomley_drop.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/roomley/controller/Auth.java" dialect="MySQL" />
   </component>
 </project>

@@ -33,8 +33,11 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPublicKeySpec;
+import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static java.time.LocalTime.now;
 
 
 @WebServlet(
@@ -54,6 +57,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     String REDIRECT_URL;
     String REGION;
     String POOL_ID;
+    String JDBC_URL;
+    String DB_USERNAME;
+    String DB_PASSWORD;
+    String Last_Login;
     Keys jwks;
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -167,15 +174,31 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
-        String userName = jwt.getClaim("cognito:username").asString();
-        logger.debug("here's the username: " + userName);
 
+        // Setup Variables from cognito
+        String username = jwt.getClaim("cognito:username").asString();
+        String userEmail = jwt.getClaim("email").asString();
+        String userSub = jwt.getClaim("sub").asString();
+        logger.debug("here's the username: " + username);
+        logger.debug("here's the email: " + userEmail);
+        logger.debug("here's the sub: " + userSub);
+
+        // Extracting groups from the JWT
+        List<String> userGroups = jwt.getClaim("cognito:groups").asList(String.class);
+        String role = (userGroups != null && !userGroups.isEmpty()) ? userGroups.get(0) : "User";
+        logger.debug("User groups: " + userGroups);
+        logger.debug("Assigned role: " + role);
+
+        // Setup Data for aws RDS
+        fetchUserDataFromRDS(userSub,userEmail,username,role);
+
+        logger.debug(jwt.getClaim("sub").asString());
         logger.debug("here are all the available claims: " + jwt.getClaims());
 
         // TODO decide what you want to do with the info!
         // for now, I'm just returning username for display back to the browser
 
-        return userName;
+        return username;
     }
 
     /** Create the auth url and use it to build the request.
@@ -246,10 +269,68 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             REDIRECT_URL = properties.getProperty("redirectURL");
             REGION = properties.getProperty("region");
             POOL_ID = properties.getProperty("poolId");
+            properties = loadProperties("/database.properties");
+            JDBC_URL = properties.getProperty("url");
+            DB_USERNAME = properties.getProperty("username");
+            DB_PASSWORD = properties.getProperty("password");
         } catch (IOException ioException) {
             logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
         } catch (Exception e) {
             logger.error("Error loading properties" + e.getMessage(), e);
+        }
+    }
+
+    /**
+     *
+     * @param userSub
+     * @param userEmail
+     * @param username
+     * @param role
+     * @return
+     */
+    private String fetchUserDataFromRDS(String userSub, String userEmail, String username, String role) {
+        loadProperties();
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, DB_USERNAME, DB_PASSWORD)) {
+                String query = "SELECT * FROM users WHERE cognito_sub = ?";
+                PreparedStatement stmt = connection.prepareStatement(query);
+                stmt.setString(1, userSub);
+
+                ResultSet rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    // Extract user data from RDS
+                    return userEmail;
+                } else {
+                    // User doesn't exist, insert into database
+                    String insertQuery = "INSERT INTO users (cognito_sub, username, email, last_login, role) VALUES (?, ?, ?, ?, ?)";
+                    PreparedStatement insertStmt = connection.prepareStatement(insertQuery);
+                    insertStmt.setString(1, userSub);
+                    insertStmt.setString(2, username);
+                    insertStmt.setString(3, userEmail);
+                    insertStmt.setTimestamp(4, timestamp);
+                    insertStmt.setString(5, role);
+
+                    int rowsAffected = insertStmt.executeUpdate();
+                    if (rowsAffected > 0) {
+                        logger.debug("Inserted new user into database.");
+                    } else {
+                        logger.error("Failed to insert user into database.");
+                    }
+                    return userEmail;
+                }
+            } catch (SQLException e) {
+                logger.error("Database connection error: " + e.getMessage(), e);
+                return null;
+            }
+        } catch (ClassNotFoundException e) {
+            logger.error("JDBC Driver not found: " + e.getMessage(), e);
+            return null;
         }
     }
 }

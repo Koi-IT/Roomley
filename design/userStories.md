@@ -2,15 +2,15 @@
 
 ## MVP
 
-### Register Account
+### ~~Register Account~~
 
 A new user wants to use our service and so need to register an account.
 
-### Sign in
+### ~~Sign in~~
 
 As a registered user I want to sign in to see my tasks and my groups tasks.
 
-### Password Reset
+### ~~Password Reset~~
 
 As a user I may forget my password from time to time and need to reset it.
 
