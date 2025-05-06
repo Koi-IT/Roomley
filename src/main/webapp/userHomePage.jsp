@@ -34,16 +34,17 @@
 </div>
 
 <!-- Task Columns Section -->
-<div class="grid">
+<div class="task-grid">
     <!-- To-Do Tasks Column -->
-    <div class="col-4">
+    <div class="task-column col-4">
         <c:forEach var="task" items="${sessionScope.tasks}">
             <article class="task-card">
                 <div class="task-elements">
                     <span class="task-text">${task.taskName}</span>
+                    <span class="task-text">${task.taskDescription}</span>
                     <a href="#" class="edit-button">Edit</a>
                     <a href="#" class="task-buttons">
-                        <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
+                        <img src="${pageContext.request.contextPath}/images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
                     </a>
                 </div>
             </article>
@@ -51,10 +52,11 @@
     </div>
 
     <!-- Assigned Tasks Column -->
-    <div class="col-4">
+    <div class="task-column col-4">
         <c:forEach var="task" items="${sessionScope.assignedTasks}">
             <article class="task-card">
                 <div class="task-elements">
+                    <span class="task-text">${task.taskName}</span>
                     <span class="task-text">${task.taskName}</span>
                     <a href="#" class="edit-button">Edit</a>
                     <a href="#" class="task-buttons">
@@ -66,10 +68,11 @@
     </div>
 
     <!-- Completed Tasks Column -->
-    <div class="col-4">
+    <div class="task-column  col-4">
         <c:forEach var="task" items="${sessionScope.completedTasks}">
             <article class="task-card">
                 <div class="task-elements">
+                    <span class="task-text">${task.taskName}</span>
                     <span class="task-text">${task.taskName}</span>
                     <a href="#" class="edit-button">Edit</a>
                     <a href="#" class="task-buttons">

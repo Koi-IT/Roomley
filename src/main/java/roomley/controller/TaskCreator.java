@@ -31,6 +31,7 @@ public class TaskCreator extends HttpServlet {
 
         // Get Cognito sub from user session
         HttpSession session = req.getSession(false);
+
         if (session != null) {
             String userSub = (String) session.getAttribute("userSub");
             if (userSub == null) {
@@ -65,8 +66,7 @@ public class TaskCreator extends HttpServlet {
         taskDao.insert(newTask);
 
         // Send tasks to webpage
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-        dispatcher.forward(req, resp);
+        resp.sendRedirect("taskGrabber");
     }
 
     private static Task createTask(String userSub, String taskName, String taskDescription) throws ServletException {

@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="header.jsp"%>
 
-        <main id="homePage">
+        <main id="home-page">
             <article class="welcomeCard">
                 <h1>Welcome to Roomley!</h1>
                 <p>Your roommate task solution</p>

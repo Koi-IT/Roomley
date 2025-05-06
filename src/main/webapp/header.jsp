@@ -4,7 +4,7 @@
 <html lang="en">
 <%@ include file="head.jsp" %>
 
-<body style="${empty sessionScope.username ? 'min-height: 1594px' : 'min-height: 955px'}">
+<body class="page-wrapper">
 <article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
 
     <header>
