@@ -1,5 +1,7 @@
 package roomley.persistence;
 
+import org.hibernate.query.Query;
+import roomley.entities.Task;
 import roomley.entities.User;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -43,15 +45,44 @@ public class UserDao {
     /**
      * Get user by sub
      *
-     * @param sub the sub
+     * @param cognitoSub the sub
      * @return the by sub
      */
-    public User getBySub(String sub) {
+    public User getBySub(String cognitoSub) {
         Session session = sessionFactory.openSession();
-        User user = session.get(User.class, sub);
-        session.close();
+        Transaction transaction = null;
+        User user = null;
+
+        try {
+            // Start a transaction
+            transaction = session.beginTransaction();
+
+            // Create a CriteriaBuilder to build a CriteriaQuery
+            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+            CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+
+            // Define the root of the query (the entity being queried)
+            Root<User> root = criteriaQuery.from(User.class);
+
+            // Set the query condition (match based on cognito_sub)
+            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("cognito_sub"), cognitoSub));
+
+            // Execute the query
+            Query<User> query = session.createQuery(criteriaQuery);
+            user = query.uniqueResult();
+
+            // Commit the transaction if everything is okay
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
         return user;
     }
+
+
 
     /**
      * update user

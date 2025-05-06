@@ -1,13 +1,14 @@
 package roomley.controller;
 
-
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import roomley.auth.*;
+import roomley.entities.Task;
 import roomley.entities.User;
+import roomley.persistence.TaskDao;
 import roomley.persistence.UserDao;
 import roomley.util.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
@@ -104,8 +105,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 //TODO forward to an error page
             }
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("userHomePage.jsp");
-        dispatcher.forward(req, resp);
+
+        resp.sendRedirect("taskGrabber");
 
     }
 
@@ -329,10 +330,25 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     public void createUserSession(HttpServletRequest req, String userSub, String userEmail, String username, String role) {
         HttpSession session = req.getSession(true);
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
+
+        // Set sessions attributes related to the user
         session.setAttribute("userSub", userSub);
         session.setAttribute("username", username);
         session.setAttribute("userEmail", userEmail);
         session.setAttribute("role", role);
+
+        TaskDao taskDao = new TaskDao();
+
+        List<Task> taskList = taskDao.getAllTasks();
+        logger.info("Total tasks fetched: " + taskList.size());
+
+        List<Task> assignedTasksList  = new ArrayList<>();
+        List<Task> completedTasksList  = new ArrayList<>();
+
+        // Set sessions attributes related to the tasks
+        session.setAttribute("tasks", taskList);
+        session.setAttribute("userAssignedTasks", assignedTasksList);
+        session.setAttribute("completedTasks", completedTasksList);
 
     }
 

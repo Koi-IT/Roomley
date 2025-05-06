@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "user_id")
-    private int user_id;
+    private int id;
 
     @Column(name = "cognito_sub")
     private String cognito_sub;
@@ -73,7 +73,7 @@ public class User {
      * @return the id
      */
     public int getId() {
-        return user_id;
+        return id;
     }
 
     /**

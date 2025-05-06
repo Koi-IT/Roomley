@@ -5,6 +5,7 @@
   Time: 7:11 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="header.jsp"%>
 
@@ -32,49 +33,54 @@
     </button>
 </div>
 
-<!-- Display tasks -->
+<!-- Task Columns Section -->
 <div class="grid">
-    <c:forEach var="task" items="${tasks}">
-        <article class="task-card flex w-full">
-            <div class="task-elements flex justify-between items-center w-full">
-                <span class="task-text">${task.taskName}</span>
-                <a href="#" class="edit-button">Edit</a>
-                <a href="#" class="task-buttons">
-                    <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
-                </a>
-            </div>
-        </article>
-    </c:forEach>
+    <!-- To-Do Tasks Column -->
+    <div class="col-4">
+        <c:forEach var="task" items="${sessionScope.tasks}">
+            <article class="task-card">
+                <div class="task-elements">
+                    <span class="task-text">${task.taskName}</span>
+                    <a href="#" class="edit-button">Edit</a>
+                    <a href="#" class="task-buttons">
+                        <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
+                    </a>
+                </div>
+            </article>
+        </c:forEach>
+    </div>
+
+    <!-- Assigned Tasks Column -->
+    <div class="col-4">
+        <c:forEach var="task" items="${sessionScope.assignedTasks}">
+            <article class="task-card">
+                <div class="task-elements">
+                    <span class="task-text">${task.taskName}</span>
+                    <a href="#" class="edit-button">Edit</a>
+                    <a href="#" class="task-buttons">
+                        <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
+                    </a>
+                </div>
+            </article>
+        </c:forEach>
+    </div>
+
+    <!-- Completed Tasks Column -->
+    <div class="col-4">
+        <c:forEach var="task" items="${sessionScope.completedTasks}">
+            <article class="task-card">
+                <div class="task-elements">
+                    <span class="task-text">${task.taskName}</span>
+                    <a href="#" class="edit-button">Edit</a>
+                    <a href="#" class="task-buttons">
+                        <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
+                    </a>
+                </div>
+            </article>
+        </c:forEach>
+    </div>
 </div>
 
-<!-- Display user-assigned tasks -->
-<div class="grid">
-    <c:forEach var="task" items="${userAssignedTasks}">
-        <article class="task-card flex w-full">
-            <div class="task-elements flex justify-between items-center w-full">
-                <span class="task-text">${task.taskName}</span>
-                <a href="#" class="edit-button">Edit</a>
-                <a href="#" class="task-buttons">
-                    <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
-                </a>
-            </div>
-        </article>
-    </c:forEach>
-</div>
 
-<!-- Display completed tasks -->
-<div class="grid">
-    <c:forEach var="task" items="${completedTasks}">
-        <article class="task-card flex w-full">
-            <div class="task-elements flex justify-between items-center w-full">
-                <span class="task-text">${task.taskName}</span>
-                <a href="#" class="edit-button">Edit</a>
-                <a href="#" class="task-buttons">
-                    <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
-                </a>
-            </div>
-        </article>
-    </c:forEach>
-</div>
 
 <%@include file="footer.jsp"%>
