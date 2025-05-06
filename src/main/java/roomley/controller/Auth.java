@@ -104,7 +104,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 //TODO forward to an error page
             }
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("userHomePage.jsp");
         dispatcher.forward(req, resp);
 
     }
@@ -200,7 +200,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             fetchDataFromRDS(userSub, userEmail, username, role, req);
 
         } else {
-            createUserSession(req, userSub);
+            createUserSession(req, userSub, userEmail, username, role);
         }
 
 
@@ -301,13 +301,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param role      role
      */
     private void fetchDataFromRDS(String userSub, String userEmail, String username, String role, HttpServletRequest req) {
-        loadProperties();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Create user session to hold cognito sub
-            createUserSession(req, userSub);
+            createUserSession(req, userSub, userEmail, username, role);
 
             // Create new user in aws RDS from cognito sub
             User newUser = new User();
@@ -327,10 +326,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         
     }
 
-    public void createUserSession(HttpServletRequest req, String userSub) {
+    public void createUserSession(HttpServletRequest req, String userSub, String userEmail, String username, String role) {
         HttpSession session = req.getSession(true);
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
         session.setAttribute("userSub", userSub);
+        session.setAttribute("username", username);
+        session.setAttribute("userEmail", userEmail);
+        session.setAttribute("role", role);
 
     }
 

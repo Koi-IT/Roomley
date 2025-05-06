@@ -77,7 +77,7 @@ public class UserDao {
         Transaction transaction = session.beginTransaction();
         session.persist(user);
         transaction.commit();
-        String sub = user.getCognito_sub();
+        String sub = user.getCognitoSub();
         session.close();
         return sub;
 

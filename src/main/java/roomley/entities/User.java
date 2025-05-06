@@ -81,7 +81,7 @@ public class User {
      *
      * @return the Cognito Sub
      */
-    public String getCognito_sub() { return cognito_sub; }
+    public String getCognitoSub() { return cognito_sub; }
 
     /**
      * Gets username.

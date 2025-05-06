@@ -73,7 +73,7 @@ public class TaskCreator extends HttpServlet {
 
         // Get currentUser
         UserDao userDao = new UserDao();
-        List<User> matches = userDao.getByPropertyEqual("cognitoSub", userSub);
+        List<User> matches = userDao.getByPropertyEqual("cognito_sub", userSub);
         if (matches.isEmpty()) {
             throw new ServletException("Logged‑in user not found in RDS!");
         }
