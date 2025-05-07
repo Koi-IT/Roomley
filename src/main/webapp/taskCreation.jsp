@@ -7,22 +7,34 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="title" value="Create Task"/>
-<%@include file="header.jsp"%>
-<article>
-    <form action="${pageContext.request.contextPath}/taskCreator" method="post">
-        <label for="taskName">Task Name:</label>
-        <input type="text" id="taskName" name="taskName">
-        <label for="taskDescription">Task Description:</label>
-        <input type="text" id="taskDescription" name="taskDescription">
-        <label for="taskDifficulty">Task Difficulty:</label>
-        <select name="taskDifficulty" id="taskDifficulty">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-        <button type="submit">Create Task</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
 
-</article>
-<%@include file="footer.jsp"%>
+    <%@include file="header.jsp"%>
+
+    <body class="page-wrapper">
+        <article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
+
+        <article>
+            <form action="${pageContext.request.contextPath}/taskCreator" method="post">
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" name="taskName">
+                <label for="taskDescription">Task Description:</label>
+                <input type="text" id="taskDescription" name="taskDescription">
+                <label for="taskDifficulty">Task Difficulty:</label>
+                <select name="taskDifficulty" id="taskDifficulty">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <button type="submit">Create Task</button>
+            </form>
+
+        </article>
+
+        <%@include file="footer.jsp"%>
+
+        </article>
+    </body>
+</html>

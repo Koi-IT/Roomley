@@ -1,12 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+
 <%@ include file="head.jsp" %>
-
-<body class="page-wrapper">
-<article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
-
     <header>
         <nav>
             <ul>
