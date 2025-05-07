@@ -16,21 +16,14 @@
 
 <!-- Task Buttons Section -->
 <div class="grid">
-    <button type="button">Tasks to-do
+    <article class="task-title">
+        <h3>Tasks to-do</h3>
         <a href="taskCreation.jsp">
             <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task">
         </a>
-    </button>
-    <button type="button">Assigned to me
-        <a href="taskCreation.jsp">
-            <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task">
-        </a>
-    </button>
-    <button type="button">Finished tasks
-        <a href="taskCreation.jsp">
-            <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task">
-        </a>
-    </button>
+    </article>
+    <article class="task-title"><h3>Assigned to me</h3></article>
+    <article class="task-title"><h3>Finished tasks</h3></article>
 </div>
 
 <!-- Task Columns Section -->
@@ -42,7 +35,7 @@
                 <div class="task-elements">
                     <span class="task-text">${task.taskName}</span>
                     <span class="task-text">${task.taskDescription}</span>
-                    <a href="#" class="edit-button">Edit</a>
+                    <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
                     <a href="#" class="task-buttons">
                         <img src="${pageContext.request.contextPath}/images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
                     </a>
@@ -53,12 +46,12 @@
 
     <!-- Assigned Tasks Column -->
     <div class="task-column col-4">
-        <c:forEach var="task" items="${sessionScope.assignedTasks}">
+        <c:forEach var="task" items="${sessionScope.userAssignedTasks}">
             <article class="task-card">
                 <div class="task-elements">
                     <span class="task-text">${task.taskName}</span>
                     <span class="task-text">${task.taskName}</span>
-                    <a href="#" class="edit-button">Edit</a>
+                    <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
                     <a href="#" class="task-buttons">
                         <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
                     </a>
@@ -74,7 +67,7 @@
                 <div class="task-elements">
                     <span class="task-text">${task.taskName}</span>
                     <span class="task-text">${task.taskName}</span>
-                    <a href="#" class="edit-button">Edit</a>
+                    <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
                     <a href="#" class="task-buttons">
                         <img src="images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
                     </a>

@@ -62,6 +62,15 @@ footer {
     gap: 1rem;
     align-items: start;
 }
+
+
+.task-title {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+
 .task-column {
     display: flex;
     flex-direction: column;
@@ -98,29 +107,6 @@ footer {
 .task-buttons {
     flex: 0;
 }
-
-
-
-/*.grid article {*/
-/*    padding: 0.75rem;*/
-/*    background-color: #f5f5f5;*/
-/*    border-radius: 0.5rem;*/
-/*    font-size: 0.9rem;*/
-/*}*/
-
-#homePage {
-    flex-grow: 1;
-    padding: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/*article.page-content {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    height: 100%;*/
-/*}*/
-
 
 #home-page {
     display: flex;
@@ -185,13 +171,13 @@ footer {
 }
 
 /* <weight>: Use a value from 300 to 900
-   <uniquifier>: Use a unique and descriptive class name */
+<uniquifier>: Use a unique and descriptive class name */
 
-    .merriweather-paragraph, p, li {
-                       font-family: "Merriweather", serif;
-                       font-optical-sizing: auto;
-                       font-weight: 300;
-                       font-style: normal;
-                       font-variation-settings:
-                               "wdth" 100;
-                   }
+.merriweather-paragraph, p, li {
+                   font-family: "Merriweather", serif;
+                   font-optical-sizing: auto;
+                   font-weight: 300;
+                   font-style: normal;
+                   font-variation-settings:
+                           "wdth" 100;
+               }

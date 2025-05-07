@@ -28,45 +28,46 @@ public class TaskGrabber extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // Get session
         HttpSession session = req.getSession(false);
 
+        // Redirect to log in if session is invalid
         if (session == null || session.getAttribute("userSub") == null) {
-            resp.sendRedirect("loginPage.jsp"); // Redirect to login if session is invalid
+            resp.sendRedirect("loginPage.jsp");
             return;
         }
 
+        // Create Dao's
+        UserDao userDao = new UserDao();
+        TaskDao taskDao = new TaskDao();
+
+        // Fetch user data
         String userSub = (String) session.getAttribute("userSub");
         String userName = (String) session.getAttribute("username");
         String userEmail = (String) session.getAttribute("userEmail");
         String role = (String) session.getAttribute("role");
+        User user = userDao.getBySub(userSub);
+        int userId = user.getId();
 
         // Log user details for debugging
         logger.debug("User Sub: " + userSub);
         logger.debug("User Name: " + userName);
         logger.debug("User Email: " + userEmail);
         logger.debug("Role: " + role);
+        logger.debug("ID: " + userId);
 
-        // Fetch user and tasks
-        UserDao userDao = new UserDao();
-        TaskDao taskDao = new TaskDao();
-        User user = userDao.getBySub(userSub);
-
-        if (user == null) {
-            logger.error("No user found for userSub: " + userSub);
-            req.setAttribute("errorMessage", "User not found.");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("errorPage.jsp");
-            dispatcher.forward(req, resp);
-            return;
-        }
-
-        int userId = user.getId();
+        // Set session attributes based on user
         try {
+            // TODO get all tasks within household
             session.setAttribute("tasks", taskDao.getAllTasks());
             session.setAttribute("userAssignedTasks", taskDao.getTasksByUser(userId));
             session.setAttribute("completedTasks", taskDao.getCompletedTasksByUser(userId));
         } catch (Exception e) {
             logger.error("Error fetching tasks", e);
             req.setAttribute("errorMessage", "Error fetching tasks.");
+
+            // TODO create error page
+
             RequestDispatcher dispatcher = req.getRequestDispatcher("errorPage.jsp");
             dispatcher.forward(req, resp);
             return;

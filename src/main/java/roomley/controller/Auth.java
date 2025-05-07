@@ -337,19 +337,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         session.setAttribute("userEmail", userEmail);
         session.setAttribute("role", role);
 
-        TaskDao taskDao = new TaskDao();
-
-        List<Task> taskList = taskDao.getAllTasks();
-        logger.info("Total tasks fetched: " + taskList.size());
-
-        List<Task> assignedTasksList  = new ArrayList<>();
-        List<Task> completedTasksList  = new ArrayList<>();
-
-        // Set sessions attributes related to the tasks
-        session.setAttribute("tasks", taskList);
-        session.setAttribute("userAssignedTasks", assignedTasksList);
-        session.setAttribute("completedTasks", completedTasksList);
-
     }
 
 
