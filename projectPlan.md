@@ -90,7 +90,7 @@
     - Complete Task
 
 - [X] Build CRUD functionality for the task system
-- [ ] Build webpages for task CRUD operations
+- [X] Build webpages for task CRUD operations
 
 ## Files:
     Controller - TaskGrabber
@@ -114,7 +114,7 @@
     - View "Owned" Tasks
     - Split Tasks Fairly
 
-- [ ] Setup and debug different task views
+- [X] Setup and debug different task views
 - [ ] Build Task distribution system
 
 ## Files:

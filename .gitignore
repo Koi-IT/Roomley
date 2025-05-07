@@ -38,6 +38,7 @@ build/
 .DS_Store
 
 ### DBC ###
+/logs
 /pom.xml
 /src/main/.ebextensions/
 /src/main/.platform/

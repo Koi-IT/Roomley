@@ -22,15 +22,15 @@ As a user I want to customize my profile to distinguish myself from the other me
 
 As a user I want to view my own profile and that of others as well. 
 
-### View Task
+### ~~View Task~~
 
 As a user I need to view a task and its details.
 
-### View All Tasks
+### ~~View All Tasks~~
 
 As a user I want to see all the tasks in my entire group.
 
-### View "Owned" Tasks
+### ~~View "Owned" Tasks~~
 
 As a user I want to view all the tasks I need to take care of.
 
@@ -50,19 +50,19 @@ As a user I need to add users to my group and edit the group details.
 
 As a user I want to delete an old group and join a new one.
 
-### Create Task
+### ~~Create Task~~
 
 As a user I need to create a task and fill in the details.
 
-### Edit Task
+### ~~Edit Task~~
 
 As a user I might want to change the details of a task if something has changed.
 
-### Delete Task
+### ~~Delete Task~~
 
 As a user I might need to delete a task that is no longer needed. 
 
-### Complete Task
+### ~~Complete Task~~
 
 As a user I will need to check tasks off as they are completed
 

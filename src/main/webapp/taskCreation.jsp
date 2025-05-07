@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="title" value="Create Task"/>
 <%@include file="header.jsp"%>
 <article>
     <form action="${pageContext.request.contextPath}/taskCreator" method="post">

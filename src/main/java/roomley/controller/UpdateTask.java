@@ -37,12 +37,24 @@ public class UpdateTask extends HttpServlet {
         String taskId =  req.getParameter("taskId");
         TaskDao taskDao = new TaskDao();
 
+        // Verify user sub
+        String userSub = (String) session.getAttribute("userSub");
 
+        if (userSub == null || userSub.isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "index.jsp");
+
+        }
+
+
+        // Verify taskId
         if (taskId == null || taskId.isEmpty()) {
-            // Handle the case where taskId is missing
             logger.error("Missing taskId parameter");
+
+            // TODO create errorPage.jsp
+
             resp.sendRedirect("errorPage.jsp");
             return;
+
         }
 
         // Start update based on action
@@ -73,9 +85,11 @@ public class UpdateTask extends HttpServlet {
         session.setAttribute("tasks", taskDao.getAllTasks());
 
         resp.sendRedirect(req.getContextPath() + "/taskGrabber");
+
     }
 
     static {
-        System.out.println("LogOut static block loaded.");
+        System.out.println("UpdateTask static block loaded.");
+
     }
 }

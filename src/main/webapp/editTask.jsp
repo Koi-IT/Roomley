@@ -7,14 +7,32 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="title" value="Edit Task"/>
 <%@include file="header.jsp"%>
 <article class="task-card">
     <div class="task-elements">
         <span class="task-text">${sessionScope.taskToUpdate.taskName}</span>
         <span class="task-text">${sessionScope.taskToUpdate.taskDescription}</span>
-        <a href="#" class="task-buttons">
-            <img src="${pageContext.request.contextPath}/images/circle.svg" alt="circle">
-        </a>
+        <c:choose >
+            <c:when test="${!sessionScope.taskToUpdate.taskStatus}">
+                <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
+                    <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}" />
+                    <input type="hidden" name="action" value="toggleStatus" />
+                    <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
+                        <img src="images/circle.svg" alt="Toggle Status" />
+                    </button>
+                </form>
+            </c:when>
+            <c:when test="${sessionScope.taskToUpdate.taskStatus}">
+                <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
+                    <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}" />
+                    <input type="hidden" name="action" value="toggleStatus" />
+                    <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
+                        <img src="images/check_circle.svg" alt="Toggle Status" />
+                    </button>
+                </form>
+            </c:when>
+        </c:choose>
     </div>
 </article>
 

@@ -22,11 +22,8 @@ Roomley handles reminders, grocery shopping together, and hopefully splitting bi
 - Database
     - MySQL
 - CSS
-    - Tailwind
+    - Pico CSS
 - Dependency Management
     - Maven
 - Technology I would like to explore
-    - Tailwind
-    - JQuery
     - AWS
-    - React Native
