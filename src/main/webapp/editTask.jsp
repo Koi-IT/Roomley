@@ -13,21 +13,23 @@
         <span class="task-text">${sessionScope.taskToUpdate.taskName}</span>
         <span class="task-text">${sessionScope.taskToUpdate.taskDescription}</span>
         <a href="#" class="task-buttons">
-            <img src="${pageContext.request.contextPath}/images/circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="circle">
+            <img src="${pageContext.request.contextPath}/images/circle.svg" alt="circle">
         </a>
     </div>
 </article>
 
 
-<form action="" method="post" >
+<form action="${pageContext.request.contextPath}/updateTask" method="post" >
     <label for="taskName">Task Name</label>
     <input type="text" name="taskName" id="taskName">
+
     <label for="taskDescription">Task Description</label>
     <input type="text" name="taskDescription" id="taskDescription">
-    <label for="taskStatus">Task Status</label>
-    <input type="text" name="taskStatus" id="taskStatus">
-    <button>Update</button>
-    <button>Delete</button>
+
+    <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}">
+
+    <button type="submit" name="action" value="update">Update</button>
+    <button type="submit" name="action" value="delete">Delete</button>
 </form>
 
 

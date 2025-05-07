@@ -39,10 +39,7 @@ public class EditTask extends HttpServlet {
         // Give the task to update, to the session with task variable
         session.setAttribute("taskToUpdate", taskToUpdate);
 
-
-
-
-        // Forward to the user home page
+        // Forward to the edit task page
         RequestDispatcher dispatcher = req.getRequestDispatcher("editTask.jsp");
         dispatcher.forward(req, resp);
 

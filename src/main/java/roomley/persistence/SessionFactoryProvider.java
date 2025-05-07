@@ -23,7 +23,7 @@ public class SessionFactoryProvider {
     public static void createSessionFactory() {
 
         // Create registry
-        registry = new StandardServiceRegistryBuilder().configure("hibernate-rds.cfg.xml").build();
+        registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 
         // Create MetadataSources
         MetadataSources sources = new MetadataSources(registry);

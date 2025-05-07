@@ -1,0 +1,1226 @@
+[DEBUG] 2025-05-07 15:51:55.334 [http-nio-8080-exec-5] IntegratorServiceImpl - Adding Integrator [org.hibernate.cfg.beanvalidation.BeanValidationIntegrator].
+[DEBUG] 2025-05-07 15:51:55.336 [http-nio-8080-exec-5] IntegratorServiceImpl - Adding Integrator [org.hibernate.secure.spi.JaccIntegrator].
+[DEBUG] 2025-05-07 15:51:55.340 [http-nio-8080-exec-5] IntegratorServiceImpl - Adding Integrator [org.hibernate.cache.internal.CollectionCacheInvalidator].
+[INFO ] 2025-05-07 15:51:55.359 [http-nio-8080-exec-5] Version - HHH000412: Hibernate ORM core version 5.6.15.Final
+[DEBUG] 2025-05-07 15:51:55.360 [http-nio-8080-exec-5] Environment - HHH000206: hibernate.properties not found
+[DEBUG] 2025-05-07 15:51:55.556 [http-nio-8080-exec-5] LocalXmlResourceResolver - Interpreting public/system identifier : [-//Hibernate/Hibernate Configuration DTD//EN] - [http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd]
+[DEBUG] 2025-05-07 15:51:55.557 [http-nio-8080-exec-5] LocalXmlResourceResolver - Recognized hibernate-configuration identifier; attempting to resolve on classpath under org/hibernate/
+[DEBUG] 2025-05-07 15:51:55.559 [http-nio-8080-exec-5] JaxbCfgProcessor - cfg.xml document did not define namespaces; wrapping in custom event reader to introduce namespace information
+[DEBUG] 2025-05-07 15:51:55.746 [http-nio-8080-exec-5] ServiceBinding - Overriding existing service binding [org.hibernate.secure.spi.JaccService]
+[DEBUG] 2025-05-07 15:51:55.758 [http-nio-8080-exec-5] RegionFactoryInitiator - Cannot default RegionFactory based on registered strategies as `[]` RegionFactory strategies were registered
+[DEBUG] 2025-05-07 15:51:55.759 [http-nio-8080-exec-5] RegionFactoryInitiator - Cache region factory : org.hibernate.cache.internal.NoCachingRegionFactory
+[INFO ] 2025-05-07 15:51:55.783 [http-nio-8080-exec-5] Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[DEBUG] 2025-05-07 15:51:55.820 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration boolean -> org.hibernate.type.BooleanType@456be6ef
+[DEBUG] 2025-05-07 15:51:55.820 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration boolean -> org.hibernate.type.BooleanType@456be6ef
+[DEBUG] 2025-05-07 15:51:55.820 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Boolean -> org.hibernate.type.BooleanType@456be6ef
+[DEBUG] 2025-05-07 15:51:55.821 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration numeric_boolean -> org.hibernate.type.NumericBooleanType@8c175d6
+[DEBUG] 2025-05-07 15:51:55.821 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration true_false -> org.hibernate.type.TrueFalseType@57bb5fb1
+[DEBUG] 2025-05-07 15:51:55.822 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration yes_no -> org.hibernate.type.YesNoType@3e296ede
+[DEBUG] 2025-05-07 15:51:55.823 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration byte -> org.hibernate.type.ByteType@268f21d5
+[DEBUG] 2025-05-07 15:51:55.823 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration byte -> org.hibernate.type.ByteType@268f21d5
+[DEBUG] 2025-05-07 15:51:55.823 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Byte -> org.hibernate.type.ByteType@268f21d5
+[DEBUG] 2025-05-07 15:51:55.823 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration character -> org.hibernate.type.CharacterType@10a4bca7
+[DEBUG] 2025-05-07 15:51:55.823 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration char -> org.hibernate.type.CharacterType@10a4bca7
+[DEBUG] 2025-05-07 15:51:55.823 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Character -> org.hibernate.type.CharacterType@10a4bca7
+[DEBUG] 2025-05-07 15:51:55.824 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration short -> org.hibernate.type.ShortType@68952b59
+[DEBUG] 2025-05-07 15:51:55.824 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration short -> org.hibernate.type.ShortType@68952b59
+[DEBUG] 2025-05-07 15:51:55.824 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Short -> org.hibernate.type.ShortType@68952b59
+[DEBUG] 2025-05-07 15:51:55.825 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration integer -> org.hibernate.type.IntegerType@28968b1f
+[DEBUG] 2025-05-07 15:51:55.825 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration int -> org.hibernate.type.IntegerType@28968b1f
+[DEBUG] 2025-05-07 15:51:55.825 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Integer -> org.hibernate.type.IntegerType@28968b1f
+[DEBUG] 2025-05-07 15:51:55.826 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration long -> org.hibernate.type.LongType@1294a283
+[DEBUG] 2025-05-07 15:51:55.826 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration long -> org.hibernate.type.LongType@1294a283
+[DEBUG] 2025-05-07 15:51:55.826 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Long -> org.hibernate.type.LongType@1294a283
+[DEBUG] 2025-05-07 15:51:55.827 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration float -> org.hibernate.type.FloatType@18b636fe
+[DEBUG] 2025-05-07 15:51:55.827 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration float -> org.hibernate.type.FloatType@18b636fe
+[DEBUG] 2025-05-07 15:51:55.827 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Float -> org.hibernate.type.FloatType@18b636fe
+[DEBUG] 2025-05-07 15:51:55.828 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration double -> org.hibernate.type.DoubleType@106151a2
+[DEBUG] 2025-05-07 15:51:55.828 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration double -> org.hibernate.type.DoubleType@106151a2
+[DEBUG] 2025-05-07 15:51:55.828 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Double -> org.hibernate.type.DoubleType@106151a2
+[DEBUG] 2025-05-07 15:51:55.829 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration big_decimal -> org.hibernate.type.BigDecimalType@1daf2be0
+[DEBUG] 2025-05-07 15:51:55.829 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.math.BigDecimal -> org.hibernate.type.BigDecimalType@1daf2be0
+[DEBUG] 2025-05-07 15:51:55.829 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration big_integer -> org.hibernate.type.BigIntegerType@52935efb
+[DEBUG] 2025-05-07 15:51:55.830 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.math.BigInteger -> org.hibernate.type.BigIntegerType@52935efb
+[DEBUG] 2025-05-07 15:51:55.830 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration string -> org.hibernate.type.StringType@4905afa5
+[DEBUG] 2025-05-07 15:51:55.830 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.String -> org.hibernate.type.StringType@4905afa5
+[DEBUG] 2025-05-07 15:51:55.831 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration nstring -> org.hibernate.type.StringNVarcharType@16f8ba1d
+[DEBUG] 2025-05-07 15:51:55.831 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration ncharacter -> org.hibernate.type.CharacterNCharType@6619e1e
+[DEBUG] 2025-05-07 15:51:55.832 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration url -> org.hibernate.type.UrlType@3267eb18
+[DEBUG] 2025-05-07 15:51:55.832 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.net.URL -> org.hibernate.type.UrlType@3267eb18
+[DEBUG] 2025-05-07 15:51:55.833 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration Duration -> org.hibernate.type.DurationType@1d71850
+[DEBUG] 2025-05-07 15:51:55.833 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.Duration -> org.hibernate.type.DurationType@1d71850
+[DEBUG] 2025-05-07 15:51:55.834 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration Instant -> org.hibernate.type.InstantType@53384d0f
+[DEBUG] 2025-05-07 15:51:55.834 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.Instant -> org.hibernate.type.InstantType@53384d0f
+[DEBUG] 2025-05-07 15:51:55.835 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration LocalDateTime -> org.hibernate.type.LocalDateTimeType@3de9e008
+[DEBUG] 2025-05-07 15:51:55.835 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.LocalDateTime -> org.hibernate.type.LocalDateTimeType@3de9e008
+[DEBUG] 2025-05-07 15:51:55.836 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration LocalDate -> org.hibernate.type.LocalDateType@300dbb27
+[DEBUG] 2025-05-07 15:51:55.836 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.LocalDate -> org.hibernate.type.LocalDateType@300dbb27
+[DEBUG] 2025-05-07 15:51:55.836 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration LocalTime -> org.hibernate.type.LocalTimeType@26ad8e54
+[DEBUG] 2025-05-07 15:51:55.836 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.LocalTime -> org.hibernate.type.LocalTimeType@26ad8e54
+[DEBUG] 2025-05-07 15:51:55.837 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@7dc800d3
+[DEBUG] 2025-05-07 15:51:55.837 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.OffsetDateTime -> org.hibernate.type.OffsetDateTimeType@7dc800d3
+[DEBUG] 2025-05-07 15:51:55.838 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration OffsetTime -> org.hibernate.type.OffsetTimeType@2f84f103
+[DEBUG] 2025-05-07 15:51:55.838 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.OffsetTime -> org.hibernate.type.OffsetTimeType@2f84f103
+[DEBUG] 2025-05-07 15:51:55.839 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@7e8df805
+[DEBUG] 2025-05-07 15:51:55.839 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.time.ZonedDateTime -> org.hibernate.type.ZonedDateTimeType@7e8df805
+[DEBUG] 2025-05-07 15:51:55.840 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration date -> org.hibernate.type.DateType@618b5fb
+[DEBUG] 2025-05-07 15:51:55.840 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.sql.Date -> org.hibernate.type.DateType@618b5fb
+[DEBUG] 2025-05-07 15:51:55.841 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration time -> org.hibernate.type.TimeType@7b21945a
+[DEBUG] 2025-05-07 15:51:55.841 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.sql.Time -> org.hibernate.type.TimeType@7b21945a
+[DEBUG] 2025-05-07 15:51:55.842 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration timestamp -> org.hibernate.type.TimestampType@6339d68b
+[DEBUG] 2025-05-07 15:51:55.842 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.sql.Timestamp -> org.hibernate.type.TimestampType@6339d68b
+[DEBUG] 2025-05-07 15:51:55.842 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.Date -> org.hibernate.type.TimestampType@6339d68b
+[DEBUG] 2025-05-07 15:51:55.843 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration dbtimestamp -> org.hibernate.type.DbTimestampType@498aeafa
+[DEBUG] 2025-05-07 15:51:55.844 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration calendar -> org.hibernate.type.CalendarType@2247ae03
+[DEBUG] 2025-05-07 15:51:55.844 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.Calendar -> org.hibernate.type.CalendarType@2247ae03
+[DEBUG] 2025-05-07 15:51:55.844 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.GregorianCalendar -> org.hibernate.type.CalendarType@2247ae03
+[DEBUG] 2025-05-07 15:51:55.844 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration calendar_date -> org.hibernate.type.CalendarDateType@136e8514
+[DEBUG] 2025-05-07 15:51:55.845 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration calendar_time -> org.hibernate.type.CalendarTimeType@45f06382
+[DEBUG] 2025-05-07 15:51:55.846 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration locale -> org.hibernate.type.LocaleType@5b1ef39d
+[DEBUG] 2025-05-07 15:51:55.846 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.Locale -> org.hibernate.type.LocaleType@5b1ef39d
+[DEBUG] 2025-05-07 15:51:55.846 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration currency -> org.hibernate.type.CurrencyType@50aec4eb
+[DEBUG] 2025-05-07 15:51:55.846 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.Currency -> org.hibernate.type.CurrencyType@50aec4eb
+[DEBUG] 2025-05-07 15:51:55.847 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration timezone -> org.hibernate.type.TimeZoneType@35869913
+[DEBUG] 2025-05-07 15:51:55.847 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.TimeZone -> org.hibernate.type.TimeZoneType@35869913
+[DEBUG] 2025-05-07 15:51:55.848 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration class -> org.hibernate.type.ClassType@39e253ba
+[DEBUG] 2025-05-07 15:51:55.848 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Class -> org.hibernate.type.ClassType@39e253ba
+[DEBUG] 2025-05-07 15:51:55.849 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration uuid-binary -> org.hibernate.type.UUIDBinaryType@4852edb1
+[DEBUG] 2025-05-07 15:51:55.849 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.util.UUID -> org.hibernate.type.UUIDBinaryType@4852edb1
+[DEBUG] 2025-05-07 15:51:55.849 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration uuid-char -> org.hibernate.type.UUIDCharType@7d27adc1
+[DEBUG] 2025-05-07 15:51:55.850 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration binary -> org.hibernate.type.BinaryType@6d9c4f0
+[DEBUG] 2025-05-07 15:51:55.850 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration byte[] -> org.hibernate.type.BinaryType@6d9c4f0
+[DEBUG] 2025-05-07 15:51:55.850 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration [B -> org.hibernate.type.BinaryType@6d9c4f0
+[DEBUG] 2025-05-07 15:51:55.851 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration wrapper-binary -> org.hibernate.type.WrapperBinaryType@351bb7d2
+[DEBUG] 2025-05-07 15:51:55.851 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration Byte[] -> org.hibernate.type.WrapperBinaryType@351bb7d2
+[DEBUG] 2025-05-07 15:51:55.851 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration [Ljava.lang.Byte; -> org.hibernate.type.WrapperBinaryType@351bb7d2
+[DEBUG] 2025-05-07 15:51:55.852 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration row_version -> org.hibernate.type.RowVersionType@5b6ed00a
+[DEBUG] 2025-05-07 15:51:55.852 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration image -> org.hibernate.type.ImageType@621b525c
+[DEBUG] 2025-05-07 15:51:55.853 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration characters -> org.hibernate.type.CharArrayType@2b2c586e
+[DEBUG] 2025-05-07 15:51:55.853 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration char[] -> org.hibernate.type.CharArrayType@2b2c586e
+[DEBUG] 2025-05-07 15:51:55.853 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration [C -> org.hibernate.type.CharArrayType@2b2c586e
+[DEBUG] 2025-05-07 15:51:55.853 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration wrapper-characters -> org.hibernate.type.CharacterArrayType@828995d
+[DEBUG] 2025-05-07 15:51:55.853 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration [Ljava.lang.Character; -> org.hibernate.type.CharacterArrayType@828995d
+[DEBUG] 2025-05-07 15:51:55.853 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration Character[] -> org.hibernate.type.CharacterArrayType@828995d
+[DEBUG] 2025-05-07 15:51:55.854 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration text -> org.hibernate.type.TextType@2b4f10d4
+[DEBUG] 2025-05-07 15:51:55.854 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration ntext -> org.hibernate.type.NTextType@a5b8f9c
+[DEBUG] 2025-05-07 15:51:55.855 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration blob -> org.hibernate.type.BlobType@491ceb9e
+[DEBUG] 2025-05-07 15:51:55.855 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.sql.Blob -> org.hibernate.type.BlobType@491ceb9e
+[DEBUG] 2025-05-07 15:51:55.856 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration materialized_blob -> org.hibernate.type.MaterializedBlobType@4dbc36c
+[DEBUG] 2025-05-07 15:51:55.857 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration clob -> org.hibernate.type.ClobType@67037d6b
+[DEBUG] 2025-05-07 15:51:55.857 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.sql.Clob -> org.hibernate.type.ClobType@67037d6b
+[DEBUG] 2025-05-07 15:51:55.858 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration nclob -> org.hibernate.type.NClobType@95e7dcb
+[DEBUG] 2025-05-07 15:51:55.858 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.sql.NClob -> org.hibernate.type.NClobType@95e7dcb
+[DEBUG] 2025-05-07 15:51:55.859 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration materialized_clob -> org.hibernate.type.MaterializedClobType@1c952773
+[DEBUG] 2025-05-07 15:51:55.859 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration materialized_nclob -> org.hibernate.type.MaterializedNClobType@36badc46
+[DEBUG] 2025-05-07 15:51:55.860 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration serializable -> org.hibernate.type.SerializableType@4d55079f
+[DEBUG] 2025-05-07 15:51:55.862 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration object -> org.hibernate.type.ObjectType@33b81586
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration java.lang.Object -> org.hibernate.type.ObjectType@33b81586
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_date -> org.hibernate.type.AdaptedImmutableType@7e6d2b8e
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_time -> org.hibernate.type.AdaptedImmutableType@4f4613a4
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_timestamp -> org.hibernate.type.AdaptedImmutableType@42df748c
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_dbtimestamp -> org.hibernate.type.AdaptedImmutableType@1fd4d1b0
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_calendar -> org.hibernate.type.AdaptedImmutableType@872b89f
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_calendar_date -> org.hibernate.type.AdaptedImmutableType@77d64106
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_binary -> org.hibernate.type.AdaptedImmutableType@4e143064
+[DEBUG] 2025-05-07 15:51:55.863 [http-nio-8080-exec-5] BasicTypeRegistry - Adding type registration imm_serializable -> org.hibernate.type.AdaptedImmutableType@77f43147
+[DEBUG] 2025-05-07 15:51:55.890 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid2] -> [org.hibernate.id.UUIDGenerator]
+[DEBUG] 2025-05-07 15:51:55.891 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [guid] -> [org.hibernate.id.GUIDGenerator]
+[DEBUG] 2025-05-07 15:51:55.891 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid] -> [org.hibernate.id.UUIDHexGenerator]
+[DEBUG] 2025-05-07 15:51:55.891 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [uuid.hex] -> [org.hibernate.id.UUIDHexGenerator]
+[DEBUG] 2025-05-07 15:51:55.892 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [assigned] -> [org.hibernate.id.Assigned]
+[DEBUG] 2025-05-07 15:51:55.893 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [identity] -> [org.hibernate.id.IdentityGenerator]
+[DEBUG] 2025-05-07 15:51:55.893 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [select] -> [org.hibernate.id.SelectGenerator]
+[DEBUG] 2025-05-07 15:51:55.894 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+[DEBUG] 2025-05-07 15:51:55.895 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [seqhilo] -> [org.hibernate.id.SequenceHiLoGenerator]
+[DEBUG] 2025-05-07 15:51:55.895 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [increment] -> [org.hibernate.id.IncrementGenerator]
+[DEBUG] 2025-05-07 15:51:55.896 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [foreign] -> [org.hibernate.id.ForeignGenerator]
+[DEBUG] 2025-05-07 15:51:55.896 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [sequence-identity] -> [org.hibernate.id.SequenceIdentityGenerator]
+[DEBUG] 2025-05-07 15:51:55.896 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [enhanced-sequence] -> [org.hibernate.id.enhanced.SequenceStyleGenerator]
+[DEBUG] 2025-05-07 15:51:55.897 [http-nio-8080-exec-5] DefaultIdentifierGeneratorFactory - Registering IdentifierGenerator strategy [enhanced-table] -> [org.hibernate.id.enhanced.TableGenerator]
+[WARN ] 2025-05-07 15:51:55.900 [http-nio-8080-exec-5] ConnectionProviderInitiator - HHH000022: c3p0 properties were encountered, but the c3p0 provider class was not found on the classpath; these properties are going to be ignored.
+[WARN ] 2025-05-07 15:51:55.902 [http-nio-8080-exec-5] pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO ] 2025-05-07 15:51:55.905 [http-nio-8080-exec-5] pooling - HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://awseb-e-im5c23ijpi-stack-awsebrdsdatabase-hae1rqqdaejj.c9iku2weendw.us-east-2.rds.amazonaws.com:3306/ebdb]
+[INFO ] 2025-05-07 15:51:55.905 [http-nio-8080-exec-5] pooling - HHH10001001: Connection properties: {password=aromatic13, user=ajohnson}
+[INFO ] 2025-05-07 15:51:55.905 [http-nio-8080-exec-5] pooling - HHH10001003: Autocommit mode: false
+[DEBUG] 2025-05-07 15:51:55.908 [http-nio-8080-exec-5] DriverManagerConnectionProviderImpl - Initializing Connection pool with 1 Connections
+[INFO ] 2025-05-07 15:51:55.908 [http-nio-8080-exec-5] DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 20 (min=1)
+[DEBUG] 2025-05-07 15:51:56.797 [http-nio-8080-exec-5] JdbcEnvironmentInitiator - Database ->
+       name : MySQL
+    version : 8.0.41
+      major : 8
+      minor : 0
+[DEBUG] 2025-05-07 15:51:56.798 [http-nio-8080-exec-5] JdbcEnvironmentInitiator - Driver ->
+       name : MySQL Connector/J
+    version : mysql-connector-j-8.0.33 (Revision: 7d6b0800528b6b25c68b52dc10d6c1c8429c100c)
+      major : 8
+      minor : 0
+[DEBUG] 2025-05-07 15:51:56.798 [http-nio-8080-exec-5] JdbcEnvironmentInitiator - JDBC version : 4.2
+[INFO ] 2025-05-07 15:51:56.809 [http-nio-8080-exec-5] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQLDialect
+[DEBUG] 2025-05-07 15:51:56.823 [http-nio-8080-exec-5] IdentifierHelperBuilder - JDBC driver metadata reported database stores quoted identifiers in more than one case
+[DEBUG] 2025-05-07 15:51:56.824 [http-nio-8080-exec-5] IdentifierHelperBuilder - IdentifierCaseStrategy for both quoted and unquoted identifiers was set to the same strategy [MIXED]; that will likely lead to problems in schema update and validation if using quoted identifiers
+[INFO ] 2025-05-07 15:51:56.892 [http-nio-8080-exec-5] beans - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+[DEBUG] 2025-05-07 15:51:56.900 [http-nio-8080-exec-5] TypeConfiguration$Scope - Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@58433ce8] to MetadataBuildingContext [org.hibernate.boot.internal.MetadataBuildingContextRootImpl@4184b103]
+[DEBUG] 2025-05-07 15:51:56.937 [http-nio-8080-exec-5] Namespace - Created database namespace [logicalName=Name{catalog=null, schema=null}, physicalName=Name{catalog=null, schema=null}]
+[DEBUG] 2025-05-07 15:51:56.947 [http-nio-8080-exec-5] AnnotationBinder - Binding entity from annotated class: roomley.entities.Task
+[DEBUG] 2025-05-07 15:51:56.965 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+[DEBUG] 2025-05-07 15:51:56.971 [http-nio-8080-exec-5] EntityBinder - Import with entity name Task
+[DEBUG] 2025-05-07 15:51:56.974 [http-nio-8080-exec-5] EntityBinder - Bind entity roomley.entities.Task on table tasks
+[DEBUG] 2025-05-07 15:51:57.000 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(tasks), mappingColumn=task_id, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.003 [http-nio-8080-exec-5] ClassLoaderAccessImpl - Not known whether passed class name [roomley.entities.Task] is safe
+[DEBUG] 2025-05-07 15:51:57.003 [http-nio-8080-exec-5] ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : roomley.entities.Task
+[DEBUG] 2025-05-07 15:51:57.003 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property taskId with lazy=false
+[DEBUG] 2025-05-07 15:51:57.004 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.Task:taskId]
+[DEBUG] 2025-05-07 15:51:57.006 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for taskId
+[DEBUG] 2025-05-07 15:51:57.008 [http-nio-8080-exec-5] PropertyBinder - Building property taskId
+[DEBUG] 2025-05-07 15:51:57.012 [http-nio-8080-exec-5] BinderHelper - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(task_id)]), taskId, org.hibernate.id.enhanced.SequenceStyleGenerator, native, ...)
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(tasks), mappingColumn=task_description, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property taskDescription with lazy=false
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.Task:taskDescription]
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for taskDescription
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] PropertyBinder - Building property taskDescription
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(tasks), mappingColumn=task_difficulty, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property taskDifficulty with lazy=false
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.Task:taskDifficulty]
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for taskDifficulty
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] PropertyBinder - Building property taskDifficulty
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(tasks), mappingColumn=task_name, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property taskName with lazy=false
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.Task:taskName]
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for taskName
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] PropertyBinder - Building property taskName
+[DEBUG] 2025-05-07 15:51:57.013 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(tasks), mappingColumn=status, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.014 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property taskStatus with lazy=false
+[DEBUG] 2025-05-07 15:51:57.014 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.Task:taskStatus]
+[DEBUG] 2025-05-07 15:51:57.014 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for taskStatus
+[DEBUG] 2025-05-07 15:51:57.014 [http-nio-8080-exec-5] PropertyBinder - Building property taskStatus
+[DEBUG] 2025-05-07 15:51:57.016 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='user_id', referencedColumn='', mappedBy=''}
+[DEBUG] 2025-05-07 15:51:57.023 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(tasks), mappingColumn=user, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.032 [http-nio-8080-exec-5] PropertyBinder - Building property user
+[DEBUG] 2025-05-07 15:51:57.037 [http-nio-8080-exec-5] AnnotationBinder - Binding entity from annotated class: roomley.entities.User
+[DEBUG] 2025-05-07 15:51:57.037 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
+[DEBUG] 2025-05-07 15:51:57.037 [http-nio-8080-exec-5] EntityBinder - Import with entity name User
+[DEBUG] 2025-05-07 15:51:57.038 [http-nio-8080-exec-5] EntityBinder - Bind entity roomley.entities.User on table users
+[DEBUG] 2025-05-07 15:51:57.039 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=user_id, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] ClassLoaderAccessImpl - Not known whether passed class name [roomley.entities.User] is safe
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : roomley.entities.User
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property id with lazy=false
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:id]
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for id
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - Building property id
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] BinderHelper - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(user_id)]), id, org.hibernate.id.enhanced.SequenceStyleGenerator, native, ...)
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=cognito_sub, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property cognito_sub with lazy=false
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:cognito_sub]
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for cognito_sub
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - Building property cognito_sub
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=created_at, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property created_at with lazy=false
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:created_at]
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for created_at
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - Building property created_at
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=email, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property email with lazy=false
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:email]
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for email
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - Building property email
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=last_login, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property last_login with lazy=false
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:last_login]
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for last_login
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - Building property last_login
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=role, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property role with lazy=false
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:role]
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for role
+[DEBUG] 2025-05-07 15:51:57.040 [http-nio-8080-exec-5] PropertyBinder - Building property role
+[DEBUG] 2025-05-07 15:51:57.041 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='user'}
+[DEBUG] 2025-05-07 15:51:57.041 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=task, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.042 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=null, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.049 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=element, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.049 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=task_KEY, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.050 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='task_KEY', referencedColumn='null', mappedBy='null'}
+[DEBUG] 2025-05-07 15:51:57.050 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='user'}
+[DEBUG] 2025-05-07 15:51:57.050 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3JoinColumn{logicalColumnName='null', referencedColumn='null', mappedBy='user'}
+[DEBUG] 2025-05-07 15:51:57.051 [http-nio-8080-exec-5] CollectionBinder - Collection role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:57.052 [http-nio-8080-exec-5] PropertyBinder - Building property task
+[DEBUG] 2025-05-07 15:51:57.052 [http-nio-8080-exec-5] Ejb3Column - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(users), mappingColumn=username, insertable=true, updatable=true, unique=false}
+[DEBUG] 2025-05-07 15:51:57.052 [http-nio-8080-exec-5] PropertyBinder - MetadataSourceProcessor property username with lazy=false
+[DEBUG] 2025-05-07 15:51:57.052 [http-nio-8080-exec-5] AbstractPropertyHolder - Attempting to locate auto-apply AttributeConverter for property [roomley.entities.User:username]
+[DEBUG] 2025-05-07 15:51:57.052 [http-nio-8080-exec-5] SimpleValueBinder - building SimpleValue for username
+[DEBUG] 2025-05-07 15:51:57.052 [http-nio-8080-exec-5] PropertyBinder - Building property username
+[DEBUG] 2025-05-07 15:51:57.053 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for taskId
+[DEBUG] 2025-05-07 15:51:57.053 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for taskDescription
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for taskDifficulty
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for taskName
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for taskStatus
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for id
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for cognito_sub
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for created_at
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for email
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for last_login
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for role
+[DEBUG] 2025-05-07 15:51:57.054 [http-nio-8080-exec-5] SimpleValueBinder - Starting fillSimpleValue for username
+[DEBUG] 2025-05-07 15:51:57.058 [http-nio-8080-exec-5] PrimaryKey - Forcing column [task_id] to be non-null as it is part of the primary key for table [tasks]
+[DEBUG] 2025-05-07 15:51:57.058 [http-nio-8080-exec-5] PrimaryKey - Forcing column [user_id] to be non-null as it is part of the primary key for table [users]
+[DEBUG] 2025-05-07 15:51:57.058 [http-nio-8080-exec-5] CollectionSecondPass - Second pass for collection: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:57.059 [http-nio-8080-exec-5] CollectionBinder - Binding a OneToMany: roomley.entities.User.task through a foreign key
+[DEBUG] 2025-05-07 15:51:57.059 [http-nio-8080-exec-5] CollectionBinder - Mapping collection: roomley.entities.User.task -> tasks
+[DEBUG] 2025-05-07 15:51:57.060 [http-nio-8080-exec-5] TableBinder - Retrieving property roomley.entities.Task.user
+[DEBUG] 2025-05-07 15:51:57.060 [http-nio-8080-exec-5] CollectionSecondPass - Mapped collection key: user_id, one-to-many: roomley.entities.Task
+[DEBUG] 2025-05-07 15:51:57.060 [http-nio-8080-exec-5] InFlightMetadataCollectorImpl - Resolving reference to class: roomley.entities.User
+[DEBUG] 2025-05-07 15:51:57.063 [http-nio-8080-exec-5] InFlightMetadataCollectorImpl - Resolving reference to class: roomley.entities.User
+[DEBUG] 2025-05-07 15:51:57.094 [http-nio-8080-exec-5] SessionFactoryImpl - Building session factory
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - SessionFactory name : null
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Automatic flush during beforeCompletion(): enabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Automatic session close at end of transaction: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Statistics: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Deleted entity synthetic identifier rollback: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Default entity-mode: pojo
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Check Nullability in Core (should be disabled when Bean Validation is on): enabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Allow initialization of lazy state outside session : disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Using BatchFetchStyle : LEGACY
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Default batch fetch size: -1
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Maximum outer join fetch depth: 2
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Default null ordering: NONE
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Order SQL updates by primary key: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Order SQL inserts for batching: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - multi-tenancy strategy : NONE
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - JTA Track by Thread: enabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Query language substitutions: {}
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Named query checking : enabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Second-level cache: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Second-level query cache: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Second-level query cache factory: null
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Second-level cache region prefix: null
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Optimize second-level cache for minimal puts: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Structured second-level cache entries: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Second-level cache direct-reference entries: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Automatic eviction of collection cache: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - JDBC batch size: 15
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - JDBC batch updates for versioned data: enabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Scrollable result sets: enabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - Wrap result sets: disabled
+[DEBUG] 2025-05-07 15:51:57.095 [http-nio-8080-exec-5] Settings - JDBC3 getGeneratedKeys(): enabled
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - JDBC result set fetch size: null
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - Connection release mode: AFTER_TRANSACTION
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - Generate SQL with comments: disabled
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - JPA compliance - query : disabled
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - JPA compliance - closed-handling : disabled
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - JPA compliance - lists : disabled
+[DEBUG] 2025-05-07 15:51:57.096 [http-nio-8080-exec-5] Settings - JPA compliance - transactions : disabled
+[DEBUG] 2025-05-07 15:51:57.140 [http-nio-8080-exec-5] SessionFactoryServiceRegistryImpl - EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+[DEBUG] 2025-05-07 15:51:57.140 [http-nio-8080-exec-5] SessionFactoryServiceRegistryImpl - EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+[DEBUG] 2025-05-07 15:51:57.151 [http-nio-8080-exec-5] SessionFactoryImpl - Session factory constructed with filter configurations : {}
+[DEBUG] 2025-05-07 15:51:57.151 [http-nio-8080-exec-5] SessionFactoryImpl - Instantiating session factory with properties: {java.specification.version=24, sun.cpu.isalist=amd64, hibernate.c3p0.idle_test_period=3000, sun.jnu.encoding=Cp1252, hibernate.dialect=org.hibernate.dialect.MySQLDialect, hibernate.c3p0.min_size=5, java.class.path=C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin\bootstrap.jar;C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin\tomcat-juli.jar, java.vm.vendor=Oracle Corporation, sun.arch.data.model=64, user.variant=, java.vendor.url=https://java.oracle.com/, catalina.useNaming=true, user.timezone=America/Chicago, org.apache.el.GET_CLASSLOADER_USE_PRIVILEGED=false, java.vm.specification.version=24, os.name=Windows 10, sun.io.useCanonCaches=false, sun.java.launcher=SUN_STANDARD, user.country=US, sun.boot.library.path=C:\Users\Andrew\.jdks\openjdk-24\bin, com.sun.management.jmxremote.ssl=false, sun.java.command=org.apache.catalina.startup.Bootstrap start, com.sun.management.jmxremote=, jdk.debug=release, sun.cpu.endian=little, user.home=C:\Users\Andrew, hibernate.c3p0.max_statements=50, user.language=en, java.specification.vendor=Oracle Corporation, java.naming.factory.url.pkgs=org.apache.naming, java.version.date=2025-03-18, java.home=C:\Users\Andrew\.jdks\openjdk-24, ignore.endorsed.dirs=, file.separator=\, java.vm.compressedOopsMode=Zero based, line.separator=
+, hibernate.c3p0.timeout=300, java.specification.name=Java Platform API Specification, java.vm.specification.vendor=Oracle Corporation, com.sun.management.jmxremote.password.file=C:\Users\Andrew\AppData\Local\JetBrains\IntelliJIdea2024.3\tomcat\5279a7e4-99ca-4460-8ea9-e592b5fcd88a\jmxremote.password, package.access=sun.,org.apache.catalina.,org.apache.coyote.,org.apache.jasper.,org.apache.tomcat., package.definition=sun.,java.,org.apache.catalina.,org.apache.coyote.,org.apache.jasper.,org.apache.naming.,org.apache.tomcat., jdk.tls.ephemeralDHKeySize=2048, user.script=, server.loader=, java.protocol.handler.pkgs=org.apache.catalina.webresources, java.util.logging.config.file=C:\Users\Andrew\AppData\Local\JetBrains\IntelliJIdea2024.3\tomcat\5279a7e4-99ca-4460-8ea9-e592b5fcd88a\conf\logging.properties, com.sun.management.jmxremote.access.file=C:\Users\Andrew\AppData\Local\JetBrains\IntelliJIdea2024.3\tomcat\5279a7e4-99ca-4460-8ea9-e592b5fcd88a\jmxremote.access, sun.management.compiler=HotSpot 64-Bit Tiered Compilers, hibernate.c3p0.max_size=20, java.runtime.version=24+36-3646, java.naming.factory.initial=org.apache.naming.java.javaURLContextFactory, user.name=Andrew, stdout.encoding=Cp1252, path.separator=;, common.loader="C:/Program Files/Apache Software Foundation/Tomcat 9.0/lib","C:/Program Files/Apache Software Foundation/Tomcat 9.0/lib/*.jar","C:\Program Files\Apache Software Foundation\Tomcat 9.0/lib","C:\Program Files\Apache Software Foundation\Tomcat 9.0/lib/*.jar", hibernate.connection.username=****, os.version=10.0, java.runtime.name=OpenJDK Runtime Environment, hibernate.connection.url=jdbc:mysql://awseb-e-im5c23ijpi-stack-awsebrdsdatabase-hae1rqqdaejj.c9iku2weendw.us-east-2.rds.amazonaws.com:3306/ebdb, file.encoding=UTF-8, java.vm.name=OpenJDK 64-Bit Server VM, hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, java.vendor.url.bug=https://bugreport.java.com/bugreport/, java.io.tmpdir=C:\Program Files\Apache Software Foundation\Tomcat 9.0\temp, tomcat.util.scan.StandardJarScanFilter.jarsToScan=log4j-taglib*.jar,log4j-web*.jar,log4javascript*.jar,slf4j-taglib*.jar, catalina.home=C:\Program Files\Apache Software Foundation\Tomcat 9.0, java.version=24, com.sun.management.jmxremote.port=1099, tomcat.util.scan.StandardJarScanFilter.jarsToSkip=annotations-api.jar,ant-junit*.jar,ant-launcher*.jar,ant*.jar,asm-*.jar,aspectj*.jar,bcel*.jar,biz.aQute.bnd*.jar,bootstrap.jar,catalina-ant.jar,catalina-ha.jar,catalina-ssi.jar,catalina-storeconfig.jar,catalina-tribes.jar,catalina.jar,cglib-*.jar,cobertura-*.jar,commons-beanutils*.jar,commons-codec*.jar,commons-collections*.jar,commons-compress*.jar,commons-daemon.jar,commons-dbcp*.jar,commons-digester*.jar,commons-fileupload*.jar,commons-httpclient*.jar,commons-io*.jar,commons-lang*.jar,commons-logging*.jar,commons-math*.jar,commons-pool*.jar,derby-*.jar,dom4j-*.jar,easymock-*.jar,ecj-*.jar,el-api.jar,geronimo-spec-jaxrpc*.jar,h2*.jar,ha-api-*.jar,hamcrest-*.jar,hibernate*.jar,httpclient*.jar,icu4j-*.jar,jasper-el.jar,jasper.jar,jaspic-api.jar,jaxb-*.jar,jaxen-*.jar,jaxws-rt-*.jar,jdom-*.jar,jetty-*.jar,jmx-tools.jar,jmx.jar,jsp-api.jar,jstl.jar,jta*.jar,junit-*.jar,junit.jar,log4j*.jar,mail*.jar,objenesis-*.jar,oraclepki.jar,org.hamcrest.core_*.jar,org.junit_*.jar,oro-*.jar,servlet-api-*.jar,servlet-api.jar,slf4j*.jar,taglibs-standard-spec-*.jar,tagsoup-*.jar,tomcat-api.jar,tomcat-coyote.jar,tomcat-coyote-ffm.jar,tomcat-dbcp.jar,tomcat-i18n-*.jar,tomcat-jdbc.jar,tomcat-jni.jar,tomcat-juli-adapters.jar,tomcat-juli.jar,tomcat-util-scan.jar,tomcat-util.jar,tomcat-websocket.jar,tools.jar,unboundid-ldapsdk-*.jar,websocket-api.jar,wsdl4j*.jar,xercesImpl.jar,xml-apis.jar,xmlParserAPIs-*.jar,xmlParserAPIs.jar,xom-*.jar, user.dir=C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin, os.arch=amd64, java.vm.specification.name=Java Virtual Machine Specification, hibernate.connection.password=****, sun.os.patch.level=, catalina.base=C:\Users\Andrew\AppData\Local\JetBrains\IntelliJIdea2024.3\tomcat\5279a7e4-99ca-4460-8ea9-e592b5fcd88a, shared.loader=, hibernate.boot.CfgXmlAccessService.key=org.hibernate.boot.cfgxml.spi.LoadedConfig@cd443f5, native.encoding=Cp1252, java.util.logging.manager=org.apache.juli.ClassLoaderLogManager, java.library.path=C:\Users\Andrew\.jdks\openjdk-24\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Eclipse Adoptium\jdk-11.0.26.4-hotspot\bin;C:\Python313\Scripts\;C:\Python313\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.9.9\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Andrew\AppData\Local\Microsoft\WindowsApps;C:\Users\Andrew\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Andrew\AppData\Roaming\npm;C:\Users\Andrew\AppData\Roaming\Python\Python313\Scripts;C:\Program Files\MySQL\MySQL Server 8.0\bin;;., java.vendor=Oracle Corporation, stderr.encoding=Cp1252, java.vm.info=mixed mode, sharing, java.vm.version=24+36-3646, hibernate.bytecode.use_reflection_optimizer=false, java.rmi.server.randomIDs=true, java.rmi.server.hostname=127.0.0.1, sun.io.unicode.encoding=UnicodeLittle, tomcat.util.buf.StringCache.byte.enabled=true, java.class.version=68.0}
+[DEBUG] 2025-05-07 15:51:57.168 [http-nio-8080-exec-5] TypeSafeActivator - Unable to acquire Bean Validation ValidatorFactory, skipping activation
+[DEBUG] 2025-05-07 15:51:57.168 [http-nio-8080-exec-5] JaccIntegrator - Skipping JACC integration as it was not enabled
+[DEBUG] 2025-05-07 15:51:57.169 [http-nio-8080-exec-5] SessionFactoryImpl - Instantiated session factory
+[DEBUG] 2025-05-07 15:51:57.169 [http-nio-8080-exec-5] TypeConfiguration$Scope - Scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration@58433ce8] to SessionFactoryImpl [org.hibernate.internal.SessionFactoryImpl@70f7b8cd]
+[DEBUG] 2025-05-07 15:51:57.227 [http-nio-8080-exec-5] interceptor - To-one property `roomley.entities.Task#user` was mapped with LAZY + NO_PROXY but the class was not enhanced
+[DEBUG] 2025-05-07 15:51:57.229 [http-nio-8080-exec-5] interceptor - To-one property `roomley.entities.Task#user` was mapped with LAZY + NO_PROXY but the class was not enhanced
+[DEBUG] 2025-05-07 15:51:57.229 [http-nio-8080-exec-5] ClassLoaderAccessImpl - Not known whether passed class name [roomley.entities.Task] is safe
+[DEBUG] 2025-05-07 15:51:57.229 [http-nio-8080-exec-5] ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : roomley.entities.Task
+[DEBUG] 2025-05-07 15:51:57.404 [http-nio-8080-exec-5] interceptor - To-one property `roomley.entities.Task#user` was mapped with LAZY + NO_PROXY but the class was not enhanced
+[DEBUG] 2025-05-07 15:51:57.404 [http-nio-8080-exec-5] interceptor - To-one property `roomley.entities.Task#user` was mapped with LAZY + NO_PROXY but the class was not enhanced
+[DEBUG] 2025-05-07 15:51:57.410 [http-nio-8080-exec-5] ClassLoaderAccessImpl - Not known whether passed class name [roomley.entities.User] is safe
+[DEBUG] 2025-05-07 15:51:57.410 [http-nio-8080-exec-5] ClassLoaderAccessImpl - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : roomley.entities.User
+[DEBUG] 2025-05-07 15:51:57.427 [http-nio-8080-exec-5] AbstractCollectionPersister - Static SQL for collection: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:57.427 [http-nio-8080-exec-5] AbstractCollectionPersister -  Row insert: update tasks set user_id=? where task_id=?
+[DEBUG] 2025-05-07 15:51:57.427 [http-nio-8080-exec-5] AbstractCollectionPersister -  Row update: update tasks set  where task_id=?
+[DEBUG] 2025-05-07 15:51:57.427 [http-nio-8080-exec-5] AbstractCollectionPersister -  Row delete: update tasks set user_id=null where user_id=? and task_id=?
+[DEBUG] 2025-05-07 15:51:57.427 [http-nio-8080-exec-5] AbstractCollectionPersister -  One-shot delete: update tasks set user_id=null where user_id=?
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister - Static SQL for entity: roomley.entities.Task
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister -  Version select: select task_id from tasks where task_id =?
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister -  Snapshot select: select task_.task_id, task_.task_description as task_des2_0_, task_.task_difficulty as task_dif3_0_, task_.task_name as task_nam4_0_, task_.status as status5_0_, task_.user_id as user_id6_0_ from tasks task_ where task_.task_id=?
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister -  Insert 0: insert into tasks (task_description, task_difficulty, task_name, status, user_id, task_id) values (?, ?, ?, ?, ?, ?)
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister -  Update 0: update tasks set task_description=?, task_difficulty=?, task_name=?, status=?, user_id=? where task_id=?
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister -  Delete 0: delete from tasks where task_id=?
+[DEBUG] 2025-05-07 15:51:57.430 [http-nio-8080-exec-5] AbstractEntityPersister -  Identity insert: insert into tasks (task_description, task_difficulty, task_name, status, user_id) values (?, ?, ?, ?, ?)
+[DEBUG] 2025-05-07 15:51:57.456 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@aed1b65]
+[DEBUG] 2025-05-07 15:51:57.458 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskDescription
+[DEBUG] 2025-05-07 15:51:57.458 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskDifficulty
+[DEBUG] 2025-05-07 15:51:57.458 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskName
+[DEBUG] 2025-05-07 15:51:57.458 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskStatus
+[DEBUG] 2025-05-07 15:51:57.458 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user
+[DEBUG] 2025-05-07 15:51:57.464 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3bc5a0fd]
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.cognito_sub
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.created_at
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.email
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.last_login
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.role
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.task
+[DEBUG] 2025-05-07 15:51:57.466 [http-nio-8080-exec-5] MetamodelGraphWalker - Property path deemed to be circular : user.task
+[DEBUG] 2025-05-07 15:51:57.467 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user.username
+[DEBUG] 2025-05-07 15:51:57.467 [http-nio-8080-exec-5] FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+[DEBUG] 2025-05-07 15:51:57.489 [http-nio-8080-exec-5] LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+[DEBUG] 2025-05-07 15:51:57.493 [http-nio-8080-exec-5] LoadPlanTreePrinter - LoadPlan(entity=roomley.entities.Task)
+    - Returns
+       - EntityReturnImpl(entity=roomley.entities.Task, querySpaceUid=<gen:0>, path=roomley.entities.Task)
+          - EntityAttributeFetchImpl(entity=roomley.entities.User, querySpaceUid=<gen:1>, path=roomley.entities.Task.user)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=roomley.entities.Task)
+          - SQL table alias mapping - task0_
+          - alias suffix - 0_
+          - suffixed key columns - {task_id1_0_0_}
+          - JOIN (JoinDefinedByMetadata(user)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=roomley.entities.User)
+                - SQL table alias mapping - user1_
+                - alias suffix - 1_
+                - suffixed key columns - {user_id1_1_1_}
+
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] EntityLoader - Static select for entity roomley.entities.Task [NONE]: select task0_.task_id as task_id1_0_0_, task0_.task_description as task_des2_0_0_, task0_.task_difficulty as task_dif3_0_0_, task0_.task_name as task_nam4_0_0_, task0_.status as status5_0_0_, task0_.user_id as user_id6_0_0_, user1_.user_id as user_id1_1_1_, user1_.cognito_sub as cognito_2_1_1_, user1_.created_at as created_3_1_1_, user1_.email as email4_1_1_, user1_.last_login as last_log5_1_1_, user1_.role as role6_1_1_, user1_.username as username7_1_1_ from tasks task0_ left outer join users user1_ on task0_.user_id=user1_.user_id where task0_.task_id=?
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister - Static SQL for entity: roomley.entities.User
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister -  Version select: select user_id from users where user_id =?
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister -  Snapshot select: select user_.user_id, user_.cognito_sub as cognito_2_1_, user_.created_at as created_3_1_, user_.email as email4_1_, user_.last_login as last_log5_1_, user_.role as role6_1_, user_.username as username7_1_ from users user_ where user_.user_id=?
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister -  Insert 0: insert into users (cognito_sub, created_at, email, last_login, role, username, user_id) values (?, ?, ?, ?, ?, ?, ?)
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister -  Update 0: update users set cognito_sub=?, created_at=?, email=?, last_login=?, role=?, username=? where user_id=?
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister -  Delete 0: delete from users where user_id=?
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] AbstractEntityPersister -  Identity insert: insert into users (cognito_sub, created_at, email, last_login, role, username) values (?, ?, ?, ?, ?, ?)
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7fd6cdf]
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : cognito_sub
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : created_at
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : email
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : last_login
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : role
+[DEBUG] 2025-05-07 15:51:57.495 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : task
+[DEBUG] 2025-05-07 15:51:57.496 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@2c0598e4]
+[DEBUG] 2025-05-07 15:51:57.497 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@40ffaf01]
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : task.taskDescription
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : task.taskDifficulty
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : task.taskName
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : task.taskStatus
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : task.user
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Property path deemed to be circular : task.user
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : username
+[DEBUG] 2025-05-07 15:51:57.498 [http-nio-8080-exec-5] FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+[DEBUG] 2025-05-07 15:51:57.499 [http-nio-8080-exec-5] LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+[DEBUG] 2025-05-07 15:51:57.500 [http-nio-8080-exec-5] LoadPlanTreePrinter - LoadPlan(entity=roomley.entities.User)
+    - Returns
+       - EntityReturnImpl(entity=roomley.entities.User, querySpaceUid=<gen:0>, path=roomley.entities.User)
+          - CollectionAttributeFetchImpl(collection=roomley.entities.User.task, querySpaceUid=<gen:1>, path=roomley.entities.User.task)
+             - (collection element) CollectionFetchableElementEntityGraph(entity=roomley.entities.Task, querySpaceUid=<gen:2>, path=roomley.entities.User.task.<elements>)
+    - QuerySpaces
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=roomley.entities.User)
+          - SQL table alias mapping - user0_
+          - alias suffix - 0_
+          - suffixed key columns - {user_id1_1_0_}
+          - JOIN (JoinDefinedByMetadata(task)) : <gen:0> -> <gen:1>
+             - CollectionQuerySpaceImpl(uid=<gen:1>, collection=roomley.entities.User.task)
+                - SQL table alias mapping - task1_
+                - alias suffix - 1_
+                - suffixed key columns - {user_id6_0_1_}
+                - entity-element alias suffix - 2_
+                - 2_entity-element suffixed key columns - task_id1_0_2_
+                - JOIN (JoinDefinedByMetadata(elements)) : <gen:1> -> <gen:2>
+                   - EntityQuerySpaceImpl(uid=<gen:2>, entity=roomley.entities.Task)
+                      - SQL table alias mapping - task1_
+                      - alias suffix - 2_
+                      - suffixed key columns - {task_id1_0_2_}
+
+[DEBUG] 2025-05-07 15:51:57.500 [http-nio-8080-exec-5] EntityLoader - Static select for entity roomley.entities.User [NONE]: select user0_.user_id as user_id1_1_0_, user0_.cognito_sub as cognito_2_1_0_, user0_.created_at as created_3_1_0_, user0_.email as email4_1_0_, user0_.last_login as last_log5_1_0_, user0_.role as role6_1_0_, user0_.username as username7_1_0_, task1_.user_id as user_id6_0_1_, task1_.task_id as task_id1_0_1_, task1_.task_id as task_id1_0_2_, task1_.task_description as task_des2_0_2_, task1_.task_difficulty as task_dif3_0_2_, task1_.task_name as task_nam4_0_2_, task1_.status as status5_0_2_, task1_.user_id as user_id6_0_2_ from users user0_ left outer join tasks task1_ on user0_.user_id=task1_.user_id where user0_.user_id=?
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@364230c7]
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@696f3b1a]
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskDescription
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskDifficulty
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskName
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : taskStatus
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] MetamodelGraphWalker - Visiting attribute path : user
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] MetamodelGraphWalker - Property path deemed to be circular : user
+[DEBUG] 2025-05-07 15:51:57.504 [http-nio-8080-exec-5] FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+[DEBUG] 2025-05-07 15:51:57.506 [http-nio-8080-exec-5] LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+[DEBUG] 2025-05-07 15:51:57.506 [http-nio-8080-exec-5] LoadPlanTreePrinter - LoadPlan(collection=roomley.entities.User.task)
+    - Returns
+       - CollectionReturnImpl(collection=roomley.entities.User.task, querySpaceUid=<gen:0>, path=[roomley.entities.User.task])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=roomley.entities.Task, querySpaceUid=<gen:1>, path=[roomley.entities.User.task].<elements>)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=roomley.entities.User.task)
+          - SQL table alias mapping - task0_
+          - alias suffix - 0_
+          - suffixed key columns - {user_id6_0_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - task_id1_0_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=roomley.entities.Task)
+                - SQL table alias mapping - task0_
+                - alias suffix - 1_
+                - suffixed key columns - {task_id1_0_1_}
+
+[DEBUG] 2025-05-07 15:51:57.506 [http-nio-8080-exec-5] CollectionLoader - Static select for collection roomley.entities.User.task: select task0_.user_id as user_id6_0_0_, task0_.task_id as task_id1_0_0_, task0_.task_id as task_id1_0_1_, task0_.task_description as task_des2_0_1_, task0_.task_difficulty as task_dif3_0_1_, task0_.task_name as task_nam4_0_1_, task0_.status as status5_0_1_, task0_.user_id as user_id6_0_1_ from tasks task0_ where task0_.user_id=?
+[DEBUG] 2025-05-07 15:51:57.534 [http-nio-8080-exec-5] SchemaManagementToolCoordinator - No schema actions specified
+[DEBUG] 2025-05-07 15:51:57.534 [http-nio-8080-exec-5] SchemaManagementToolCoordinator - No actions specified; doing nothing
+[DEBUG] 2025-05-07 15:51:57.534 [http-nio-8080-exec-5] JtaPlatformInitiator - No JtaPlatform was specified, checking resolver
+[DEBUG] 2025-05-07 15:51:57.535 [http-nio-8080-exec-5] JtaPlatformResolverInitiator - No JtaPlatformResolver was specified, using default [org.hibernate.engine.transaction.jta.platform.internal.StandardJtaPlatformResolver]
+[DEBUG] 2025-05-07 15:51:57.539 [http-nio-8080-exec-5] StandardJtaPlatformResolver - Could not resolve JtaPlatform, using default [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO ] 2025-05-07 15:51:57.539 [http-nio-8080-exec-5] JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[DEBUG] 2025-05-07 15:51:57.544 [http-nio-8080-exec-5] SessionFactoryServiceRegistryImpl - EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+[DEBUG] 2025-05-07 15:51:57.545 [http-nio-8080-exec-5] QueryTranslatorFactoryInitiator - QueryTranslatorFactory: org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@31e5dff
+[DEBUG] 2025-05-07 15:51:57.550 [http-nio-8080-exec-5] NamedQueryRepository - Checking 0 named HQL queries
+[DEBUG] 2025-05-07 15:51:57.550 [http-nio-8080-exec-5] NamedQueryRepository - Checking 0 named SQL queries
+[DEBUG] 2025-05-07 15:51:57.551 [http-nio-8080-exec-5] SessionFactoryRegistry - Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@7782578f
+[DEBUG] 2025-05-07 15:51:57.552 [http-nio-8080-exec-5] SessionFactoryRegistry - Registering SessionFactory: 9a7501d8-1922-40d3-9747-d51a3f0994f6 (<unnamed>)
+[DEBUG] 2025-05-07 15:51:57.552 [http-nio-8080-exec-5] SessionFactoryRegistry - Not binding SessionFactory to JNDI, no JNDI name configured
+[DEBUG] 2025-05-07 15:51:57.609 [http-nio-8080-exec-5] StatisticsInitiator - Statistics initialized [enabled=false]
+[DEBUG] 2025-05-07 15:51:57.633 [http-nio-8080-exec-5] CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from User as generatedAlias0 where generatedAlias0.cognito_sub=:param0
+[DEBUG] 2025-05-07 15:51:57.660 [http-nio-8080-exec-5] QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from roomley.entities.User as generatedAlias0 where generatedAlias0.cognito_sub=:param0
+[DEBUG] 2025-05-07 15:51:57.663 [http-nio-8080-exec-5] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:57.670 [http-nio-8080-exec-5] QueryTranslatorImpl - --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'roomley'
+    |  |     |  |  \-[IDENT] Node: 'entities'
+    |  |     |  \-[IDENT] Node: 'User'
+    |  |     \-[ALIAS] Node: 'generatedAlias0'
+    |  \-[SELECT] Node: 'select'
+    |     \-[IDENT] Node: 'generatedAlias0'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[DOT] Node: '.'
+          |  +-[IDENT] Node: 'generatedAlias0'
+          |  \-[IDENT] Node: 'cognito_sub'
+          \-[COLON] Node: ':'
+             \-[IDENT] Node: 'param0'
+
+[DEBUG] 2025-05-07 15:51:57.684 [http-nio-8080-exec-5] HqlSqlBaseWalker - select << begin [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:57.694 [http-nio-8080-exec-5] FromElement - FromClause{level=1} : roomley.entities.User (generatedAlias0) -> user0_
+[DEBUG] 2025-05-07 15:51:57.695 [http-nio-8080-exec-5] FromReferenceNode - Resolved : generatedAlias0 -> user0_.user_id
+[DEBUG] 2025-05-07 15:51:57.697 [http-nio-8080-exec-5] FromReferenceNode - Resolved : generatedAlias0 -> user0_.user_id
+[DEBUG] 2025-05-07 15:51:57.698 [http-nio-8080-exec-5] DotNode - getDataType() : cognito_sub -> org.hibernate.type.StringType@4905afa5
+[DEBUG] 2025-05-07 15:51:57.698 [http-nio-8080-exec-5] FromReferenceNode - Resolved : generatedAlias0.cognito_sub -> user0_.cognito_sub
+[DEBUG] 2025-05-07 15:51:57.700 [http-nio-8080-exec-5] HqlSqlBaseWalker - select : finishing up [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:57.700 [http-nio-8080-exec-5] HqlSqlWalker - processQuery() :  ( SELECT ( {select clause} user0_.user_id ) ( FromClause{level=1} users user0_ ) ( where ( = ( user0_.cognito_sub user0_.user_id cognito_sub ) ? ) ) )
+[DEBUG] 2025-05-07 15:51:57.704 [http-nio-8080-exec-5] JoinProcessor - Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity User): [users]
+    |  +-IdentNode
+    |  | persister: SingleTableEntityPersister(roomley.entities.User)
+    |  | originalText: generatedAlias0
+    |  \-SqlFragment
+    +-FromClause
+    |  \-FromElement
+    \-SqlNode
+       \-BinaryLogicOperatorNode
+          +-DotNode
+          | persister: SingleTableEntityPersister(roomley.entities.User)
+          | path: generatedAlias0.cognito_sub
+          |  +-IdentNode
+          |  | persister: SingleTableEntityPersister(roomley.entities.User)
+          |  | originalText: generatedAlias0
+          |  \-IdentNode
+          |    persister: null
+          |    originalText: cognito_sub
+          \-ParameterNode
+
+[DEBUG] 2025-05-07 15:51:57.706 [http-nio-8080-exec-5] JoinProcessor - Using FROM fragment [users user0_]
+[DEBUG] 2025-05-07 15:51:57.706 [http-nio-8080-exec-5] HqlSqlBaseWalker - select >> end [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:57.707 [http-nio-8080-exec-5] QueryTranslatorImpl - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (users)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'user0_.user_id as user_id1_1_' {alias=generatedAlias0, className=roomley.entities.User, tableAlias=user0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'user0_.cognito_sub as cognito_2_1_, user0_.created_at as created_3_1_, user0_.email as email4_1_, user0_.last_login as last_log5_1_, user0_.role as role6_1_, user0_.username as username7_1_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[user0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'users user0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=users,tableAlias=user0_,origin=null,columns={,className=roomley.entities.User}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'user0_.cognito_sub' {propertyName=cognito_sub,dereferenceType=PRIMITIVE,getPropertyPath=cognito_sub,path=generatedAlias0.cognito_sub,tableAlias=user0_,className=roomley.entities.User,classAlias=generatedAlias0}
+          |  +-[ALIAS_REF] IdentNode: 'user0_.user_id' {alias=generatedAlias0, className=roomley.entities.User, tableAlias=user0_}
+          |  \-[IDENT] IdentNode: 'cognito_sub' {originalText=cognito_sub}
+          \-[NAMED_PARAM] ParameterNode: '?' {name=param0, expectedType=org.hibernate.type.StringType@4905afa5}
+
+[DEBUG] 2025-05-07 15:51:57.707 [http-nio-8080-exec-5] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:57.709 [http-nio-8080-exec-5] QueryTranslatorImpl - HQL: select generatedAlias0 from roomley.entities.User as generatedAlias0 where generatedAlias0.cognito_sub=:param0
+[DEBUG] 2025-05-07 15:51:57.709 [http-nio-8080-exec-5] QueryTranslatorImpl - SQL: select user0_.user_id as user_id1_1_, user0_.cognito_sub as cognito_2_1_, user0_.created_at as created_3_1_, user0_.email as email4_1_, user0_.last_login as last_log5_1_, user0_.role as role6_1_, user0_.username as username7_1_ from users user0_ where user0_.cognito_sub=?
+[DEBUG] 2025-05-07 15:51:57.709 [http-nio-8080-exec-5] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:57.723 [http-nio-8080-exec-5] SQL - select user0_.user_id as user_id1_1_, user0_.cognito_sub as cognito_2_1_, user0_.created_at as created_3_1_, user0_.email as email4_1_, user0_.last_login as last_log5_1_, user0_.role as role6_1_, user0_.username as username7_1_ from users user0_ where user0_.cognito_sub=?
+[DEBUG] 2025-05-07 15:51:57.846 [http-nio-8080-exec-5] Loader - Result set row: 0
+[DEBUG] 2025-05-07 15:51:57.848 [http-nio-8080-exec-5] Loader - Result row: EntityKey[roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:57.855 [http-nio-8080-exec-5] TwoPhaseLoad - Resolving attributes for [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `cognito_sub` : value = f11b2550-a041-70b3-a47b-1b60db675143
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`cognito_sub`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `created_at` : value = null
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`created_at`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `email` : value = ajohnson@koi-dev.com
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`email`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `last_login` : value = 2025-05-05 17:42:37.0
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`last_login`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `role` : value = Admin
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.857 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `task` : value = NOT NULL COLLECTION
+[DEBUG] 2025-05-07 15:51:57.858 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`task`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.866 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `username` : value = ajohnson
+[DEBUG] 2025-05-07 15:51:57.866 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.867 [http-nio-8080-exec-5] TwoPhaseLoad - Done materializing entity [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:57.871 [http-nio-8080-exec-5] AbstractLoadPlanBasedCollectionInitializer - Loading collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.871 [http-nio-8080-exec-5] SQL - select task0_.user_id as user_id6_0_0_, task0_.task_id as task_id1_0_0_, task0_.task_id as task_id1_0_1_, task0_.task_description as task_des2_0_1_, task0_.task_difficulty as task_dif3_0_1_, task0_.task_name as task_nam4_0_1_, task0_.status as status5_0_1_, task0_.user_id as user_id6_0_1_ from tasks task0_ where task0_.user_id=?
+[DEBUG] 2025-05-07 15:51:57.916 [http-nio-8080-exec-5] ResultSetProcessorImpl - Preparing collection initializer : [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.920 [http-nio-8080-exec-5] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDescription` : value = ssssss
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskName` : value = ssss
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.923 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDescription` : value = deeee
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskName` : value = asdf
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDescription` : value = 22222
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDescription` : value = 1234444444
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] CollectionLoadContext - 1 collections were found in result set for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] CollectionLoadContext - Collection fully initialized: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] CollectionLoadContext - 1 collections initialized for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:57.924 [http-nio-8080-exec-5] AbstractLoadPlanBasedCollectionInitializer - Done loading collection
+[DEBUG] 2025-05-07 15:51:57.925 [http-nio-8080-exec-5] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:51:57.978 [http-nio-8080-exec-5] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:51:57.986 [http-nio-8080-exec-6] TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+[DEBUG] 2025-05-07 15:51:57.986 [http-nio-8080-exec-6] TransactionImpl - begin
+[DEBUG] 2025-05-07 15:51:58.107 [http-nio-8080-exec-6] CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from User as generatedAlias0 where generatedAlias0.cognito_sub=:param0
+[DEBUG] 2025-05-07 15:51:58.107 [http-nio-8080-exec-6] SQL - select user0_.user_id as user_id1_1_, user0_.cognito_sub as cognito_2_1_, user0_.created_at as created_3_1_, user0_.email as email4_1_, user0_.last_login as last_log5_1_, user0_.role as role6_1_, user0_.username as username7_1_ from users user0_ where user0_.cognito_sub=?
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] Loader - Result set row: 0
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `cognito_sub` : value = f11b2550-a041-70b3-a47b-1b60db675143
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`cognito_sub`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `created_at` : value = null
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`created_at`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `email` : value = ajohnson@koi-dev.com
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`email`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `last_login` : value = 2025-05-05 17:42:37.0
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`last_login`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `role` : value = Admin
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `task` : value = NOT NULL COLLECTION
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`task`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `username` : value = ajohnson
+[DEBUG] 2025-05-07 15:51:58.152 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.153 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.153 [http-nio-8080-exec-6] AbstractLoadPlanBasedCollectionInitializer - Loading collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.153 [http-nio-8080-exec-6] SQL - select task0_.user_id as user_id6_0_0_, task0_.task_id as task_id1_0_0_, task0_.task_id as task_id1_0_1_, task0_.task_description as task_des2_0_1_, task0_.task_difficulty as task_dif3_0_1_, task0_.task_name as task_nam4_0_1_, task0_.status as status5_0_1_, task0_.user_id as user_id6_0_1_ from tasks task0_ where task0_.user_id=?
+[DEBUG] 2025-05-07 15:51:58.196 [http-nio-8080-exec-6] ResultSetProcessorImpl - Preparing collection initializer : [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = ssssss
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.197 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = ssss
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = deeee
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = asdf
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 22222
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 1234444444
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections were found in result set for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] CollectionLoadContext - Collection fully initialized: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections initialized for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] AbstractLoadPlanBasedCollectionInitializer - Done loading collection
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] TransactionImpl - committing
+[DEBUG] 2025-05-07 15:51:58.198 [http-nio-8080-exec-6] AbstractFlushingEventListener - Processing flush-time cascades
+[DEBUG] 2025-05-07 15:51:58.210 [http-nio-8080-exec-6] AbstractFlushingEventListener - Dirty checking collections
+[DEBUG] 2025-05-07 15:51:58.215 [http-nio-8080-exec-6] Collections - Collection found: [roomley.entities.User.task#1], was: [roomley.entities.User.task#1] (initialized)
+[DEBUG] 2025-05-07 15:51:58.216 [http-nio-8080-exec-6] AbstractFlushingEventListener - Flushed: 0 insertions, 0 updates, 0 deletions to 5 objects
+[DEBUG] 2025-05-07 15:51:58.216 [http-nio-8080-exec-6] AbstractFlushingEventListener - Flushed: 0 (re)creations, 0 updates, 0 removals to 1 collections
+[DEBUG] 2025-05-07 15:51:58.217 [http-nio-8080-exec-6] EntityPrinter - Listing entities:
+[DEBUG] 2025-05-07 15:51:58.217 [http-nio-8080-exec-6] EntityPrinter - roomley.entities.Task{taskDifficulty=0, taskDescription=22222, taskName=123, user=roomley.entities.User#1, taskId=9, taskStatus=true}
+[DEBUG] 2025-05-07 15:51:58.217 [http-nio-8080-exec-6] EntityPrinter - roomley.entities.Task{taskDifficulty=0, taskDescription=deeee, taskName=asdf, user=roomley.entities.User#1, taskId=8, taskStatus=true}
+[DEBUG] 2025-05-07 15:51:58.217 [http-nio-8080-exec-6] EntityPrinter - roomley.entities.Task{taskDifficulty=0, taskDescription=ssssss, taskName=ssss, user=roomley.entities.User#1, taskId=7, taskStatus=true}
+[DEBUG] 2025-05-07 15:51:58.217 [http-nio-8080-exec-6] EntityPrinter - roomley.entities.User{role=Admin, task=[roomley.entities.Task#7, roomley.entities.Task#8, roomley.entities.Task#9, roomley.entities.Task#10], last_login=2025-05-05 17:42:37.0, created_at=null, id=1, cognito_sub=f11b2550-a041-70b3-a47b-1b60db675143, email=ajohnson@koi-dev.com, username=ajohnson}
+[DEBUG] 2025-05-07 15:51:58.217 [http-nio-8080-exec-6] EntityPrinter - roomley.entities.Task{taskDifficulty=0, taskDescription=1234444444, taskName=123, user=roomley.entities.User#1, taskId=10, taskStatus=true}
+[DEBUG] 2025-05-07 15:51:58.263 [http-nio-8080-exec-6] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:51:58.317 [http-nio-8080-exec-6] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:51:58.318 [http-nio-8080-exec-6] CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0
+[DEBUG] 2025-05-07 15:51:58.318 [http-nio-8080-exec-6] QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from roomley.entities.Task as generatedAlias0
+[DEBUG] 2025-05-07 15:51:58.319 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.320 [http-nio-8080-exec-6] QueryTranslatorImpl - --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    \-[SELECT_FROM] Node: 'SELECT_FROM'
+       +-[FROM] Node: 'from'
+       |  \-[RANGE] Node: 'RANGE'
+       |     +-[DOT] Node: '.'
+       |     |  +-[DOT] Node: '.'
+       |     |  |  +-[IDENT] Node: 'roomley'
+       |     |  |  \-[IDENT] Node: 'entities'
+       |     |  \-[IDENT] Node: 'Task'
+       |     \-[ALIAS] Node: 'generatedAlias0'
+       \-[SELECT] Node: 'select'
+          \-[IDENT] Node: 'generatedAlias0'
+
+[DEBUG] 2025-05-07 15:51:58.320 [http-nio-8080-exec-6] HqlSqlBaseWalker - select << begin [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.321 [http-nio-8080-exec-6] FromElement - FromClause{level=1} : roomley.entities.Task (generatedAlias0) -> task0_
+[DEBUG] 2025-05-07 15:51:58.321 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0 -> task0_.task_id
+[DEBUG] 2025-05-07 15:51:58.322 [http-nio-8080-exec-6] HqlSqlBaseWalker - select : finishing up [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.322 [http-nio-8080-exec-6] HqlSqlWalker - processQuery() :  ( SELECT ( {select clause} task0_.task_id ) ( FromClause{level=1} tasks task0_ ) )
+[DEBUG] 2025-05-07 15:51:58.322 [http-nio-8080-exec-6] JoinProcessor - Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity Task): [tasks]
+    |  +-IdentNode
+    |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+    |  | originalText: generatedAlias0
+    |  \-SqlFragment
+    \-FromClause
+       \-FromElement
+
+[DEBUG] 2025-05-07 15:51:58.322 [http-nio-8080-exec-6] JoinProcessor - Using FROM fragment [tasks task0_]
+[DEBUG] 2025-05-07 15:51:58.322 [http-nio-8080-exec-6] HqlSqlBaseWalker - select >> end [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.322 [http-nio-8080-exec-6] QueryTranslatorImpl - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (tasks)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'task0_.task_id as task_id1_0_' {alias=generatedAlias0, className=roomley.entities.Task, tableAlias=task0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_'
+    \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[task0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+       \-[FROM_FRAGMENT] FromElement: 'tasks task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=tasks,tableAlias=task0_,origin=null,columns={,className=roomley.entities.Task}}
+
+[DEBUG] 2025-05-07 15:51:58.323 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.323 [http-nio-8080-exec-6] QueryTranslatorImpl - HQL: select generatedAlias0 from roomley.entities.Task as generatedAlias0
+[DEBUG] 2025-05-07 15:51:58.323 [http-nio-8080-exec-6] QueryTranslatorImpl - SQL: select task0_.task_id as task_id1_0_, task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_ from tasks task0_
+[DEBUG] 2025-05-07 15:51:58.323 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.323 [http-nio-8080-exec-6] SQL - select task0_.task_id as task_id1_0_, task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_ from tasks task0_
+[DEBUG] 2025-05-07 15:51:58.435 [http-nio-8080-exec-6] Loader - Result set row: 0
+[DEBUG] 2025-05-07 15:51:58.435 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.436 [http-nio-8080-exec-6] Loader - Result set row: 1
+[DEBUG] 2025-05-07 15:51:58.436 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.436 [http-nio-8080-exec-6] Loader - Result set row: 2
+[DEBUG] 2025-05-07 15:51:58.436 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.436 [http-nio-8080-exec-6] Loader - Result set row: 3
+[DEBUG] 2025-05-07 15:51:58.436 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = ssssss
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = ssss
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.437 [http-nio-8080-exec-6] SQL - select user0_.user_id as user_id1_1_0_, user0_.cognito_sub as cognito_2_1_0_, user0_.created_at as created_3_1_0_, user0_.email as email4_1_0_, user0_.last_login as last_log5_1_0_, user0_.role as role6_1_0_, user0_.username as username7_1_0_, task1_.user_id as user_id6_0_1_, task1_.task_id as task_id1_0_1_, task1_.task_id as task_id1_0_2_, task1_.task_description as task_des2_0_2_, task1_.task_difficulty as task_dif3_0_2_, task1_.task_name as task_nam4_0_2_, task1_.status as status5_0_2_, task1_.user_id as user_id6_0_2_ from users user0_ left outer join tasks task1_ on user0_.user_id=task1_.user_id where user0_.user_id=?
+[DEBUG] 2025-05-07 15:51:58.497 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.498 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.498 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.498 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.498 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.498 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `cognito_sub` : value = f11b2550-a041-70b3-a47b-1b60db675143
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`cognito_sub`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `created_at` : value = null
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`created_at`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `email` : value = ajohnson@koi-dev.com
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`email`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `last_login` : value = 2025-05-05 17:42:37.0
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`last_login`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `role` : value = Admin
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `task` : value = NOT NULL COLLECTION
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`task`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `username` : value = ajohnson
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections were found in result set for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] CollectionLoadContext - Collection fully initialized: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections initialized for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] AbstractLoadPlanBasedEntityLoader - Done entity load : roomley.entities.User#1
+[DEBUG] 2025-05-07 15:51:58.499 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = deeee
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = asdf
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 22222
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 1234444444
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.500 [http-nio-8080-exec-6] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:51:58.562 [http-nio-8080-exec-6] CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0 where generatedAlias0.user.id=1
+[DEBUG] 2025-05-07 15:51:58.562 [http-nio-8080-exec-6] QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from roomley.entities.Task as generatedAlias0 where generatedAlias0.user.id=1
+[DEBUG] 2025-05-07 15:51:58.564 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.565 [http-nio-8080-exec-6] QueryTranslatorImpl - --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'roomley'
+    |  |     |  |  \-[IDENT] Node: 'entities'
+    |  |     |  \-[IDENT] Node: 'Task'
+    |  |     \-[ALIAS] Node: 'generatedAlias0'
+    |  \-[SELECT] Node: 'select'
+    |     \-[IDENT] Node: 'generatedAlias0'
+    \-[WHERE] Node: 'where'
+       \-[EQ] Node: '='
+          +-[DOT] Node: '.'
+          |  +-[DOT] Node: '.'
+          |  |  +-[IDENT] Node: 'generatedAlias0'
+          |  |  \-[IDENT] Node: 'user'
+          |  \-[IDENT] Node: 'id'
+          \-[NUM_INT] Node: '1'
+
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] HqlSqlBaseWalker - select << begin [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] FromElement - FromClause{level=1} : roomley.entities.Task (generatedAlias0) -> task0_
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0 -> task0_.task_id
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0 -> task0_.task_id
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] DotNode - getDataType() : user -> org.hibernate.type.ManyToOneType(roomley.entities.User)
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] DotNode - dereferenceShortcut() : property id in roomley.entities.Task does not require a join.
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] DotNode - Unresolved property path is now 'user.id'
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0.user -> task0_.user_id
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] DotNode - getDataType() : user.id -> org.hibernate.type.IntegerType@28968b1f
+[DEBUG] 2025-05-07 15:51:58.566 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0.user.id -> task0_.user_id
+[DEBUG] 2025-05-07 15:51:58.568 [http-nio-8080-exec-6] HqlSqlBaseWalker - select : finishing up [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.568 [http-nio-8080-exec-6] HqlSqlWalker - processQuery() :  ( SELECT ( {select clause} task0_.task_id ) ( FromClause{level=1} tasks task0_ ) ( where ( = ( task0_.user_id ( task0_.user_id task0_.task_id user ) id ) 1 ) ) )
+[DEBUG] 2025-05-07 15:51:58.568 [http-nio-8080-exec-6] JoinProcessor - Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity Task): [tasks]
+    |  +-IdentNode
+    |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+    |  | originalText: generatedAlias0
+    |  \-SqlFragment
+    +-FromClause
+    |  \-FromElement
+    \-SqlNode
+       \-BinaryLogicOperatorNode
+          +-DotNode
+          | persister: SingleTableEntityPersister(roomley.entities.Task)
+          | path: generatedAlias0.user.id
+          |  +-DotNode
+          |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+          |  | path: generatedAlias0.user
+          |  |  +-IdentNode
+          |  |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+          |  |  | originalText: generatedAlias0
+          |  |  \-IdentNode
+          |  |    persister: null
+          |  |    originalText: user
+          |  \-IdentNode
+          |    persister: null
+          |    originalText: id
+          \-LiteralNode
+
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] JoinProcessor - Using FROM fragment [tasks task0_]
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] HqlSqlBaseWalker - select >> end [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] QueryTranslatorImpl - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (tasks)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'task0_.task_id as task_id1_0_' {alias=generatedAlias0, className=roomley.entities.Task, tableAlias=task0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[task0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'tasks task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=tasks,tableAlias=task0_,origin=null,columns={,className=roomley.entities.Task}}
+    \-[WHERE] SqlNode: 'where'
+       \-[EQ] BinaryLogicOperatorNode: '='
+          +-[DOT] DotNode: 'task0_.user_id' {propertyName=id,dereferenceType=PRIMITIVE,getPropertyPath=user.id,path=generatedAlias0.user.id,tableAlias=task0_,className=roomley.entities.Task,classAlias=generatedAlias0}
+          |  +-[DOT] DotNode: 'task0_.user_id' {propertyName=id,dereferenceType=UNKNOWN,getPropertyPath=user.id,path=generatedAlias0.user,tableAlias=task0_,className=roomley.entities.Task,classAlias=generatedAlias0}
+          |  |  +-[ALIAS_REF] IdentNode: 'task0_.task_id' {alias=generatedAlias0, className=roomley.entities.Task, tableAlias=task0_}
+          |  |  \-[IDENT] IdentNode: 'user' {originalText=user}
+          |  \-[IDENT] IdentNode: 'id' {originalText=id}
+          \-[NUM_INT] LiteralNode: '1'
+
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] QueryTranslatorImpl - HQL: select generatedAlias0 from roomley.entities.Task as generatedAlias0 where generatedAlias0.user.id=1
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] QueryTranslatorImpl - SQL: select task0_.task_id as task_id1_0_, task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_ from tasks task0_ where task0_.user_id=1
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.569 [http-nio-8080-exec-6] SQL - select task0_.task_id as task_id1_0_, task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_ from tasks task0_ where task0_.user_id=1
+[DEBUG] 2025-05-07 15:51:58.671 [http-nio-8080-exec-6] Loader - Result set row: 0
+[DEBUG] 2025-05-07 15:51:58.672 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.672 [http-nio-8080-exec-6] Loader - Result set row: 1
+[DEBUG] 2025-05-07 15:51:58.672 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.673 [http-nio-8080-exec-6] Loader - Result set row: 2
+[DEBUG] 2025-05-07 15:51:58.673 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.673 [http-nio-8080-exec-6] Loader - Result set row: 3
+[DEBUG] 2025-05-07 15:51:58.673 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = ssssss
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = ssss
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.674 [http-nio-8080-exec-6] SQL - select user0_.user_id as user_id1_1_0_, user0_.cognito_sub as cognito_2_1_0_, user0_.created_at as created_3_1_0_, user0_.email as email4_1_0_, user0_.last_login as last_log5_1_0_, user0_.role as role6_1_0_, user0_.username as username7_1_0_, task1_.user_id as user_id6_0_1_, task1_.task_id as task_id1_0_1_, task1_.task_id as task_id1_0_2_, task1_.task_description as task_des2_0_2_, task1_.task_difficulty as task_dif3_0_2_, task1_.task_name as task_nam4_0_2_, task1_.status as status5_0_2_, task1_.user_id as user_id6_0_2_ from users user0_ left outer join tasks task1_ on user0_.user_id=task1_.user_id where user0_.user_id=?
+[DEBUG] 2025-05-07 15:51:58.728 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.728 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `cognito_sub` : value = f11b2550-a041-70b3-a47b-1b60db675143
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`cognito_sub`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `created_at` : value = null
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`created_at`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `email` : value = ajohnson@koi-dev.com
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`email`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `last_login` : value = 2025-05-05 17:42:37.0
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`last_login`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `role` : value = Admin
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `task` : value = NOT NULL COLLECTION
+[DEBUG] 2025-05-07 15:51:58.729 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`task`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `username` : value = ajohnson
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections were found in result set for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] CollectionLoadContext - Collection fully initialized: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections initialized for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] AbstractLoadPlanBasedEntityLoader - Done entity load : roomley.entities.User#1
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = deeee
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = asdf
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 22222
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 1234444444
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.730 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.731 [http-nio-8080-exec-6] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:51:58.796 [http-nio-8080-exec-6] CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from Task as generatedAlias0 where ( generatedAlias0.user.id=1 ) and ( generatedAlias0.taskStatus=:param0 )
+[DEBUG] 2025-05-07 15:51:58.797 [http-nio-8080-exec-6] QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from roomley.entities.Task as generatedAlias0 where ( generatedAlias0.user.id=1 ) and ( generatedAlias0.taskStatus=:param0 )
+[DEBUG] 2025-05-07 15:51:58.798 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] QueryTranslatorImpl - --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    +-[SELECT_FROM] Node: 'SELECT_FROM'
+    |  +-[FROM] Node: 'from'
+    |  |  \-[RANGE] Node: 'RANGE'
+    |  |     +-[DOT] Node: '.'
+    |  |     |  +-[DOT] Node: '.'
+    |  |     |  |  +-[IDENT] Node: 'roomley'
+    |  |     |  |  \-[IDENT] Node: 'entities'
+    |  |     |  \-[IDENT] Node: 'Task'
+    |  |     \-[ALIAS] Node: 'generatedAlias0'
+    |  \-[SELECT] Node: 'select'
+    |     \-[IDENT] Node: 'generatedAlias0'
+    \-[WHERE] Node: 'where'
+       \-[AND] Node: 'and'
+          +-[EQ] Node: '='
+          |  +-[DOT] Node: '.'
+          |  |  +-[DOT] Node: '.'
+          |  |  |  +-[IDENT] Node: 'generatedAlias0'
+          |  |  |  \-[IDENT] Node: 'user'
+          |  |  \-[IDENT] Node: 'id'
+          |  \-[NUM_INT] Node: '1'
+          \-[EQ] Node: '='
+             +-[DOT] Node: '.'
+             |  +-[IDENT] Node: 'generatedAlias0'
+             |  \-[IDENT] Node: 'taskStatus'
+             \-[COLON] Node: ':'
+                \-[IDENT] Node: 'param0'
+
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] HqlSqlBaseWalker - select << begin [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] FromElement - FromClause{level=1} : roomley.entities.Task (generatedAlias0) -> task0_
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0 -> task0_.task_id
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0 -> task0_.task_id
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] DotNode - getDataType() : user -> org.hibernate.type.ManyToOneType(roomley.entities.User)
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] DotNode - dereferenceShortcut() : property id in roomley.entities.Task does not require a join.
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] DotNode - Unresolved property path is now 'user.id'
+[DEBUG] 2025-05-07 15:51:58.799 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0.user -> task0_.user_id
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] DotNode - getDataType() : user.id -> org.hibernate.type.IntegerType@28968b1f
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0.user.id -> task0_.user_id
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0 -> task0_.task_id
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] DotNode - getDataType() : taskStatus -> org.hibernate.type.BooleanType@456be6ef
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] FromReferenceNode - Resolved : generatedAlias0.taskStatus -> task0_.status
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] HqlSqlBaseWalker - select : finishing up [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] HqlSqlWalker - processQuery() :  ( SELECT ( {select clause} task0_.task_id ) ( FromClause{level=1} tasks task0_ ) ( where ( and ( = ( task0_.user_id ( task0_.user_id task0_.task_id user ) id ) 1 ) ( = ( task0_.status task0_.task_id taskStatus ) ? ) ) ) )
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] JoinProcessor - Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity Task): [tasks]
+    |  +-IdentNode
+    |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+    |  | originalText: generatedAlias0
+    |  \-SqlFragment
+    +-FromClause
+    |  \-FromElement
+    \-SqlNode
+       \-SqlNode
+          +-BinaryLogicOperatorNode
+          |  +-DotNode
+          |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+          |  | path: generatedAlias0.user.id
+          |  |  +-DotNode
+          |  |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+          |  |  | path: generatedAlias0.user
+          |  |  |  +-IdentNode
+          |  |  |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+          |  |  |  | originalText: generatedAlias0
+          |  |  |  \-IdentNode
+          |  |  |    persister: null
+          |  |  |    originalText: user
+          |  |  \-IdentNode
+          |  |    persister: null
+          |  |    originalText: id
+          |  \-LiteralNode
+          \-BinaryLogicOperatorNode
+             +-DotNode
+             | persister: SingleTableEntityPersister(roomley.entities.Task)
+             | path: generatedAlias0.taskStatus
+             |  +-IdentNode
+             |  | persister: SingleTableEntityPersister(roomley.entities.Task)
+             |  | originalText: generatedAlias0
+             |  \-IdentNode
+             |    persister: null
+             |    originalText: taskStatus
+             \-ParameterNode
+
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] JoinProcessor - Using FROM fragment [tasks task0_]
+[DEBUG] 2025-05-07 15:51:58.800 [http-nio-8080-exec-6] HqlSqlBaseWalker - select >> end [level=1, statement=select]
+[DEBUG] 2025-05-07 15:51:58.801 [http-nio-8080-exec-6] QueryTranslatorImpl - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (tasks)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'task0_.task_id as task_id1_0_' {alias=generatedAlias0, className=roomley.entities.Task, tableAlias=task0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_'
+    +-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[task0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+    |  \-[FROM_FRAGMENT] FromElement: 'tasks task0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=tasks,tableAlias=task0_,origin=null,columns={,className=roomley.entities.Task}}
+    \-[WHERE] SqlNode: 'where'
+       \-[AND] SqlNode: 'and'
+          +-[EQ] BinaryLogicOperatorNode: '='
+          |  +-[DOT] DotNode: 'task0_.user_id' {propertyName=id,dereferenceType=PRIMITIVE,getPropertyPath=user.id,path=generatedAlias0.user.id,tableAlias=task0_,className=roomley.entities.Task,classAlias=generatedAlias0}
+          |  |  +-[DOT] DotNode: 'task0_.user_id' {propertyName=id,dereferenceType=UNKNOWN,getPropertyPath=user.id,path=generatedAlias0.user,tableAlias=task0_,className=roomley.entities.Task,classAlias=generatedAlias0}
+          |  |  |  +-[ALIAS_REF] IdentNode: 'task0_.task_id' {alias=generatedAlias0, className=roomley.entities.Task, tableAlias=task0_}
+          |  |  |  \-[IDENT] IdentNode: 'user' {originalText=user}
+          |  |  \-[IDENT] IdentNode: 'id' {originalText=id}
+          |  \-[NUM_INT] LiteralNode: '1'
+          \-[EQ] BinaryLogicOperatorNode: '='
+             +-[DOT] DotNode: 'task0_.status' {propertyName=taskStatus,dereferenceType=PRIMITIVE,getPropertyPath=taskStatus,path=generatedAlias0.taskStatus,tableAlias=task0_,className=roomley.entities.Task,classAlias=generatedAlias0}
+             |  +-[ALIAS_REF] IdentNode: 'task0_.task_id' {alias=generatedAlias0, className=roomley.entities.Task, tableAlias=task0_}
+             |  \-[IDENT] IdentNode: 'taskStatus' {originalText=taskStatus}
+             \-[NAMED_PARAM] ParameterNode: '?' {name=param0, expectedType=org.hibernate.type.BooleanType@456be6ef}
+
+[DEBUG] 2025-05-07 15:51:58.801 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.801 [http-nio-8080-exec-6] QueryTranslatorImpl - HQL: select generatedAlias0 from roomley.entities.Task as generatedAlias0 where ( generatedAlias0.user.id=1 ) and ( generatedAlias0.taskStatus=:param0 )
+[DEBUG] 2025-05-07 15:51:58.801 [http-nio-8080-exec-6] QueryTranslatorImpl - SQL: select task0_.task_id as task_id1_0_, task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_ from tasks task0_ where task0_.user_id=1 and task0_.status=?
+[DEBUG] 2025-05-07 15:51:58.801 [http-nio-8080-exec-6] ErrorTracker - throwQueryException() : no errors
+[DEBUG] 2025-05-07 15:51:58.801 [http-nio-8080-exec-6] SQL - select task0_.task_id as task_id1_0_, task0_.task_description as task_des2_0_, task0_.task_difficulty as task_dif3_0_, task0_.task_name as task_nam4_0_, task0_.status as status5_0_, task0_.user_id as user_id6_0_ from tasks task0_ where task0_.user_id=1 and task0_.status=?
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result set row: 0
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result set row: 1
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result set row: 2
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result set row: 3
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] Loader - Result row: EntityKey[roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = ssssss
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.908 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = ssss
+[DEBUG] 2025-05-07 15:51:58.909 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.909 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.909 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.909 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.909 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.909 [http-nio-8080-exec-6] SQL - select user0_.user_id as user_id1_1_0_, user0_.cognito_sub as cognito_2_1_0_, user0_.created_at as created_3_1_0_, user0_.email as email4_1_0_, user0_.last_login as last_log5_1_0_, user0_.role as role6_1_0_, user0_.username as username7_1_0_, task1_.user_id as user_id6_0_1_, task1_.task_id as task_id1_0_1_, task1_.task_id as task_id1_0_2_, task1_.task_description as task_des2_0_2_, task1_.task_difficulty as task_dif3_0_2_, task1_.task_name as task_nam4_0_2_, task1_.status as status5_0_2_, task1_.user_id as user_id6_0_2_ from users user0_ left outer join tasks task1_ on user0_.user_id=task1_.user_id where user0_.user_id=?
+[DEBUG] 2025-05-07 15:51:58.967 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.967 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] CollectionReferenceInitializerImpl - Found row of collection: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `cognito_sub` : value = f11b2550-a041-70b3-a47b-1b60db675143
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`cognito_sub`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `created_at` : value = null
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`created_at`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `email` : value = ajohnson@koi-dev.com
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`email`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `last_login` : value = 2025-05-05 17:42:37.0
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`last_login`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `role` : value = Admin
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `task` : value = NOT NULL COLLECTION
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`task`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `username` : value = ajohnson
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.User#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections were found in result set for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] CollectionLoadContext - Collection fully initialized: [roomley.entities.User.task#1]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] CollectionLoadContext - 1 collections initialized for role: roomley.entities.User.task
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] AbstractLoadPlanBasedEntityLoader - Done entity load : roomley.entities.User#1
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#7]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = deeee
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.968 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = asdf
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#8]
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 22222
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#9]
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Resolving attributes for [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDescription` : value = 1234444444
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDescription`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskDifficulty` : value = 0
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskDifficulty`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskName` : value = 123
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskName`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `taskStatus` : value = true
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`taskStatus`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Processing attribute `user` : value = 1
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] TwoPhaseLoad - Done materializing entity [roomley.entities.Task#10]
+[DEBUG] 2025-05-07 15:51:58.969 [http-nio-8080-exec-6] LogicalConnectionManagedImpl - Initiating JDBC connection release from afterTransaction
+[DEBUG] 2025-05-07 15:52:26.746 [Hibernate Connection Pool Validation Thread] DriverManagerConnectionProviderImpl - Connection pool now considered primed; min-size will be maintained

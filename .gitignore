@@ -41,6 +41,7 @@ build/
 /pom.xml
 /src/main/.ebextensions/
 /src/main/.platform/
+/src/main/test/resources/
 /src/main/resources/
 /src/main/java/.ebextensions/*.config
 /src/main/.platform/httpd/conf.d/ssl.conf
