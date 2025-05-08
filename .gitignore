@@ -39,7 +39,7 @@ build/
 
 ### DBC ###
 /logs/.log/
-.log
+*.log
 /pom.xml
 /src/main/.ebextensions/
 /src/main/.platform/
