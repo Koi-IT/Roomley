@@ -88,8 +88,4 @@ public class UpdateTask extends HttpServlet {
 
     }
 
-    static {
-        System.out.println("UpdateTask static block loaded.");
-
-    }
 }

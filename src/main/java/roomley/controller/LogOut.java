@@ -35,7 +35,4 @@ public class LogOut extends HttpServlet {
         resp.sendRedirect("index.jsp");
     }
 
-    static {
-        System.out.println("LogOut static block loaded.");
-    }
 }

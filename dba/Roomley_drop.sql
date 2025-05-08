@@ -1,47 +1,53 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2025-05-04 22:13:13.107
+-- Last modification date: 2025-05-08 04:55:09.284
 
 -- foreign keys
-ALTER TABLE household_members
-    DROP FOREIGN KEY fk_household_members_households;
+ALTER TABLE Household_Members
+    DROP FOREIGN KEY Household_Members_Households;
 
-ALTER TABLE household_members
-    DROP FOREIGN KEY fk_household_members_users;
+ALTER TABLE Household_Members
+    DROP FOREIGN KEY Household_Members_Users;
 
-ALTER TABLE ingredients
-    DROP FOREIGN KEY fk_ingredients_meals;
+ALTER TABLE Households
+    DROP FOREIGN KEY Households_Users;
 
-ALTER TABLE groceries
-    DROP FOREIGN KEY fk_groceries_users;
+ALTER TABLE Ingredients
+    DROP FOREIGN KEY INGREDIENTS_MEALS;
 
-ALTER TABLE meals
-    DROP FOREIGN KEY fk_meals_groceries;
+ALTER TABLE Invitations
+    DROP FOREIGN KEY Invitations_Households;
 
-ALTER TABLE meals
-    DROP FOREIGN KEY fk_meals_users;
+ALTER TABLE Groceries
+    DROP FOREIGN KEY Lists_Users;
 
-ALTER TABLE tasks
-    DROP FOREIGN KEY fk_tasks_users;
+ALTER TABLE Meals
+    DROP FOREIGN KEY MEALS_GROCERIES;
 
-ALTER TABLE notifications
-    DROP FOREIGN KEY Notifications_Users;
+ALTER TABLE Meals
+    DROP FOREIGN KEY Meals_Users;
+
+ALTER TABLE Tasks
+    DROP FOREIGN KEY Task_Completed_By;
+
+ALTER TABLE Tasks
+    DROP FOREIGN KEY Tasks_Users;
 
 -- tables
-DROP TABLE notifications
+DROP TABLE Groceries;
 
-DROP TABLE groceries;
+DROP TABLE Household_Members;
 
-DROP TABLE household_members;
+DROP TABLE Households;
 
-DROP TABLE households;
+DROP TABLE Ingredients;
 
-DROP TABLE ingredients;
+DROP TABLE Invitations;
 
-DROP TABLE meals;
+DROP TABLE Meals;
 
-DROP TABLE tasks;
+DROP TABLE Tasks;
 
-DROP TABLE users;
+DROP TABLE Users;
 
 -- End of file.
 

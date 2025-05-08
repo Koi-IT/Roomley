@@ -32,29 +32,6 @@ public class TaskCreator extends HttpServlet {
         // Get Cognito sub from user session
         HttpSession session = req.getSession(false);
 
-        if (session != null) {
-            String userSub = (String) session.getAttribute("userSub");
-            if (userSub == null) {
-                System.out.println("userSub is null in session. Something went wrong.");
-            } else {
-                System.out.println("userSub found in session: " + userSub);
-            }
-        } else {
-            System.out.println("Session is null.");
-        }
-
-        System.out.println("Session ID: " + session.getId());
-        System.out.println("Session exists: " + (session != null));
-        System.out.println("UserSub from session: " + session.getAttribute("userSub"));
-
-
-
-        if (session == null || session.getAttribute("userSub") == null) {
-            resp.sendRedirect("logIn"); // or error
-            System.out.println("TaskCreator error.");
-            return;
-        }
-
         // Set userSub
         String userSub = (String) session.getAttribute("userSub");
 
@@ -88,10 +65,6 @@ public class TaskCreator extends HttpServlet {
         newTask.setTaskStatus(false);
         newTask.setUser(currentUser);
         return newTask;
-    }
-
-    static {
-        System.out.println("TaskCreator static block loaded.");
     }
 
 }

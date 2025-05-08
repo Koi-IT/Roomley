@@ -41,7 +41,4 @@ public class HouseholdCreator extends HttpServlet {
 
     }
 
-    static {
-        System.out.println("HouseholdCreator static block loaded.");
-    }
 }

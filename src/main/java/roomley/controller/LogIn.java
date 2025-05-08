@@ -65,7 +65,4 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
         resp.sendRedirect(url);
     }
 
-    static {
-        System.out.println("LogIn static block loaded.");
-    }
 }
