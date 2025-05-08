@@ -44,3 +44,36 @@
 3/17 - 3 hrs
 - Resolved Issues for previous weeks
 - Started Week 6
+
+# Week 10
+3/27 - 6 hrs
+- Finished Week 6
+
+3/30 - 6 hrs
+- Finished Week 7
+
+# Week 11
+4/4 - 4 hrs
+- Worked on Week 8
+
+# Week 12
+- Team project work
+
+# Week 13
+- Sick
+
+# Week 14
+5/4 - 6 hrs
+- AWS integration into Roomley
+
+# Week 15
+5/5 - 8 hrs
+- Created main webpage 
+- Created user homepage overview
+- Build task CRUD operations, and setup AWS RDS
+
+5/7 - 8 hrs
+- Finalized DB design
+- Finished work on CRUD operations
+- Refined HTML to make it more readable
+- Started work on household creation webpage and servlet
