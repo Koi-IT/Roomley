@@ -45,7 +45,4 @@ public class EditTask extends HttpServlet {
 
     }
 
-    static {
-        System.out.println("Edit Task static block loaded.");
-    }
 }

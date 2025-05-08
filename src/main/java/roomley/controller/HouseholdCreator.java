@@ -37,8 +37,6 @@ public class HouseholdCreator extends HttpServlet {
 
         }
 
-
-
     }
 
 }
