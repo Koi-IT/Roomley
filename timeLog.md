@@ -77,3 +77,7 @@
 - Finished work on CRUD operations
 - Refined HTML to make it more readable
 - Started work on household creation webpage and servlet
+
+5/8 - 8 hrs
+- Updated Dao's and added generic dao
+- Updated Dao testing
