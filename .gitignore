@@ -49,5 +49,5 @@ build/
 /src/main/.platform/httpd/conf.d/ssl.conf
 /server.crt
 /server.key
-/test/resources/cleandb.sql
-/test/resources/hibernate.cfg.xml
+/test/resources/.sql
+/test/resources/.xml
