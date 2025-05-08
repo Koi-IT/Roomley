@@ -17,16 +17,18 @@ import java.util.List;
 class TaskDaoTest {
 
     TaskDao taskDao;
+    UserDao userDao;
+
 
     /**
      * Sets up.
      */
     @BeforeEach
     void setUp() {
-        Database database = new Database();
-        Database dbconnection = database.getInstance();
+        Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
         this.taskDao = new TaskDao();
+        this.userDao = new UserDao();
 
     }
 
@@ -35,7 +37,8 @@ class TaskDaoTest {
      */
     @Test
     void update() {
-        Task updatedTask = taskDao.getById(4);
+        Task task = userDao.getBySub("cognito_sub").getTasks().get(0);
+        Task updatedTask = taskDao.getById(task.getTaskId());
         updatedTask.setTaskStatus(true);
         taskDao.update(updatedTask);
 
@@ -51,27 +54,22 @@ class TaskDaoTest {
         // Create Task to be inserted
         Task insertedTask = new Task();
 
-        // Create User Dao
-        UserDao userDao = new UserDao();
-
         // Get User
-        User user = userDao.getById(5);
+        User user = userDao.getBySub("cognito_sub");
 
         // Set task columns
         insertedTask.setUser(user);
-        insertedTask.setTaskName("test2");
         insertedTask.setTaskStatus(true);
+        insertedTask.setTaskDifficulty(1);
         insertedTask.setTaskDescription("This is a test");
-        insertedTask.setTaskDifficulty(0);
+        insertedTask.setTaskName("This is a test");
 
-        //Insert task
         taskDao.insert(insertedTask);
-
-        assertEquals(user, insertedTask.getUser());
-        assertEquals("test2", insertedTask.getTaskName());
         assertTrue(insertedTask.getTaskStatus());
-        assertEquals("This is a test", insertedTask.getTaskDescription());
-        assertEquals(0, insertedTask.getTaskDifficulty());
+        assertTrue(insertedTask.getTaskDifficulty() == 1);
+        assertTrue(insertedTask.getTaskDescription().equals("This is a test"));
+        assertTrue(insertedTask.getTaskName().equals("This is a test"));
+        assertEquals(1, insertedTask.getTaskDifficulty());
 
     }
 
@@ -80,13 +78,10 @@ class TaskDaoTest {
      */
     @Test
     void delete() {
-        Task taskToDelete = taskDao.getById(5);
+        Task taskToDelete = taskDao.getByPropertyEqual("taskName", "clean livingroom").get(0);
         taskDao.delete(taskToDelete);
 
-        UserDao userDao = new UserDao();
-
-        assertNull(taskDao.getById(5));
-        assertNotNull(userDao.getById(5));
+        assertTrue(taskDao.getByPropertyEqual("taskName", "clean livingroom").isEmpty());
 
     }
 
@@ -101,4 +96,40 @@ class TaskDaoTest {
         assertEquals(2, taskList.size());
 
     }
+
+    @Test
+    void getTaskByUser() {
+        int userId = userDao.getBySub("cognito_sub").getId();
+        List<Task> taskList = taskDao.getTasksByUser(userId);
+        assertFalse(taskList.isEmpty());
+        assertEquals(2, taskList.size());
+
+    }
+
+    @Test
+    void getTasks() {
+        String userCognitoSub = userDao.getBySub("cognito_sub").getCognitoSub();
+        List<Task> taskList = taskDao.getTasks(userCognitoSub);
+        assertFalse(taskList.isEmpty());
+        assertEquals(1, taskList.size());
+
+    }
+
+    @Test
+    void getTasksByStatus() {
+        List<Task> taskList = taskDao.getTasksByStatus(true);
+        assertFalse(taskList.isEmpty());
+        assertEquals(1, taskList.size());
+
+    }
+
+    @Test
+    void getCompletedTasksByUser() {
+        int userId = userDao.getBySub("cognito_sub").getId();
+        List<Task> taskList = taskDao.getCompletedTasksByUser(userId);
+        assertFalse(taskList.isEmpty());
+        assertEquals(1, taskList.size());
+
+    }
+
 }

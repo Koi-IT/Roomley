@@ -1,33 +1,43 @@
 package roomley.persistence;
 
-import org.hibernate.query.Query;
-import roomley.entities.Task;
 import roomley.entities.User;
+import roomley.entities.Task;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
-import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The type User dao.
  */
-public class UserDao {
+public class UserDao extends GenericDao<User> {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
-    /**
-     * The Session factory.
-     */
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
+
+    /**
+     * Constructor
+     * Setup generic dao with User class
+     */
+    public UserDao() {
+        super(User.class);
+
+    }
+
+    /**
+     * Get user cognito sub
+     * @param cognitoSub the cognito sub
+     * @return the user found
+     */
+    public User getBySub(String cognitoSub) {
+        List<User> results = getByPropertyEqual("cognito_sub", cognitoSub);
+        return results.isEmpty() ? null : results.get(0);
+
+    }
 
     /**
      * Get user by id
@@ -35,54 +45,10 @@ public class UserDao {
      * @param id the id
      * @return the by id
      */
-    User getById(int id) {
-        Session session = sessionFactory.openSession();
-        User user = session.get(User.class, id);
-        session.close();
-        return user;
+    public User getById(int id) {
+        return super.getById(id);
+
     }
-
-    /**
-     * Get user by sub
-     *
-     * @param cognitoSub the sub
-     * @return the by sub
-     */
-    public User getBySub(String cognitoSub) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        User user = null;
-
-        try {
-            // Start a transaction
-            transaction = session.beginTransaction();
-
-            // Create a CriteriaBuilder to build a CriteriaQuery
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
-
-            // Define the root of the query (the entity being queried)
-            Root<User> root = criteriaQuery.from(User.class);
-
-            // Set the query condition (match based on cognito_sub)
-            criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("cognito_sub"), cognitoSub));
-
-            // Execute the query
-            Query<User> query = session.createQuery(criteriaQuery);
-            user = query.uniqueResult();
-
-            // Commit the transaction if everything is okay
-            transaction.commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-
-        return user;
-    }
-
-
 
     /**
      * update user
@@ -90,11 +56,8 @@ public class UserDao {
      * @param user User to be updated
      */
     public void update(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.merge(user);
-        transaction.commit();
-        session.close();
+        super.update(user);
+
     }
 
     /**
@@ -103,16 +66,12 @@ public class UserDao {
      * @param user User to be inserted
      * @return the int
      */
-    public String insert(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.persist(user);
-        transaction.commit();
-        String sub = user.getCognitoSub();
-        session.close();
-        return sub;
+    public User insert(User user) {
+        super.insert(user);
+        return user;
 
     }
+
 
     /**
      * Delete a user
@@ -120,13 +79,9 @@ public class UserDao {
      * @param user User to be deleted
      */
     public void delete(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(user);
-        transaction.commit();
-        session.close();
-    }
+        super.delete(user);
 
+    }
 
     /**
      * Return a list of all users
@@ -134,18 +89,10 @@ public class UserDao {
      * @return All users
      */
     public List<User> getAllUsers() {
-
-        Session session = sessionFactory.openSession();
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        List<User> users = session.createQuery(query).getResultList();
-
-        logger.debug("The list of users " + users);
-        session.close();
-
+        List<User> users = super.getAll();
+        logger.debug("The list of users {}", users);
         return users;
+
     }
 
     /**
@@ -157,18 +104,8 @@ public class UserDao {
      * @return the by property equal
      */
     public List<User> getByPropertyEqual(String propertyName, String value) {
-        Session session = sessionFactory.openSession();
+        return super.getByPropertyEqual(propertyName,value);
 
-        logger.debug("Searching for user with " + propertyName + " = " + value);
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<User> users = session.createQuery(query).getResultList();
-
-        session.close();
-        return users;
     }
 
     /**
@@ -180,20 +117,8 @@ public class UserDao {
      * @return the by property like
      */
     public List<User> getByPropertyLike(String propertyName, String value) {
-        Session session = sessionFactory.openSession();
+        return super.getByPropertyLike(propertyName, value);
 
-        logger.debug("Searching for user with {} = {}",  propertyName, value);
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<User> query = builder.createQuery(User.class);
-        Root<User> root = query.from(User.class);
-        Expression<String> propertyPath = root.get(propertyName);
-
-        query.where(builder.like(propertyPath, "%" + value + "%"));
-
-        List<User> users = session.createQuery( query ).getResultList();
-        session.close();
-        return users;
     }
 
 }

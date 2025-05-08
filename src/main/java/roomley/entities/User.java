@@ -3,7 +3,8 @@ package roomley.entities;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class User {
     @Column(name = "cognito_sub")
     private String cognito_sub;
 
-    @Column(name = "username")
+    @Column(name = "display_name")
     private String username;
 
-    @Column(name = "created_at")
+    @Column(name = "user_created_at", nullable = false)
     private Timestamp created_at;
 
     @Column(name = "email")
@@ -39,12 +40,13 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Task> task = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     /**
      * No argument constructor for User
      */
     public User() {
+        this.created_at = Timestamp.valueOf(LocalDateTime.now());
 
     }
 
@@ -57,15 +59,15 @@ public class User {
      * @param last_login Last Login
      * @param role User Role
      */
-    public User( String cognito_sub, String username, String email, java.sql.Timestamp last_login, String role) {
+    public User( String cognito_sub, String username, String email, java.sql.Timestamp user_created_at,java.sql.Timestamp last_login, String role) {
         this.cognito_sub = cognito_sub;
         this.username = username;
         this.email = email;
         this.last_login = last_login;
         this.role = role;
+        this.created_at = Timestamp.valueOf(LocalDateTime.now());
 
     }
-
 
     /**
      * Gets id.
@@ -127,6 +129,13 @@ public class User {
     public String getRole() { return role; }
 
     /**
+     * Returns the list of tasks associated with this user.
+     * Modifications to the returned list may affect the internal task list.
+     * @return task list for the user
+     */
+    public List<Task> getTasks() { return tasks; }
+
+    /**
      * Sets cognito_sub.
      *
      * @param cognito_sub the cognito_sub
@@ -149,7 +158,7 @@ public class User {
      *
      * @param created_at at the user created_at
      */
-    public void setCreateAt(java.security.Timestamp created_at) {
+    public void setCreateAt(java.sql.Timestamp created_at) {
         this.created_at = created_at;
     }
 
@@ -178,4 +187,20 @@ public class User {
      */
     public void setUsername(String username) { this.username = username; }
 
+    /**
+     * To string override for logging
+     * @return User log
+     */
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", cognito_sub='" + cognito_sub + '\'' +
+                ", username='" + username + '\'' +
+                ", created_at=" + created_at +
+                ", email='" + email + '\'' +
+                ", last_login=" + last_login +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

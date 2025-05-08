@@ -1,8 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@ include file="head.jsp" %>
-    <header>
+    <header class="container">
         <nav>
             <ul>
                 <li class="dm-serif-text-regular-italic">Roomley</li>
