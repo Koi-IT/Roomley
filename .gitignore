@@ -51,3 +51,6 @@ build/
 /server.key
 src/test/resources/cleandb.sql
 src/test/resources/hibernate.cfg.xml
+*.sql
+*.dump
+*.bak
