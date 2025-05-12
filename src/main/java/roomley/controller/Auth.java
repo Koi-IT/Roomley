@@ -195,9 +195,11 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String username = jwt.getClaim("cognito:username").asString();
         String userEmail = jwt.getClaim("email").asString();
         String userSub = jwt.getClaim("sub").asString();
+        String userId = jwt.getClaim("userId").asString();
         logger.debug("here's the username: " + username);
         logger.debug("here's the email: " + userEmail);
         logger.debug("here's the sub: " + userSub);
+        logger.debug("here's the id: " + userId);
 
         // Extracting groups from the JWT
         List<String> userGroups = jwt.getClaim("cognito:groups").asList(String.class);
@@ -210,10 +212,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
 
         if (users.isEmpty()) {
-            fetchDataFromRDS(userSub, userEmail, username, role, req);
+            fetchDataFromRDS(userSub, userEmail, username, role, userId, req);
 
         } else {
-            createUserSession(req, userSub, userEmail, username, role);
+            createUserSession(req, userSub, userEmail, username, role, userId);
         }
 
         logger.debug(jwt.getClaim("sub").asString());
@@ -323,13 +325,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param username  Username
      * @param role      role
      */
-    private void fetchDataFromRDS(String userSub, String userEmail, String username, String role, HttpServletRequest req) {
+    private void fetchDataFromRDS(String userSub, String userEmail, String username, String role, String userId, HttpServletRequest req) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Create user session to hold cognito sub
-            createUserSession(req, userSub, userEmail, username, role);
+            createUserSession(req, userSub, userEmail, username, role, userId);
 
             // Create new user in AWS RDS from cognito sub
             User newUser = new User();
@@ -357,7 +359,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param username username
      * @param role user role
      */
-    public void createUserSession(HttpServletRequest req, String userSub, String userEmail, String username, String role) {
+    public void createUserSession(HttpServletRequest req, String userSub, String userEmail, String username, String role, String userId) {
         HttpSession session = req.getSession(true);
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
 
@@ -366,6 +368,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         session.setAttribute("username", username);
         session.setAttribute("userEmail", userEmail);
         session.setAttribute("role", role);
+        session.setAttribute("userId", userId);
 
     }
 

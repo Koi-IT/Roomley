@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * A simple servlet to find all tasks in a household.
@@ -54,8 +55,13 @@ public class TaskGrabber extends HttpServlet {
         String userName = (String) session.getAttribute("username");
         String userEmail = (String) session.getAttribute("userEmail");
         String role = (String) session.getAttribute("role");
+        String userId = (String) session.getAttribute("userId");
+
         User user = (User) userDao.getByPropertyEqual("cognito_sub", userSub);
-        int userId = user.getId();
+
+        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
+        List<Task> userTasks = taskDao.getByPropertyEqual("user", user);
+        List<Task> completedTasks = taskDao.getByPropertyEqual("status", true);
 
         // Log user details for debugging
         logger.debug("User Sub: " + userSub);
@@ -67,9 +73,9 @@ public class TaskGrabber extends HttpServlet {
         // Set session attributes based on user
         try {
             // TODO get all tasks within household
-            session.setAttribute("tasks", userDao.getByPropertyEqual("cognito_sub", userSub));
-            session.setAttribute("userAssignedTasks", taskDao.getTasksByUser(userId));
-            session.setAttribute("completedTasks", taskDao.getCompletedTasksByUser(userId));
+            session.setAttribute("tasks", householdTasks);
+            session.setAttribute("userAssignedTasks", userTasks);
+            session.setAttribute("completedTasks", completedTasks);
 
         } catch (Exception e) {
             logger.error("Error fetching tasks", e);
