@@ -7,9 +7,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import roomley.auth.*;
 import roomley.entities.Task;
+import roomley.persistence.GenericDao;
 import roomley.entities.User;
-import roomley.persistence.TaskDao;
-import roomley.persistence.UserDao;
 import roomley.util.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,14 +46,12 @@ import static java.time.LocalTime.now;
 
 /**
  * Authenticates users through aws and creates a user session
+ * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
 @WebServlet(
         urlPatterns = {"/auth"}
 )
 // TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
-/**
- * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
- */
 public class Auth extends HttpServlet implements PropertiesLoader {
     Properties properties;
     String CLIENT_ID;
@@ -149,7 +146,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * Get values out of the header to verify the token is legit. If it is legit, get the claims from it, such
      * as username.
      * @param tokenResponse
-     * @return
+     * @return username
      * @throws IOException
      */
     private String validate(TokenResponse tokenResponse, HttpServletRequest req) throws IOException {
@@ -209,7 +206,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("Assigned role: " + role);
 
         // Setup Data for aws RDS if the user hasn't been already created
-        UserDao userDao = new UserDao();
+        GenericDao<User> userDao = new GenericDao<>(User.class);
         List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
 
         if (users.isEmpty()) {
@@ -319,7 +316,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     }
 
     /**
-     * Fetch data from aws rds
+     * Fetch data from AWS RDS
      *
      * @param userSub   Cognito Sub
      * @param userEmail User Email
@@ -334,7 +331,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             // Create user session to hold cognito sub
             createUserSession(req, userSub, userEmail, username, role);
 
-            // Create new user in aws RDS from cognito sub
+            // Create new user in AWS RDS from cognito sub
             User newUser = new User();
             newUser.setCognitoSub(userSub);
             newUser.setUsername(username);
@@ -342,7 +339,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             newUser.setLastLogin(new Timestamp(System.currentTimeMillis()));
             newUser.setRole(role);
 
-            UserDao userDao = new UserDao();
+            GenericDao<User> userDao = new GenericDao<>(User.class);
             userDao.insert(newUser);
 
         } catch (ClassNotFoundException e) {

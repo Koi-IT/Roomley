@@ -18,18 +18,33 @@ public class GenericDao<T> {
     private final Class<T> type;
     protected final SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
+    /**
+     * GenericDao constructor
+     * @param type the type of the entity class
+     */
     public GenericDao(Class<T> type) {
         this.type = type;
 
     }
 
+    /**
+     * Get data by id
+     * @param id id to be checked
+     * @return results of query
+     */
     public T getById(int id) {
+
         try (Session session = sessionFactory.openSession()) {
             return session.get(type, id);
 
         }
+
     }
 
+    /**
+     * Get all data from a table
+     * @return results of query
+     */
     public List<T> getAll() {
 
         try (Session session = sessionFactory.openSession()) {
@@ -42,6 +57,12 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Get by property equal
+     * @param propertyName the property name
+     * @param value the value to be checked
+     * @return results of query
+     */
     public List<T> getByPropertyEqual(String propertyName, Object value) {
 
         try (Session session = sessionFactory.openSession()) {
@@ -55,6 +76,12 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Get property like
+     * @param propertyName the property name
+     * @param value the property value to be checked
+     * @return results of query
+     */
     public List<T> getByPropertyLike(String propertyName, Object value) {
 
         try (Session session = sessionFactory.openSession()) {
@@ -68,10 +95,16 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Get by properties equal
+     * @param properties list of properties to be checked
+     * @return results of query
+     */
     public List<T> getByPropertiesEqual(Map<String, Object> properties) {
 
         if (properties.isEmpty()) {
             return new ArrayList<>();  // Return empty list if no properties are passed
+
         }
 
         try (Session session = sessionFactory.openSession()) {

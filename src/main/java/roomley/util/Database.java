@@ -25,11 +25,13 @@ public class Database implements PropertiesLoader {
      * instantiates properties file
      */
     public Database() {
+
         try {
             properties = loadProperties("/database.properties");
 
         } catch (Exception e) {
             logger.error(e);
+
         }
 
     }
@@ -48,32 +50,48 @@ public class Database implements PropertiesLoader {
         return this.connection;
     }
 
+    /**
+     * Connect to DB
+     * @throws Exception error connecting
+     */
     public void connect() throws Exception {
+
         if (this.connection == null) {
+
             try {
                 Class.forName(this.properties.getProperty("driver"));
+
             } catch (ClassNotFoundException var2) {
                 throw new Exception("Database.connect()... Error: MySQL Driver not found");
+
             }
 
             String url = this.properties.getProperty("url");
             this.connection = DriverManager.getConnection(url, this.properties.getProperty("username"), this.properties.getProperty("password"));
+
         }
+
     }
 
     /**
      * Disconnects from DB
      */
     public void disconnect() {
+
         if (this.connection != null) {
+
             try {
                 this.connection.close();
+
             } catch (SQLException e) {
                 this.logger.error("Cannot close connection", e);
+
             }
+
         }
 
         this.connection = null;
+
     }
 
     /**
@@ -98,38 +116,54 @@ public class Database implements PropertiesLoader {
 
                     if (query.isEmpty()) {
                         continue; // Skip empty queries
+
                     }
 
                     // Check if it's a SELECT query or not
                     if (isSelectQuery(query)) {
+
                         try (ResultSet rs = stmt.executeQuery(query)) {
                             // Process the result set if it's a SELECT query
                             processResultSet(rs);
+
                         } catch (SQLException e) {
                             this.logger.error("Error executing SELECT query", e);
+
                         }
+
                     } else {
+
                         try {
                             // For non-SELECT queries (INSERT, UPDATE, DELETE, etc.)
                             stmt.executeUpdate(query);
+
                         } catch (SQLException e) {
                             this.logger.error("Error executing DML/DDL query", e);
+
                         }
+
                     }
 
                     // Reset the SQL query string
                     sql.setLength(0);
+
                 } else {
                     // Accumulate the characters for the SQL query
                     sql.append(inputValue);
+
                 }
+
             }
+
         } catch (SQLException se) {
             this.logger.error("SQL Exception", se);
+
         } catch (Exception e) {
             this.logger.error("Exception", e);
+
         } finally {
             this.disconnect();
+
         }
     }
 
@@ -138,12 +172,14 @@ public class Database implements PropertiesLoader {
      */
     private boolean isSelectQuery(String query) {
         return query.trim().toUpperCase().startsWith("SELECT");
+
     }
 
     /**
      * Helper method to process the result set of a SELECT query.
      */
     private void processResultSet(ResultSet rs) throws SQLException {
+
         while (rs.next()) {
             logger.info(rs.getString(1));
 

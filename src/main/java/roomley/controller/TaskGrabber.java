@@ -45,15 +45,16 @@ public class TaskGrabber extends HttpServlet {
         }
 
         // Create Dao's
-        UserDao userDao = new UserDao();
-        TaskDao taskDao = new TaskDao();
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
+
 
         // Fetch user data
         String userSub = (String) session.getAttribute("userSub");
         String userName = (String) session.getAttribute("username");
         String userEmail = (String) session.getAttribute("userEmail");
         String role = (String) session.getAttribute("role");
-        User user = userDao.getBySub(userSub);
+        User user = (User) userDao.getByPropertyEqual("cognito_sub", userSub);
         int userId = user.getId();
 
         // Log user details for debugging
@@ -66,7 +67,7 @@ public class TaskGrabber extends HttpServlet {
         // Set session attributes based on user
         try {
             // TODO get all tasks within household
-            session.setAttribute("tasks", taskDao.getAllTasks());
+            session.setAttribute("tasks", userDao.getByPropertyEqual("cognito_sub", userSub));
             session.setAttribute("userAssignedTasks", taskDao.getTasksByUser(userId));
             session.setAttribute("completedTasks", taskDao.getCompletedTasksByUser(userId));
 

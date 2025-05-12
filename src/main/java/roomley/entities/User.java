@@ -27,7 +27,7 @@ public class User {
     @Column(name = "display_name")
     private String username;
 
-    @Column(name = "user_created_at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
 
     @Column(name = "email")

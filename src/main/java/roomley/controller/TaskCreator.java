@@ -2,7 +2,6 @@ package roomley.controller;
 
 import roomley.entities.Task;
 import roomley.entities.User;
-import roomley.persistence.UserDao;
 import roomley.persistence.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,7 +46,7 @@ public class TaskCreator extends HttpServlet {
         Task newTask = createTask(userSub, taskName, taskDescription);
 
         // Insert new task into rds
-        TaskDao taskDao = new TaskDao();
+        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
         taskDao.insert(newTask);
 
         // Send tasks to webpage
@@ -65,7 +64,7 @@ public class TaskCreator extends HttpServlet {
     private static Task createTask(String userSub, String taskName, String taskDescription) throws ServletException {
 
         // Get currentUser
-        UserDao userDao = new UserDao();
+        GenericDao<User> userDao = new GenericDao<>(User.class);
         List<User> matches = userDao.getByPropertyEqual("cognito_sub", userSub);
         if (matches.isEmpty()) {
             throw new ServletException("Logged‑in user not found in RDS!");
