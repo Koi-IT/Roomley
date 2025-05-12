@@ -145,10 +145,9 @@ public class Database implements PropertiesLoader {
      */
     private void processResultSet(ResultSet rs) throws SQLException {
         while (rs.next()) {
-            // Example: Print the first column (you can modify this to your needs)
-            System.out.println(rs.getString(1));
+            logger.info(rs.getString(1));
+
         }
     }
-
 
 }

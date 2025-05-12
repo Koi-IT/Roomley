@@ -78,8 +78,4 @@ public class TaskGrabber extends HttpServlet {
         dispatcher.forward(req, resp);
     }
 
-    static {
-        System.out.println("TaskGrabber static block loaded.");
-    }
-
 }
