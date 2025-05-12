@@ -25,6 +25,13 @@ public class EditTask extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Get request to update user task
+     * @param req http request
+     * @param resp http response
+     * @throws ServletException Servlet exception
+     * @throws IOException Input output exception
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

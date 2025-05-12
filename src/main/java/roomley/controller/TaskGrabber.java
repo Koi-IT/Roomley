@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * A simple servlet to find all tasks in the database.
+ * A simple servlet to find all tasks in a household.
  * @author Koi-dev
  */
 @WebServlet(
@@ -25,6 +25,13 @@ public class TaskGrabber extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Get request to grab all tasks within the users household
+     * @param req http request
+     * @param resp http response
+     * @throws ServletException Servlet exception
+     * @throws IOException Input output exception
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -62,6 +69,7 @@ public class TaskGrabber extends HttpServlet {
             session.setAttribute("tasks", taskDao.getAllTasks());
             session.setAttribute("userAssignedTasks", taskDao.getTasksByUser(userId));
             session.setAttribute("completedTasks", taskDao.getCompletedTasksByUser(userId));
+
         } catch (Exception e) {
             logger.error("Error fetching tasks", e);
             req.setAttribute("errorMessage", "Error fetching tasks.");
@@ -71,11 +79,13 @@ public class TaskGrabber extends HttpServlet {
             RequestDispatcher dispatcher = req.getRequestDispatcher("errorPage.jsp");
             dispatcher.forward(req, resp);
             return;
+
         }
 
         // Forward to the user home page
         RequestDispatcher dispatcher = req.getRequestDispatcher("userHomePage.jsp");
         dispatcher.forward(req, resp);
+
     }
 
 }

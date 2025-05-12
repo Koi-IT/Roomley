@@ -45,6 +45,9 @@ import java.util.stream.Collectors;
 import static java.time.LocalTime.now;
 
 
+/**
+ * Authenticates users through aws and creates a user session
+ */
 @WebServlet(
         urlPatterns = {"/auth"}
 )
@@ -52,7 +55,6 @@ import static java.time.LocalTime.now;
 /**
  * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
  */
-
 public class Auth extends HttpServlet implements PropertiesLoader {
     Properties properties;
     String CLIENT_ID;
@@ -70,6 +72,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Init authorization, load properties and keys
+     * @throws ServletException
+     */
     @Override
     public void init() throws ServletException {
         super.init();
@@ -91,21 +97,26 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         if (authCode == null) {
             //TODO forward to an error page or back to the login
+
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
+
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse, req);
                 req.setAttribute("userName", userName);
+
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
                 //TODO forward to an error page
+
             } catch (InterruptedException e) {
                 logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
                 //TODO forward to an error page
-            }
-        }
 
+            }
+
+        }
         resp.sendRedirect("taskGrabber");
 
     }
@@ -122,7 +133,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         HttpResponse<?> response = null;
 
         response = client.send(authRequest, HttpResponse.BodyHandlers.ofString());
-
 
         logger.debug("Response headers: " + response.headers().toString());
         logger.debug("Response body: " + response.body().toString());
@@ -158,12 +168,16 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // TODO the following is "happy path", what if the exceptions are caught?
         // Create a public key
         PublicKey publicKey = null;
+
         try {
             publicKey = KeyFactory.getInstance("RSA").generatePublic(new RSAPublicKeySpec(modulus, exponent));
+
         } catch (InvalidKeySpecException e) {
             logger.error("Invalid Key Error " + e.getMessage(), e);
+
         } catch (NoSuchAlgorithmException e) {
             logger.error("Algorithm Error " + e.getMessage(), e);
+
         }
 
         // Get an algorithm instance
@@ -197,13 +211,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // Setup Data for aws RDS if the user hasn't been already created
         UserDao userDao = new UserDao();
         List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
+
         if (users.isEmpty()) {
             fetchDataFromRDS(userSub, userEmail, username, role, req);
 
         } else {
             createUserSession(req, userSub, userEmail, username, role);
         }
-
 
         logger.debug(jwt.getClaim("sub").asString());
         logger.debug("here are all the available claims: " + jwt.getClaims());
@@ -212,6 +226,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         // for now, I'm just returning username for display back to the browser
 
         return username;
+
     }
 
     /** Create the auth url and use it to build the request.
@@ -239,11 +254,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 .headers("Content-Type", "application/x-www-form-urlencoded", "Authorization", "Basic " + encoding)
                 .POST(HttpRequest.BodyPublishers.ofString(form)).build();
         return request;
+
     }
 
     /**
      * Gets the JSON Web Key Set (JWKS) for the user pool from cognito and loads it
- * into objects for easier use.
+     * into objects for easier use.
      *
      * JSON Web Key Set (JWKS) location: https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json
      * Demo url: https://cognito-idp.us-east-2.amazonaws.com/us-east-2_XaRYHsmKB/.well-known/jwks.json
@@ -260,11 +276,15 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             FileUtils.copyURLToFile(jwksURL, jwksFile);
             jwks = mapper.readValue(jwksFile, Keys.class);
             logger.debug("Keys are loaded. Here's e: " + jwks.getKeys().get(0).getE());
+
         } catch (IOException ioException) {
             logger.error("Cannot load json..." + ioException.getMessage(), ioException);
+
         } catch (Exception e) {
             logger.error("Error loading json" + e.getMessage(), e);
+
         }
+
     }
 
     /**
@@ -273,6 +293,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      */
     // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
     private void loadProperties() {
+
         try {
             properties = loadProperties("/cognito.properties");
             CLIENT_ID = properties.getProperty("client.id");
@@ -286,11 +307,15 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             JDBC_URL = properties.getProperty("url");
             DB_USERNAME = properties.getProperty("username");
             DB_PASSWORD = properties.getProperty("password");
+
         } catch (IOException ioException) {
             logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
+
         } catch (Exception e) {
             logger.error("Error loading properties" + e.getMessage(), e);
+
         }
+
     }
 
     /**
@@ -327,6 +352,14 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         
     }
 
+    /**
+     * Create user session to hold user data
+     * @param req http request
+     * @param userSub user cognito sub
+     * @param userEmail user email
+     * @param username username
+     * @param role user role
+     */
     public void createUserSession(HttpServletRequest req, String userSub, String userEmail, String username, String role) {
         HttpSession session = req.getSession(true);
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
@@ -338,7 +371,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         session.setAttribute("role", role);
 
     }
-
 
 }
 

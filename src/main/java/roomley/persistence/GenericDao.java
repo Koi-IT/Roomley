@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Generic Dao for all database connections
+ * @param <T>
+ */
 public class GenericDao<T> {
 
     private final Class<T> type;

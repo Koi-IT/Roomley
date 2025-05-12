@@ -38,5 +38,6 @@ public interface PropertiesLoader {
         }
 
         return properties;
+
     }
 }

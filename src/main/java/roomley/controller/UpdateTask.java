@@ -24,6 +24,13 @@ public class UpdateTask extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Post request to update tasks
+     * @param req http request
+     * @param resp http response
+     * @throws ServletException Servlet exception
+     * @throws IOException Input output exception
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -59,7 +66,6 @@ public class UpdateTask extends HttpServlet {
 
         // Start update based on action
         if ("update".equals(action)) {
-
             // Update task name/description
             Task task = taskDao.getById(Integer.parseInt(taskId));
             task.setTaskName(taskName);
@@ -67,12 +73,10 @@ public class UpdateTask extends HttpServlet {
             taskDao.update(task);
 
         } else if ("delete".equals(action)) {
-
             // Delete task using id
             taskDao.delete(taskDao.getById(Integer.parseInt(taskId)));
 
         } else {
-
             // Update task status
             Task task = taskDao.getById(Integer.parseInt(taskId));
             task.setTaskStatus(!task.getTaskStatus());

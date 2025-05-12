@@ -22,6 +22,14 @@ import java.util.List;
         urlPatterns = "/taskCreator"
 )
 public class TaskCreator extends HttpServlet {
+
+    /**
+     * Post request to create a new task and redirect to user homepage
+     * @param req http request
+     * @param resp http response
+     * @throws ServletException Servlet exception
+     * @throws IOException Input output exception
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -46,6 +54,14 @@ public class TaskCreator extends HttpServlet {
         resp.sendRedirect("taskGrabber");
     }
 
+    /**
+     *
+     * @param userSub user cognito sub
+     * @param taskName task name
+     * @param taskDescription task description
+     * @return the new Task object
+     * @throws ServletException Servlet exception
+     */
     private static Task createTask(String userSub, String taskName, String taskDescription) throws ServletException {
 
         // Get currentUser
@@ -65,6 +81,7 @@ public class TaskCreator extends HttpServlet {
         newTask.setTaskStatus(false);
         newTask.setUser(currentUser);
         return newTask;
+
     }
 
 }

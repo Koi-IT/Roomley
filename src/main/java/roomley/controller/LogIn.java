@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * Begins the authentication process using AWS Cognito
+ */
 @WebServlet(
         urlPatterns = {"/logIn"}
 )
-
-/** Begins the authentication process using AWS Cognito
- *
- */
 public class LogIn extends HttpServlet implements PropertiesLoader {
     Properties properties;
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -26,10 +25,15 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
     public static String LOGIN_URL;
     public static String REDIRECT_URL;
 
+    /**
+     * Init and load properties
+     * @throws ServletException Servlet exception
+     */
     @Override
     public void init() throws ServletException {
         super.init();
         loadProperties();
+
     }
 
     /**
@@ -39,30 +43,36 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
     // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
     // 4 to do this work a single time and put the properties in the application scope
     private void loadProperties() {
+
         try {
             properties = loadProperties("/cognito.properties");
             CLIENT_ID = properties.getProperty("client.id");
             LOGIN_URL = properties.getProperty("loginURL");
             REDIRECT_URL = properties.getProperty("redirectURL");
+
         } catch (IOException ioException) {
             logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
+
         } catch (Exception e) {
             logger.error("Error loading properties" + e.getMessage(), e);
+
         }
+
     }
 
     /**
      * Route to the aws-hosted cognito login page.
      * @param req servlet request
      * @param resp servlet response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException Servet exception
+     * @throws IOException Input output exception
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // TODO if properties weren't loaded properly, route to an error page
         String url = LOGIN_URL + "?response_type=code&client_id=" + CLIENT_ID + "&redirect_uri=" + REDIRECT_URL;
         resp.sendRedirect(url);
+
     }
 
 }
