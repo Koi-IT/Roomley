@@ -19,11 +19,11 @@ public class Household {
     private int householdId;
 
     @Column(name = "group_name")
-    private String taskName;
+    private String groupName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "created_by_user_id")
-    private User createdByUser;
+    @OneToMany(mappedBy = "household_members", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "household_id")
+    private List<HouseholdMember> HouseholdMembers;
 
 
     /**
@@ -45,47 +45,47 @@ public class Household {
     }
 
     /**
-     * Gets task name.
+     * Gets group name.
      *
-     * @return the task name
+     * @return the group name
      */
-    public String getTaskName() {
-        return taskName;
+    public String setGroupName() {
+        return groupName;
     }
 
     /**
-     * Sets task name.
+     * Sets group name.
      *
-     * @param taskName the task name
+     * @param groupName the group name
      */
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     /**
-     * Gets created by user.
+     * Gets household members.
      *
-     * @return the created by user
+     * @return the household members
      */
-    public User getCreatedByUser() {
-        return createdByUser;
+    public List<HouseholdMember> getHouseholdMembers() {
+        return HouseholdMembers;
     }
 
     /**
-     * Sets created by user.
+     * Sets household members.
      *
-     * @param createdByUser the created by user
+     * @param householdMembers the household members
      */
-    public void setCreatedByUser(User createdByUser) {
-        this.createdByUser = createdByUser;
+    public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
+        HouseholdMembers = householdMembers;
     }
 
     @Override
     public String toString() {
         return "Household{" +
                 "householdId=" + householdId +
-                ", taskName='" + taskName + '\'' +
-                ", createdByUser=" + createdByUser +
+                ", groupName='" + groupName + '\'' +
+                ", HouseholdMembers=" + HouseholdMembers +
                 '}';
     }
 }
