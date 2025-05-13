@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roomley.entities.Task;
 import roomley.entities.User;
-import roomley.util.Database;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

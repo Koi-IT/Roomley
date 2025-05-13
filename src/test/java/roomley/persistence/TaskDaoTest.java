@@ -3,7 +3,6 @@ package roomley.persistence;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roomley.entities.User;
-import roomley.util.Database;
 
 import roomley.entities.Task;
 

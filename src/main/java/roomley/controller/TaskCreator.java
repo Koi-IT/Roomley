@@ -32,21 +32,23 @@ public class TaskCreator extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        HttpSession session = req.getSession(false);
+
         // Get the data from the submitted form
         String taskName = req.getParameter("taskName");
         String taskDescription = req.getParameter("taskDescription");
 
-        // Get Cognito sub from user session
-        HttpSession session = req.getSession(false);
-
         // Set userSub
         String userSub = (String) session.getAttribute("userSub");
+        User currentUser = userDao.getByPropertyLike("cognito_sub", userSub).get(0);
 
         // Create task using userSub, taskName, and TaskDescription
-        Task newTask = createTask(userSub, taskName, taskDescription);
+        Task newTask = createTask(currentUser, taskName, taskDescription);
+        currentUser.getTasks().add(newTask);
 
         // Insert new task into rds
-        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
         taskDao.insert(newTask);
 
         // Send tasks to webpage
@@ -54,22 +56,14 @@ public class TaskCreator extends HttpServlet {
     }
 
     /**
-     *
-     * @param userSub user cognito sub
+     * Create new task
+     * @param currentUser the current user
      * @param taskName task name
      * @param taskDescription task description
      * @return the new Task object
      * @throws ServletException Servlet exception
      */
-    private static Task createTask(String userSub, String taskName, String taskDescription) throws ServletException {
-
-        // Get currentUser
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        List<User> matches = userDao.getByPropertyEqual("cognito_sub", userSub);
-        if (matches.isEmpty()) {
-            throw new ServletException("Logged‑in user not found in RDS!");
-        }
-        User currentUser = matches.get(0);
+    private static Task createTask(User currentUser, String taskName, String taskDescription) throws ServletException {
 
         // Create a new task object
         Task newTask = new Task();

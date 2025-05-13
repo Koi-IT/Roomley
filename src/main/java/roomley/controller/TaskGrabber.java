@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A simple servlet to find all tasks in a household.
@@ -60,8 +61,10 @@ public class TaskGrabber extends HttpServlet {
         User user = (User) userDao.getByPropertyEqual("cognito_sub", userSub);
 
 //        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
-        List<Task> userTasks = taskDao.getByPropertyEqual("user", user);
-        List<Task> completedTasks = taskDao.getByPropertyEqual("status", true);
+        List<Task> userTasks = user.getTasks();
+        List<Task> userCompletedTasks = user.getTasks().stream()
+                .filter(Task::getTaskStatus)
+                .collect(Collectors.toList());
 
         // Log user details for debugging
         logger.debug("User Sub: " + userSub);
@@ -75,7 +78,7 @@ public class TaskGrabber extends HttpServlet {
             // TODO get all tasks within household
 //            session.setAttribute("tasks", householdTasks);
             session.setAttribute("userAssignedTasks", userTasks);
-            session.setAttribute("completedTasks", completedTasks);
+            session.setAttribute("completedTasks", userCompletedTasks);
 
         } catch (Exception e) {
             logger.error("Error fetching tasks", e);
