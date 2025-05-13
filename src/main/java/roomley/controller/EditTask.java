@@ -3,7 +3,6 @@ package roomley.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import roomley.entities.Task;
-import roomley.entities.User;
 import roomley.persistence.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
