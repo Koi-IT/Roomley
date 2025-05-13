@@ -19,7 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "user_id")
-    private int id;
+    private int userId;
 
     @Column(name = "cognito_sub")
     private String cognito_sub;
@@ -27,7 +27,7 @@ public class User {
     @Column(name = "display_name")
     private String username;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "user_created_at", nullable = false)
     private Timestamp created_at;
 
     @Column(name = "email")
@@ -75,7 +75,7 @@ public class User {
      * @return the id
      */
     public int getId() {
-        return id;
+        return userId;
     }
 
     /**
@@ -194,7 +194,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", cognito_sub='" + cognito_sub + '\'' +
                 ", username='" + username + '\'' +
                 ", created_at=" + created_at +

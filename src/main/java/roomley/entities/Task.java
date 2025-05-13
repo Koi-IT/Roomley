@@ -3,6 +3,8 @@ package roomley.entities;
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Objects;
+
 /**
  * The type Task.
  */
@@ -142,5 +144,34 @@ public class Task {
      * @param taskDifficulty the task type
      */
     public void setTaskDifficulty(int taskDifficulty) { this.taskDifficulty = taskDifficulty; }
+
+    /**
+     *
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task)) return false;
+        Task task = (Task) o;
+        return taskId == task.taskId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskId);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskId=" + taskId +
+                ", taskName='" + taskName + '\'' +
+                ", taskStatus=" + taskStatus +
+                ", taskDescription='" + taskDescription + '\'' +
+                ", taskDifficulty=" + taskDifficulty +
+                '}';
+    }
+
 
 }

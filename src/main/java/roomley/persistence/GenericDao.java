@@ -136,7 +136,7 @@ public class GenericDao<T> {
 
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.persist(entity);
+
             transaction.commit();
             return entity;
 

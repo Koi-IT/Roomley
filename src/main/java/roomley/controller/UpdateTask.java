@@ -3,6 +3,7 @@ package roomley.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import roomley.entities.Task;
+import roomley.persistence.GenericDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,7 @@ public class UpdateTask extends HttpServlet {
         String taskName = req.getParameter("taskName");
         String taskDescription = req.getParameter("taskDescription");
         String taskId =  req.getParameter("taskId");
-        TaskDao taskDao = new TaskDao();
+        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
 
         // Verify user sub
         String userSub = (String) session.getAttribute("userSub");
@@ -85,7 +86,7 @@ public class UpdateTask extends HttpServlet {
         }
 
         // After update or delete operation, refresh the session
-        session.setAttribute("tasks", taskDao.getAllTasks());
+        session.setAttribute("tasks", taskDao.getAll());
 
         resp.sendRedirect(req.getContextPath() + "/taskGrabber");
 
