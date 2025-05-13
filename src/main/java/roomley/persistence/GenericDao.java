@@ -155,6 +155,11 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Insert an entity
+     * @param entity entity to be added to db
+     * @return the entity
+     */
     public T insert(T entity) {
 
         try (Session session = sessionFactory.openSession()) {
@@ -167,6 +172,10 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Update an entity
+     * @param entity entity to be updated
+     */
     public void update(T entity) {
 
         try (Session session = sessionFactory.openSession()) {
@@ -178,6 +187,10 @@ public class GenericDao<T> {
 
     }
 
+    /**
+     * Delete entity
+     * @param entity entity to be deleted
+     */
     public void delete(T entity) {
 
         try (Session session = sessionFactory.openSession()) {

@@ -15,6 +15,9 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test for the user entity database connection using the GenericDao
+ */
 class UserDaoTest {
 
     User user;

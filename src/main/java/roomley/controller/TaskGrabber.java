@@ -59,7 +59,7 @@ public class TaskGrabber extends HttpServlet {
 
         User user = (User) userDao.getByPropertyEqual("cognito_sub", userSub);
 
-        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
+//        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
         List<Task> userTasks = taskDao.getByPropertyEqual("user", user);
         List<Task> completedTasks = taskDao.getByPropertyEqual("status", true);
 
@@ -73,7 +73,7 @@ public class TaskGrabber extends HttpServlet {
         // Set session attributes based on user
         try {
             // TODO get all tasks within household
-            session.setAttribute("tasks", householdTasks);
+//            session.setAttribute("tasks", householdTasks);
             session.setAttribute("userAssignedTasks", userTasks);
             session.setAttribute("completedTasks", completedTasks);
 
