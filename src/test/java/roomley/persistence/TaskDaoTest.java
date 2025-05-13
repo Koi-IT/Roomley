@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import roomley.entities.User;
 
 import roomley.entities.Task;
+import roomley.util.Database;
 
 import java.util.ArrayList;
 import java.util.HashMap;

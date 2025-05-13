@@ -37,8 +37,8 @@
             <div class="grid">
                 <article class="task-title">
                     <h3>Tasks to-do</h3>
-                    <a href="taskCreation.jsp">
-                        <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="add task">
+                    <a href="${pageContext.request.contextPath}/taskCreateLink">
+                        <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Add New Task">
                     </a>
                 </article>
                 <article class="task-title"><h3>Assigned to me</h3></article>
@@ -58,15 +58,13 @@
                                         <span class="task-text">${task.taskName}</span>
                                         <span class="task-text">${task.taskDescription}</span>
                                         <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
-                                        <a href="updateTask?taskId=${task.taskId}" class="task-buttons">
-                                        <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
+                                        <form action="updateTask?taskId=${task.taskId}" method="post" style="display:inline; margin:0; padding:0; border:none; background:none;">
                                             <input type="hidden" name="taskId" value="${task.taskId}" />
                                             <input type="hidden" name="action" value="toggleStatus" />
-                                            <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
-                                                <img src="images/circle.svg" alt="Toggle Status" />
+                                            <button type="submit" class="task-buttons" style="all: unset; cursor: pointer; display:inline-block; line-height: 0;">
+                                                <img src="images/circle.svg" alt="Toggle Status" style="display: block;"/>
                                             </button>
                                         </form>
-                                        </a>
                                     </div>
                                 </article>
                             </c:if>

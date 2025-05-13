@@ -37,7 +37,7 @@ public class TaskGrabber extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // Get session
+        // Check if session exists
         HttpSession session = req.getSession(false);
 
         // Redirect to log in if session is invalid
@@ -53,14 +53,14 @@ public class TaskGrabber extends HttpServlet {
 
         // Fetch user data
         String userSub = (String) session.getAttribute("userSub");
-        String userName = (String) session.getAttribute("username");
-        String userEmail = (String) session.getAttribute("userEmail");
-        String role = (String) session.getAttribute("role");
-        String userId = (String) session.getAttribute("userId");
+        User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
+        String userEmail = user.getUserEmail();
+        String role = user.getRole();
+        String username = user.getUsername();
+        int userId = user.getId();
 
-        User user = (User) userDao.getByPropertyEqual("cognito_sub", userSub);
 
-//        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
+        //List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
         List<Task> userTasks = user.getTasks();
         List<Task> userCompletedTasks = user.getTasks().stream()
                 .filter(Task::getTaskStatus)
@@ -68,7 +68,7 @@ public class TaskGrabber extends HttpServlet {
 
         // Log user details for debugging
         logger.debug("User Sub: " + userSub);
-        logger.debug("User Name: " + userName);
+        logger.debug("User Name: " + username);
         logger.debug("User Email: " + userEmail);
         logger.debug("Role: " + role);
         logger.debug("ID: " + userId);

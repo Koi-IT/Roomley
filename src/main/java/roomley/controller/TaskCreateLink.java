@@ -17,29 +17,44 @@ import java.io.IOException;
  * @author Koi-dev
  */
 @WebServlet(
-        urlPatterns = "/logout"
+        urlPatterns = "/taskCreateLink"
 )
-public class LogOut extends HttpServlet {
+public class TaskCreateLink extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
      * Get request to remove session and redirect to home page
-     * @param req http request
+     *
+     * @param req  http request
      * @param resp http response
      * @throws ServletException Servlet exception
-     * @throws IOException Input output exception
+     * @throws IOException      Input output exception
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        // Invalidate Session
+        // Check session
         HttpSession session = req.getSession(false);
-        if (session != null) { session.invalidate(); }
-        logger.info("User logged out");
 
-        // Redirect home
-        resp.sendRedirect("index.jsp");
+        if (session == null) {
+            logger.info("No session found, redirecting to login.");
+            resp.sendRedirect("loginPage.jsp");
+
+        } else {
+            String username = (String) session.getAttribute("username");
+
+            if (username == null) {
+                logger.info("Username is null, redirecting to login.");
+                resp.sendRedirect("loginPage.jsp");
+
+            } else {
+                logger.info("Session found, redirecting to task creation page.");
+                resp.sendRedirect("taskCreation.jsp");
+
+            }
+
+        }
+
     }
 
 }

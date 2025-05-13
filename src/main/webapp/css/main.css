@@ -30,6 +30,10 @@ main {
     flex-grow: 1;
 }
 
+h3 {
+    margin-bottom: 0 !important;
+}
+
 img {
     max-width: none; /* override Pico */
 }
@@ -68,6 +72,7 @@ footer {
     align-items: center;
     display: inline-flex;
     gap: 0.5rem;
+    margin-bottom: 0 !important;
 }
 
 
@@ -120,6 +125,10 @@ footer {
     font-size: 1rem;
     margin-top: auto;  /* Push footer to the bottom */
     padding: 1rem;
+}
+
+[type=button], [type=reset], [type=submit] {
+    margin-bottom: 0 !important;
 }
 
 .welcomeCard {
