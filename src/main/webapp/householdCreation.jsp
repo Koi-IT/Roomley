@@ -21,8 +21,12 @@
                     <label for="householdName">Household Name</label>
                     <input type="text" id="householdName" name="householdName">
 
-            <%--        <label for="addUsers">Add Users</label>--%>
-
+                    <label for="addUsers">Add User</label>
+                    <input type="text" id="addUsers" name="addUsers">
+                    <button type="button">Add User</button>
+                    <br>
+                    <br>
+                    <h3>Users Added</h3>
 
                     <button type="submit">Create Household</button>
                 </form>

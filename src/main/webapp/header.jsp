@@ -5,7 +5,6 @@
 
             <ul>
                 <li class="dm-serif-text-regular-italic">Roomley</li>
-                <p>Session username: ${sessionScope.username}</p>
             </ul>
 
             <ul>
@@ -18,7 +17,7 @@
                     <c:otherwise >
                         <!-- When the user is logged in -->
                         <li class="nav-font"><a href="taskGrabber">Home</a></li>
-                        <li class="nav-font"><a href="index.jsp">Profile</a></li>
+                        <li class="nav-font"><a href="userProfile.jsp">Profile</a></li>
                         <li class="nav-font"><a href="logout">Sign out</a></li>
                     </c:otherwise>
                 </c:choose>

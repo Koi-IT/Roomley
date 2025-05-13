@@ -44,6 +44,9 @@ public class HouseholdCreator extends HttpServlet {
 
         }
 
+        // Create household
+//        Household household = new Household;
+
     }
 
 }
