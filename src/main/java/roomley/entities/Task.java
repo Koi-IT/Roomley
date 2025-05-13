@@ -146,7 +146,7 @@ public class Task {
     public void setTaskDifficulty(int taskDifficulty) { this.taskDifficulty = taskDifficulty; }
 
     /**
-     *
+     * Override the equals function to allow for equals between 2 objects to resolve properly
      */
     @Override
     public boolean equals(Object o) {
@@ -157,11 +157,19 @@ public class Task {
 
     }
 
+    /**
+     * Return object hashcode
+     * @return Object Hash
+     */
     @Override
     public int hashCode() {
         return Objects.hash(taskId);
     }
 
+    /**
+     * To string for Task
+     * @return task string
+     */
     @Override
     public String toString() {
         return "Task{" +

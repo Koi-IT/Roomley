@@ -1,11 +1,15 @@
 package roomley.persistence;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.*;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +19,7 @@ import java.util.Map;
  */
 public class GenericDao<T> {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
     private final Class<T> type;
     protected final SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
@@ -115,10 +120,25 @@ public class GenericDao<T> {
 
             for (Map.Entry<String, Object> entry : properties.entrySet()) {
                 String[] keys = entry.getKey().split("\\.");
-                Path<Object> path = root.get(keys[0]);
+                Path<?> path = root;
 
-                for (int i = 1; i < keys.length; i++) {
-                    path = path.get(keys[i]);
+                for (int i = 0; i < keys.length; i++) {
+
+                    if (i == 0) {
+                        Field field = type.getDeclaredField(keys[0]);
+
+                        if (Collection.class.isAssignableFrom(field.getType())) {
+                            path = root.join(keys[0]);
+
+                        } else {
+                            path = root.get(keys[0]);
+
+                        }
+
+                    } else {
+                        path = path.get(keys[i]);
+
+                    }
 
                 }
                 predicates.add(builder.equal(path, entry.getValue()));
@@ -128,6 +148,9 @@ public class GenericDao<T> {
             query.select(root).where(builder.and(predicates.toArray(new Predicate[0])));
             return session.createQuery(query).getResultList();
 
+        } catch (Exception e) {
+            logger.error(e + " General exception");
+            return new ArrayList<>();
         }
 
     }

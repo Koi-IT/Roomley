@@ -8,7 +8,10 @@ import roomley.util.Database;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -91,6 +94,39 @@ class UserDaoTest {
         assertEquals(2, results.size());
 
         taskDao.getByPropertyEqual("user", 7);
+
+    }
+
+    @Test
+    void getByPropertiesEqual() {
+        // Test success
+        Map<String, Object> userQuery1 = new HashMap<>();
+        userQuery1.put("username", "username");
+
+        Map<String, Object> userQuery2 = new HashMap<>();
+        userQuery2.put("username", "username2");
+
+        Map<String, Object> query3 = new HashMap<>();
+        query3.put("tasks.taskName", "clean room");
+
+        assertEquals(userDao.getById(7), userDao.getByPropertiesEqual(userQuery1).get(0));
+        assertEquals(userDao.getById(8), userDao.getByPropertiesEqual(userQuery2).get(0));
+        assertEquals(userDao.getById(7), userDao.getByPropertiesEqual(query3).get(0));
+
+        // Test failure
+        Map<String, Object> nonUser = new HashMap<>();
+
+        nonUser.put("username", "non-existent");
+        assertTrue(userDao.getByPropertiesEqual(nonUser).isEmpty());
+
+        List<Object> emptyList = new ArrayList<>();
+        Map<String, Object> emptyMap = new HashMap<>();
+        assertEquals(emptyList, userDao.getByPropertiesEqual(emptyMap));
+
+        Map<String, Object> missingField = new HashMap<>();
+        missingField.put("tasks.NonExistentTaskField", "clean room");
+
+        assertEquals(emptyList, userDao.getByPropertiesEqual(missingField));
 
     }
 

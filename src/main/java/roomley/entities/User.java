@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The type User.
@@ -186,6 +187,27 @@ public class User {
      * @param username the username
      */
     public void setUsername(String username) { this.username = username; }
+
+    /**
+     * Override the equals function to allow for equals between 2 objects to resolve properly
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return userId == user.userId;
+
+    }
+
+    /**
+     * Return object hashcode
+     * @return Object Hash
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
 
     /**
      * To string override for logging
