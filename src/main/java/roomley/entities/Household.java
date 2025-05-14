@@ -13,8 +13,7 @@ import java.util.List;
 public class Household {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "household_id")
     private int householdId;
 
@@ -26,6 +25,14 @@ public class Household {
 
     @OneToMany(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<HouseholdMember> householdMembers;
+
+
+    /**
+     *
+     */
+    public Household() {
+
+    }
 
     /**
      * Gets group name.

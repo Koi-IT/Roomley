@@ -18,6 +18,13 @@ public class HouseholdMemberId implements Serializable {
     @Column(name = "user_id")
     private int userId;
 
+    /**
+     *
+     */
+    public HouseholdMemberId() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

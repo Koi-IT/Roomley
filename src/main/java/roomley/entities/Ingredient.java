@@ -18,7 +18,7 @@ public class Ingredient {
     private int ingredientId;
 
     @Column(name = "meal_id")
-    private String mealId;
+    private int mealId;
 
     @Column(name = "ingredient_name")
     private String ingredientName;
@@ -47,7 +47,7 @@ public class Ingredient {
      *
      * @return the meal id
      */
-    public String getMealId() {
+    public int getMealId() {
         return mealId;
     }
 
@@ -56,7 +56,7 @@ public class Ingredient {
      *
      * @param mealId the meal id
      */
-    public void setMealId(String mealId) {
+    public void setMealId(int mealId) {
         this.mealId = mealId;
     }
 

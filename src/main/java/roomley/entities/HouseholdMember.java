@@ -20,15 +20,19 @@ public class HouseholdMember implements Serializable {
     @Column(name = "role", nullable = false)
     private HouseholdRole role;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @MapsId("householdId") // Maps the householdId from HouseholdMemberId
-    @JoinColumn(name = "household_id")
+    @JoinColumn(name = "household_id", nullable = false)
     private Household household;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @MapsId("userId") // Maps the userId from HouseholdMemberId
     @JoinColumn(name = "user_id")
     private User user;
+
+    public HouseholdMember() {
+
+    }
 
     /**
      * Gets role.
