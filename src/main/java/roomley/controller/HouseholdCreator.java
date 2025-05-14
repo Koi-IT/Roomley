@@ -37,14 +37,12 @@ public class HouseholdCreator extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         GenericDao<User> userDao = new GenericDao<>(User.class);
         GenericDao<Household> householdDao = new GenericDao<>(Household.class);
         GenericDao<HouseholdMember> memberDao = new GenericDao<>(HouseholdMember.class);
         GenericDao<Invitation> invitationDao = new GenericDao<>(Invitation.class);
         List<User> matchedUsers;
         List<HouseholdMember> householdMembers = new ArrayList<>();
-
 
         // Grab session
         HttpSession session = req.getSession(false);
@@ -54,15 +52,24 @@ public class HouseholdCreator extends HttpServlet {
 
         if (userSub == null || userSub.isEmpty()) {
             resp.sendRedirect(req.getContextPath() + "index.jsp");
-
+            return;  // Exit if session is invalid
         }
 
         // Get user and specified members
         User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
-        String[] users = req.getParameterValues("users");
-        
+        String[] users = req.getParameterValues("users[]");
+
+        // Check if the 'users' parameter is null or empty
+        if (users == null || users.length == 0) {
+            logger.error("No users were provided in the form submission.");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "No users were added.");
+            return;
+        }
+
         // Create new household
         Household household = new Household();
+        household.setGroupName(req.getParameter("householdName"));
+        household.setCreatedByUserId(user.getId());
         householdDao.insert(household);
 
         // Set user as household owner and add him to the household
@@ -87,12 +94,9 @@ public class HouseholdCreator extends HttpServlet {
                 HouseholdMember householdMember = getHouseholdMember(matchedUsers, household);
                 memberDao.insert(householdMember);
                 householdMembers.add(householdMember);
-
             } else {
-                logger.warn("Userlist is empty.");
-
+                logger.warn("User with username '{}' not found.", username);
             }
-
         }
 
         // Set members of household
@@ -113,6 +117,7 @@ public class HouseholdCreator extends HttpServlet {
         resp.sendRedirect("taskGrabber");
 
     }
+
 
     private static HouseholdMember getHouseholdMember(List<User> matchedUsers, Household household) {
         HouseholdMember householdMember = new HouseholdMember();

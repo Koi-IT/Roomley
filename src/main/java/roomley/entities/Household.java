@@ -21,9 +21,38 @@ public class Household {
     @Column(name = "group_name")
     private String groupName;
 
+    @Column(name = "created_by_user_id")
+    private int createdByUserId;
+
     @OneToMany(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<HouseholdMember> householdMembers;
 
+    /**
+     * Gets group name.
+     *
+     * @return the group name
+     */
+    public String getGroupName() {
+        return groupName;
+    }
+
+    /**
+     * Gets created by user id.
+     *
+     * @return the created by user id
+     */
+    public int getCreatedByUserId() {
+        return createdByUserId;
+    }
+
+    /**
+     * Sets created by user id.
+     *
+     * @param createdByUserId the created by user id
+     */
+    public void setCreatedByUserId(int createdByUserId) {
+        this.createdByUserId = createdByUserId;
+    }
 
     /**
      * Gets household id.

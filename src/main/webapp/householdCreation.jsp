@@ -24,12 +24,12 @@
                     <label for="addUsers">Add User</label>
                     <input type="text" id="addUsers" name="addUsers">
                     <button type="button" id="addUsersBtn">Add User</button>
-                    <br>
-                    <br>
+                    <br><br>
                     <h3>Users Added</h3>
-                    <ul id="userList">
+                    <br><br>
+                    <ul id="userList"></ul>
 
-                    </ul>
+                    <div id="usersContainer" style="display:none;"></div>
 
                     <button type="submit">Create Household</button>
                 </form>
