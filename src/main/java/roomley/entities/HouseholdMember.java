@@ -106,7 +106,6 @@ public class HouseholdMember implements Serializable {
         return "HouseholdMember{" +
                 "id=" + id +
                 ", role='" + role + '\'' +
-                ", household=" + household +
                 '}';
     }
 

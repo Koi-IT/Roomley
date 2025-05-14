@@ -34,6 +34,9 @@
 
                 <label for="assignedUser">Assign User:</label>
                 <select name="assignedUser" id="assignedUser">
+                    <c:forEach var="user" items="${householdUsers}">
+                        <option value="${user.username}">${user.username}</option>
+                    </c:forEach>
                 </select>
 
                 <button type="submit">Create Task</button>

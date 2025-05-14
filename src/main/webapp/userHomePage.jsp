@@ -37,7 +37,7 @@
             <div class="grid">
                 <article class="task-title new-task-button">
                     <h3>Tasks to-do</h3>
-                    <a href="${pageContext.request.contextPath}/taskCreateLink">
+                    <a href="${pageContext.request.contextPath}/taskCreateLink?householdId=8">
                     <button>New Task
 
                             <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Add New Task">

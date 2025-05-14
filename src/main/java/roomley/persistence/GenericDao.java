@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import roomley.entities.Household;
+import roomley.entities.HouseholdMember;
 
 import javax.persistence.criteria.*;
 import java.lang.reflect.Field;
@@ -69,17 +71,23 @@ public class GenericDao<T> {
      * @return results of query
      */
     public List<T> getByPropertyEqual(String propertyName, Object value) {
-
         try (Session session = sessionFactory.openSession()) {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<T> query = builder.createQuery(type);
             Root<T> root = query.from(type);
-            query.select(root).where(builder.equal(root.get(propertyName), value));
+
+            // Build the nested path (e.g., id.userId)
+            Path<?> path = root;
+            for (String part : propertyName.split("\\.")) {
+                path = path.get(part);
+            }
+
+            query.select(root).where(builder.equal(path, value));
+
             return session.createQuery(query).getResultList();
-
         }
-
     }
+
 
     /**
      * Get property like
@@ -164,9 +172,8 @@ public class GenericDao<T> {
 
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            transaction.commit();
             session.save(entity);
-
+            transaction.commit();
             return entity;
 
         }
@@ -181,7 +188,7 @@ public class GenericDao<T> {
 
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.merge(entity);
+            session.update(entity);
             transaction.commit();
 
         }

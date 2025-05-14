@@ -113,7 +113,6 @@ public class Household {
         return "Household{" +
                 "householdId=" + householdId +
                 ", groupName='" + groupName + '\'' +
-                ", HouseholdMembers=" + householdMembers +
                 '}';
     }
 }

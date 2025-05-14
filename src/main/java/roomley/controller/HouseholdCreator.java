@@ -66,11 +66,54 @@ public class HouseholdCreator extends HttpServlet {
             return;
         }
 
+        // Validate householdName
+        if (req.getParameter("householdName") == null || req.getParameter("householdName").isEmpty()) {
+            req.setAttribute("errorMessage", "Household name is required!");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("userHomePage.jsp");
+            dispatcher.forward(req, resp);
+            return;
+        }
+
+        // Check if a household with the same name already exists
+        List<Household> existingHouseholds = householdDao.getByPropertyEqual("groupName", req.getParameter("householdName"));
+        if (!existingHouseholds.isEmpty()) {
+            // If a household with the same name exists, show an error message
+            req.setAttribute("errorMessage", "A household with this name already exists. Please choose a different name.");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("userHomePage.jsp");
+            dispatcher.forward(req, resp);
+            return;
+        }
+
+
         // Create new household
         Household household = new Household();
         household.setGroupName(req.getParameter("householdName"));
         household.setCreatedByUserId(user.getId());
         householdDao.insert(household);
+
+        // Check users to see if they are already a household_member
+        for (String username : users) {
+            matchedUsers = userDao.getByPropertyEqual("username", username);
+
+            if (!matchedUsers.isEmpty()) {
+                User matchedUser = matchedUsers.get(0);
+
+                // Check if the user is already in the household
+                List<HouseholdMember> existingMembers = memberDao.getByPropertyEqual("id.userId", matchedUser.getId());
+                boolean isAlreadyMember = existingMembers.stream()
+                        .anyMatch(member -> member.getHousehold().getHouseholdId() == household.getHouseholdId());
+                if (isAlreadyMember) {
+                    logger.warn("User '{}' is already a member of this household.", username);
+                    continue;  // Skip adding this user again
+                }
+
+                HouseholdMember householdMember = getHouseholdMember(matchedUsers, household);
+                memberDao.insert(householdMember);
+                householdMembers.add(householdMember);
+            } else {
+                logger.warn("User with username '{}' not found.", username);
+            }
+        }
 
         // Set user as household owner and add him to the household
         HouseholdMember ownerMember = new HouseholdMember();
