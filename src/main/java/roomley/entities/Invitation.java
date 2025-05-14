@@ -18,8 +18,13 @@ public class Invitation {
     @Column(name = "invitation_id")
     private int invitationId;
 
-    @Column(name = "invited_by_user_id")
-    private int invitedByUserId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "invited_user", referencedColumnName = "user_id")
+    private User invitedUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "invited_by_user", referencedColumnName = "user_id")
+    private User invitedByUser;
 
     @Column(name = "invitation_created_at")
     private Timestamp invitationCreatedAt;
@@ -27,7 +32,7 @@ public class Invitation {
     @Column(name = "status")
     private String inviteStatus;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "household_id")
     private Household household;
 
@@ -55,8 +60,8 @@ public class Invitation {
      *
      * @return the invited by user id
      */
-    public int getInvitedByUserId() {
-        return invitedByUserId;
+    public User getInvitedByUserId() {
+        return invitedByUser;
     }
 
     /**
@@ -64,8 +69,8 @@ public class Invitation {
      *
      * @param invitedByUserId the invited by user id
      */
-    public void setInvitedByUserId(int invitedByUserId) {
-        this.invitedByUserId = invitedByUserId;
+    public void setInvitedByUserId(User invitedByUserId) {
+        this.invitedByUser = invitedByUserId;
     }
 
     /**
@@ -126,10 +131,28 @@ public class Invitation {
     public String toString() {
         return "Invitation{" +
                 "invitationId=" + invitationId +
-                ", invitedByUserId='" + invitedByUserId + '\'' +
+                ", invitedByUserId='" + invitedByUser + '\'' +
                 ", invitationCreatedAt=" + invitationCreatedAt +
                 ", inviteStatus='" + inviteStatus + '\'' +
                 ", household=" + household +
                 '}';
+    }
+
+    /**
+     * Gets invited user.
+     *
+     * @return the invited user
+     */
+    public User getInvitedUser() {
+        return invitedUser;
+    }
+
+    /**
+     * Sets invited user.
+     *
+     * @param invitedUser the invited user
+     */
+    public void setInvitedUser(User invitedUser) {
+        this.invitedUser = invitedUser;
     }
 }

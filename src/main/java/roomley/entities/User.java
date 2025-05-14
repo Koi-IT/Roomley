@@ -43,6 +43,27 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<HouseholdMember> householdMembers;
+
+    /**
+     * Gets household members.
+     *
+     * @return the household members
+     */
+    public List<HouseholdMember> getHouseholdMembers() {
+        return householdMembers;
+    }
+
+    /**
+     * Sets household members.
+     *
+     * @param householdMembers the household members
+     */
+    public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
+        this.householdMembers = householdMembers;
+    }
+
     /**
      * No argument constructor for User
      */
@@ -55,10 +76,11 @@ public class User {
      * User constructor
      *
      * @param cognito_sub Cognito Sub
-     * @param username Username
-     * @param email Email
-     * @param last_login Last Login
-     * @param role User Role
+     * @param username    Username
+     * @param email       Email
+     * @param created_at  the created at
+     * @param last_login  Last Login
+     * @param role        User Role
      */
     public User( String cognito_sub, String username, String email, java.sql.Timestamp created_at,java.sql.Timestamp last_login, String role) {
         this.cognito_sub = cognito_sub;
@@ -125,13 +147,14 @@ public class User {
     /**
      * Gets user role.
      *
-     * @return  the user type
+     * @return the user type
      */
     public String getRole() { return role; }
 
     /**
      * Returns the list of tasks associated with this user.
      * Modifications to the returned list may affect the internal task list.
+     *
      * @return task list for the user
      */
     public List<Task> getTasks() { return tasks; }

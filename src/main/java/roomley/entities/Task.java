@@ -41,20 +41,60 @@ public class Task {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "household_id",referencedColumnName = "household_id")
+    private Household household;
+
     /**
-     * No argument constructor for Task
+     * Gets household.
+     *
+     * @return the household
+     */
+    public Household getHousehold() {
+        return household;
+    }
+
+    /**
+     * Sets household.
+     *
+     * @param household the household
+     */
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+     * Instantiates a new Task.
      */
     public Task() {
     }
 
     /**
-     * Constructor to build Task object
+     * Instantiates a new Task.
      *
-     * @param householdMember   the HouseholdMember (representing user_id and household_id)
-     * @param taskName          The name of the Task
-     * @param taskDescription   The description of the Task
-     * @param taskStatus        The status of the Task
-     * @param taskDifficulty    The difficulty of the Task
+     * @param householdMember the household member
+     * @param taskName        the task name
+     * @param taskDescription the task description
+     * @param taskStatus      the task status
+     * @param taskDifficulty  the task difficulty
      */
     public Task(HouseholdMember householdMember, String taskName, String taskDescription, boolean taskStatus, int taskDifficulty) {
         this.householdMember = householdMember;
@@ -62,54 +102,115 @@ public class Task {
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
         this.taskDifficulty = taskDifficulty;
+
     }
 
     // Getter and Setter methods
 
+    /**
+     * Gets task name.
+     *
+     * @return the task name
+     */
     public String getTaskName() {
         return this.taskName;
     }
 
+    /**
+     * Sets task name.
+     *
+     * @param taskName the task name
+     */
     public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
 
+    /**
+     * Gets task status.
+     *
+     * @return the task status
+     */
     public boolean getTaskStatus() {
         return this.taskStatus;
     }
 
+    /**
+     * Sets task status.
+     *
+     * @param taskStatus the task status
+     */
     public void setTaskStatus(boolean taskStatus) {
         this.taskStatus = taskStatus;
     }
 
+    /**
+     * Gets task description.
+     *
+     * @return the task description
+     */
     public String getTaskDescription() {
         return this.taskDescription;
     }
 
+    /**
+     * Sets task description.
+     *
+     * @param taskDescription the task description
+     */
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
     }
 
+    /**
+     * Gets task id.
+     *
+     * @return the task id
+     */
     public int getTaskId() {
         return this.taskId;
     }
 
+    /**
+     * Sets task id.
+     *
+     * @param taskId the task id
+     */
     public void setTaskId(int taskId) {
         this.taskId = taskId;
     }
 
+    /**
+     * Gets household member.
+     *
+     * @return the household member
+     */
     public HouseholdMember getHouseholdMember() {
         return this.householdMember;
     }
 
+    /**
+     * Sets household member.
+     *
+     * @param householdMember the household member
+     */
     public void setHouseholdMember(HouseholdMember householdMember) {
         this.householdMember = householdMember;
     }
 
+    /**
+     * Gets task difficulty.
+     *
+     * @return the task difficulty
+     */
     public int getTaskDifficulty() {
         return taskDifficulty;
     }
 
+    /**
+     * Sets task difficulty.
+     *
+     * @param taskDifficulty the task difficulty
+     */
     public void setTaskDifficulty(int taskDifficulty) {
         this.taskDifficulty = taskDifficulty;
     }

@@ -16,18 +16,51 @@ public class HouseholdMember implements Serializable {
     @EmbeddedId
     private HouseholdMemberId id;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private HouseholdRole role;
 
     @ManyToOne
     @MapsId("householdId") // Maps the householdId from HouseholdMemberId
-    @JoinColumn(name = "household_id", insertable = false, updatable = false)
+    @JoinColumn(name = "household_id")
     private Household household;
 
     @ManyToOne
     @MapsId("userId") // Maps the userId from HouseholdMemberId
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)  // Ensure this is correct
+    @JoinColumn(name = "user_id")
     private User user;
+
+    /**
+     * Gets role.
+     *
+     * @return the role
+     */
+    public HouseholdRole getRole() {
+        return role;
+    }
+
+    /**
+     * Sets role.
+     *
+     * @param role the role
+     */
+    public void setRole(HouseholdRole role) {
+        this.role = role;
+    }
+
+    /**
+     * The enum Household role.
+     */
+    public enum HouseholdRole {
+        /**
+         * Owner household role.
+         */
+        owner,
+        /**
+         * Member household role.
+         */
+        member
+    }
 
     /**
      * Gets user.
@@ -63,24 +96,6 @@ public class HouseholdMember implements Serializable {
      */
     public void setId(HouseholdMemberId id) {
         this.id = id;
-    }
-
-    /**
-     * Gets role.
-     *
-     * @return the role
-     */
-    public String getRole() {
-        return role;
-    }
-
-    /**
-     * Sets role.
-     *
-     * @param role the role
-     */
-    public void setRole(String role) {
-        this.role = role;
     }
 
     /**

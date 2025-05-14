@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -58,6 +59,7 @@ public class HouseholdCreator extends HttpServlet {
         // Get user and specified members
         User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
         String[] users = req.getParameterValues("users[]");
+        logger.info("Users received: {}", Arrays.toString(users));
 
         // Check if the 'users' parameter is null or empty
         if (users == null || users.length == 0) {
@@ -84,36 +86,11 @@ public class HouseholdCreator extends HttpServlet {
             return;
         }
 
-
         // Create new household
         Household household = new Household();
         household.setGroupName(req.getParameter("householdName"));
         household.setCreatedByUserId(user.getId());
         householdDao.insert(household);
-
-        // Check users to see if they are already a household_member
-        for (String username : users) {
-            matchedUsers = userDao.getByPropertyEqual("username", username);
-
-            if (!matchedUsers.isEmpty()) {
-                User matchedUser = matchedUsers.get(0);
-
-                // Check if the user is already in the household
-                List<HouseholdMember> existingMembers = memberDao.getByPropertyEqual("id.userId", matchedUser.getId());
-                boolean isAlreadyMember = existingMembers.stream()
-                        .anyMatch(member -> member.getHousehold().getHouseholdId() == household.getHouseholdId());
-                if (isAlreadyMember) {
-                    logger.warn("User '{}' is already a member of this household.", username);
-                    continue;  // Skip adding this user again
-                }
-
-                HouseholdMember householdMember = getHouseholdMember(matchedUsers, household);
-                memberDao.insert(householdMember);
-                householdMembers.add(householdMember);
-            } else {
-                logger.warn("User with username '{}' not found.", username);
-            }
-        }
 
         // Set user as household owner and add him to the household
         HouseholdMember ownerMember = new HouseholdMember();
@@ -124,23 +101,17 @@ public class HouseholdCreator extends HttpServlet {
         ownerMember.setId(ownerId);
         ownerMember.setHousehold(household);
         ownerMember.setUser(user);
-        ownerMember.setRole("owner");
+        ownerMember.setRole(HouseholdMember.HouseholdRole.owner);
 
-        memberDao.insert(ownerMember);
+        try {
+            memberDao.insert(ownerMember);
+        } catch (Exception e) {
+            logger.error("Failed to insert household member for user: " + ownerMember.getUser(), e);
+        }
         householdMembers.add(ownerMember);
 
         // Add users to household
-        for (String username : users) {
-            matchedUsers = userDao.getByPropertyEqual("username", username);
-
-            if (!matchedUsers.isEmpty()) {
-                HouseholdMember householdMember = getHouseholdMember(matchedUsers, household);
-                memberDao.insert(householdMember);
-                householdMembers.add(householdMember);
-            } else {
-                logger.warn("User with username '{}' not found.", username);
-            }
-        }
+        loopUsers(userDao, memberDao, householdMembers, users, household);
 
         // Set members of household
         household.setHouseholdMembers(householdMembers);
@@ -150,7 +121,7 @@ public class HouseholdCreator extends HttpServlet {
             Invitation invitation = new Invitation();
 
             invitation.setHousehold(household);
-            invitation.setInvitedByUserId(user.getId());
+            invitation.setInvitedByUserId(user);
             invitation.setInvitationCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
             invitation.setInviteStatus("pending");
 
@@ -161,11 +132,31 @@ public class HouseholdCreator extends HttpServlet {
 
     }
 
+    private void loopUsers(GenericDao<User> userDao, GenericDao<HouseholdMember> memberDao, List<HouseholdMember> householdMembers, String[] users, Household household) {
+        List<User> matchedUsers;
+        for (String username : users) {
+            matchedUsers = userDao.getByPropertyEqual("username", username);
 
-    private static HouseholdMember getHouseholdMember(List<User> matchedUsers, Household household) {
+            if (!matchedUsers.isEmpty()) {
+                User matchedUser = matchedUsers.get(0);  // Get the matched user
+                HouseholdMember householdMember = getHouseholdMember(matchedUser, household);
+                try {
+                    memberDao.insert(householdMember);
+                    logger.info("Processing user: {}", username);
+                } catch (Exception e) {
+                    logger.error("Failed to insert household member for user: " + matchedUser.getUsername(), e);
+                }  // Insert the household member
+                householdMembers.add(householdMember);  // Add to the list of household members
+            } else {
+                logger.warn("User with username '{}' not found.", username);
+            }
+        }
+
+    }
+
+
+    private static HouseholdMember getHouseholdMember(User matchedUser, Household household) {
         HouseholdMember householdMember = new HouseholdMember();
-        User matchedUser = matchedUsers.get(0);
-
         HouseholdMemberId memberId = new HouseholdMemberId();
         memberId.setHouseholdId(household.getHouseholdId());
         memberId.setUserId(matchedUser.getId());
@@ -173,7 +164,8 @@ public class HouseholdCreator extends HttpServlet {
         householdMember.setId(memberId);
         householdMember.setHousehold(household);
         householdMember.setUser(matchedUser);
-        householdMember.setRole("member");
+        householdMember.setRole(HouseholdMember.HouseholdRole.member);
+
         return householdMember;
     }
 
