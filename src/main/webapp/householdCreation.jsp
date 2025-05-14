@@ -23,10 +23,13 @@
 
                     <label for="addUsers">Add User</label>
                     <input type="text" id="addUsers" name="addUsers">
-                    <button type="button">Add User</button>
+                    <button type="button" id="addUsersBtn">Add User</button>
                     <br>
                     <br>
                     <h3>Users Added</h3>
+                    <ul id="userList">
+
+                    </ul>
 
                     <button type="submit">Create Household</button>
                 </form>

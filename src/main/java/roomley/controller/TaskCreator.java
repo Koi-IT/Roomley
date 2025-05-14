@@ -1,5 +1,7 @@
 package roomley.controller;
 
+import roomley.entities.Household;
+import roomley.entities.HouseholdMember;
 import roomley.entities.Task;
 import roomley.entities.User;
 import roomley.persistence.*;
@@ -65,14 +67,20 @@ public class TaskCreator extends HttpServlet {
      */
     private static Task createTask(User currentUser, String taskName, String taskDescription) throws ServletException {
 
+        // Create householdMemberDao
+        GenericDao<HouseholdMember> householdMemberDao = new GenericDao<>(HouseholdMember.class);
+
         // Create a new task object
         Task newTask = new Task();
+
+        // Get user as household member
+        HouseholdMember currentMember = householdMemberDao.getByPropertyEqual("user_id", currentUser.getId()).get(0);
 
         // Assign values to the newTask
         newTask.setTaskName(taskName);
         newTask.setTaskDescription(taskDescription);
         newTask.setTaskStatus(false);
-        newTask.setUser(currentUser);
+        newTask.setHouseholdMember(currentMember);
         return newTask;
 
     }

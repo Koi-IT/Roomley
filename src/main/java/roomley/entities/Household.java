@@ -14,16 +14,15 @@ public class Household {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native",strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "household_id")
     private int householdId;
 
     @Column(name = "group_name")
     private String groupName;
 
-    @OneToMany(mappedBy = "household_members", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "household_id")
-    private List<HouseholdMember> HouseholdMembers;
+    @OneToMany(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<HouseholdMember> householdMembers;
 
 
     /**
@@ -68,7 +67,7 @@ public class Household {
      * @return the household members
      */
     public List<HouseholdMember> getHouseholdMembers() {
-        return HouseholdMembers;
+        return householdMembers;
     }
 
     /**
@@ -77,7 +76,7 @@ public class Household {
      * @param householdMembers the household members
      */
     public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
-        HouseholdMembers = householdMembers;
+        householdMembers = householdMembers;
     }
 
     @Override
@@ -85,7 +84,7 @@ public class Household {
         return "Household{" +
                 "householdId=" + householdId +
                 ", groupName='" + groupName + '\'' +
-                ", HouseholdMembers=" + HouseholdMembers +
+                ", HouseholdMembers=" + householdMembers +
                 '}';
     }
 }

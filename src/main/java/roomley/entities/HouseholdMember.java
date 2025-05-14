@@ -3,13 +3,15 @@ package roomley.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * The type Household member.
  */
 @Entity(name = "HouseholdMember")
 @Table(name = "household_members")
-public class HouseholdMember {
+public class HouseholdMember implements Serializable {
 
     @EmbeddedId
     private HouseholdMemberId id;
@@ -18,14 +20,32 @@ public class HouseholdMember {
     private String role;
 
     @ManyToOne
-    @MapsId("householdId")
+    @MapsId("householdId") // Maps the householdId from HouseholdMemberId
     @JoinColumn(name = "household_id", insertable = false, updatable = false)
     private Household household;
 
     @ManyToOne
-    @MapsId("userId")
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @MapsId("userId") // Maps the userId from HouseholdMemberId
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)  // Ensure this is correct
     private User user;
+
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     /**
      * Gets id.
@@ -88,5 +108,17 @@ public class HouseholdMember {
                 ", role='" + role + '\'' +
                 ", household=" + household +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        HouseholdMember that = (HouseholdMember) o;
+        return Objects.equals(id, that.id) && Objects.equals(role, that.role) && Objects.equals(household, that.household) && Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, role, household, user);
     }
 }

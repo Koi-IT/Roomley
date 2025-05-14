@@ -60,13 +60,13 @@ public class User {
      * @param last_login Last Login
      * @param role User Role
      */
-    public User( String cognito_sub, String username, String email, java.sql.Timestamp user_created_at,java.sql.Timestamp last_login, String role) {
+    public User( String cognito_sub, String username, String email, java.sql.Timestamp created_at,java.sql.Timestamp last_login, String role) {
         this.cognito_sub = cognito_sub;
         this.username = username;
         this.email = email;
         this.last_login = last_login;
         this.role = role;
-        this.created_at = Timestamp.valueOf(LocalDateTime.now());
+        this.created_at = created_at;
 
     }
 

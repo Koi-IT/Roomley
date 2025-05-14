@@ -43,6 +43,7 @@ public class TaskGrabber extends HttpServlet {
         // Redirect to log in if session is invalid
         if (session == null || session.getAttribute("userSub") == null) {
             resp.sendRedirect("loginPage.jsp");
+            logger.warn("UserSub is null!");
             return;
         }
 
@@ -50,10 +51,23 @@ public class TaskGrabber extends HttpServlet {
         GenericDao<User> userDao = new GenericDao<>(User.class);
         GenericDao<Task> taskDao = new GenericDao<>(Task.class);
 
+        User user;
+
 
         // Fetch user data
         String userSub = (String) session.getAttribute("userSub");
-        User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
+        List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
+
+        if (users.isEmpty()) {
+            logger.error("No user found with cognito_sub: " + userSub);
+            // Handle the case where the user doesn't exist (e.g., redirect to login or show an error)
+            resp.sendRedirect("index.jsp");
+            return;
+        } else {
+            user = users.get(0);
+            // Proceed with user data
+        }
+
         String userEmail = user.getUserEmail();
         String role = user.getRole();
         String username = user.getUsername();

@@ -19,7 +19,7 @@ public class Invitation {
     private int invitationId;
 
     @Column(name = "invited_by_user_id")
-    private String invitedByUserId;
+    private int invitedByUserId;
 
     @Column(name = "invitation_created_at")
     private Timestamp invitationCreatedAt;
@@ -55,7 +55,7 @@ public class Invitation {
      *
      * @return the invited by user id
      */
-    public String getInvitedByUserId() {
+    public int getInvitedByUserId() {
         return invitedByUserId;
     }
 
@@ -64,7 +64,7 @@ public class Invitation {
      *
      * @param invitedByUserId the invited by user id
      */
-    public void setInvitedByUserId(String invitedByUserId) {
+    public void setInvitedByUserId(int invitedByUserId) {
         this.invitedByUserId = invitedByUserId;
     }
 

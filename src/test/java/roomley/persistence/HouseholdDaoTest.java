@@ -2,6 +2,7 @@ package roomley.persistence;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import roomley.entities.Household;
 import roomley.entities.Task;
 import roomley.util.Database;
 
@@ -9,35 +10,39 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HouseholdDaoTest {
 
-    GenericDao<Task> taskDao;
-    Task task;
+    GenericDao<Household> householdDao;
+    Household household;
 
     /**
-     * Before each test reset db and create a new taskDao instance
+     * Before each test reset db and create a new householdDao instance
      * @throws Exception If runSQL fails throw exception
      */
     @BeforeEach
     void setUp() throws Exception {
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
-        taskDao = new GenericDao<>(Task.class);
+        householdDao = new GenericDao<>(Household.class);
 
     }
 
     @Test
     void getById() {
+
     }
 
     @Test
     void getAll() {
+
     }
 
     @Test
     void getByPropertyEqual() {
+
     }
 
     @Test
     void getByPropertyLike() {
+
     }
 
     @Test

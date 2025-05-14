@@ -249,10 +249,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         String encoding = Base64.getEncoder().encodeToString(keys.getBytes());
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(OAUTH_URL))
+        return HttpRequest.newBuilder().uri(URI.create(OAUTH_URL))
                 .headers("Content-Type", "application/x-www-form-urlencoded", "Authorization", "Basic " + encoding)
                 .POST(HttpRequest.BodyPublishers.ofString(form)).build();
-        return request;
 
     }
 
@@ -344,6 +343,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             GenericDao<User> userDao = new GenericDao<>(User.class);
             userDao.insert(newUser);
 
+            logger.info("User inserted: " + newUser);
+
+
         } catch (ClassNotFoundException e) {
                 logger.error("Database connection error: " + e.getMessage(), e);
 
@@ -364,9 +366,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
         logger.debug("Username in session: " + username);
 
-        // Set sessions attributes related to the user
-        session.setAttribute("userSub", userSub);
-        session.setAttribute("username", username);
+        if (userSub != null) {
+            // Set sessions attributes related to the user
+            session.setAttribute("userSub", userSub);
+            session.setAttribute("username", username);
+        } else {
+            System.out.println("UserSub is null!");
+        }
 
     }
 

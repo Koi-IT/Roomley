@@ -164,8 +164,9 @@ public class GenericDao<T> {
 
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-
             transaction.commit();
+            session.save(entity);
+
             return entity;
 
         }

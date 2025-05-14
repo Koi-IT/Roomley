@@ -14,7 +14,7 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native",strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     @Column(name = "task_id")
     private int taskId;
 
@@ -31,145 +31,102 @@ public class Task {
     private int taskDifficulty;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumns({
+            @JoinColumn(name = "household_id", referencedColumnName = "household_id", insertable = false, updatable = false),
+            @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    })
+    private HouseholdMember householdMember;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     /**
      * No argument constructor for Task
      */
-    public Task () {
-
+    public Task() {
     }
 
     /**
      * Constructor to build Task object
      *
-     * @param user            the user
-     * @param taskName        The name of the Task
-     * @param taskDescription The description of the Task
-     * @param taskStatus      The status of the Task
-     * @param taskDifficulty  the task difficulty
+     * @param householdMember   the HouseholdMember (representing user_id and household_id)
+     * @param taskName          The name of the Task
+     * @param taskDescription   The description of the Task
+     * @param taskStatus        The status of the Task
+     * @param taskDifficulty    The difficulty of the Task
      */
-    public Task (User user, String taskName,  String taskDescription, boolean taskStatus, int taskDifficulty) {
-        this.user = user;
+    public Task(HouseholdMember householdMember, String taskName, String taskDescription, boolean taskStatus, int taskDifficulty) {
+        this.householdMember = householdMember;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
         this.taskDifficulty = taskDifficulty;
-
     }
 
-    /**
-     * Gets the task name
-     *
-     * @return Task name
-     */
-    public String getTaskName() { return this.taskName; }
+    // Getter and Setter methods
 
-    /**
-     * Sets the task name
-     *
-     * @param taskName Task name
-     */
-    public void setTaskName(String taskName) { this.taskName = taskName; }
+    public String getTaskName() {
+        return this.taskName;
+    }
 
-    /**
-     * Gets task status
-     *
-     * @return Task status
-     */
-    public boolean getTaskStatus() { return this.taskStatus; }
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
 
-    /**
-     * Sets tast status
-     *
-     * @param taskStatus Task status
-     */
+    public boolean getTaskStatus() {
+        return this.taskStatus;
+    }
+
     public void setTaskStatus(boolean taskStatus) {
         this.taskStatus = taskStatus;
     }
 
-    /**
-     * Gets task description
-     *
-     * @return Task description
-     */
-    public String getTaskDescription() { return this.taskDescription; }
+    public String getTaskDescription() {
+        return this.taskDescription;
+    }
 
-    /**
-     * Sets task description
-     *
-     * @param taskDescription Task description
-     */
-    public void setTaskDescription(String taskDescription) { this.taskDescription = taskDescription; }
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
 
-    /**
-     * Gets task id
-     *
-     * @return Task id
-     */
-    public int getTaskId() { return this.taskId; }
+    public int getTaskId() {
+        return this.taskId;
+    }
 
-    /**
-     * Sets task id
-     *
-     * @param taskId Task id
-     */
-    public void setTaskId(int taskId) { this.taskId = taskId; }
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
 
-    /**
-     * Gets user.
-     *
-     * @return the user
-     */
-    public User getUser() { return this.user; }
+    public HouseholdMember getHouseholdMember() {
+        return this.householdMember;
+    }
 
-    /**
-     * Sets user.
-     *
-     * @param user the user
-     */
-    public void setUser(User user) { this.user = user; }
+    public void setHouseholdMember(HouseholdMember householdMember) {
+        this.householdMember = householdMember;
+    }
 
-    /**
-     * Gets difficulty
-     *
-     * @return the difficulty
-     */
-    public int getTaskDifficulty() { return taskDifficulty; }
+    public int getTaskDifficulty() {
+        return taskDifficulty;
+    }
 
-    /**
-     * Sets task type.
-     *
-     * @param taskDifficulty the task type
-     */
-    public void setTaskDifficulty(int taskDifficulty) { this.taskDifficulty = taskDifficulty; }
+    public void setTaskDifficulty(int taskDifficulty) {
+        this.taskDifficulty = taskDifficulty;
+    }
 
-    /**
-     * Override the equals function to allow for equals between 2 objects to resolve properly
-     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Task)) return false;
         Task task = (Task) o;
         return taskId == task.taskId;
-
     }
 
-    /**
-     * Return object hashcode
-     * @return Object Hash
-     */
     @Override
     public int hashCode() {
         return Objects.hash(taskId);
     }
 
-    /**
-     * To string for Task
-     * @return task string
-     */
     @Override
     public String toString() {
         return "Task{" +
@@ -180,6 +137,5 @@ public class Task {
                 ", taskDifficulty=" + taskDifficulty +
                 '}';
     }
-
-
 }
+
