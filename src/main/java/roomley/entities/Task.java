@@ -38,12 +38,13 @@ public class Task {
     private HouseholdMember householdMember;
 
     @ManyToOne
+    @JoinColumn(name = "household_id",referencedColumnName = "household_id")
+    private Household household;
+
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "household_id",referencedColumnName = "household_id")
-    private Household household;
 
     /**
      * Gets household.
@@ -97,7 +98,7 @@ public class Task {
      * @param taskDifficulty  the task difficulty
      */
     public Task(HouseholdMember householdMember, String taskName, String taskDescription, boolean taskStatus, int taskDifficulty) {
-        this.householdMember = householdMember;
+//        this.householdMember = householdMember;
         this.taskName = taskName;
         this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
@@ -179,23 +180,6 @@ public class Task {
         this.taskId = taskId;
     }
 
-    /**
-     * Gets household member.
-     *
-     * @return the household member
-     */
-    public HouseholdMember getHouseholdMember() {
-        return this.householdMember;
-    }
-
-    /**
-     * Sets household member.
-     *
-     * @param householdMember the household member
-     */
-    public void setHouseholdMember(HouseholdMember householdMember) {
-        this.householdMember = householdMember;
-    }
 
     /**
      * Gets task difficulty.

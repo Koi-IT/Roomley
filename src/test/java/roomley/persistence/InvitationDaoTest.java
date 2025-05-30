@@ -25,14 +25,20 @@ class InvitationDaoTest {
 
     @Test
     void getById() {
+        assertNotNull(taskDao.getById(1));
+
     }
 
     @Test
     void getAll() {
+        assertNotNull(taskDao.getAll());
+
     }
 
     @Test
     void getByPropertyEqual() {
+
+
     }
 
     @Test

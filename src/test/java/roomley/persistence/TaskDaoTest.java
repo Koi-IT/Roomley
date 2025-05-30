@@ -50,7 +50,7 @@ class TaskDaoTest {
     void getAll() {
         List<Task> tasks = taskDao.getAll();
 
-        assertEquals(3, tasks.size());
+        assertEquals(5, tasks.size());
         assertEquals("take out trash", tasks.get(0).getTaskName());
         assertEquals("clean livingroom", tasks.get(1).getTaskName());
         assertEquals("clean room", tasks.get(2).getTaskName());

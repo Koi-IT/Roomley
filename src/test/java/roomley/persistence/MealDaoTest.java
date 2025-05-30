@@ -2,34 +2,44 @@ package roomley.persistence;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roomley.entities.Task;
+import roomley.entities.Meal;
 import roomley.util.Database;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MealDaoTest {
 
-    GenericDao<Task> taskDao;
-    Task task;
+    GenericDao<Meal> mealDao;
+    Meal meal;
 
     /**
-     * Before each test reset db and create a new taskDao instance
+     * Before each test reset db and create a new mealDao instance
      * @throws Exception If runSQL fails throw exception
      */
     @BeforeEach
     void setUp() throws Exception {
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
-        taskDao = new GenericDao<>(Task.class);
+        mealDao = new GenericDao<>(Meal.class);
 
     }
 
     @Test
     void getById() {
+        meal = mealDao.getById(1);
+
+        assertNotNull(meal);
+        assertEquals("Carrot Soup", meal.getMealName());
+        assertEquals(7, meal.getUser().getId());
+        assertEquals(1, meal.getIngredient().getIngredientId());
+
     }
 
     @Test
     void getAll() {
+        assertNotNull(mealDao.getAll());
+        assertEquals(2, mealDao.getAll().size());
+
     }
 
     @Test

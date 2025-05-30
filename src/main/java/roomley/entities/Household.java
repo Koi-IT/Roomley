@@ -26,21 +26,11 @@ public class Household {
     @OneToMany(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<HouseholdMember> householdMembers;
 
-
     /**
      *
      */
     public Household() {
 
-    }
-
-    /**
-     * Gets group name.
-     *
-     * @return the group name
-     */
-    public String getGroupName() {
-        return groupName;
     }
 
     /**
@@ -84,7 +74,7 @@ public class Household {
      *
      * @return the group name
      */
-    public String setGroupName() {
+    public String getGroupName() {
         return groupName;
     }
 
@@ -109,10 +99,10 @@ public class Household {
     /**
      * Sets household members.
      *
-     * @param householdMembers the household members
+     * @param householdMemberList the household members
      */
-    public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
-        householdMembers = householdMembers;
+    public void setHouseholdMembers(List<HouseholdMember> householdMemberList) {
+        householdMembers = householdMemberList;
     }
 
     @Override
@@ -121,5 +111,6 @@ public class Household {
                 "householdId=" + householdId +
                 ", groupName='" + groupName + '\'' +
                 '}';
+
     }
 }

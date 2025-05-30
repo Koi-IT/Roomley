@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,6 +30,9 @@ public class HouseholdMember implements Serializable {
     @MapsId("userId") // Maps the userId from HouseholdMemberId
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "householdMember", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     public HouseholdMember() {
 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/f2d221ca/hibernate.cfg.xml/userdisplayexercise/hibernate/Hibernate/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="-143.0" y="729.5">User#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/User.java</node>
+    <node x="-129.0" y="253.0">Household#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Household.java</node>
+    <node x="95.5" y="777.5">Ingredient#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Ingredient.java</node>
+    <node x="-124.5" y="121.5">HouseholdMember#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMember.java</node>
+    <node x="-143.0" y="473.5">Task#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Task.java</node>
+    <node x="-131.5" y="-70.5">HouseholdMemberId#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMemberId.java</node>
+    <node x="113.0" y="1029.5">Meal#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Meal.java</node>
+    <node x="-130.5" y="1157.5">Invitation#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Invitation.java</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Invitation#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Invitation.java" target="User#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/User.java" relationship="RELATION">
+      <point x="0.0" y="-55.5" />
+      <point x="-14.0" y="993.0" />
+      <point x="66.0" y="993.0" />
+      <point x="66.0" y="693.0" />
+      <point x="-54.0" y="693.0" />
+      <point x="0.0" y="-103.5" />
+    </edge>
+    <edge source="Meal#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Meal.java" target="Ingredient#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Ingredient.java" relationship="RELATION">
+      <point x="0.0" y="-43.5" />
+      <point x="0.0" y="55.5" />
+    </edge>
+    <edge source="Meal#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Meal.java" target="User#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/User.java" relationship="RELATION">
+      <point x="0.0" y="-43.5" />
+      <point x="186.0" y="1013.0" />
+      <point x="66.0" y="1013.0" />
+      <point x="66.0" y="693.0" />
+      <point x="-54.0" y="693.0" />
+      <point x="0.0" y="-103.5" />
+    </edge>
+    <edge source="HouseholdMember#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMember.java" target="HouseholdMemberId#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMemberId.java" relationship="EMBEDDING_ID">
+      <point x="0.0" y="-31.5" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="Invitation#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Invitation.java" target="Household#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Household.java" relationship="RELATION">
+      <point x="0.0" y="-55.5" />
+      <point x="-14.0" y="1133.0" />
+      <point x="-174.0" y="1133.0" />
+      <point x="-174.0" y="453.0" />
+      <point x="-154.0" y="453.0" />
+      <point x="-154.0" y="253.0" />
+      <point x="0.0" y="-55.5" />
+    </edge>
+    <edge source="Task#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Task.java" target="Household#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Household.java" relationship="RELATION">
+      <point x="0.0" y="-79.5" />
+      <point x="-54.0" y="433.0" />
+      <point x="-154.0" y="433.0" />
+      <point x="-154.0" y="253.0" />
+      <point x="0.0" y="-55.5" />
+    </edge>
+    <edge source="Task#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Task.java" target="HouseholdMember#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMember.java" relationship="RELATION">
+      <point x="0.0" y="-79.5" />
+      <point x="-54.0" y="413.0" />
+      <point x="46.0" y="413.0" />
+      <point x="46.0" y="233.0" />
+      <point x="-34.0" y="233.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="Household#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Household.java" target="HouseholdMember#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMember.java" relationship="RELATION">
+      <point x="0.0" y="-55.5" />
+      <point x="-47.0" y="233.0" />
+      <point x="-34.0" y="233.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="User#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/User.java" target="Task#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Task.java" relationship="RELATION">
+      <point x="0.0" y="-103.5" />
+      <point x="-54.0" y="673.0" />
+      <point x="66.0" y="673.0" />
+      <point x="66.0" y="453.0" />
+      <point x="-54.0" y="453.0" />
+      <point x="0.0" y="-79.5" />
+    </edge>
+    <edge source="User#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/User.java" target="HouseholdMember#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/HouseholdMember.java" relationship="RELATION">
+      <point x="0.0" y="-103.5" />
+      <point x="-54.0" y="673.0" />
+      <point x="66.0" y="673.0" />
+      <point x="66.0" y="653.0" />
+      <point x="106.0" y="653.0" />
+      <point x="106.0" y="233.0" />
+      <point x="-34.0" y="233.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.6566176470588235" showDependencies="false" x="61.5" y="609.0" />
+  <SelectedNodes>
+    <node>Household#file://C:/Users/Andrew/IdeaProjects/Roomley/src/main/java/roomley/entities/Household.java</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Embeddables</Category>
+    <Category>Properties</Category>
+    <Category>Superclasses</Category>
+  </Categories>
+</Diagram>
+

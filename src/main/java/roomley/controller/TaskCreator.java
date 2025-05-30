@@ -78,7 +78,6 @@ public class TaskCreator extends HttpServlet {
         // Create a new task object
         Task newTask = new Task();
 
-
         // Get user as household member
         List<HouseholdMember> householdMembers = householdMemberDao.getByPropertyEqual("user", currentUser);
 
@@ -89,12 +88,12 @@ public class TaskCreator extends HttpServlet {
         HouseholdMember currentMember = householdMembers.get(0);
 
         // Assign values to the newTask
-        newTask.setUser(currentUser);
+//        newTask.setUser(currentUser);
         newTask.setHousehold(currentMember.getHousehold());
         newTask.setTaskName(taskName);
         newTask.setTaskDescription(taskDescription);
         newTask.setTaskStatus(false);
-        newTask.setHouseholdMember(currentMember);
+//        newTask.setHouseholdMember(currentMember);
         return newTask;
 
     }

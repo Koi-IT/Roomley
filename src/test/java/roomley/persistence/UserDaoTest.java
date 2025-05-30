@@ -55,7 +55,7 @@ class UserDaoTest {
      */
     @Test
     void getAll() {
-        assertEquals(3, userDao.getAll().size());
+        assertEquals(5, userDao.getAll().size());
 
     }
 
