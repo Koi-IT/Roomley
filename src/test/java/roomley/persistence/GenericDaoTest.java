@@ -13,7 +13,6 @@ class GenericDaoTest {
 
     @Test
     void getAllUsers() {
-        getAll();
 
     }
 

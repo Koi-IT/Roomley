@@ -53,7 +53,7 @@ public class TaskCreator extends HttpServlet {
 
         // Create task using userSub, taskName, and TaskDescription
         Task newTask = createTask(currentUser, taskName, taskDescription);
-        currentUser.getTasks().add(newTask);
+        //currentUser.getTasks().add(newTask);
 
         // Insert new task into rds
         taskDao.insert(newTask);

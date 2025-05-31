@@ -3,6 +3,8 @@ package roomley.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Ingredient.
@@ -17,12 +19,31 @@ public class Ingredient {
     @Column(name = "ingredient_id")
     private int ingredientId;
 
-    @Column(name = "meal_id")
-    private int mealId;
-
     @Column(name = "ingredient_name")
     private String ingredientName;
 
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MealIngredient> mealIngredients = new ArrayList<>();
+
+    /**
+     * Instantiates a new Ingredient.
+     */
+    public Ingredient() {
+
+    }
+
+    /**
+     * Instantiates a new Ingredient.
+     *
+     * @param ingredientId    the ingredient id
+     * @param ingredientName  the ingredient name
+     * @param mealIngredients the meal ingredients
+     */
+    public Ingredient(int ingredientId, String ingredientName, List<MealIngredient> mealIngredients) {
+        this.ingredientId = ingredientId;
+        this.ingredientName = ingredientName;
+        this.mealIngredients = mealIngredients;
+    }
 
     /**
      * Gets ingredient id.
@@ -43,24 +64,6 @@ public class Ingredient {
     }
 
     /**
-     * Gets meal id.
-     *
-     * @return the meal id
-     */
-    public int getMealId() {
-        return mealId;
-    }
-
-    /**
-     * Sets meal id.
-     *
-     * @param mealId the meal id
-     */
-    public void setMealId(int mealId) {
-        this.mealId = mealId;
-    }
-
-    /**
      * Gets ingredient name.
      *
      * @return the ingredient name
@@ -78,12 +81,32 @@ public class Ingredient {
         this.ingredientName = ingredientName;
     }
 
+
+    /**
+     * Gets meal ingredients.
+     *
+     * @return the meal ingredients
+     */
+    public List<MealIngredient> getMealIngredients() {
+        return mealIngredients;
+    }
+
+    /**
+     * Sets meal ingredients.
+     *
+     * @param mealIngredients the meal ingredients
+     */
+    public void setMealIngredients(List<MealIngredient> mealIngredients) {
+        this.mealIngredients = mealIngredients;
+    }
+
     @Override
     public String toString() {
         return "Ingredient{" +
                 "ingredientId=" + ingredientId +
-                ", mealId='" + mealId + '\'' +
                 ", ingredientName='" + ingredientName + '\'' +
+                ", mealIngredients=" + mealIngredients +
                 '}';
     }
+
 }

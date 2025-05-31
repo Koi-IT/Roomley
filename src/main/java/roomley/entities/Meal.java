@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The type Meal.
@@ -25,9 +27,9 @@ public class Meal {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id")
-    private Ingredient ingredient;
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MealIngredient> mealIngredients = new ArrayList<>();
+
 
     /**
      * No arg constructor
@@ -37,19 +39,18 @@ public class Meal {
     }
 
     /**
-     * Constructor to build Meal object
+     * Instantiates a new Meal.
      *
-     * @param mealId     meal id
-     * @param mealName   meal name
-     * @param user       user
-     * @param ingredient ingredient
+     * @param mealId          the meal id
+     * @param mealName        the meal name
+     * @param user            the user
+     * @param mealIngredients the meal ingredients
      */
-    public Meal(int mealId, String mealName, User user, Ingredient ingredient) {
+    public Meal(int mealId, String mealName, User user, List<MealIngredient> mealIngredients) {
         this.mealId = mealId;
         this.mealName = mealName;
         this.user = user;
-        this.ingredient = ingredient;
-
+        this.mealIngredients = mealIngredients;
     }
 
     /**
@@ -113,23 +114,21 @@ public class Meal {
     }
 
     /**
-     * Get ingredient
+     * Gets meal ingredients.
      *
-     * @return ingredient ingredient
+     * @return the meal ingredients
      */
-    public Ingredient getIngredient() {
-        return ingredient;
-
+    public List<MealIngredient> getMealIngredients() {
+        return mealIngredients;
     }
 
     /**
-     * Set ingredient
+     * Sets meal ingredients.
      *
-     * @param ingredient ingredient
+     * @param mealIngredients the meal ingredients
      */
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
-
+    public void setMealIngredients(List<MealIngredient> mealIngredients) {
+        this.mealIngredients = mealIngredients;
     }
 
     @Override
@@ -138,7 +137,8 @@ public class Meal {
                 "mealId=" + mealId +
                 ", mealName='" + mealName + '\'' +
                 ", user=" + user +
-                ", ingredient=" + ingredient +
+                ", mealIngredients=" + mealIngredients +
                 '}';
     }
+
 }

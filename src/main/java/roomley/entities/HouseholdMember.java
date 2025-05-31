@@ -22,20 +22,40 @@ public class HouseholdMember implements Serializable {
     private HouseholdRole role;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @MapsId("householdId") // Maps the householdId from HouseholdMemberId
+    @MapsId("householdId")
     @JoinColumn(name = "household_id", nullable = false)
     private Household household;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @MapsId("userId") // Maps the userId from HouseholdMemberId
+    @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "householdMember", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks;
 
+    /**
+     * Instantiates a new Household member.
+     */
     public HouseholdMember() {
 
+    }
+
+    /**
+     * Instantiates a new Household member.
+     *
+     * @param id        the id
+     * @param role      the role
+     * @param household the household
+     * @param user      the user
+     * @param tasks     the tasks
+     */
+    public HouseholdMember(HouseholdMemberId id, HouseholdRole role, Household household, User user, List<Task> tasks) {
+        this.id = id;
+        this.role = role;
+        this.household = household;
+        this.user = user;
+        this.tasks = tasks;
     }
 
     /**
@@ -125,14 +145,6 @@ public class HouseholdMember implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "HouseholdMember{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         HouseholdMember that = (HouseholdMember) o;
@@ -143,4 +155,16 @@ public class HouseholdMember implements Serializable {
     public int hashCode() {
         return Objects.hash(id, role, household, user);
     }
+
+    @Override
+    public String toString() {
+        return "HouseholdMember{" +
+                "id=" + id +
+                ", role=" + role +
+                ", household=" + household +
+                ", user=" + user +
+                ", tasks=" + tasks +
+                '}';
+    }
+
 }

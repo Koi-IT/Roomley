@@ -74,11 +74,11 @@ public class TaskGrabber extends HttpServlet {
         int userId = user.getId();
 
 
-        //List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
-        List<Task> userTasks = user.getTasks();
-        List<Task> userCompletedTasks = user.getTasks().stream()
-                .filter(Task::getTaskStatus)
-                .collect(Collectors.toList());
+//        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
+//        List<Task> userTasks = user.get();
+//        List<Task> userCompletedTasks = user.getTasks().stream()
+//                .filter(Task::getTaskStatus)
+//                .collect(Collectors.toList());
 
         // Log user details for debugging
         logger.debug("User Sub: " + userSub);
@@ -91,8 +91,8 @@ public class TaskGrabber extends HttpServlet {
         try {
             // TODO get all tasks within household
 //            session.setAttribute("tasks", householdTasks);
-            session.setAttribute("userAssignedTasks", userTasks);
-            session.setAttribute("completedTasks", userCompletedTasks);
+//            session.setAttribute("userAssignedTasks", userTasks);
+//            session.setAttribute("completedTasks", userCompletedTasks);
 
         } catch (Exception e) {
             logger.error("Error fetching tasks", e);

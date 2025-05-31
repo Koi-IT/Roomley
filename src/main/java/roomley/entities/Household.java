@@ -3,6 +3,7 @@ package roomley.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,17 +21,32 @@ public class Household {
     @Column(name = "group_name")
     private String groupName;
 
-    @Column(name = "created_by_user_id")
+    @Column(name = "created_by_user")
     private int createdByUserId;
 
-    @OneToMany(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<HouseholdMember> householdMembers;
+    @OneToMany(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<HouseholdMember> householdMembers = new ArrayList<>();
 
     /**
-     *
+     * Instantiates a new Household.
      */
     public Household() {
 
+    }
+
+    /**
+     * Instantiates a new Household.
+     *
+     * @param householdId      the household id
+     * @param groupName        the group name
+     * @param createdByUserId  the created by user id
+     * @param householdMembers the household members
+     */
+    public Household(int householdId, String groupName, int createdByUserId, List<HouseholdMember> householdMembers) {
+        this.householdId = householdId;
+        this.groupName = groupName;
+        this.createdByUserId = createdByUserId;
+        this.householdMembers = householdMembers;
     }
 
     /**
@@ -113,4 +129,5 @@ public class Household {
                 '}';
 
     }
+
 }

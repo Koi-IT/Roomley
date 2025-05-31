@@ -60,7 +60,7 @@ class HouseholdDaoTest {
     void insert() {
         household = new Household();
         household.setGroupName("Test Group");
-        household.setHouseholdMembers();
+//        household.setHouseholdMembers();
 
         householdDao.insert(household);
 

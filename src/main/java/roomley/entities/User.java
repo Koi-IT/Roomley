@@ -28,7 +28,7 @@ public class User {
     @Column(name = "display_name")
     private String username;
 
-    @Column(name = "user_created_at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
 
     @Column(name = "email")
@@ -40,29 +40,8 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Task> tasks = new ArrayList<>();
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<HouseholdMember> householdMembers;
-
-    /**
-     * Gets household members.
-     *
-     * @return the household members
-     */
-    public List<HouseholdMember> getHouseholdMembers() {
-        return householdMembers;
-    }
-
-    /**
-     * Sets household members.
-     *
-     * @param householdMembers the household members
-     */
-    public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
-        this.householdMembers = householdMembers;
-    }
 
     /**
      * No argument constructor for User
@@ -90,6 +69,24 @@ public class User {
         this.role = role;
         this.created_at = created_at;
 
+    }
+
+    /**
+     * Gets household members.
+     *
+     * @return the household members
+     */
+    public List<HouseholdMember> getHouseholdMembers() {
+        return householdMembers;
+    }
+
+    /**
+     * Sets household members.
+     *
+     * @param householdMembers the household members
+     */
+    public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
+        this.householdMembers = householdMembers;
     }
 
     /**
@@ -150,14 +147,6 @@ public class User {
      * @return the user type
      */
     public String getRole() { return role; }
-
-    /**
-     * Returns the list of tasks associated with this user.
-     * Modifications to the returned list may affect the internal task list.
-     *
-     * @return task list for the user
-     */
-    public List<Task> getTasks() { return tasks; }
 
     /**
      * Sets cognito_sub.
