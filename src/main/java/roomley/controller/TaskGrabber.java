@@ -68,7 +68,7 @@ public class TaskGrabber extends HttpServlet {
             // Proceed with user data
         }
 
-        String userEmail = user.getUserEmail();
+        String userEmail = user.getEmail();
         String role = user.getRole();
         String username = user.getUsername();
         int userId = user.getId();

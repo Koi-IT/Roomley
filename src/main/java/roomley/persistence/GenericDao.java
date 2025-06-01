@@ -173,13 +173,13 @@ public class GenericDao<T> {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             session.save(entity);
-            session.flush();  // Ensure the entity is flushed, so ID is populated
+            session.flush();
             session.refresh(entity);
             transaction.commit();
             return entity;
         } catch (Exception e) {
             logger.error("Error inserting entity: " + e.getMessage(), e);
-            return null;  // You can choose to return null or throw an exception based on your use case
+            return null;
         }
     }
 
@@ -210,14 +210,6 @@ public class GenericDao<T> {
             transaction.commit();
 
         }
-
-    }
-
-    public Session getSession() {
-        return sessionFactory.openSession();
-    }
-
-    public void flush(T entity) {
 
     }
 

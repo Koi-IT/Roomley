@@ -43,6 +43,7 @@ public class MealIngredient implements Serializable {
         this.id = id;
         this.meal = meal;
         this.ingredient = ingredient;
+
     }
 
     /**

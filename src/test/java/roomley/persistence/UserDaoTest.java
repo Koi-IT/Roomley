@@ -44,7 +44,7 @@ class UserDaoTest {
         assertNotNull(user);
         assertEquals(7, user.getId());
         assertEquals("cognito_sub", user.getCognitoSub());
-        assertEquals("email", user.getUserEmail());
+        assertEquals("email", user.getEmail());
         assertEquals("role", user.getRole());
 //        assertEquals(3, user.getTasks().size());
 
@@ -150,7 +150,7 @@ class UserDaoTest {
 
         assertNotNull(userDao.getByPropertyEqual("username", "test"));
         assertEquals("cognito_sub", user.getCognitoSub());
-        assertEquals("email", user.getUserEmail());
+        assertEquals("email", user.getEmail());
         assertEquals("role", user.getRole());
         assertEquals("test", user.getUsername());
 //        assertEquals(0, user.getTasks().size());
@@ -171,7 +171,7 @@ class UserDaoTest {
         userDao.update(user);
 
         assertNotNull(userDao.getById(7));
-        assertEquals("email_updated", user.getUserEmail());
+        assertEquals("email_updated", user.getEmail());
         assertEquals("role_updated", user.getRole());
         assertEquals("test_updated", user.getUsername());
 //        assertEquals(3, user.getTasks().size());

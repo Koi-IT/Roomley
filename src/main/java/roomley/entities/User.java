@@ -23,51 +23,51 @@ public class User {
     private int userId;
 
     @Column(name = "cognito_sub")
-    private String cognito_sub;
+    private String cognitoSub;
 
     @Column(name = "display_name")
-    private String username;
+    private String displayName;
 
     @Column(name = "created_at", nullable = false)
-    private Timestamp created_at;
+    private Timestamp createdAt;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "last_login")
-    private java.sql.Timestamp last_login;
+    private java.sql.Timestamp lastLogin;
 
     @Column(name = "role")
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<HouseholdMember> householdMembers;
+    private List<HouseholdMember> householdMembers = new ArrayList<>();
 
     /**
      * No argument constructor for User
      */
     public User() {
-        this.created_at = Timestamp.valueOf(LocalDateTime.now());
+        this.createdAt = Timestamp.valueOf(LocalDateTime.now());
 
     }
 
     /**
      * User constructor
      *
-     * @param cognito_sub Cognito Sub
-     * @param username    Username
+     * @param cognitoSub Cognito Sub
+     * @param displayName    Username
      * @param email       Email
-     * @param created_at  the created at
-     * @param last_login  Last Login
+     * @param createdAt  the created at
+     * @param lastLogin  Last Login
      * @param role        User Role
      */
-    public User( String cognito_sub, String username, String email, java.sql.Timestamp created_at,java.sql.Timestamp last_login, String role) {
-        this.cognito_sub = cognito_sub;
-        this.username = username;
+    public User( String cognitoSub, String displayName, String email, java.sql.Timestamp createdAt,java.sql.Timestamp lastLogin, String role) {
+        this.cognitoSub = cognitoSub;
+        this.displayName = displayName;
         this.email = email;
-        this.last_login = last_login;
+        this.lastLogin = lastLogin;
         this.role = role;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
 
     }
 
@@ -87,7 +87,19 @@ public class User {
      */
     public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
         this.householdMembers = householdMembers;
+
     }
+
+    public void addHouseholdMember(HouseholdMember member) {
+        householdMembers.add(member);
+        member.setUser(this);
+    }
+
+    public void removeHouseholdMember(HouseholdMember member) {
+        householdMembers.remove(member);
+        member.setUser(null);
+    }
+
 
     /**
      * Gets id.
@@ -103,15 +115,15 @@ public class User {
      *
      * @return the Cognito Sub
      */
-    public String getCognitoSub() { return cognito_sub; }
+    public String getCognitoSub() { return cognitoSub; }
 
     /**
-     * Gets username.
+     * Gets displayName.
      *
-     * @return the username
+     * @return the displayName
      */
     public String getUsername() {
-        return username;
+        return displayName;
     }
 
     /**
@@ -119,7 +131,7 @@ public class User {
      *
      * @return the user email
      */
-    public String getUserEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -129,7 +141,7 @@ public class User {
      * @return the user level
      */
     public Timestamp getCreatedAt() {
-        return created_at;
+        return createdAt;
     }
 
     /**
@@ -138,7 +150,7 @@ public class User {
      * @return the user type
      */
     public java.sql.Timestamp getLastLogin() {
-        return last_login;
+        return lastLogin;
     }
 
     /**
@@ -149,12 +161,12 @@ public class User {
     public String getRole() { return role; }
 
     /**
-     * Sets cognito_sub.
+     * Sets cognitoSub.
      *
-     * @param cognito_sub the cognito_sub
+     * @param cognitoSub the cognitoSub
      */
-    public void setCognitoSub(String cognito_sub) {
-        this.cognito_sub = cognito_sub;
+    public void setCognitoSub(String cognitoSub) {
+        this.cognitoSub = cognitoSub;
     }
 
     /**
@@ -167,21 +179,21 @@ public class User {
     }
 
     /**
-     * Sets user created_at.
+     * Sets user createdAt.
      *
-     * @param created_at at the user created_at
+     * @param createdAt at the user createdAt
      */
-    public void setCreateAt(java.sql.Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreateAt(java.sql.Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 
     /**
-     * Sets last_login.
+     * Sets lastLogin.
      *
-     * @param last_login the last_login
+     * @param lastLogin the lastLogin
      */
-    public void setLastLogin(java.sql.Timestamp last_login) {
-        this.last_login = last_login;
+    public void setLastLogin(java.sql.Timestamp lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
     /**
@@ -194,11 +206,11 @@ public class User {
     }
 
     /**
-     * Sets username
+     * Sets displayName
      *
-     * @param username the username
+     * @param displayName the displayName
      */
-    public void setUsername(String username) { this.username = username; }
+    public void setUsername(String displayName) { this.displayName = displayName; }
 
     /**
      * Override the equals function to allow for equals between 2 objects to resolve properly
@@ -229,11 +241,11 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + userId +
-                ", cognito_sub='" + cognito_sub + '\'' +
-                ", username='" + username + '\'' +
-                ", created_at=" + created_at +
+                ", cognitoSub='" + cognitoSub + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", createdAt=" + createdAt +
                 ", email='" + email + '\'' +
-                ", last_login=" + last_login +
+                ", lastLogin=" + lastLogin +
                 ", role='" + role + '\'' +
                 '}';
     }
