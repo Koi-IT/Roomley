@@ -57,7 +57,7 @@ public class TaskCreateLink extends HttpServlet {
 
         // Get user household
         String userSub = (String) session.getAttribute("userSub");
-        User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
+        User user = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
         int userId = user.getId();
         List<HouseholdMember> currentMember = memberDao.getByPropertyEqual("id.userId", userId);
         if (currentMember.isEmpty()) {

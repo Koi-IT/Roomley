@@ -31,9 +31,6 @@ public class HouseholdMember implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "householdMember", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Task> tasks;
-
     /**
      * Instantiates a new Household member.
      */
@@ -55,7 +52,6 @@ public class HouseholdMember implements Serializable {
         this.role = role;
         this.household = household;
         this.user = user;
-        this.tasks = tasks;
     }
 
     /**
@@ -144,24 +140,6 @@ public class HouseholdMember implements Serializable {
         this.household = household;
     }
 
-    /**
-     * Gets tasks.
-     *
-     * @return the tasks
-     */
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    /**
-     * Sets tasks.
-     *
-     * @param tasks the tasks
-     */
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -181,7 +159,6 @@ public class HouseholdMember implements Serializable {
                 ", role=" + role +
                 ", household=" + household +
                 ", user=" + user +
-                ", tasks=" + tasks +
                 '}';
     }
 

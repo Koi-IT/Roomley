@@ -2,8 +2,7 @@ package roomley.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import roomley.entities.Task;
-import roomley.entities.User;
+import roomley.entities.*;
 import roomley.persistence.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +49,7 @@ public class TaskGrabber extends HttpServlet {
         // Create Dao's
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
-
+        GenericDao<HouseholdMember, HouseholdMemberId> householdMemberDao = new GenericDao<>(HouseholdMember.class);
         User user;
 
 
@@ -73,12 +72,19 @@ public class TaskGrabber extends HttpServlet {
         String username = user.getUsername();
         int userId = user.getId();
 
+        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
 
-//        List<Task> householdTasks = taskDao.getByPropertyEqual("user", user);
-//        List<Task> userTasks = user.get();
-//        List<Task> userCompletedTasks = user.getTasks().stream()
-//                .filter(Task::getTaskStatus)
-//                .collect(Collectors.toList());
+        Household household = members.get(0).getHousehold();
+
+        List<Task> householdTasks = taskDao.getByPropertyEqual("household", household);
+
+        List<Task> userTasks = householdTasks.stream()
+                .filter(task -> task.getUser().equals(user))
+                .collect(Collectors.toList());
+
+        List<Task> userCompletedTasks = userTasks.stream()
+                .filter(Task::getTaskStatus)
+                .collect(Collectors.toList());
 
         // Log user details for debugging
         logger.debug("User Sub: " + userSub);
@@ -90,9 +96,9 @@ public class TaskGrabber extends HttpServlet {
         // Set session attributes based on user
         try {
             // TODO get all tasks within household
-//            session.setAttribute("tasks", householdTasks);
-//            session.setAttribute("userAssignedTasks", userTasks);
-//            session.setAttribute("completedTasks", userCompletedTasks);
+            session.setAttribute("tasks", householdTasks);
+            session.setAttribute("userAssignedTasks", userTasks);
+            session.setAttribute("completedTasks", userCompletedTasks);
 
         } catch (Exception e) {
             logger.error("Error fetching tasks", e);

@@ -41,11 +41,11 @@ public class TaskCreator extends HttpServlet {
 
         // Set userSub
         String userSub = (String) session.getAttribute("userSub");
-        User currentUser = userDao.getByPropertyLike("cognito_sub", userSub).get(0);
-
-        if (currentUser == null) {
-            throw new ServletException("User is not valid or not found.");
+        List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);   // use the **Java field name**
+        if (users.isEmpty()) {
+            throw new ServletException("No user found for sub " + userSub);
         }
+        User currentUser = users.get(0);
 
 
         // Create task using userSub, taskName, and TaskDescription
@@ -85,12 +85,12 @@ public class TaskCreator extends HttpServlet {
         HouseholdMember currentMember = householdMembers.get(0);
 
         // Assign values to the newTask
-//        newTask.setUser(currentUser);
         newTask.setHousehold(currentMember.getHousehold());
         newTask.setTaskName(taskName);
         newTask.setTaskDescription(taskDescription);
         newTask.setTaskStatus(false);
-//        newTask.setHouseholdMember(currentMember);
+        newTask.setHousehold(currentMember.getHousehold());
+        newTask.setUser(currentMember.getUser());
         return newTask;
 
     }

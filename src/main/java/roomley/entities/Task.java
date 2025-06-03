@@ -30,12 +30,9 @@ public class Task {
     @Column(name = "task_difficulty")
     private int taskDifficulty;
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "household_id", referencedColumnName = "household_id", insertable = false, updatable = false),
-            @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
-    })
-    private HouseholdMember householdMember;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;           // add
 
     @ManyToOne
     @JoinColumn(name = "household_id",referencedColumnName = "household_id")
@@ -50,19 +47,40 @@ public class Task {
     /**
      * Instantiates a new Task.
      *
-     * @param householdMember the household member
+     * @param taskId          the task id
      * @param taskName        the task name
-     * @param taskDescription the task description
      * @param taskStatus      the task status
+     * @param taskDescription the task description
      * @param taskDifficulty  the task difficulty
+     * @param user            the user
+     * @param household       the household
      */
-    public Task(HouseholdMember householdMember, String taskName, String taskDescription, boolean taskStatus, int taskDifficulty) {
-        this.householdMember = householdMember;
+    public Task(int taskId, String taskName, boolean taskStatus, String taskDescription, int taskDifficulty, User user, Household household) {
+        this.taskId = taskId;
         this.taskName = taskName;
-        this.taskDescription = taskDescription;
         this.taskStatus = taskStatus;
+        this.taskDescription = taskDescription;
         this.taskDifficulty = taskDifficulty;
+        this.user = user;
+        this.household = household;
+    }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**
@@ -72,24 +90,6 @@ public class Task {
      */
     public boolean isTaskStatus() {
         return taskStatus;
-    }
-
-    /**
-     * Gets household member.
-     *
-     * @return the household member
-     */
-    public HouseholdMember getHouseholdMember() {
-        return householdMember;
-    }
-
-    /**
-     * Sets household member.
-     *
-     * @param householdMember the household member
-     */
-    public void setHouseholdMember(HouseholdMember householdMember) {
-        this.householdMember = householdMember;
     }
 
     /**
