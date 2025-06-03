@@ -1,0 +1,204 @@
+@Entity(name = "Household")
+@Table(name = "households")
+public class Household {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "household_id")
+    private int householdId;
+
+    @Column(name = "group_name")
+    private String groupName;
+
+    @Column(name = "created_by_user")
+    private int createdByUserId;
+
+    @OneToMany(mappedBy = "household", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private List<HouseholdMember> householdMembers = new ArrayList<>();
+
+@Entity(name = "HouseholdMember")
+@Table(name = "household_members")
+public class HouseholdMember implements Serializable {
+
+    @EmbeddedId
+    private HouseholdMemberId id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private HouseholdRole role;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @MapsId("householdId")
+    @JoinColumn(name = "household_id", nullable = false)
+    private Household household;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
+    private User user;
+
+@Embeddable
+public class HouseholdMemberId implements Serializable {
+
+    @Column(name = "household_id")
+    private int householdId;
+
+    @Column(name = "user_id")
+    private int userId;
+
+@Entity(name = "Ingredient")
+@Table(name = "ingredients")
+public class Ingredient {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native",strategy = "native")
+    @Column(name = "ingredient_id")
+    private int ingredientId;
+
+    @Column(name = "ingredient_name")
+    private String ingredientName;
+
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MealIngredient> mealIngredients = new ArrayList<>();
+
+@Entity(name = "Invitation")
+@Table(name = "invitations")
+public class Invitation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native",strategy = "native")
+    @Column(name = "invitation_id")
+    private int invitationId;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "invited_by_user", nullable = false)
+    private User invitedByUser;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "invited_user", nullable = false)
+    private User invitedUser;        // was invitedMember
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "household_id", nullable = false)
+    private Household household;     // direct reference
+
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private Timestamp invitationCreatedAt;
+
+    @Column(name = "status")
+    private String inviteStatus;
+
+@Entity(name = "Meal")
+@Table(name = "meals")
+public class Meal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native",strategy = "native")
+    @Column(name = "meal_id")
+    private int mealId;
+
+    @Column(name = "meal_name")
+    private String mealName;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "meal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MealIngredient> mealIngredients = new ArrayList<>();
+
+@Entity(name = "MealIngredient")
+@Table(name = "meal_ingredients")
+public class MealIngredient implements Serializable {
+
+    @EmbeddedId
+    private MealIngredientId id;
+
+    @ManyToOne()
+    @MapsId("mealId")
+    @JoinColumn(name = "meal_id", nullable = false)
+    private Meal meal;
+
+    @ManyToOne()
+    @MapsId("ingredientId")
+    @JoinColumn(name = "ingredient_id", nullable = false)
+    private Ingredient ingredient;
+
+@Embeddable
+public class MealIngredientId implements Serializable {
+
+    @Column(name = "meal_id")
+    private int mealId;
+
+    @Column(name = "ingredient_id")
+    private int ingredientId;
+
+@Entity(name = "Task")
+@Table(name = "tasks")
+public class Task {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "task_id")
+    private int taskId;
+
+    @Column(name = "task_name")
+    private String taskName;
+
+    @Column(name = "status")
+    private boolean taskStatus;
+
+    @Column(name = "task_description")
+    private String taskDescription;
+
+    @Column(name = "task_difficulty")
+    private int taskDifficulty;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;           // add
+
+    @ManyToOne
+    @JoinColumn(name = "household_id",referencedColumnName = "household_id")
+    private Household household;
+
+@Entity(name = "User")
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(name = "user_id")
+    private int userId;
+
+    @Column(name = "cognito_sub")
+    private String cognitoSub;
+
+    @Column(name = "display_name")
+    private String displayName;
+
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "last_login")
+    private java.sql.Timestamp lastLogin;
+
+    @Column(name = "role")
+    private String role;
+
+    @OneToMany(mappedBy = "invitedUser")
+    private List<Invitation> receivedInvitations;
+
+    @OneToMany(mappedBy = "invitedByUser")
+    private List<Invitation> sentInvitations;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<HouseholdMember> householdMembers = new HashSet<>();

@@ -260,6 +260,22 @@ public class GenericDao<T, ID extends Serializable> {
         return entity;
     }
 
+    public Household getHouseholdWithMembers(int householdId) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery(
+                            "SELECT h FROM Household h " +
+                                    "LEFT JOIN FETCH h.householdMembers m " +
+                                    "LEFT JOIN FETCH m.user " +
+                                    "WHERE h.householdId = :id", Household.class)
+                    .setParameter("id", householdId)
+                    .uniqueResult();
+        } catch (Exception e) {
+            logger.error("Error fetching household with members", e);
+            return null;
+        }
+    }
+
+
     public Session getSession() {
         return sessionFactory.openSession();
 

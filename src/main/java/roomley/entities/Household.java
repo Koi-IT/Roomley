@@ -24,7 +24,7 @@ public class Household {
     @Column(name = "created_by_user")
     private int createdByUserId;
 
-    @OneToMany(mappedBy = "household", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "household", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<HouseholdMember> householdMembers = new ArrayList<>();
 
     /**

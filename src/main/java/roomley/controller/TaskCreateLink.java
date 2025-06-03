@@ -19,20 +19,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * A simple servlet to find all tasks in the database.
  * @author Koi-dev
  */
-@WebServlet(
-        urlPatterns = "/taskCreateLink"
-)
+@WebServlet(urlPatterns = "/taskCreateLink")
 public class TaskCreateLink extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
-     * Get request to remove session and redirect to home page
+     * Handle the GET request to remove session and redirect to home page
      *
      * @param req  http request
      * @param resp http response
@@ -50,43 +49,45 @@ public class TaskCreateLink extends HttpServlet {
             return;
         }
 
-        //Create userDao
+        // Create DAO objects
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         GenericDao<HouseholdMember, HouseholdMemberId> memberDao = new GenericDao<>(HouseholdMember.class);
-        GenericDao<Household, Integer> houseDao = new GenericDao<>(Household.class);
+        GenericDao<Household, Integer> householdDao = new GenericDao<>(Household.class);
 
-        // Get user household
+        // Get user and household info
         String userSub = (String) session.getAttribute("userSub");
         User user = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
         int userId = user.getId();
         List<HouseholdMember> currentMember = memberDao.getByPropertyEqual("id.userId", userId);
+
         if (currentMember.isEmpty()) {
             logger.warn("No HouseholdMember found for userId: " + userId);
-            // You might want to redirect, show a message, or handle it gracefully
             resp.sendRedirect("userHomePage.jsp");
             return;
         }
+
         HouseholdMember currentMemberHousehold = currentMember.get(0);
+        Household currentHousehold = householdDao.getByPropertyEqual("householdId", currentMemberHousehold.getHousehold().getHouseholdId()).get(0);
 
-        Household currentHousehold = houseDao.getByPropertyEqual("householdId", currentMemberHousehold.getHousehold().getHouseholdId()).get(0);
+        // Fetch the household with its members
+        Household houseWithMembers = ((GenericDao<Household, Integer>) householdDao)
+                .getHouseholdWithMembers(currentHousehold.getHouseholdId());
 
-        // Get users in household
-        List<User> usersInHousehold = new ArrayList<>();
-        for (HouseholdMember member : currentHousehold.getHouseholdMembers()) {
-            usersInHousehold.add(member.getUser());
+        if (houseWithMembers == null || houseWithMembers.getHouseholdMembers().isEmpty()) {
+            logger.warn("No members found in the household for householdId: " + currentHousehold.getHouseholdId());
+            resp.sendRedirect("userHomePage.jsp");
+            return;
         }
 
-        if (usersInHousehold.isEmpty()) {
-            logger.info("No household found, redirecting to login.");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("userHomePage.jsp");
-            dispatcher.forward(req, resp);
-        }
+        // Collect users from household members
+        List<User> usersInHousehold = houseWithMembers.getHouseholdMembers()
+                .stream()
+                .map(HouseholdMember::getUser)
+                .collect(Collectors.toList());
 
-        // Set attribute and forward
+        // Set attribute and forward to task creation page
         req.setAttribute("householdUsers", usersInHousehold);
         RequestDispatcher dispatcher = req.getRequestDispatcher("taskCreation.jsp");
         dispatcher.forward(req, resp);
-
     }
-
 }

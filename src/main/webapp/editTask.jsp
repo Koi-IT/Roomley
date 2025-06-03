@@ -16,7 +16,7 @@
     <body class="page-wrapper">
         <article class="${not empty sessionScope.username ? 'page-wrapper' : 'home-page'}">
 
-        <article class="task-card">
+        <article class="welcomeCard">
             <div class="task-elements">
                 <span class="task-text">${sessionScope.taskToUpdate.taskName}</span>
                 <span class="task-text">${sessionScope.taskToUpdate.taskDescription}</span>
@@ -43,7 +43,7 @@
             </div>
         </article>
 
-
+    <article class="welcomeCard">
         <form action="${pageContext.request.contextPath}/updateTask" method="post" >
             <label for="taskName">Task Name</label>
             <input type="text" name="taskName" id="taskName">
@@ -54,9 +54,11 @@
             <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}">
 
             <button type="submit" name="action" value="update">Update</button>
+            <br>
+            <br>
             <button type="submit" name="action" value="delete">Delete</button>
         </form>
-
+    </article>
         <%@include file="footer.jsp"%>
 
         </article>

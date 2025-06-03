@@ -44,7 +44,7 @@ public class User {
     @OneToMany(mappedBy = "invitedByUser")
     private List<Invitation> sentInvitations;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<HouseholdMember> householdMembers = new HashSet<>();
 
     /**
