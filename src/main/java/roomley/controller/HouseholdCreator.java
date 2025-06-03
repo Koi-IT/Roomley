@@ -57,7 +57,7 @@ public class HouseholdCreator extends HttpServlet {
         }
 
         // Get user and specified members
-        User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
+        User user = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
         String[] users = req.getParameterValues("users[]");
         logger.info("Users received: {}", Arrays.toString(users));
 

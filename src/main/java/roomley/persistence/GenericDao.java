@@ -17,10 +17,7 @@ import java.io.Flushable;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Generic Dao for all database connections
@@ -118,6 +115,9 @@ public class GenericDao<T, ID extends Serializable> {
             query.where(builder.like(root.get(propertyName), "%" + value + "%"));
             return session.createQuery(query).getResultList();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
         }
 
     }
@@ -261,7 +261,7 @@ public class GenericDao<T, ID extends Serializable> {
     }
 
     public Session getSession() {
-        return sessionFactory.getCurrentSession();
+        return sessionFactory.openSession();
 
     }
 

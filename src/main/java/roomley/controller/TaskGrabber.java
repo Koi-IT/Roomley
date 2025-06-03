@@ -56,10 +56,10 @@ public class TaskGrabber extends HttpServlet {
 
         // Fetch user data
         String userSub = (String) session.getAttribute("userSub");
-        List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
+        List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
 
         if (users.isEmpty()) {
-            logger.error("No user found with cognito_sub: " + userSub);
+            logger.error("No user found with cognitoSub: " + userSub);
             // Handle the case where the user doesn't exist (e.g., redirect to login or show an error)
             resp.sendRedirect("index.jsp");
             return;

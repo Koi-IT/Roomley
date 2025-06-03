@@ -206,7 +206,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Setup Data for aws RDS if the user hasn't been already created
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
-        List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
+        List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
 
         if (users.isEmpty()) {
             logger.debug("User does not exist: " + userSub);

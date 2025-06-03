@@ -167,6 +167,116 @@ class GenericDaoTest {
         assertFalse(results.isEmpty(), "Should return at least one user");
         assertEquals("jdoe", results.get(0).getUsername());
         assertEquals("jdoe@example.com", results.get(0).getEmail());
+
+        // Test Failcase
+        Map<String, Object> failedProperties = new HashMap<>();
+        List<User> failedResults = userDao.getByPropertiesEqual(failedProperties);
+        assertTrue(failedResults.isEmpty());
+
     }
+
+    @Test
+    void userHouseholdMembersAreInitialised() {
+        // Arrange – grab a known user that already has members
+        int userId = userDao.getByPropertyEqual("displayName", "User One")
+                .get(0).getId();
+
+        // Act
+        User reloaded = userDao.getById(userId, "householdMembers");
+
+        // Assert – collection itself
+        assertTrue(Hibernate.isInitialized(reloaded.getHouseholdMembers()));
+        assertFalse(reloaded.getHouseholdMembers().isEmpty());
+
+        // Assert – nested collection (only matters if you called init inside the loop)
+        HouseholdMember member = reloaded.getHouseholdMembers().get(0);
+        assertTrue(Hibernate.isInitialized(member.getHousehold()));
+        assertTrue(Hibernate.isInitialized(member.getHousehold()
+                .getHouseholdMembers())); // second-level
+    }
+
+    @Test
+    void getByIdWithInit_initialisesNestedCollections() {
+        int userId = userDao.getByPropertyEqual("displayName", "User One")
+                .get(0).getId();
+
+        User reloaded = userDao.getByIdWithInit(userId, "householdMembers");
+
+        // Same asserts as above, but you’re exercising the other code path
+        assertTrue(Hibernate.isInitialized(reloaded.getHouseholdMembers()));
+        HouseholdMember member = reloaded.getHouseholdMembers().get(0);
+        assertTrue(Hibernate.isInitialized(member.getHousehold()));
+        assertTrue(Hibernate.isInitialized(member.getHousehold().getHouseholdMembers()));
+    }
+
+    @Test
+    void getByPropertiesEqual_invalidPath_returnsEmptyList() {
+        Map<String,Object> badFilter = Map.of("foo.bar.baz", 123);
+        List<User> results = userDao.getByPropertiesEqual(badFilter);
+        assertTrue(results.isEmpty(), "DAO should swallow reflection error and return []");
+    }
+
+    @Test
+    void getSession_returnsCurrentSession() {
+        assertNotNull(userDao.getSession());
+    }
+
+    @Test
+    void getByPropertiesEqual_emptyMap_returnsEmptyList() {
+        Map<String, Object> emptyMap = new HashMap<>();
+        List<User> results = userDao.getByPropertiesEqual(emptyMap);
+        assertTrue(results.isEmpty());
+    }
+
+    @Test
+    void getById_invalidId_returnsNull() {
+        User result = userDao.getById(-1);
+        assertNull(result, "Should return null for a non-existent user ID");
+    }
+
+    @Test
+    void getByIdWithInit_invalidProperty_throwsExceptionHandled() {
+        User user = userDao.getByPropertyEqual("displayName", "User One").get(0);
+        User result = userDao.getByIdWithInit(user.getId(), "nonExistentProperty");
+        assertNotNull(result); // DAO should handle and return the user still
+    }
+
+    @Test
+    void getByPropertyLike_invalidProperty_throwsExceptionHandled() {
+        List<User> result = userDao.getByPropertyLike("nonExistentField", "test");
+        assertTrue(result.isEmpty(), "Should handle exception and return empty list");
+    }
+
+    @Test
+    void insert_invalidEntity_returnsNull() {
+        User badUser = new User();
+        User result = userDao.insert(badUser);
+        assertNull(result, "Insert should fail and return null");
+    }
+
+    @Test
+    void delete_transientEntity_handlesGracefully() {
+        User transientUser = new User();
+        try {
+            userDao.delete(transientUser);
+        } catch (Exception e) {
+            fail("Should not throw error for transient entities, but got: " + e.getMessage());
+        }
+    }
+
+    @Test
+    void update_transientEntity_throwsExceptionHandled() {
+        User newUser = new User();
+        newUser.setUsername("willfail");
+
+        try {
+            userDao.update(newUser);
+            fail("Expected an exception when updating a transient entity, but none was thrown.");
+        } catch (Exception e) {
+            assertTrue(e.getMessage().contains("Batch update returned unexpected row count"));
+        }
+    }
+
+
 
 }
