@@ -153,13 +153,17 @@ public class HouseholdCreator extends HttpServlet {
         // Set user invitations
         for (HouseholdMember householdMember : householdMembers) {
 
-            if (householdMember.getUser().getId() == user.getId()) {
+            if (householdMember.getUser().getId() != ownerMember.getUser().getId()) {
+
             Invitation invitation = new Invitation();
-//            invitation.setHousehold(household);
-//            invitation.setInvitedByUserId(user);
+            invitation.setInvitedByMember(ownerMember);
+            logger.info("Inviting {}", ownerMember.getUser());
+            invitation.setInvitedMember(householdMember);
+            logger.info("Inviting {}", householdMember.getUser());
             invitation.setInvitationCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
             invitation.setInviteStatus("pending");
             invitationDao.insert(invitation);
+
             }
 
         }
@@ -178,12 +182,12 @@ public class HouseholdCreator extends HttpServlet {
 
         List<User> matchedUsers;
         List<String> failedInserts = new ArrayList<>();
-        for (String username : users) {
-            logger.debug("Attempting to match user with username: {}", username);
+        for (String displayName : users) {
+            logger.debug("Attempting to match user with displayName: {}", displayName);
 
-            matchedUsers = userDao.getByPropertyEqual("username", username);
+            matchedUsers = userDao.getByPropertyEqual("displayName", displayName);
             if (matchedUsers.isEmpty()) {
-                logger.warn("User with username '{}' not found.", username);
+                logger.warn("User with displayName '{}' not found.", displayName);
                 continue; // Skip to next user
             }
 
@@ -192,14 +196,6 @@ public class HouseholdCreator extends HttpServlet {
 
             try {
                 logger.info("Inserting HouseholdMember for householdId={} and userId={}", householdMember.getId().getHouseholdId(), householdMember.getId().getUserId());
-
-                // Check if user is already a member
-                List<HouseholdMember> existingMembers = memberDao.getByPropertyEqual("userId", matchedUser.getId());
-                if (!existingMembers.isEmpty()) {
-                    logger.warn("User '{}' is already a member of the household.", matchedUser.getUsername());
-                    continue; // Skip if already a member
-
-                }
 
                 memberDao.insert(householdMember);
                 logger.info("Successfully added user '{}' to household.", matchedUser.getUsername());
