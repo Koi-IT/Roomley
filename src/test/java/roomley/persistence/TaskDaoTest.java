@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class TaskDaoTest {
 
-    GenericDao<Task> taskDao;
+    GenericDao<Task, Integer> taskDao;
     Task task;
 
     /**
@@ -114,7 +114,7 @@ class TaskDaoTest {
      */
     @Test
     void deleteOnlyTasks() {
-        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
 
         Task taskToDelete = taskDao.getById(3);
         assertNotNull(taskToDelete);

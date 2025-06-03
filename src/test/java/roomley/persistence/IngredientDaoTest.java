@@ -8,7 +8,7 @@ import roomley.util.Database;
 import static org.junit.jupiter.api.Assertions.*;
 class IngredientDaoTest {
 
-    GenericDao<Task> taskDao;
+    GenericDao<Task, Integer> taskDao;
     Task task;
 
     /**

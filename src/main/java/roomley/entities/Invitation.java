@@ -27,8 +27,8 @@ public class Invitation {
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "household_id", referencedColumnName = "household_id", insertable = false, updatable = false),
-            @JoinColumn(name = "invited_by_user", referencedColumnName = "user_id", insertable = false, updatable = false)
+            @JoinColumn(name = "household_id", referencedColumnName = "household_id"),
+            @JoinColumn(name = "invited_by_user", referencedColumnName = "user_id")
     })
     private HouseholdMember invitedByMember;
 

@@ -1,9 +1,6 @@
 package roomley.controller;
 
-import roomley.entities.Household;
-import roomley.entities.HouseholdMember;
-import roomley.entities.Task;
-import roomley.entities.User;
+import roomley.entities.*;
 import roomley.persistence.*;
 
 import javax.servlet.ServletException;
@@ -34,8 +31,8 @@ public class TaskCreator extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
-        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         HttpSession session = req.getSession(false);
 
         // Get the data from the submitted form
@@ -73,7 +70,7 @@ public class TaskCreator extends HttpServlet {
     private static Task createTask(User currentUser, String taskName, String taskDescription) throws ServletException {
 
         // Create householdMemberDao
-        GenericDao<HouseholdMember> householdMemberDao = new GenericDao<>(HouseholdMember.class);
+        GenericDao<HouseholdMember, HouseholdMemberId> householdMemberDao = new GenericDao<>(HouseholdMember.class);
 
         // Create a new task object
         Task newTask = new Task();

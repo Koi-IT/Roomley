@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDaoTest {
 
     User user;
-    GenericDao<User> userDao;
+    GenericDao<User, Integer> userDao;
 
     /**
      * Before each test reset db and create a new taskDao instance
@@ -86,7 +86,7 @@ class UserDaoTest {
      */
     @Test
     void deleteUserAndTasks() {
-        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
+        GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
 
         user = userDao.getById(7);
         userDao.delete(user);

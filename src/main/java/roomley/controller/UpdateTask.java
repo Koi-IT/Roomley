@@ -42,7 +42,7 @@ public class UpdateTask extends HttpServlet {
         String taskName = req.getParameter("taskName");
         String taskDescription = req.getParameter("taskDescription");
         String taskId =  req.getParameter("taskId");
-        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
+        GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
 
         // Verify user sub
         String userSub = (String) session.getAttribute("userSub");

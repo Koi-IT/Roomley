@@ -205,7 +205,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("Assigned role: " + role);
 
         // Setup Data for aws RDS if the user hasn't been already created
-        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         List<User> users = userDao.getByPropertyEqual("cognito_sub", userSub);
 
         if (users.isEmpty()) {
@@ -340,7 +340,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             newUser.setLastLogin(new Timestamp(System.currentTimeMillis()));
             newUser.setRole(role);
 
-            GenericDao<User> userDao = new GenericDao<>(User.class);
+            GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
             userDao.insert(newUser);
 
             logger.info("User inserted: " + newUser);

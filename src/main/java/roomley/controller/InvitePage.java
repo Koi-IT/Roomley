@@ -40,12 +40,12 @@ public class InvitePage extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         // Get user
-        GenericDao<User> userDao = new GenericDao<>(User.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         String userSub = (String) session.getAttribute("userSub");
         User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
 
         // Get invitations
-        GenericDao<Invitation> invitationDao = new GenericDao<>(Invitation.class);
+        GenericDao<Invitation, Integer> invitationDao = new GenericDao<>(Invitation.class);
         List<Invitation> invitations = invitationDao.getByPropertyEqual("invitedUser", user);
 
         logger.info("Invitation list: " + invitations);

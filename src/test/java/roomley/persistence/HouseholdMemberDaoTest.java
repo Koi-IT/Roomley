@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class HouseholdMemberDaoTest {
 
-    GenericDao<Task> taskDao;
+    GenericDao<Task, Integer> taskDao;
     Task task;
 
     /**

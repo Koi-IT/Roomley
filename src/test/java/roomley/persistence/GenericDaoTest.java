@@ -1,10 +1,13 @@
 package roomley.persistence;
 
+import org.hibernate.Hibernate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roomley.entities.Household;
+import roomley.entities.HouseholdMember;
 import roomley.entities.User;
 import roomley.util.Database;
+import roomley.services.UserService;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -16,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GenericDaoTest {
 
     Timestamp nowTimestamp = new Timestamp(System.currentTimeMillis());
-    GenericDao<User> userDao;
+    GenericDao<User, Integer> userDao;
     User user;
 
     @BeforeEach
@@ -79,11 +82,16 @@ class GenericDaoTest {
 
     @Test
     void delete() {
-        User userToDelete = userDao.getByPropertyEqual("displayName", "User One").get(0);
+        GenericDao<Household, Integer> householdDao = new GenericDao<>(Household.class);
 
-        userDao.delete(userToDelete);
+        UserService userService = new UserService();
+        int userId = userDao.getByPropertyEqual("displayName", "User Two").get(0).getId();
+        User userToDelete = userDao.getByIdWithInit(userId, "householdMembers");
+        int householdId = householdDao.getByPropertyEqual("createdByUserId", userId).get(0).getHouseholdId();
 
-        assertTrue(userDao.getByPropertyEqual("displayName", "User One").isEmpty());
+        userService.removeUserFromHouseholdAndDeleteUser(householdId, userId);
+
+        assertTrue(userDao.getByPropertyEqual("displayName", "User Two").isEmpty());
 
     }
 

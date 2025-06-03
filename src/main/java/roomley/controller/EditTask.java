@@ -39,7 +39,7 @@ public class EditTask extends HttpServlet {
 
         // Get task from task ID
         String taskId = req.getParameter("taskId");
-        GenericDao<Task> genericDao = new GenericDao<>(Task.class);
+        GenericDao<Task, Integer> genericDao = new GenericDao<>(Task.class);
         Task taskToUpdate = genericDao.getById(Integer.parseInt(taskId));
 
         // Give the task to update, to the session with task variable

@@ -1,16 +1,22 @@
 package roomley.persistence;
 
+import com.sun.xml.bind.v2.model.core.ID;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import roomley.entities.Household;
 import roomley.entities.HouseholdMember;
+import org.apache.commons.beanutils.PropertyUtils;
+
 
 import javax.persistence.criteria.*;
 import java.io.Flushable;
+import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,7 +26,7 @@ import java.util.Map;
  * Generic Dao for all database connections
  * @param <T>
  */
-public class GenericDao<T> {
+public class GenericDao<T, ID extends Serializable> {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final Class<T> type;
@@ -40,13 +46,20 @@ public class GenericDao<T> {
      * @param id id to be checked
      * @return results of query
      */
-    public T getById(int id) {
-
+    public T getById(ID id, String... collectionsToInit) {
         try (Session session = sessionFactory.openSession()) {
-            return session.get(type, id);
-
+            T entity = session.get(type, id);
+            if (entity != null) {
+                for (String collection : collectionsToInit) {
+                    Object collectionValue = PropertyUtils.getProperty(entity, collection);
+                    Hibernate.initialize(collectionValue);
+                }
+            }
+            return entity;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-
     }
 
     /**
@@ -210,6 +223,45 @@ public class GenericDao<T> {
             transaction.commit();
 
         }
+
+    }
+
+    public T getByIdWithInit(ID id, String... collectionsToInit) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        T entity = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            entity = session.get(type, id);
+
+            for (String collection : collectionsToInit) {
+                Object collectionValue = PropertyUtils.getProperty(entity, collection);
+                Hibernate.initialize(collectionValue);
+
+                if ("householdMembers".equals(collection)) {
+                    List<HouseholdMember> members = (List<HouseholdMember>) collectionValue;
+                    for (HouseholdMember m : members) {
+                        Hibernate.initialize(m.getHousehold());
+                        Hibernate.initialize(m.getHousehold().getHouseholdMembers());  // if you need nested members too
+                    }
+                }
+            }
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return entity;
+    }
+
+    public Session getSession() {
+        return sessionFactory.getCurrentSession();
 
     }
 

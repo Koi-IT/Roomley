@@ -31,8 +31,15 @@ public class HouseholdMember implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "householdMember", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "householdMember", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Task> tasks;
+
+    @OneToMany(mappedBy = "invitedMember")
+    private List<Invitation> receivedInvitations;
+
+    @OneToMany(mappedBy = "invitedByMember")
+    private List<Invitation> sentInvitations;
+
 
     /**
      * Instantiates a new Household member.
@@ -83,11 +90,11 @@ public class HouseholdMember implements Serializable {
         /**
          * Owner household role.
          */
-        owner,
+        OWNER,
         /**
          * Member household role.
          */
-        member
+        MEMBER
     }
 
     /**
@@ -142,6 +149,60 @@ public class HouseholdMember implements Serializable {
      */
     public void setHousehold(Household household) {
         this.household = household;
+    }
+
+    /**
+     * Gets tasks.
+     *
+     * @return the tasks
+     */
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    /**
+     * Sets tasks.
+     *
+     * @param tasks the tasks
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    /**
+     * Gets received invitations.
+     *
+     * @return the received invitations
+     */
+    public List<Invitation> getReceivedInvitations() {
+        return receivedInvitations;
+    }
+
+    /**
+     * Sets received invitations.
+     *
+     * @param receivedInvitations the received invitations
+     */
+    public void setReceivedInvitations(List<Invitation> receivedInvitations) {
+        this.receivedInvitations = receivedInvitations;
+    }
+
+    /**
+     * Gets sent invitations.
+     *
+     * @return the sent invitations
+     */
+    public List<Invitation> getSentInvitations() {
+        return sentInvitations;
+    }
+
+    /**
+     * Sets sent invitations.
+     *
+     * @param sentInvitations the sent invitations
+     */
+    public void setSentInvitations(List<Invitation> sentInvitations) {
+        this.sentInvitations = sentInvitations;
     }
 
     @Override

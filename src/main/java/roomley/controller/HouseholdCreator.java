@@ -39,10 +39,10 @@ public class HouseholdCreator extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        GenericDao<Household> householdDao = new GenericDao<>(Household.class);
-        GenericDao<HouseholdMember> memberDao = new GenericDao<>(HouseholdMember.class);
-        GenericDao<Invitation> invitationDao = new GenericDao<>(Invitation.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
+        GenericDao<Household, Integer> householdDao = new GenericDao<>(Household.class);
+        GenericDao<HouseholdMember, HouseholdMemberId> memberDao = new GenericDao<>(HouseholdMember.class);
+        GenericDao<Invitation, Integer> invitationDao = new GenericDao<>(Invitation.class);
         List<HouseholdMember> householdMembers = new ArrayList<>();
 
         // Grab session
@@ -131,7 +131,7 @@ public class HouseholdCreator extends HttpServlet {
         ownerMember.setId(ownerId);
         ownerMember.setHousehold(household);
         ownerMember.setUser(user);
-        ownerMember.setRole(HouseholdMember.HouseholdRole.owner);
+        ownerMember.setRole(HouseholdMember.HouseholdRole.OWNER);
 
         try {
             memberDao.insert(ownerMember);
@@ -170,7 +170,7 @@ public class HouseholdCreator extends HttpServlet {
     }
 
 
-    private void loopUsers(GenericDao<User> userDao, GenericDao<HouseholdMember> memberDao, List<HouseholdMember> householdMembers, String[] users, Household household) {
+    private void loopUsers(GenericDao<User, Integer> userDao, GenericDao<HouseholdMember, HouseholdMemberId> memberDao, List<HouseholdMember> householdMembers, String[] users, Household household) {
         if (users == null || users.length == 0) {
             logger.warn("No users to process.");
             return;
@@ -232,7 +232,7 @@ public class HouseholdCreator extends HttpServlet {
         householdMember.setId(memberId);
         householdMember.setHousehold(household);
         householdMember.setUser(matchedUser);
-        householdMember.setRole(HouseholdMember.HouseholdRole.member);
+        householdMember.setRole(HouseholdMember.HouseholdRole.MEMBER);
 
         return householdMember;
     }

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MealDaoTest {
 
-    GenericDao<Meal> mealDao;
+    GenericDao<Meal, Integer> mealDao;
     Meal meal;
 
     /**

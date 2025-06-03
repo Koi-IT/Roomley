@@ -51,9 +51,9 @@ public class TaskCreateLink extends HttpServlet {
         }
 
         //Create userDao
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        GenericDao<HouseholdMember> memberDao = new GenericDao<>(HouseholdMember.class);
-        GenericDao<Household> houseDao = new GenericDao<>(Household.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
+        GenericDao<HouseholdMember, HouseholdMemberId> memberDao = new GenericDao<>(HouseholdMember.class);
+        GenericDao<Household, Integer> houseDao = new GenericDao<>(Household.class);
 
         // Get user household
         String userSub = (String) session.getAttribute("userSub");

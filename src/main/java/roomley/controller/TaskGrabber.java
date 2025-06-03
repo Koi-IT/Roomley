@@ -48,8 +48,8 @@ public class TaskGrabber extends HttpServlet {
         }
 
         // Create Dao's
-        GenericDao<User> userDao = new GenericDao<>(User.class);
-        GenericDao<Task> taskDao = new GenericDao<>(Task.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
+        GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
 
         User user;
 
