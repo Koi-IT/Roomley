@@ -156,9 +156,9 @@ public class HouseholdCreator extends HttpServlet {
             if (householdMember.getUser().getId() != ownerMember.getUser().getId()) {
 
             Invitation invitation = new Invitation();
-            invitation.setInvitedByMember(ownerMember);
+            invitation.setInvitedByUser(ownerMember.getUser());
             logger.info("Inviting {}", ownerMember.getUser());
-            invitation.setInvitedMember(householdMember);
+            invitation.setInvitedUser(householdMember.getUser());
             logger.info("Inviting {}", householdMember.getUser());
             invitation.setInvitationCreatedAt(Timestamp.valueOf(LocalDateTime.now()));
             invitation.setInviteStatus("pending");

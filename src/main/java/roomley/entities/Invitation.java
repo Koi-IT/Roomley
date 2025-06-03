@@ -18,19 +18,18 @@ public class Invitation {
     @Column(name = "invitation_id")
     private int invitationId;
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "household_id", referencedColumnName = "household_id", insertable = false, updatable = false),
-            @JoinColumn(name = "invited_user", referencedColumnName = "user_id", insertable = false, updatable = false)
-    })
-    private HouseholdMember invitedMember;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "invited_by_user", nullable = false)
+    private User invitedByUser;
 
-    @ManyToOne
-    @JoinColumns({
-            @JoinColumn(name = "household_id", referencedColumnName = "household_id"),
-            @JoinColumn(name = "invited_by_user", referencedColumnName = "user_id")
-    })
-    private HouseholdMember invitedByMember;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "invited_user", nullable = false)
+    private User invitedUser;        // was invitedMember
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "household_id", nullable = false)
+    private Household household;     // direct reference
+
 
     @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp invitationCreatedAt;
@@ -38,30 +37,45 @@ public class Invitation {
     @Column(name = "status")
     private String inviteStatus;
 
-
     /**
      * Instantiates a new Invitation.
      */
     public Invitation() {
-
     }
 
     /**
      * Instantiates a new Invitation.
      *
      * @param invitationId        the invitation id
-     * @param invitedMember       the invited member
-     * @param invitedByMember     the invited by member
+     * @param invitedUser         the invited user
+     * @param household           the household
      * @param invitationCreatedAt the invitation created at
      * @param inviteStatus        the invite status
      */
-    public Invitation(int invitationId, HouseholdMember invitedMember, HouseholdMember invitedByMember, Timestamp invitationCreatedAt, String inviteStatus) {
+    public Invitation(int invitationId, User invitedUser, Household household, Timestamp invitationCreatedAt, String inviteStatus) {
         this.invitationId = invitationId;
-        this.invitedMember = invitedMember;
-        this.invitedByMember = invitedByMember;
+        this.invitedUser = invitedUser;
+        this.household = household;
         this.invitationCreatedAt = invitationCreatedAt;
         this.inviteStatus = inviteStatus;
+    }
 
+    /**
+     * Gets invited by user.
+     *
+     * @return the invited by user
+     */
+    public User getInvitedByUser() {
+        return invitedByUser;
+    }
+
+    /**
+     * Sets invited by user.
+     *
+     * @param invitedByUser the invited by user
+     */
+    public void setInvitedByUser(User invitedByUser) {
+        this.invitedByUser = invitedByUser;
     }
 
     /**
@@ -83,6 +97,42 @@ public class Invitation {
     }
 
     /**
+     * Gets invited user.
+     *
+     * @return the invited user
+     */
+    public User getInvitedUser() {
+        return invitedUser;
+    }
+
+    /**
+     * Sets invited user.
+     *
+     * @param invitedUser the invited user
+     */
+    public void setInvitedUser(User invitedUser) {
+        this.invitedUser = invitedUser;
+    }
+
+    /**
+     * Gets household.
+     *
+     * @return the household
+     */
+    public Household getHousehold() {
+        return household;
+    }
+
+    /**
+     * Sets household.
+     *
+     * @param household the household
+     */
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
+
+    /**
      * Gets invitation created at.
      *
      * @return the invitation created at
@@ -98,42 +148,6 @@ public class Invitation {
      */
     public void setInvitationCreatedAt(Timestamp invitationCreatedAt) {
         this.invitationCreatedAt = invitationCreatedAt;
-    }
-
-    /**
-     * Gets invited member.
-     *
-     * @return the invited member
-     */
-    public HouseholdMember getInvitedMember() {
-        return invitedMember;
-    }
-
-    /**
-     * Sets invited member.
-     *
-     * @param invitedMember the invited member
-     */
-    public void setInvitedMember(HouseholdMember invitedMember) {
-        this.invitedMember = invitedMember;
-    }
-
-    /**
-     * Gets invited by member.
-     *
-     * @return the invited by member
-     */
-    public HouseholdMember getInvitedByMember() {
-        return invitedByMember;
-    }
-
-    /**
-     * Sets invited by member.
-     *
-     * @param invitedByMember the invited by member
-     */
-    public void setInvitedByMember(HouseholdMember invitedByMember) {
-        this.invitedByMember = invitedByMember;
     }
 
     /**
@@ -158,8 +172,8 @@ public class Invitation {
     public String toString() {
         return "Invitation{" +
                 "invitationId=" + invitationId +
-                ", invitedMember=" + invitedMember +
-                ", invitedByMember=" + invitedByMember +
+                ", invitedUser=" + invitedUser +
+                ", household=" + household +
                 ", invitationCreatedAt=" + invitationCreatedAt +
                 ", inviteStatus='" + inviteStatus + '\'' +
                 '}';
