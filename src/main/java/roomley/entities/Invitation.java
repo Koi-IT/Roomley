@@ -30,7 +30,6 @@ public class Invitation {
     @JoinColumn(name = "household_id", nullable = false)
     private Household household;     // direct reference
 
-
     @Column(name = "created_at", insertable = false, updatable = false)
     private Timestamp invitationCreatedAt;
 

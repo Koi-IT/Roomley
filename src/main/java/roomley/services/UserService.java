@@ -97,8 +97,9 @@ public class UserService {
         User user = userDao.getById(userId);
         if (user == null) return;
 
+
         // Step 1: Find all HouseholdMember entries with this user
-        List<HouseholdMember> members = userDao.getById(userId).getHouseholdMembers();
+        List<HouseholdMember> members = new ArrayList<>(userDao.getById(userId).getHouseholdMembers());
 
         // Step 2: Delete all HouseholdMember entries first
         for (HouseholdMember member : members) {

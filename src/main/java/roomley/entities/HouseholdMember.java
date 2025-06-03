@@ -34,13 +34,6 @@ public class HouseholdMember implements Serializable {
     @OneToMany(mappedBy = "householdMember", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Task> tasks;
 
-    @OneToMany(mappedBy = "invitedMember")
-    private List<Invitation> receivedInvitations;
-
-    @OneToMany(mappedBy = "invitedByMember")
-    private List<Invitation> sentInvitations;
-
-
     /**
      * Instantiates a new Household member.
      */
@@ -167,42 +160,6 @@ public class HouseholdMember implements Serializable {
      */
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
-    }
-
-    /**
-     * Gets received invitations.
-     *
-     * @return the received invitations
-     */
-    public List<Invitation> getReceivedInvitations() {
-        return receivedInvitations;
-    }
-
-    /**
-     * Sets received invitations.
-     *
-     * @param receivedInvitations the received invitations
-     */
-    public void setReceivedInvitations(List<Invitation> receivedInvitations) {
-        this.receivedInvitations = receivedInvitations;
-    }
-
-    /**
-     * Gets sent invitations.
-     *
-     * @return the sent invitations
-     */
-    public List<Invitation> getSentInvitations() {
-        return sentInvitations;
-    }
-
-    /**
-     * Sets sent invitations.
-     *
-     * @param sentInvitations the sent invitations
-     */
-    public void setSentInvitations(List<Invitation> sentInvitations) {
-        this.sentInvitations = sentInvitations;
     }
 
     @Override

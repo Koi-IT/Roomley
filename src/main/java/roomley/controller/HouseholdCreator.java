@@ -144,18 +144,16 @@ public class HouseholdCreator extends HttpServlet {
 
         householdMembers.add(ownerMember);
 
-        // Add users to household (newly added)
-        loopUsers(userDao, memberDao, householdMembers, users, household);
+        // Add owner to household
+        household.setHouseholdMembers(ownerMember.getHousehold().getHouseholdMembers());
 
-        // After looping, set the members in the household
-        household.setHouseholdMembers(householdMembers);
-
-        // Set user invitations
+        // Send user invitations
         for (HouseholdMember householdMember : householdMembers) {
 
             if (householdMember.getUser().getId() != ownerMember.getUser().getId()) {
 
             Invitation invitation = new Invitation();
+            invitation.setHousehold(household);
             invitation.setInvitedByUser(ownerMember.getUser());
             logger.info("Inviting {}", ownerMember.getUser());
             invitation.setInvitedUser(householdMember.getUser());
@@ -172,48 +170,6 @@ public class HouseholdCreator extends HttpServlet {
         resp.sendRedirect("taskGrabber");
 
     }
-
-
-    private void loopUsers(GenericDao<User, Integer> userDao, GenericDao<HouseholdMember, HouseholdMemberId> memberDao, List<HouseholdMember> householdMembers, String[] users, Household household) {
-        if (users == null || users.length == 0) {
-            logger.warn("No users to process.");
-            return;
-        }
-
-        List<User> matchedUsers;
-        List<String> failedInserts = new ArrayList<>();
-        for (String displayName : users) {
-            logger.debug("Attempting to match user with displayName: {}", displayName);
-
-            matchedUsers = userDao.getByPropertyEqual("displayName", displayName);
-            if (matchedUsers.isEmpty()) {
-                logger.warn("User with displayName '{}' not found.", displayName);
-                continue; // Skip to next user
-            }
-
-            User matchedUser = matchedUsers.get(0);
-            HouseholdMember householdMember = setHouseholdMember(matchedUser, household);
-
-            try {
-                logger.info("Inserting HouseholdMember for householdId={} and userId={}", householdMember.getId().getHouseholdId(), householdMember.getId().getUserId());
-
-                memberDao.insert(householdMember);
-                logger.info("Successfully added user '{}' to household.", matchedUser.getUsername());
-                householdMembers.add(householdMember);  // Add to the list
-
-            } catch (Exception e) {
-                failedInserts.add(matchedUser.getUsername());
-                logger.error("Failed to insert household member for user: " + matchedUser.getUsername(), e);
-            }
-        }
-
-        if (!failedInserts.isEmpty()) {
-            logger.error("Failed to add the following users to the household: {}", String.join(", ", failedInserts));
-        }
-
-    }
-
-
 
     private HouseholdMember setHouseholdMember(User matchedUser, Household household) {
         HouseholdMemberId memberId = new HouseholdMemberId();

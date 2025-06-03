@@ -5,9 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * The type User.
@@ -40,8 +38,14 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @OneToMany(mappedBy = "invitedUser")
+    private List<Invitation> receivedInvitations;
+
+    @OneToMany(mappedBy = "invitedByUser")
+    private List<Invitation> sentInvitations;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<HouseholdMember> householdMembers = new ArrayList<>();
+    private Set<HouseholdMember> householdMembers = new HashSet<>();
 
     /**
      * No argument constructor for User
@@ -54,11 +58,11 @@ public class User {
     /**
      * User constructor
      *
-     * @param cognitoSub Cognito Sub
-     * @param displayName    Username
+     * @param cognitoSub  Cognito Sub
+     * @param displayName Username
      * @param email       Email
-     * @param createdAt  the created at
-     * @param lastLogin  Last Login
+     * @param createdAt   the created at
+     * @param lastLogin   Last Login
      * @param role        User Role
      */
     public User( String cognitoSub, String displayName, String email, java.sql.Timestamp createdAt,java.sql.Timestamp lastLogin, String role) {
@@ -72,11 +76,92 @@ public class User {
     }
 
     /**
+     * Gets user id.
+     *
+     * @return the user id
+     */
+    public int getUserId() {
+        return userId;
+    }
+
+    /**
+     * Sets user id.
+     *
+     * @param userId the user id
+     */
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * Gets display name.
+     *
+     * @return the display name
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * Sets display name.
+     *
+     * @param displayName the display name
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    /**
+     * Sets created at.
+     *
+     * @param createdAt the created at
+     */
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /**
+     * Gets received invitations.
+     *
+     * @return the received invitations
+     */
+    public List<Invitation> getReceivedInvitations() {
+        return receivedInvitations;
+    }
+
+    /**
+     * Sets received invitations.
+     *
+     * @param receivedInvitations the received invitations
+     */
+    public void setReceivedInvitations(List<Invitation> receivedInvitations) {
+        this.receivedInvitations = receivedInvitations;
+    }
+
+    /**
+     * Gets sent invitations.
+     *
+     * @return the sent invitations
+     */
+    public List<Invitation> getSentInvitations() {
+        return sentInvitations;
+    }
+
+    /**
+     * Sets sent invitations.
+     *
+     * @param sentInvitations the sent invitations
+     */
+    public void setSentInvitations(List<Invitation> sentInvitations) {
+        this.sentInvitations = sentInvitations;
+    }
+
+    /**
      * Gets household members.
      *
      * @return the household members
      */
-    public List<HouseholdMember> getHouseholdMembers() {
+    public Set<HouseholdMember> getHouseholdMembers() {
         return householdMembers;
     }
 
@@ -85,16 +170,26 @@ public class User {
      *
      * @param householdMembers the household members
      */
-    public void setHouseholdMembers(List<HouseholdMember> householdMembers) {
+    public void setHouseholdMembers(Set<HouseholdMember> householdMembers) {
         this.householdMembers = householdMembers;
 
     }
 
+    /**
+     * Add household member.
+     *
+     * @param member the member
+     */
     public void addHouseholdMember(HouseholdMember member) {
         householdMembers.add(member);
         member.setUser(this);
     }
 
+    /**
+     * Remove household member.
+     *
+     * @param member the member
+     */
     public void removeHouseholdMember(HouseholdMember member) {
         householdMembers.remove(member);
         member.setUser(null);

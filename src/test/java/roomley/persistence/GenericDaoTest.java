@@ -10,6 +10,7 @@ import roomley.util.Database;
 import roomley.services.UserService;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -188,8 +189,11 @@ class GenericDaoTest {
         assertTrue(Hibernate.isInitialized(reloaded.getHouseholdMembers()));
         assertFalse(reloaded.getHouseholdMembers().isEmpty());
 
+        List<HouseholdMember> householdMembers = new ArrayList<>(reloaded.getHouseholdMembers());
+
+
         // Assert – nested collection (only matters if you called init inside the loop)
-        HouseholdMember member = reloaded.getHouseholdMembers().get(0);
+        HouseholdMember member = householdMembers.get(0);
         assertTrue(Hibernate.isInitialized(member.getHousehold()));
         assertTrue(Hibernate.isInitialized(member.getHousehold()
                 .getHouseholdMembers())); // second-level
@@ -202,9 +206,11 @@ class GenericDaoTest {
 
         User reloaded = userDao.getByIdWithInit(userId, "householdMembers");
 
+        List<HouseholdMember> householdMembers = new ArrayList<>(reloaded.getHouseholdMembers());
+
         // Same asserts as above, but you’re exercising the other code path
         assertTrue(Hibernate.isInitialized(reloaded.getHouseholdMembers()));
-        HouseholdMember member = reloaded.getHouseholdMembers().get(0);
+        HouseholdMember member = householdMembers.get(0);
         assertTrue(Hibernate.isInitialized(member.getHousehold()));
         assertTrue(Hibernate.isInitialized(member.getHousehold().getHouseholdMembers()));
     }
