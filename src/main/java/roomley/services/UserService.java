@@ -20,10 +20,15 @@ public class UserService {
     private final GenericDao<Household, Integer> householdDao = new GenericDao<>(Household.class);
     private final GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
 
-    // Method to remove a user from the household and transfer ownership if necessary
+    /**
+     * Remove user from household and delete user.
+     *
+     * @param householdId the household id
+     * @param userId      the user id
+     */
     @Transactional
     public void removeUserFromHouseholdAndDeleteUser(int householdId, int userId) {
-        // Step 1: Remove the user from the household (remove HouseholdMember entry)
+
         HouseholdMember member = findHouseholdMember(householdId, userId);
         if (member != null) {
             // Transfer ownership if necessary
@@ -35,13 +40,15 @@ public class UserService {
             householdMemberDao.delete(member);
         }
 
-        // Step 2: Delete user's tasks (dissociate or delete tasks)
         deleteUserTasks(userId);
 
-        // Step 3: Safely delete the user after cleaning up all references
         deleteUser(userId);
     }
 
+    /**
+     * Deletes user with tasks
+     * @param userId
+     */
     private void deleteUserTasks(int userId) {
         // Find all tasks associated with the user
         List<Task> tasks = taskDao.getByPropertiesEqual(Map.of("user.userId", userId));
@@ -54,9 +61,12 @@ public class UserService {
         }
     }
 
-
-
-    // Helper method to find a HouseholdMember by householdId and userId
+    /**
+     * Find the household member
+     * @param householdId
+     * @param userId
+     * @return
+     */
     private HouseholdMember findHouseholdMember(int householdId, int userId) {
         List<HouseholdMember> members = householdMemberDao.getByPropertiesEqual(Map.of(
                 "household.householdId", householdId,
@@ -65,17 +75,18 @@ public class UserService {
         return members.isEmpty() ? null : members.get(0);
     }
 
-    // Method to transfer ownership to another member if necessary
+    /**
+     * Transfer household ownership
+     * @param householdId
+     */
     private void transferOwnership(int householdId) {
-        // Step 1: Get all members (excluding the current owner) of the household
+
         List<HouseholdMember> members = householdMemberDao.getByPropertiesEqual(Map.of(
                 "household.householdId", householdId,
-                "role", HouseholdMember.HouseholdRole.MEMBER // Only consider non-owner members
+                "role", HouseholdMember.HouseholdRole.MEMBER
         ));
 
-        // Step 2: Check if there are any members to transfer ownership to
         if (!members.isEmpty()) {
-            // Transfer ownership
             HouseholdMember newOwner = members.get(0);
             newOwner.setRole(HouseholdMember.HouseholdRole.OWNER);
             householdMemberDao.update(newOwner);
@@ -92,21 +103,22 @@ public class UserService {
 
     }
 
-    // Method to delete a user by userId
+    /**
+     * Delete user.
+     *
+     * @param userId the user id
+     */
     public void deleteUser(int userId) {
         User user = userDao.getById(userId);
         if (user == null) return;
 
 
-        // Step 1: Find all HouseholdMember entries with this user
         List<HouseholdMember> members = new ArrayList<>(userDao.getById(userId).getHouseholdMembers());
 
-        // Step 2: Delete all HouseholdMember entries first
         for (HouseholdMember member : members) {
             householdMemberDao.delete(member);
         }
 
-        // Step 3: Now safely delete the user
         userDao.delete(user);
     }
 

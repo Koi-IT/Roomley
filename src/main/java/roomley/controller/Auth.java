@@ -182,7 +182,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         JWTVerifier verifier = JWT.require(algorithm)
                 .withIssuer(iss)
-                .withClaim("token_use", "id") // make sure you're verifying id token
+                .withClaim("token_use", "id")
+                .acceptLeeway(60)
                 .build();
 
         // Verify the token

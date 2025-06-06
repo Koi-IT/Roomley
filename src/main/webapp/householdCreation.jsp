@@ -19,13 +19,13 @@
             <article class="welcomeCard">
                 <form action="householdCreator" method="post">
                     <label for="householdName">Household Name</label>
-                    <input type="text" id="householdName" name="householdName">
+                    <input type="text" id="householdName" name="householdName" required>
 
                     <label for="addUsers">Add User</label>
-                    <input type="text" id="addUsers" name="addUsers">
+                    <input type="text" id="addUsers" name="addUsers" placeholder="Username">
                     <button type="button" id="addUsersBtn">Add User</button>
                     <br><br>
-                    <h3>Users Added</h3>
+                    <h3>Users to be added</h3>
                     <br><br>
                     <ul id="userList"></ul>
 
@@ -40,4 +40,3 @@
         </article>
     </body>
 </html>
-

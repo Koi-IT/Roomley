@@ -45,7 +45,7 @@ public class TaskCreateLink extends HttpServlet {
         HttpSession session = req.getSession(false);
         if (session == null) {
             logger.info("No session found, redirecting to login.");
-            resp.sendRedirect("loginPage.jsp");
+            resp.sendRedirect("logout.jsp");
             return;
         }
 

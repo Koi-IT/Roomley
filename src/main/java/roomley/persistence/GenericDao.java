@@ -21,16 +21,22 @@ import java.util.*;
 
 /**
  * Generic Dao for all database connections
- * @param <T>
+ *
+ * @param <T>  the type parameter
+ * @param <ID> the type parameter
  */
 public class GenericDao<T, ID extends Serializable> {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final Class<T> type;
+    /**
+     * The Session factory.
+     */
     protected final SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
      * GenericDao constructor
+     *
      * @param type the type of the entity class
      */
     public GenericDao(Class<T> type) {
@@ -40,7 +46,9 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Get data by id
-     * @param id id to be checked
+     *
+     * @param id                id to be checked
+     * @param collectionsToInit the collections to init
      * @return results of query
      */
     public T getById(ID id, String... collectionsToInit) {
@@ -61,6 +69,7 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Get all data from a table
+     *
      * @return results of query
      */
     public List<T> getAll() {
@@ -77,8 +86,9 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Get by property equal
+     *
      * @param propertyName the property name
-     * @param value the value to be checked
+     * @param value        the value to be checked
      * @return results of query
      */
     public List<T> getByPropertyEqual(String propertyName, Object value) {
@@ -102,8 +112,9 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Get property like
+     *
      * @param propertyName the property name
-     * @param value the property value to be checked
+     * @param value        the property value to be checked
      * @return results of query
      */
     public List<T> getByPropertyLike(String propertyName, Object value) {
@@ -124,6 +135,7 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Get by properties equal
+     *
      * @param properties list of properties to be checked
      * @return results of query
      */
@@ -179,6 +191,7 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Insert an entity
+     *
      * @param entity entity to be added to db
      * @return the entity
      */
@@ -198,6 +211,7 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Update an entity
+     *
      * @param entity entity to be updated
      */
     public void update(T entity) {
@@ -213,6 +227,7 @@ public class GenericDao<T, ID extends Serializable> {
 
     /**
      * Delete entity
+     *
      * @param entity entity to be deleted
      */
     public void delete(T entity) {
@@ -226,6 +241,13 @@ public class GenericDao<T, ID extends Serializable> {
 
     }
 
+    /**
+     * Gets by id with init.
+     *
+     * @param id                the id
+     * @param collectionsToInit the collections to init
+     * @return the by id with init
+     */
     public T getByIdWithInit(ID id, String... collectionsToInit) {
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -260,6 +282,12 @@ public class GenericDao<T, ID extends Serializable> {
         return entity;
     }
 
+    /**
+     * Gets household with members.
+     *
+     * @param householdId the household id
+     * @return the household with members
+     */
     public Household getHouseholdWithMembers(int householdId) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
@@ -276,6 +304,11 @@ public class GenericDao<T, ID extends Serializable> {
     }
 
 
+    /**
+     * Gets session.
+     *
+     * @return the session
+     */
     public Session getSession() {
         return sessionFactory.openSession();
 

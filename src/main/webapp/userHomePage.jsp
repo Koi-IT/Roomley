@@ -54,24 +54,25 @@
 
                 <!-- To-Do Tasks Column -->
                 <div class="task-column col-4">
-                    <c:forEach var="task" items="${sessionScope.tasks}">
+                    <c:forEach var="task" items="${sessionScope.householdTasks}">
                         <c:if test="${!task.taskStatus}">
-                            <c:if test="${sessionScope.userSub != null && sessionScope.userHousehold != null}">
-                                <article class="task-card">
-                                    <div class="task-elements">
-                                        <span class="task-text">${task.taskName}</span>
-                                        <span class="task-text">${task.taskDescription}</span>
-                                        <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
-                                        <form action="updateTask?taskId=${task.taskId}" method="post" style="display:inline; margin:0; padding:0; border:none; background:none;">
-                                            <input type="hidden" name="taskId" value="${task.taskId}" />
-                                            <input type="hidden" name="action" value="toggleStatus" />
-                                            <button type="submit" class="task-buttons" style="all: unset; cursor: pointer; display:inline-block; line-height: 0;">
-                                                <img src="images/circle.svg" alt="Toggle Status" style="display: block;"/>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </article>
-                            </c:if>
+                            <article class="task-card">
+                                <div class="task-elements">
+                                    <span class="task-text">${task.taskName}</span>
+                                    <span class="task-text">${task.taskDescription}</span>
+                                    <!-- Edit Button (if allowed) -->
+                                    <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
+
+                                    <!-- Toggle Status Button -->
+                                    <form action="updateTask" method="post">
+                                        <input type="hidden" name="taskId" value="${task.taskId}" />
+                                        <input type="hidden" name="action" value="toggleStatus" />
+                                        <button type="submit" class="task-buttons">
+                                            <img src="images/circle.svg" alt="Toggle Status" />
+                                        </button>
+                                    </form>
+                                </div>
+                            </article>
                         </c:if>
                     </c:forEach>
                 </div>

@@ -41,7 +41,7 @@ public class TaskGrabber extends HttpServlet {
 
         // Redirect to log in if session is invalid
         if (session == null || session.getAttribute("userSub") == null) {
-            resp.sendRedirect("loginPage.jsp");
+            resp.sendRedirect("/logout");
             logger.warn("UserSub is null!");
             return;
         }
@@ -73,8 +73,15 @@ public class TaskGrabber extends HttpServlet {
         int userId = user.getId();
 
         List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
+        Household household = null;
 
-        Household household = members.get(0).getHousehold();
+        if (!members.isEmpty()) {
+            household = members.get(0).getHousehold();
+
+        } else {
+            logger.warn("No household members found for userSub: " + userSub);
+
+        }
 
         List<Task> householdTasks = taskDao.getByPropertyEqual("household", household);
 

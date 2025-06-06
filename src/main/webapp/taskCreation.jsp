@@ -19,10 +19,10 @@
         <article class="welcomeCard">
             <form action="${pageContext.request.contextPath}/taskCreator" method="post">
                 <label for="taskName">Task Name:</label>
-                <input type="text" id="taskName" name="taskName">
+                <input type="text" id="taskName" name="taskName" required>
 
                 <label for="taskDescription">Task Description:</label>
-                <input type="text" id="taskDescription" name="taskDescription">
+                <input type="text" id="taskDescription" name="taskDescription" required>
 
                 <label for="taskDifficulty">Task Difficulty:</label>
                 <select name="taskDifficulty" id="taskDifficulty">

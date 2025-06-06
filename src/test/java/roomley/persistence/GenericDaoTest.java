@@ -17,12 +17,29 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Generic dao test.
+ */
 class GenericDaoTest {
 
+    /**
+     * The Now timestamp.
+     */
     Timestamp nowTimestamp = new Timestamp(System.currentTimeMillis());
+
+    /**
+     * The User dao.
+     */
     GenericDao<User, Integer> userDao;
+
+    /**
+     * The User.
+     */
     User user;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -31,6 +48,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Insert.
+     */
     @Test
     void insert() {
         user = new User();
@@ -52,6 +72,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Gets all users.
+     */
     @Test
     void getAllUsers() {
         userDao.getAll();
@@ -61,6 +84,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Update.
+     */
     @Test
     void update() {
         User userToUpdate = userDao.getByPropertyEqual("displayName", "User One").get(0);
@@ -81,6 +107,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Delete.
+     */
     @Test
     void delete() {
         GenericDao<Household, Integer> householdDao = new GenericDao<>(Household.class);
@@ -96,6 +125,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Gets by id.
+     */
     @Test
     void getById() {
         User userById = userDao.getById(2);
@@ -107,6 +139,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Gets by property equal.
+     */
     @Test
     void getByPropertyEqual() {
         User userByPropertyEqual = userDao.getByPropertyEqual("displayName", "User Two").get(0);
@@ -119,6 +154,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Gets by property like.
+     */
     @Test
     void getByPropertyLike() {
         List<User> userByPropertyLike = userDao.getByPropertyLike("displayName", "User T");
@@ -145,6 +183,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * Gets by properties equal.
+     */
     @Test
     void getByPropertiesEqual() {
         // Arrange
@@ -176,6 +217,9 @@ class GenericDaoTest {
 
     }
 
+    /**
+     * User household members are initialised.
+     */
     @Test
     void userHouseholdMembersAreInitialised() {
         // Arrange – grab a known user that already has members
@@ -199,6 +243,9 @@ class GenericDaoTest {
                 .getHouseholdMembers())); // second-level
     }
 
+    /**
+     * Gets by id with init initialises nested collections.
+     */
     @Test
     void getByIdWithInit_initialisesNestedCollections() {
         int userId = userDao.getByPropertyEqual("displayName", "User One")
@@ -215,6 +262,9 @@ class GenericDaoTest {
         assertTrue(Hibernate.isInitialized(member.getHousehold().getHouseholdMembers()));
     }
 
+    /**
+     * Gets by properties equal invalid path returns empty list.
+     */
     @Test
     void getByPropertiesEqual_invalidPath_returnsEmptyList() {
         Map<String,Object> badFilter = Map.of("foo.bar.baz", 123);
@@ -222,11 +272,17 @@ class GenericDaoTest {
         assertTrue(results.isEmpty(), "DAO should swallow reflection error and return []");
     }
 
+    /**
+     * Gets session returns current session.
+     */
     @Test
     void getSession_returnsCurrentSession() {
         assertNotNull(userDao.getSession());
     }
 
+    /**
+     * Gets by properties equal empty map returns empty list.
+     */
     @Test
     void getByPropertiesEqual_emptyMap_returnsEmptyList() {
         Map<String, Object> emptyMap = new HashMap<>();
@@ -234,12 +290,18 @@ class GenericDaoTest {
         assertTrue(results.isEmpty());
     }
 
+    /**
+     * Gets by id invalid id returns null.
+     */
     @Test
     void getById_invalidId_returnsNull() {
         User result = userDao.getById(-1);
         assertNull(result, "Should return null for a non-existent user ID");
     }
 
+    /**
+     * Gets by id with init invalid property throws exception handled.
+     */
     @Test
     void getByIdWithInit_invalidProperty_throwsExceptionHandled() {
         User user = userDao.getByPropertyEqual("displayName", "User One").get(0);
@@ -247,12 +309,18 @@ class GenericDaoTest {
         assertNotNull(result); // DAO should handle and return the user still
     }
 
+    /**
+     * Gets by property like invalid property throws exception handled.
+     */
     @Test
     void getByPropertyLike_invalidProperty_throwsExceptionHandled() {
         List<User> result = userDao.getByPropertyLike("nonExistentField", "test");
         assertTrue(result.isEmpty(), "Should handle exception and return empty list");
     }
 
+    /**
+     * Insert invalid entity returns null.
+     */
     @Test
     void insert_invalidEntity_returnsNull() {
         User badUser = new User();
@@ -260,6 +328,9 @@ class GenericDaoTest {
         assertNull(result, "Insert should fail and return null");
     }
 
+    /**
+     * Delete transient entity handles gracefully.
+     */
     @Test
     void delete_transientEntity_handlesGracefully() {
         User transientUser = new User();
@@ -270,6 +341,9 @@ class GenericDaoTest {
         }
     }
 
+    /**
+     * Update transient entity throws exception handled.
+     */
     @Test
     void update_transientEntity_throwsExceptionHandled() {
         User newUser = new User();

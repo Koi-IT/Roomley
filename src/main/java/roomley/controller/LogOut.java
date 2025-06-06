@@ -2,8 +2,7 @@ package roomley.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import roomley.persistence.*;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +13,7 @@ import java.io.IOException;
 
 /**
  * A simple servlet to find all tasks in the database.
+ *
  * @author Koi-dev
  */
 @WebServlet(
@@ -25,17 +25,20 @@ public class LogOut extends HttpServlet {
 
     /**
      * Get request to remove session and redirect to home page
-     * @param req http request
+     *
+     * @param req  http request
      * @param resp http response
      * @throws ServletException Servlet exception
-     * @throws IOException Input output exception
+     * @throws IOException      Input output exception
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // Invalidate Session
         HttpSession session = req.getSession(false);
-        if (session != null) { session.invalidate(); }
+        if (session != null) {
+            session.invalidate();
+        }
         logger.info("User logged out");
 
         // Redirect home
