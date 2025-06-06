@@ -51,7 +51,7 @@
             <label for="taskDescription">Task Description</label>
             <input type="text" name="taskDescription" id="taskDescription" required>
 
-            <label for="assignedUser">reassign User:</label>
+            <label for="assignedUser">Reassign User:</label>
             <select name="assignedUser" id="assignedUser">
                 <c:forEach var="user" items="${householdUsers}">
                     <option value="${user.username}">${user.username}</option>
@@ -59,8 +59,6 @@
             </select>
 
             <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}">
-
-
 
             <button type="submit" name="action" value="update">Update</button>
             <br>

@@ -61,7 +61,7 @@
                                     <span class="task-text">${task.taskName}</span>
                                     <span class="task-text">${task.taskDescription}</span>
                                     <!-- Edit Button (if allowed) -->
-                                    <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
+                                    <a href="taskUpdateLink" class="edit-button">Edit</a>
 
                                     <!-- Toggle Status Button -->
                                     <form action="updateTask" method="post">
@@ -85,8 +85,8 @@
                                 <div class="task-elements">
                                     <span class="task-text">${task.taskName}</span>
                                     <span class="task-text">${task.taskDescription}</span>
-                                    <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
-                                    <a href="updateTask?taskId=${task.taskId}" class="task-buttons">
+                                    <a href="taskUpdateLink" class="edit-button">Edit</a>
+                                    <a href="taskUpdateLink" class="task-buttons">
                                     <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
                                         <input type="hidden" name="taskId" value="${task.taskId}" />
                                         <input type="hidden" name="action" value="toggleStatus" />
@@ -108,7 +108,7 @@
                             <div class="task-elements">
                                 <span class="task-text">${task.taskName}</span>
                                 <span class="task-text">${task.taskDescription}</span>
-                                <a href="editTask?taskId=${task.taskId}" class="edit-button">Edit</a>
+                                <a href="taskUpdateLink" class="edit-button">Edit</a>
                                 <a href="updateTask?taskId=${task.taskId}" class="task-buttons">
                                     <c:choose >
                                         <c:when test="${!task.taskStatus}">
