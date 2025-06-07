@@ -54,20 +54,18 @@
 
                 <!-- To-Do Tasks Column -->
                 <div class="task-column col-4">
-                    <c:forEach var="task" items="${sessionScope.householdTasks}">
+                    <c:forEach var="task" items="${sessionScope.tasks}">
                         <c:if test="${!task.taskStatus}">
                             <article class="task-card">
                                 <div class="task-elements">
                                     <span class="task-text">${task.taskName}</span>
                                     <span class="task-text">${task.taskDescription}</span>
-                                    <!-- Edit Button (if allowed) -->
-                                    <a href="taskUpdateLink" class="edit-button">Edit</a>
-
-                                    <!-- Toggle Status Button -->
-                                    <form action="updateTask" method="post">
+                                    <a href="deleteTaskLink?taskId=${task.taskId}">Delete</a>
+                                    <a href="taskUpdateLink?taskId=${task.taskId}" class="edit-button">Edit</a>
+                                    <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
                                         <input type="hidden" name="taskId" value="${task.taskId}" />
                                         <input type="hidden" name="action" value="toggleStatus" />
-                                        <button type="submit" class="task-buttons">
+                                        <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
                                             <img src="images/circle.svg" alt="Toggle Status" />
                                         </button>
                                     </form>
@@ -85,8 +83,8 @@
                                 <div class="task-elements">
                                     <span class="task-text">${task.taskName}</span>
                                     <span class="task-text">${task.taskDescription}</span>
-                                    <a href="taskUpdateLink" class="edit-button">Edit</a>
-                                    <a href="taskUpdateLink" class="task-buttons">
+                                    <a href="deleteTaskLink?taskId=${task.taskId}">Delete</a>
+                                    <a href="taskUpdateLink?taskId=${task.taskId}" class="edit-button">Edit</a>
                                     <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
                                         <input type="hidden" name="taskId" value="${task.taskId}" />
                                         <input type="hidden" name="action" value="toggleStatus" />
@@ -94,7 +92,6 @@
                                             <img src="images/circle.svg" alt="Toggle Status" />
                                         </button>
                                     </form>
-                                    </a>
                                 </div>
                             </article>
                         </c:if>
@@ -108,8 +105,8 @@
                             <div class="task-elements">
                                 <span class="task-text">${task.taskName}</span>
                                 <span class="task-text">${task.taskDescription}</span>
-                                <a href="taskUpdateLink" class="edit-button">Edit</a>
-                                <a href="updateTask?taskId=${task.taskId}" class="task-buttons">
+                                <a href="deleteTaskLink?taskId=${task.taskId}">Delete</a>
+                                <a href="taskUpdateLink?taskId=${task.taskId}" class="edit-button">Edit</a>
                                     <c:choose >
                                         <c:when test="${!task.taskStatus}">
                                             <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">

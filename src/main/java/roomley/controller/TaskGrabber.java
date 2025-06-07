@@ -73,20 +73,21 @@ public class TaskGrabber extends HttpServlet {
         int userId = user.getId();
 
         List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
-        Household household = null;
+        Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
 
-        if (!members.isEmpty()) {
-            household = members.get(0).getHousehold();
-
-        } else {
-            logger.warn("No household members found for userSub: " + userSub);
-
+        if (household == null) {
+            logger.warn("No household found for userSub: " + userSub);
+            req.setAttribute("errorMessage", "No household found for your account.");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("errorPage.jsp");
+            dispatcher.forward(req, resp);
+            return;
         }
 
         List<Task> householdTasks = taskDao.getByPropertyEqual("household", household);
 
+
         List<Task> userTasks = householdTasks.stream()
-                .filter(task -> task.getUser().equals(user))
+                .filter(task -> task.getUser() != null && task.getUser().equals(user))
                 .collect(Collectors.toList());
 
         List<Task> userCompletedTasks = userTasks.stream()
@@ -103,8 +104,11 @@ public class TaskGrabber extends HttpServlet {
         // Set session attributes based on user
         try {
             // TODO get all tasks within household
+            logger.debug("tasks: " + householdTasks);
             session.setAttribute("tasks", householdTasks);
+            logger.debug("userTasks: " + userTasks);
             session.setAttribute("userAssignedTasks", userTasks);
+            logger.debug("userCompletedTasks: " + userCompletedTasks);
             session.setAttribute("completedTasks", userCompletedTasks);
 
         } catch (Exception e) {

@@ -2,7 +2,10 @@ package roomley.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import roomley.entities.Household;
+import roomley.entities.HouseholdMember;
 import roomley.entities.Task;
+import roomley.entities.User;
 import roomley.persistence.GenericDao;
 
 import javax.servlet.ServletException;
@@ -43,6 +46,8 @@ public class UpdateTask extends HttpServlet {
         String taskDescription = req.getParameter("taskDescription");
         String taskId =  req.getParameter("taskId");
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
+        GenericDao<HouseholdMember, Integer> memberDao = new GenericDao<>(HouseholdMember.class);
+        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
 
         // Verify user sub
         String userSub = (String) session.getAttribute("userSub");
@@ -52,6 +57,9 @@ public class UpdateTask extends HttpServlet {
 
         }
 
+        // Get current User/Member
+        User currentUser = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
+        HouseholdMember currentMember = memberDao.getByPropertyEqual("user", currentUser.getId()).get(0);
 
         // Verify taskId
         if (taskId == null || taskId.isEmpty()) {
@@ -70,11 +78,11 @@ public class UpdateTask extends HttpServlet {
             Task task = taskDao.getById(Integer.parseInt(taskId));
             task.setTaskName(taskName);
             task.setTaskDescription(taskDescription);
-            taskDao.update(task);
+            task.setUser(currentUser);
+            task.setHousehold(currentMember.getHousehold());
 
-        } else if ("delete".equals(action)) {
-            // Delete task using id
-            taskDao.delete(taskDao.getById(Integer.parseInt(taskId)));
+            logger.debug("Updated task: {}", task);
+            taskDao.update(task);
 
         } else {
             // Update task status

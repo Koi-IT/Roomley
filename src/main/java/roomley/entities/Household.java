@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The type Household.
@@ -119,6 +120,18 @@ public class Household {
      */
     public void setHouseholdMembers(List<HouseholdMember> householdMemberList) {
         householdMembers = householdMemberList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Household household = (Household) o;
+        return householdId == household.householdId && createdByUserId == household.createdByUserId && Objects.equals(groupName, household.groupName) && Objects.equals(householdMembers, household.householdMembers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(householdId, groupName, createdByUserId, householdMembers);
     }
 
     @Override

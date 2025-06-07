@@ -30,8 +30,8 @@ public class Task {
     @Column(name = "task_difficulty")
     private int taskDifficulty;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;           // add
 
     @ManyToOne

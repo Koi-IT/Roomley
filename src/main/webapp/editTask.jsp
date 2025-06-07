@@ -18,25 +18,19 @@
 
         <article class="welcomeCard">
             <div class="task-elements">
-                <span class="task-text">${sessionScope.taskToUpdate.taskName}</span>
-                <span class="task-text">${sessionScope.taskToUpdate.taskDescription}</span>
+                <span class="task-text">Task Name: ${sessionScope.taskToUpdate.taskName}</span>
+                <span class="task-text">Task Description: ${sessionScope.taskToUpdate.taskDescription}</span>
                 <c:choose >
                     <c:when test="${!sessionScope.taskToUpdate.taskStatus}">
                         <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
                             <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}" />
                             <input type="hidden" name="action" value="toggleStatus" />
-                            <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
-                                <img src="images/circle.svg" alt="Toggle Status" />
-                            </button>
                         </form>
                     </c:when>
                     <c:when test="${sessionScope.taskToUpdate.taskStatus}">
                         <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
                             <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}" />
                             <input type="hidden" name="action" value="toggleStatus" />
-                            <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
-                                <img src="images/check_circle.svg" alt="Toggle Status" />
-                            </button>
                         </form>
                     </c:when>
                 </c:choose>
@@ -46,10 +40,10 @@
     <article class="welcomeCard">
         <form action="${pageContext.request.contextPath}/updateTask" method="post" >
             <label for="taskName">Task Name</label>
-            <input type="text" name="taskName" id="taskName" required>
+            <input type="text" name="taskName" id="taskName" value="${sessionScope.taskToUpdate.taskName}" required>
 
             <label for="taskDescription">Task Description</label>
-            <input type="text" name="taskDescription" id="taskDescription" required>
+            <input type="text" name="taskDescription" id="taskDescription" value="${sessionScope.taskToUpdate.taskDescription}" required>
 
             <label for="assignedUser">Reassign User:</label>
             <select name="assignedUser" id="assignedUser">
@@ -61,9 +55,6 @@
             <input type="hidden" name="taskId" value="${sessionScope.taskToUpdate.taskId}">
 
             <button type="submit" name="action" value="update">Update</button>
-            <br>
-            <br>
-            <button type="submit" name="action" value="delete">Delete</button>
         </form>
     </article>
         <%@include file="footer.jsp"%>
