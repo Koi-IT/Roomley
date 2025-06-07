@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A simple servlet to find all tasks in the database.
@@ -54,8 +55,11 @@ public class DistributeTasks extends HttpServlet {
         GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
         List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
         Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
-        List<Task> householdTasks = taskDao.getByPropertyEqual("household", household);
 
+        List<Task> householdTasks = taskDao.getByPropertyEqual("household", household)
+                .stream()
+                .filter(task -> task.getUser() == null) // Only unassigned tasks
+                .collect(Collectors.toList());
 
         // Prepare a Map to keep track of members and their assigned tasks + difficulty sums
         Map<HouseholdMember, List<Task>> assignments = new HashMap<>();

@@ -89,7 +89,10 @@ public class TaskGrabber extends HttpServlet {
                 .filter(task -> task.getUser() != null && task.getUser().equals(user))
                 .collect(Collectors.toList());
 
-        householdTasks.removeIf(userTasks::contains);
+        List<Task> unassignedTasks = householdTasks.stream()
+                .filter(task -> task.getUser() == null)
+                .collect(Collectors.toList());
+
 
         List<Task> userCompletedTasks = userTasks.stream()
                 .filter(Task::getTaskStatus)
@@ -105,8 +108,8 @@ public class TaskGrabber extends HttpServlet {
         // Set session attributes based on user
         try {
             // TODO get all tasks within household
-            logger.debug("tasks: " + householdTasks);
-            session.setAttribute("tasks", householdTasks);
+            logger.debug("tasks: " + unassignedTasks);
+            session.setAttribute("tasks", unassignedTasks);
             logger.debug("userTasks: " + userTasks);
             session.setAttribute("userAssignedTasks", userTasks);
             logger.debug("userCompletedTasks: " + userCompletedTasks);
