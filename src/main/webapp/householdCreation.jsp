@@ -15,9 +15,9 @@
 
     <body class="page-wrapper">
         <article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
-
             <article class="welcomeCard">
                 <form action="householdCreator" method="post">
+                    <h2>Create a Household</h2>
                     <label for="householdName">Household Name</label>
                     <input type="text" id="householdName" name="householdName" required>
 

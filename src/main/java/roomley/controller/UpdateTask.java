@@ -72,6 +72,9 @@ public class UpdateTask extends HttpServlet {
 
         }
 
+
+
+
         // Start update based on action
         if ("update".equals(action)) {
             // Update task name/description
@@ -80,6 +83,13 @@ public class UpdateTask extends HttpServlet {
             task.setTaskDescription(taskDescription);
             task.setUser(currentUser);
             task.setHousehold(currentMember.getHousehold());
+            task.setTaskDifficulty(task.getTaskDifficulty());
+
+            String difficultyStr = req.getParameter("taskDifficulty");
+            if (difficultyStr != null && !difficultyStr.isEmpty()) {
+                int difficulty = Integer.parseInt(difficultyStr);
+                task.setTaskDifficulty(difficulty);
+            }
 
             logger.debug("Updated task: {}", task);
             taskDao.update(task);

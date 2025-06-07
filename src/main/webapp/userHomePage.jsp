@@ -18,9 +18,10 @@
 
             <div class="grid">
                 <article class="userHomePageCard">
-                    <button>
-                        Distribute Tasks
-                    </button>
+                    <form action="distributeTasks" method="get" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
+                        <input type="hidden" name="username" value="${sessionScope.username}">
+                        <button type="submit">Distribute Tasks</button>
+                    </form>
                 </article>
                 <article class="userHomePageCard">
                     <h3 class="dm-serif-text-regular-italic">Welcome</h3>
@@ -38,11 +39,7 @@
                 <article class="task-title new-task-button">
                     <h3>Tasks to-do</h3>
                     <a href="${pageContext.request.contextPath}/taskCreateLink?householdId=8">
-                    <button>New Task
-
-                            <img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Add New Task">
-
-                    </button>
+                        <button>New Task<img src="images/add_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Add New Task"></button>
                     </a>
                 </article>
                 <article class="task-title"><h3>Assigned to me</h3></article>
@@ -127,7 +124,6 @@
                                             </form>
                                         </c:when>
                                     </c:choose>
-                                </a>
                             </div>
                         </article>
                     </c:forEach>

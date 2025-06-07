@@ -77,18 +77,19 @@ public class TaskGrabber extends HttpServlet {
 
         if (household == null) {
             logger.warn("No household found for userSub: " + userSub);
-            req.setAttribute("errorMessage", "No household found for your account.");
-            RequestDispatcher dispatcher = req.getRequestDispatcher("errorPage.jsp");
-            dispatcher.forward(req, resp);
+            session.setAttribute("errorMessage", "No household found for your account.");
+            resp.sendRedirect(req.getContextPath() + "/householdCreation.jsp");
+
             return;
         }
 
         List<Task> householdTasks = taskDao.getByPropertyEqual("household", household);
 
-
         List<Task> userTasks = householdTasks.stream()
                 .filter(task -> task.getUser() != null && task.getUser().equals(user))
                 .collect(Collectors.toList());
+
+        householdTasks.removeIf(userTasks::contains);
 
         List<Task> userCompletedTasks = userTasks.stream()
                 .filter(Task::getTaskStatus)

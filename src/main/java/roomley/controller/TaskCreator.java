@@ -38,6 +38,8 @@ public class TaskCreator extends HttpServlet {
         // Get the data from the submitted form
         String taskName = req.getParameter("taskName");
         String taskDescription = req.getParameter("taskDescription");
+        String taskDifficultyString = req.getParameter("taskDifficulty");
+        int taskDifficulty = taskDifficultyString == null ? 0 : Integer.parseInt(taskDifficultyString);
 
         // Set userSub
         String userSub = (String) session.getAttribute("userSub");
@@ -49,7 +51,7 @@ public class TaskCreator extends HttpServlet {
 
 
         // Create task using userSub, taskName, and TaskDescription
-        Task newTask = createTask(currentUser, taskName, taskDescription);
+        Task newTask = createTask(currentUser, taskName, taskDescription,taskDifficulty);
 
         // Insert new task into rds
         taskDao.insert(newTask);
@@ -66,7 +68,7 @@ public class TaskCreator extends HttpServlet {
      * @return the new Task object
      * @throws ServletException Servlet exception
      */
-    private static Task createTask(User currentUser, String taskName, String taskDescription) throws ServletException {
+    private static Task createTask(User currentUser, String taskName, String taskDescription, int taskDifficulty) throws ServletException {
 
         // Create householdMemberDao
         GenericDao<HouseholdMember, HouseholdMemberId> householdMemberDao = new GenericDao<>(HouseholdMember.class);
@@ -76,7 +78,6 @@ public class TaskCreator extends HttpServlet {
 
         // Get user as household member
         List<HouseholdMember> householdMembers = householdMemberDao.getByPropertyEqual("user", currentUser);
-
         if (householdMembers.isEmpty()) {
             throw new ServletException("No HouseholdMember found for the user.");
         }
@@ -89,6 +90,7 @@ public class TaskCreator extends HttpServlet {
         newTask.setTaskDescription(taskDescription);
         newTask.setTaskStatus(false);
         newTask.setHousehold(currentMember.getHousehold());
+        newTask.setTaskDifficulty(taskDifficulty);
         newTask.setUser(null);
         return newTask;
 
