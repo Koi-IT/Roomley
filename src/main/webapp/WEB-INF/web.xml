@@ -5,7 +5,7 @@
 <display-name>Roomley</display-name>
 
     <session-config>
-        <session-timeout>30</session-timeout> <!-- Timeout in minutes -->
+        <session-timeout>30</session-timeout>
     </session-config>
 
 </web-app>

@@ -25,11 +25,11 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="ebdb@awseb-e-im5c23ijpi-stack-awsebrdsdatabase-hae1rqqdaejj.c9iku2weendw.us-east-2.rds.amazonaws.com" uuid="58601703-da67-4e04-9c38-8278a200f993">
+    <data-source source="LOCAL" name="ebdb@awseb-e-im5c23ijpi-stack-awsebrdsdatabase-jofizmb5lwfa.c9iku2weendw.us-east-2.rds.amazonaws.com" uuid="58601703-da67-4e04-9c38-8278a200f993">
       <driver-ref>mysql_aurora_aws</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>software.aws.rds.jdbc.mysql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql:aws://awseb-e-im5c23ijpi-stack-awsebrdsdatabase-hae1rqqdaejj.c9iku2weendw.us-east-2.rds.amazonaws.com:3306/ebdb</jdbc-url>
+      <jdbc-url>jdbc:mysql:aws://awseb-e-im5c23ijpi-stack-awsebrdsdatabase-jofizmb5lwfa.c9iku2weendw.us-east-2.rds.amazonaws.com:3306/ebdb</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />

@@ -133,6 +133,7 @@
             <%@include file="footer.jsp"%>
 
         </article>
+        <script src="JavaScript/app.js"></script>
     </body>
 </html>
 
