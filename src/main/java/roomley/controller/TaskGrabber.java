@@ -72,15 +72,12 @@ public class TaskGrabber extends HttpServlet {
         String username = user.getUsername();
         int userId = user.getId();
 
-        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
-        Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
-
+        Household household = (Household) session.getAttribute("currentHousehold");
 
         if (household == null) {
             logger.warn("No household found for userSub: " + userSub);
             session.setAttribute("errorMessage", "No household found for your account.");
             resp.sendRedirect(req.getContextPath() + "/householdCreation.jsp");
-
             return;
         }
 

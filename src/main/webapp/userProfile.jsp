@@ -37,7 +37,10 @@
                                 <p>Current Household</p>
                             </c:when>
                             <c:otherwise>
-                                <a href="updateHousehold">Change</a>
+                                <form action="updateHousehold" method="post">
+                                    <input type="hidden" name="householdId" value="${household.householdId}" />
+                                    <button type="submit">Change</button>
+                                </form>
                             </c:otherwise>
                         </c:choose>
                     </div>
