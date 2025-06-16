@@ -49,11 +49,12 @@ public class DistributeTasks extends HttpServlet {
         String username = req.getParameter("username");
         User user = userDao.getByPropertyEqual("displayName", username).get(0);
         Set<HouseholdMember> householdMembers = user.getHouseholdMembers();
+        int userId = user.getId();
 
         // Get Tasks in current users household
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
         GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
-        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
+        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("id.userId", userId);
         Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
 
         List<Task> householdTasks = taskDao.getByPropertyEqual("household", household)
