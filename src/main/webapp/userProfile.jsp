@@ -16,14 +16,9 @@
     <body class="page-wrapper">
 
         <article class="welcomeCard">
-            <h1>User Info</h1>
-            <form action="" method="post">
-                <label for="username"> Username: </label>
-                <input id="username" type="text" value="${sessionScope.username}">
+            <h1>Username</h1>
+            <h2>${sessionScope.username}</h2>
 
-                <button type="submit">Change</button>
-
-            </form>
 
 
         </article>

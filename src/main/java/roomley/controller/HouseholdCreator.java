@@ -63,14 +63,6 @@ public class HouseholdCreator extends HttpServlet {
         String[] users = req.getParameterValues("users[]");
         logger.info("Users received: {}", Arrays.toString(users));
 
-        // Check if the 'users' parameter is null or empty
-        if (users == null || users.length == 0) {
-            logger.error("No users were provided in the form submission.");
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "No users were added.");
-            return;
-
-        }
-
         // Validate householdName
         if (req.getParameter("householdName") == null || req.getParameter("householdName").isEmpty()) {
             req.setAttribute("errorMessage", "Household name is required!");
@@ -158,50 +150,51 @@ public class HouseholdCreator extends HttpServlet {
 
         // Add owner to household
         household.setHouseholdMembers(ownerMember.getHousehold().getHouseholdMembers());
+        List<String> missingUsers = new ArrayList<>();
+        List<String> foundUsers = new ArrayList<>();
 
         // Add other users to the household as members (besides the owner)
-        for (String username : users) {
-            try {
-                // Fetch user by username (assuming you have a 'getByPropertyEqual' method for usernames)
-                List<User> userList = userDao.getByPropertyEqual("displayName", username);
+        if (users != null) {
+            for (String username : users) {
+                try {
+                    List<User> userList = userDao.getByPropertyEqual("displayName", username);
 
-                if (userList.isEmpty()) {
-                    logger.warn("User not found for username: {}", username);
-                    
-                    continue; // Skip this iteration if no user is found
-                }
-
-                User invitedUser = userList.get(0);  // Assuming the username is unique, so we take the first user
-
-                // Skip the owner (since they were already added)
-                if (invitedUser.getId() != user.getId()) {
-                    // Create a new HouseholdMember for this user
-                    HouseholdMember member = new HouseholdMember();
-                    HouseholdMemberId memberId = new HouseholdMemberId();
-                    memberId.setHouseholdId(household.getHouseholdId());
-                    memberId.setUserId(invitedUser.getId());
-
-                    member.setId(memberId);
-                    member.setHousehold(household);
-                    member.setUser(invitedUser);
-                    member.setRole(HouseholdMember.HouseholdRole.MEMBER);
-
-                    try {
-                        memberDao.insert(member);
-                        logger.info("Added user {} to household {}.", invitedUser.getUserId(), household.getHouseholdId());
-                    } catch (Exception e) {
-                        logger.error("Error adding user {} to household.", invitedUser.getUserId(), e);
+                    if (userList.isEmpty()) {
+                        missingUsers.add(username);
+                        continue;
                     }
 
-                    // Add the user to the list of household members
-                    householdMembers.add(member);
-                }
+                    User invitedUser = userList.get(0);
+                    foundUsers.add(invitedUser.getDisplayName()); // Add to found
 
-            } catch (Exception e) {
-                // If there's any exception, log it and skip that user
-                logger.error("Error processing user: {}", username, e);
+                    if (invitedUser.getId() != user.getId()) {
+                        HouseholdMember member = new HouseholdMember();
+                        HouseholdMemberId memberId = new HouseholdMemberId();
+                        memberId.setHouseholdId(household.getHouseholdId());
+                        memberId.setUserId(invitedUser.getId());
+
+                        member.setId(memberId);
+                        member.setHousehold(household);
+                        member.setUser(invitedUser);
+                        member.setRole(HouseholdMember.HouseholdRole.MEMBER);
+
+                        try {
+                            memberDao.insert(member);
+                            logger.info("Added user {} to household {}.", invitedUser.getUserId(), household.getHouseholdId());
+                            householdMembers.add(member);
+                        } catch (Exception e) {
+                            logger.error("Error adding user {} to household.", invitedUser.getUserId(), e);
+                        }
+                    }
+
+                } catch (Exception e) {
+                    logger.error("Error processing user: {}", username, e);
+                }
             }
         }
+
+        session.setAttribute("missingUsers", missingUsers);
+        session.setAttribute("foundUsers", foundUsers);
 
 
 
@@ -231,8 +224,10 @@ public class HouseholdCreator extends HttpServlet {
 
         }
 
-        // Redirect to taskGrabber
-        resp.sendRedirect("taskGrabber");
+        session.setAttribute("currentHousehold", household);
+
+        // Redirect to householdCreated
+        resp.sendRedirect("householdCreated.jsp");
 
     }
 
