@@ -18,7 +18,7 @@
                         <!-- When the user is logged in -->
                         <li class="nav-font"><a href="taskGrabber">Home</a></li>
                         <li class="nav-font"><a href="userProfile.jsp">Profile</a></li>
-                        <li class="nav-font"><a href="invites.jsp">Invites</a></li>
+                        <li class="nav-font"><a href="invitePage">Invites</a></li>
                         <li class="nav-font"><a href="logout">Sign out</a></li>
                     </c:otherwise>
                 </c:choose>

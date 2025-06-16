@@ -75,6 +75,7 @@ public class TaskGrabber extends HttpServlet {
         List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
         Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
 
+
         if (household == null) {
             logger.warn("No household found for userSub: " + userSub);
             session.setAttribute("errorMessage", "No household found for your account.");

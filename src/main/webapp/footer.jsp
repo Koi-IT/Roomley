@@ -1,3 +1,3 @@
 <footer>
-        This is my footer
+        Made By Andrew Johnson
 </footer>

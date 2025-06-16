@@ -12,18 +12,30 @@
 <%@include file="header.jsp"%>
 
     <body class="page-wrapper">
-        <article class="welcomeCard">
+        <main class="welcomeCard">
+            <article class="welcomeCard">
 
-            <table class="invite-table">
-                <tr>
-                    <th>Invited By:</th>
-                    <th>Invite Status:</th>
-                    <th>Household Name:</th>
-                    <th>Accept/Decline</th>
-                </tr>
-            </table>
+                <table class="invite-table">
+                    <tr>
+                        <th>Invited By</th>
+                        <th>Invite Status</th>
+                        <th>Household Name</th>
+                        <th>Accept/Decline</th>
+                    </tr>
+                    <c:forEach var="invite" items="${sessionScope.invitations}">
 
-        </article>
+                        <tr>
+                            <td>${invite}</td>
+                            <td>${invite}</td>
+                            <td>${invite}</td>
+                            <button>Accept</button>
+                            <button>Decline</button>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </article>
+
+        </main>
     </body>
 
 <%@include file="footer.jsp"%>

@@ -1,41 +1,21 @@
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-html, body {
-    height: 100%;  /* Ensure both HTML and body are full height */
-    margin: 0;     /* Remove default margin */
-    padding: 0;    /* Remove default padding */
-}
-
 body {
     font-size: 16px;
     line-height: 1.5;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
-}
-
-main {
-    align-content: center;
-    align-items: center;
 }
 
 .page-wrapper {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-}
-
-h3 {
-    margin-bottom: 0 !important;
-}
-
-img {
-    max-width: none; /* override Pico */
 }
 
 #homePage {
@@ -46,9 +26,23 @@ img {
 }
 
 footer {
-    background: #222;
     text-align: center;
     font-size: 1rem;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+main {
+    align-content: center;
+    align-items: center;
+}
+
+h3 {
+    margin-bottom: 0 !important;
+}
+
+img {
+    max-width: none; /* override Pico */
 }
 
 /* Task Elements */
@@ -113,26 +107,13 @@ footer {
     flex: 0;
 }
 
-#home-page {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-}
-
-footer {
-    background: #222;
-    text-align: center;
-    font-size: 1rem;
-    margin-top: auto;  /* Push footer to the bottom */
-    padding: 1rem;
-}
-
 [type=button], [type=reset], [type=submit] {
     margin-bottom: 0 !important;
 }
 
 .welcomeCard {
-    min-width: 520px;
+    min-width: 200px;
+    max-width: 480px;
     text-align: center;
     align-self: center;
     display: flex;

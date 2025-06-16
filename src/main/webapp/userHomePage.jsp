@@ -13,8 +13,8 @@
 
     <%@include file="header.jsp"%>
 
-    <body class="page-wrapper">
-        <article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
+    <body class="page-wrapper container">
+        <div class="page-wrapper">
 
             <div class="grid">
                 <article class="userHomePageCard">
@@ -132,7 +132,7 @@
 
             <%@include file="footer.jsp"%>
 
-        </article>
+        </div>
         <script src="JavaScript/app.js"></script>
     </body>
 </html>

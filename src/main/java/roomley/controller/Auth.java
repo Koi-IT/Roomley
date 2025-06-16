@@ -6,6 +6,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import roomley.auth.*;
+import roomley.entities.Household;
+import roomley.entities.HouseholdMember;
 import roomley.persistence.GenericDao;
 import roomley.entities.User;
 import roomley.util.PropertiesLoader;
@@ -194,6 +196,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String userEmail = jwt.getClaim("email").asString();
         String userSub = jwt.getClaim("sub").asString();
 
+
+
         logger.debug("JWT: " + jwt.getClaims().toString());
         logger.debug("here's the username: " + username);
         logger.debug("here's the email: " + userEmail);
@@ -209,13 +213,32 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
 
+        // Get Household(s) memberships
+        int userId = users.get(0).getId();
+
+        GenericDao<HouseholdMember, Integer> memberDao = new GenericDao<>(HouseholdMember.class);
+        List<HouseholdMember> memberships = memberDao.getByPropertyEqual("id.userId", userId);
+
+        List<Household> households = new ArrayList<>();
+
+        // Add each household where the user has a membership to the households list
+        for(HouseholdMember member : memberships) {
+            households.add(member.getHousehold());
+
+        }
+
+        User user = users.get(0);
+        GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
+        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
+        Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
+
         if (users.isEmpty()) {
             logger.debug("User does not exist: " + userSub);
-            fetchDataFromRDS(userSub, userEmail, username, role, req);
+            fetchDataFromRDS(userSub, userEmail, username, households, household, role, req);
 
         } else {
             logger.debug("User exists: " + userSub);
-            createUserSession(req, userSub, userEmail, username, role);
+            createUserSession(req, userSub, households, household, username);
 
         }
 
@@ -325,13 +348,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param username  Username
      * @param role      role
      */
-    private void fetchDataFromRDS(String userSub, String userEmail, String username, String role, HttpServletRequest req) {
+    private void fetchDataFromRDS(String userSub, String userEmail, String username, List<Household> households, Household household, String role, HttpServletRequest req) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Create user session to hold cognito sub
-            createUserSession(req, userSub, userEmail, username, role);
+            createUserSession(req, userSub, households, household, username);
 
             // Create new user in AWS RDS from cognito sub
             User newUser = new User();
@@ -358,19 +381,21 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * Create user session to hold user data
      * @param req http request
      * @param userSub user cognito sub
-     * @param userEmail user email
      * @param username username
-     * @param role user role
      */
-    public void createUserSession(HttpServletRequest req, String userSub, String userEmail, String username, String role) {
+    public void createUserSession(HttpServletRequest req, String userSub, List<Household> households, Household household, String username) {
         HttpSession session = req.getSession(true);
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
         logger.debug("Username in session: " + username);
+
+
 
         if (userSub != null) {
             // Set sessions attributes related to the user
             session.setAttribute("userSub", userSub);
             session.setAttribute("username", username);
+            session.setAttribute("households", households);
+            session.setAttribute("currentHousehold", household);
         } else {
             System.out.println("UserSub is null!");
         }

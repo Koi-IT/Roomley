@@ -42,7 +42,7 @@ public class InvitePage extends HttpServlet {
         // Get user
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         String userSub = (String) session.getAttribute("userSub");
-        User user = userDao.getByPropertyEqual("cognito_sub", userSub).get(0);
+        User user = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
 
         // Get invitations
         GenericDao<Invitation, Integer> invitationDao = new GenericDao<>(Invitation.class);
@@ -52,6 +52,10 @@ public class InvitePage extends HttpServlet {
         // Send invitations
 
         req.setAttribute("invitations", invitations);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("invites.jsp");
+        dispatcher.forward(req, resp);
+        return;
 
     }
 

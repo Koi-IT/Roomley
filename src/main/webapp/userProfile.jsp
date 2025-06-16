@@ -14,35 +14,38 @@
     <%@include file="header.jsp"%>
 
     <body class="page-wrapper">
-        <article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
 
-                <c:forEach var="user" items="${sessionScope.user}">
-                    <c:if test="${empty user.username}">
+        <article class="welcomeCard">
+            <h1>User Info</h1>
+            <form action="" method="post">
+                <label for="username"> Username: </label>
+                <input id="username" type="text" value="${sessionScope.username}">
 
-                        <article class="task-card">
-                            <div class="task-elements">
-                                <span class="task-text">${user.username}</span>
-                                <span class="task-text">${user.u}</span>
-                                <a href="editTask?taskId=${user.taskId}" class="edit-button">Edit</a>
-                                <a href="updateTask?taskId=${user.taskId}" class="task-buttons">
+                <button type="submit">Change</button>
 
-                                    <form action="updateTask" method="post" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
-                                        <input type="hidden" name="taskId" value="${task.taskId}" />
-                                        <input type="hidden" name="action" value="toggleStatus" />
-                                        <button type="submit" class="task-buttons" style="all: unset; cursor: pointer;">
-                                            <img src="images/circle.svg" alt="Toggle Status" />
-                                        </button>
-                                    </form>
+            </form>
 
-                                </a>
-                            </div>
-                        </article>
 
-                    </c:if>
+        </article>
+        <article class="welcomeCard">
+            <h1>Household Info</h1>
+                <c:forEach var="household" items="${sessionScope.households}">
+                    <div class="task-elements">
+                    <p>${household.groupName}</p>
+                        <c:choose>
+                            <c:when test="${sessionScope.currentHousehold.householdId == household.householdId}">
+                                <p>Current Household</p>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="updateHousehold">Change</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </c:forEach>
+        </article>
+
 
             <%@include file="footer.jsp"%>
 
-        </article>
     </body>
 </html>

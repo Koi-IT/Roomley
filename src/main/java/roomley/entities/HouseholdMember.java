@@ -21,12 +21,12 @@ public class HouseholdMember implements Serializable {
     @Column(name = "role", nullable = false)
     private HouseholdRole role;
 
-    @ManyToOne // (cascade = CascadeType.PERSIST)
+    @ManyToOne
     @MapsId("householdId")
     @JoinColumn(name = "household_id", nullable = false)
     private Household household;
 
-    @ManyToOne // (cascade = CascadeType.PERSIST)
+    @ManyToOne
     @MapsId("userId")
     @JoinColumn(name = "user_id")
     private User user;
