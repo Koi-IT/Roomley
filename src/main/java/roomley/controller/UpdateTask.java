@@ -98,6 +98,7 @@ public class UpdateTask extends HttpServlet {
             // Update task status
             Task task = taskDao.getById(Integer.parseInt(taskId));
             task.setTaskStatus(!task.getTaskStatus());
+            task.setUser(currentUser);
             taskDao.update(task);
             logger.info("Task Status: " + task.getTaskStatus());
 

@@ -234,11 +234,11 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         if (users.isEmpty()) {
             logger.debug("User does not exist: " + userSub);
-            fetchDataFromRDS(userSub, userEmail, username, households, household, role, req);
+            fetchDataFromRDS(userSub, userEmail, username, households, household, role, userId, req);
 
         } else {
             logger.debug("User exists: " + userSub);
-            createUserSession(req, userSub, households, household, username);
+            createUserSession(req, userSub, households, household, username, userId);
 
         }
 
@@ -348,13 +348,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param username  Username
      * @param role      role
      */
-    private void fetchDataFromRDS(String userSub, String userEmail, String username, List<Household> households, Household household, String role, HttpServletRequest req) {
+    private void fetchDataFromRDS(String userSub, String userEmail, String username, List<Household> households, Household household, String role, int userId, HttpServletRequest req) {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Create user session to hold cognito sub
-            createUserSession(req, userSub, households, household, username);
+            createUserSession(req, userSub, households, household, username, userId);
 
             // Create new user in AWS RDS from cognito sub
             User newUser = new User();
@@ -383,7 +383,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param userSub user cognito sub
      * @param username username
      */
-    public void createUserSession(HttpServletRequest req, String userSub, List<Household> households, Household household, String username) {
+    public void createUserSession(HttpServletRequest req, String userSub, List<Household> households, Household household, String username, int userId) {
         HttpSession session = req.getSession(true);
         logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
         logger.debug("Username in session: " + username);
@@ -393,6 +393,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         if (userSub != null) {
             // Set sessions attributes related to the user
             session.setAttribute("userSub", userSub);
+            session.setAttribute("userId", userId);
             session.setAttribute("username", username);
             session.setAttribute("households", households);
             session.setAttribute("currentHousehold", household);

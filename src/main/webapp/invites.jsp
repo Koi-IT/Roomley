@@ -15,24 +15,20 @@
         <main class="welcomeCard">
             <article class="welcomeCard">
 
-                <table class="invite-table">
+                <table id="invite-table">
+                    <thead>
                     <tr>
                         <th>Invited By</th>
-                        <th>Invite Status</th>
-                        <th>Household Name</th>
-                        <th>Accept/Decline</th>
+                        <th>Status</th>
+                        <th>Household</th>
+                        <th>Action</th>
                     </tr>
-                    <c:forEach var="invite" items="${sessionScope.invitations}">
-
-                        <tr>
-                            <td>${invite}</td>
-                            <td>${invite}</td>
-                            <td>${invite}</td>
-                            <button>Accept</button>
-                            <button>Decline</button>
-                        </tr>
-                    </c:forEach>
+                    </thead>
+                    <tbody>
+                    <!-- rows will be inserted here -->
+                    </tbody>
                 </table>
+
             </article>
 
         </main>
