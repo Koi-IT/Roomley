@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chicle&family=DM+Serif+Text:ital@0;1&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
     <script>
-        const memberId = "<%= session.getAttribute("userId") != null ? session.getAttribute("userId") : "" %>";
+        const memberId = "<%= session.getAttribute("user") != null ? session.getAttribute("user") : "" %>";
     </script>
     <script src="JavaScript/main.js"></script>
     <script src="JavaScript/invite.js"></script>

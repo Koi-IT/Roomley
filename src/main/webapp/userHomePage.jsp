@@ -19,13 +19,13 @@
             <div class="grid">
                 <article class="userHomePageCard">
                     <form action="distributeTasks" method="get" style="display:inline; margin: 0; padding: 0; border: none; background: none;">
-                        <input type="hidden" name="username" value="${sessionScope.username}">
+                        <input type="hidden" name="username" value="${sessionScope.user.username}">
                         <button type="submit">Distribute Tasks</button>
                     </form>
                 </article>
                 <article class="userHomePageCard">
                     <h3 class="dm-serif-text-regular-italic">Welcome</h3>
-                    <h3 class="dm-serif-text-regular-italic">${sessionScope.username}</h3>
+                    <h3 class="dm-serif-text-regular-italic">${sessionScope.user.username}</h3>
                 </article>
                 <article class="userHomePageCard">
                     <form action="householdCreation.jsp" method="get" style="display:inline; margin: 0; padding: 0; border: none; background: none;">

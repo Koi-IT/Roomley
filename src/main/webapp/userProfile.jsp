@@ -17,7 +17,7 @@
 
         <article class="welcomeCard">
             <h1>Username</h1>
-            <h2>${sessionScope.username}</h2>
+            <h2>${sessionScope.user.username}</h2>
         </article>
 
         <article class="welcomeCard">

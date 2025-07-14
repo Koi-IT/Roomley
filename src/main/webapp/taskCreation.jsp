@@ -14,7 +14,7 @@
     <%@include file="header.jsp"%>
 
     <body class="page-wrapper">
-        <article class="${empty sessionScope.username ? 'home-page' : 'page-wrapper'}">
+        <article class="${empty sessionScope.user.username ? 'home-page' : 'page-wrapper'}">
 
         <article class="welcomeCard">
             <form action="${pageContext.request.contextPath}/taskCreator" method="post">

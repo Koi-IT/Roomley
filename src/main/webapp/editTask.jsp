@@ -14,7 +14,7 @@
     <%@include file="header.jsp"%>
 
     <body class="page-wrapper">
-        <article class="${not empty sessionScope.username ? 'page-wrapper' : 'home-page'}">
+        <article class="${not empty sessionScope.user.username ? 'page-wrapper' : 'home-page'}">
 
         <article class="welcomeCard">
             <div class="task-elements">

@@ -9,7 +9,7 @@
 
             <ul>
                 <c:choose>
-                    <c:when test="${empty sessionScope.username}">
+                    <c:when test="${empty sessionScope.user.username}">
                         <!-- When the user is not logged in -->
                         <li class="nav-font"><a href="index.jsp">Home</a></li>
                         <li class="nav-font"><a href="logIn">Log in</a></li>
