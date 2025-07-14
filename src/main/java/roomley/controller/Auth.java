@@ -152,34 +152,21 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
-        // Header should have kid and alg- https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-id-token.html
         String keyId = tokenHeader.getKid();
         String alg = tokenHeader.getAlg();
 
-        // todo pick proper key from the two - it just so happens that the first one works for my case
-        // Use Key's N and E
         BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getN()));
         BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getE()));
 
-        // TODO the following is "happy path", what if the exceptions are caught?
-        // Create a public key
         PublicKey publicKey = null;
-
         try {
             publicKey = KeyFactory.getInstance("RSA").generatePublic(new RSAPublicKeySpec(modulus, exponent));
-
-        } catch (InvalidKeySpecException e) {
-            logger.error("Invalid Key Error " + e.getMessage(), e);
-
-        } catch (NoSuchAlgorithmException e) {
-            logger.error("Algorithm Error " + e.getMessage(), e);
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+            logger.error("Key generation error: " + e.getMessage(), e);
 
         }
 
-        // Get an algorithm instance
         Algorithm algorithm = Algorithm.RSA256((RSAPublicKey) publicKey, null);
-
-        // Verify ISS field of the token to make sure it's from the Cognito source
         String iss = String.format("https://cognito-idp.%s.amazonaws.com/%s", REGION, POOL_ID);
 
         JWTVerifier verifier = JWT.require(algorithm)
@@ -188,69 +175,56 @@ public class Auth extends HttpServlet implements PropertiesLoader {
                 .acceptLeeway(60)
                 .build();
 
-        // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
 
-        // Setup Variables from cognito
         String username = jwt.getClaim("cognito:username").asString();
         String userEmail = jwt.getClaim("email").asString();
         String userSub = jwt.getClaim("sub").asString();
 
-
-
         logger.debug("JWT: " + jwt.getClaims().toString());
-        logger.debug("here's the username: " + username);
-        logger.debug("here's the email: " + userEmail);
-        logger.debug("here's the sub: " + userSub);
+        logger.debug("Username: " + username);
+        logger.debug("Email: " + userEmail);
+        logger.debug("Sub: " + userSub);
 
-        // Extracting groups from the JWT
         List<String> userGroups = jwt.getClaim("cognito:groups").asList(String.class);
         String role = (userGroups != null && !userGroups.isEmpty()) ? userGroups.get(0) : "User";
         logger.debug("User groups: " + userGroups);
         logger.debug("Assigned role: " + role);
 
-        // Setup Data for aws RDS if the user hasn't been already created
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
 
-        // Get Household(s) memberships
-        int userId = users.get(0).getId();
-
-        GenericDao<HouseholdMember, Integer> memberDao = new GenericDao<>(HouseholdMember.class);
-        List<HouseholdMember> memberships = memberDao.getByPropertyEqual("id.userId", userId);
-
         List<Household> households = new ArrayList<>();
-
-        // Add each household where the user has a membership to the households list
-        for(HouseholdMember member : memberships) {
-            households.add(member.getHousehold());
-
-        }
-
-        User user = users.get(0);
-        GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
-        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
-        Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
+        Household household = null;
+        int userId = -1;
 
         if (users.isEmpty()) {
             logger.debug("User does not exist: " + userSub);
-            fetchDataFromRDS(userSub, userEmail, username, households, household, role, userId, req);
 
+            insertDataIntoRDS(userSub, userEmail, username, role, req);
         } else {
-            logger.debug("User exists: " + userSub);
-            createUserSession(req, userSub, households, household, username, userId);
+            User user = users.get(0);
+            userId = user.getId();
+
+            GenericDao<HouseholdMember, Integer> memberDao = new GenericDao<>(HouseholdMember.class);
+            List<HouseholdMember> memberships = memberDao.getByPropertyEqual("id.userId", userId);
+
+            for (HouseholdMember member : memberships) {
+                households.add(member.getHousehold());
+            }
+
+            GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
+            List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
+            household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
 
         }
 
-        logger.debug(jwt.getClaim("sub").asString());
-        logger.debug("here are all the available claims: " + jwt.getClaims());
-
-        // TODO decide what you want to do with the info!
-        // for now, I'm just returning username for display back to the browser
+        logger.debug("JWT Sub: " + jwt.getClaim("sub").asString());
+        logger.debug("All available claims: " + jwt.getClaims());
 
         return username;
-
     }
+
 
     /** Create the auth url and use it to build the request.
      *
@@ -348,13 +322,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @param username  Username
      * @param role      role
      */
-    private void fetchDataFromRDS(String userSub, String userEmail, String username, List<Household> households, Household household, String role, int userId, HttpServletRequest req) {
+    private void insertDataIntoRDS(String userSub, String userEmail, String username, String role, HttpServletRequest req) {
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Create user session to hold cognito sub
-            createUserSession(req, userSub, households, household, username, userId);
 
             // Create new user in AWS RDS from cognito sub
             User newUser = new User();
@@ -364,15 +334,17 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             newUser.setLastLogin(new Timestamp(System.currentTimeMillis()));
             newUser.setRole(role);
 
+            // Create user session to hold cognito sub
+            createUserSession(req, newUser);
+
             GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
             userDao.insert(newUser);
 
             logger.info("User inserted: " + newUser);
 
 
-        } catch (ClassNotFoundException e) {
-                logger.error("Database connection error: " + e.getMessage(), e);
-
+        } catch (Exception e) {
+            logger.error("Error inserting User: " + e.getMessage(), e);
         }
         
     }
@@ -380,26 +352,15 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     /**
      * Create user session to hold user data
      * @param req http request
-     * @param userSub user cognito sub
-     * @param username username
+     * @param user user object
      */
-    public void createUserSession(HttpServletRequest req, String userSub, List<Household> households, Household household, String username, int userId) {
+    public void createUserSession(HttpServletRequest req, User user) {
+
         HttpSession session = req.getSession(true);
-        logger.info("Creating new session for userSub: " + userSub + ", Session ID: " + session.getId());
-        logger.debug("Username in session: " + username);
+        logger.info("Creating new session for userSub: " + user.getCognitoSub() + ", Session ID: " + session.getId());
+        logger.debug("Username in session: " + user.getUsername());
 
-
-
-        if (userSub != null) {
-            // Set sessions attributes related to the user
-            session.setAttribute("userSub", userSub);
-            session.setAttribute("userId", userId);
-            session.setAttribute("username", username);
-            session.setAttribute("households", households);
-            session.setAttribute("currentHousehold", household);
-        } else {
-            System.out.println("UserSub is null!");
-        }
+        session.setAttribute("user", user);
 
     }
 
