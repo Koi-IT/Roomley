@@ -53,8 +53,7 @@ public class TaskUpdateLink extends HttpServlet {
         session.setAttribute("taskToUpdate", taskToUpdate);
 
         // Get user and household info
-        String userSub = (String) session.getAttribute("userSub");
-        User user = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
+        User user = (User) session.getAttribute("user");
         int userId = user.getId();
         List<HouseholdMember> currentMember = memberDao.getByPropertyEqual("id.userId", userId);
 

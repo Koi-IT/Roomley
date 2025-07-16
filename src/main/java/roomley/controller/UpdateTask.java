@@ -50,7 +50,8 @@ public class UpdateTask extends HttpServlet {
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
 
         // Verify user sub
-        String userSub = (String) session.getAttribute("userSub");
+        User user = (User) session.getAttribute("user");
+        String userSub = user.getCognitoSub();
 
         if (userSub == null || userSub.isEmpty()) {
             resp.sendRedirect(req.getContextPath() + "index.jsp");

@@ -50,7 +50,8 @@ public class HouseholdCreator extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         // Verify user sub
-        String userSub = (String) session.getAttribute("userSub");
+        User user = (User) session.getAttribute("user");
+        String userSub = user.getCognitoSub();
 
         if (userSub == null || userSub.isEmpty()) {
             resp.sendRedirect(req.getContextPath() + "index.jsp");
@@ -58,8 +59,7 @@ public class HouseholdCreator extends HttpServlet {
 
         }
 
-        // Get user and specified members
-        User user = userDao.getByPropertyEqual("cognitoSub", userSub).get(0);
+        // Get specified members
         String[] users = req.getParameterValues("users[]");
         logger.info("Users received: {}", Arrays.toString(users));
 

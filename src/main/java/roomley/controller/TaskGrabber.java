@@ -40,7 +40,7 @@ public class TaskGrabber extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         // Redirect to log in if session is invalid
-        if (session == null || session.getAttribute("userSub") == null) {
+        if (session == null || session.getAttribute("user") == null) {
             resp.sendRedirect("/logout");
             logger.warn("UserSub is null!");
             return;
@@ -50,32 +50,31 @@ public class TaskGrabber extends HttpServlet {
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
         GenericDao<HouseholdMember, HouseholdMemberId> householdMemberDao = new GenericDao<>(HouseholdMember.class);
-        User user;
-
 
         // Fetch user data
-        String userSub = (String) session.getAttribute("userSub");
-        List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
+        User user = (User) session.getAttribute("user");
 
-        if (users.isEmpty()) {
-            logger.error("No user found with cognitoSub: " + userSub);
+        if (user == null) {
+            logger.error("No user found");
             // Handle the case where the user doesn't exist (e.g., redirect to login or show an error)
             resp.sendRedirect("index.jsp");
             return;
-        } else {
-            user = users.get(0);
-            // Proceed with user data
         }
 
         String userEmail = user.getEmail();
         String role = user.getRole();
         String username = user.getUsername();
         int userId = user.getId();
+        Household household = null;
 
-        Household household = (Household) session.getAttribute("currentHousehold");
+        if (user.getHouseholdMembers() != null && !user.getHouseholdMembers().isEmpty()) {
+            HouseholdMember firstMember = user.getHouseholdMembers().iterator().next();
+            household = firstMember.getHousehold();
+            // Now you have the household object
+        }
 
         if (household == null) {
-            logger.warn("No household found for userSub: " + userSub);
+            logger.warn("No household found");
             session.setAttribute("errorMessage", "No household found for your account.");
             resp.sendRedirect(req.getContextPath() + "/householdCreation.jsp");
             return;
@@ -97,11 +96,11 @@ public class TaskGrabber extends HttpServlet {
                 .collect(Collectors.toList());
 
         // Log user details for debugging
-        logger.debug("User Sub: " + userSub);
-        logger.debug("User Name: " + username);
-        logger.debug("User Email: " + userEmail);
-        logger.debug("Role: " + role);
-        logger.debug("ID: " + userId);
+        logger.debug("User Sub: " + user.getCognitoSub());
+        logger.debug("User Name: " + user.getUsername());
+        logger.debug("User Email: " + user.getEmail());
+        logger.debug("Role: " + user.getRole());
+        logger.debug("ID: " + user.getId());
 
         // Set session attributes based on user
         try {

@@ -188,36 +188,23 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         List<String> userGroups = jwt.getClaim("cognito:groups").asList(String.class);
         String role = (userGroups != null && !userGroups.isEmpty()) ? userGroups.get(0) : "User";
+
         logger.debug("User groups: " + userGroups);
         logger.debug("Assigned role: " + role);
 
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
 
-        List<Household> households = new ArrayList<>();
-        Household household = null;
-        int userId = -1;
-
-        if (users.isEmpty()) {
-            logger.debug("User does not exist: " + userSub);
-
+        if (users == null || users.isEmpty()) {
+            logger.info("No user found with cognitoSub: " + userSub + ". Inserting new user.");
             insertDataIntoRDS(userSub, userEmail, username, role, req);
         } else {
+            logger.info("Found " + users.size() + " user(s) with cognitoSub: " + userSub);
             User user = users.get(0);
-            userId = user.getId();
-
-            GenericDao<HouseholdMember, Integer> memberDao = new GenericDao<>(HouseholdMember.class);
-            List<HouseholdMember> memberships = memberDao.getByPropertyEqual("id.userId", userId);
-
-            for (HouseholdMember member : memberships) {
-                households.add(member.getHousehold());
-            }
-
-            GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
-            List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("user", user);
-            household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
-
+            createUserSession(req, user);
         }
+
+
 
         logger.debug("JWT Sub: " + jwt.getClaim("sub").asString());
         logger.debug("All available claims: " + jwt.getClaims());

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A simple servlet create a new task.
@@ -34,12 +35,21 @@ public class TaskCreator extends HttpServlet {
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         HttpSession session = req.getSession(false);
+        Household currentHousehold = null;
 
         // Grab the current household
-        Household currentHousehold = (Household) session.getAttribute("currentHousehold");
-        if (currentHousehold == null) {
-            throw new ServletException("Current household not set in session.");
+        User user = (User) session.getAttribute("user");
+        if (user != null && user.getHouseholdMembers() != null && !user.getHouseholdMembers().isEmpty()) {
+            HouseholdMember firstMember = user.getHouseholdMembers().iterator().next();
+            currentHousehold = firstMember.getHousehold();
+
+            if (currentHousehold == null) {
+                throw new ServletException("Current household not set in session.");
+            }
+
         }
+
+
 
         // Get the data from the submitted form
         String taskName = req.getParameter("taskName");
@@ -48,13 +58,7 @@ public class TaskCreator extends HttpServlet {
         int taskDifficulty = taskDifficultyString == null ? 0 : Integer.parseInt(taskDifficultyString);
 
         // Set userSub
-        String userSub = (String) session.getAttribute("userSub");
-        List<User> users = userDao.getByPropertyEqual("cognitoSub", userSub);
-        if (users.isEmpty()) {
-            throw new ServletException("No user found for sub " + userSub);
-        }
-        User currentUser = users.get(0);
-
+        User currentUser = (User) session.getAttribute("user");
 
         // Create task using userSub, taskName, and TaskDescription
         Task newTask = createTask(currentUser, currentHousehold, taskName, taskDescription,taskDifficulty);
