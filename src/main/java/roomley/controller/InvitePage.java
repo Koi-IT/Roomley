@@ -53,7 +53,6 @@ public class InvitePage extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("invites.jsp");
         dispatcher.forward(req, resp);
-        return;
 
     }
 

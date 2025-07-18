@@ -47,24 +47,22 @@ public class TaskGrabber extends HttpServlet {
         }
 
         // Create Dao's
-        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
-        GenericDao<HouseholdMember, HouseholdMemberId> householdMemberDao = new GenericDao<>(HouseholdMember.class);
 
         // Fetch user data
         User user = (User) session.getAttribute("user");
 
         if (user == null) {
             logger.error("No user found");
-            // Handle the case where the user doesn't exist (e.g., redirect to login or show an error)
+            // Handle the case where the user doesn't exist (e.g., redirect to log in or show an error)
             resp.sendRedirect("index.jsp");
             return;
         }
 
-        String userEmail = user.getEmail();
-        String role = user.getRole();
-        String username = user.getUsername();
-        int userId = user.getId();
+//        String userEmail = user.getEmail();
+//        String role = user.getRole();
+//        String username = user.getUsername();
+//        int userId = user.getId();
         Household household = null;
 
         if (user.getHouseholdMembers() != null && !user.getHouseholdMembers().isEmpty()) {

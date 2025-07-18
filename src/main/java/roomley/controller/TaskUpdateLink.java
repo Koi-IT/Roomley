@@ -40,7 +40,6 @@ public class TaskUpdateLink extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         // Create DAO objects
-        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         GenericDao<HouseholdMember, HouseholdMemberId> memberDao = new GenericDao<>(HouseholdMember.class);
         GenericDao<Household, Integer> householdDao = new GenericDao<>(Household.class);
 
@@ -67,7 +66,7 @@ public class TaskUpdateLink extends HttpServlet {
         Household currentHousehold = householdDao.getByPropertyEqual("householdId", currentMemberHousehold.getHousehold().getHouseholdId()).get(0);
 
         // Fetch the household with its members
-        Household houseWithMembers = ((GenericDao<Household, Integer>) householdDao)
+        Household houseWithMembers = (householdDao)
                 .getHouseholdWithMembers(currentHousehold.getHouseholdId());
 
         if (houseWithMembers == null || houseWithMembers.getHouseholdMembers().isEmpty()) {

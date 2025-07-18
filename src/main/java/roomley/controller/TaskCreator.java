@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 /**
  * A simple servlet create a new task.
@@ -33,7 +32,6 @@ public class TaskCreator extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
-        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
         HttpSession session = req.getSession(false);
         Household currentHousehold = null;
 
@@ -91,8 +89,6 @@ public class TaskCreator extends HttpServlet {
         if (householdMembers.isEmpty()) {
             throw new ServletException("No HouseholdMember found for the user.");
         }
-
-        HouseholdMember currentMember = householdMembers.get(0);
 
         // Assign values to the newTask
         newTask.setHousehold(currentHousehold);

@@ -6,8 +6,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import roomley.auth.*;
-import roomley.entities.Household;
-import roomley.entities.HouseholdMember;
 import roomley.persistence.GenericDao;
 import roomley.entities.User;
 import roomley.util.PropertiesLoader;
@@ -40,8 +38,6 @@ import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.time.LocalTime.now;
-
 
 /**
  * Authenticates users through aws and creates a user session
@@ -70,7 +66,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
     /**
      * Init authorization, load properties and keys
-     * @throws ServletException
+     * @throws ServletException servlet exception
      */
     @Override
     public void init() throws ServletException {
@@ -83,13 +79,13 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * Gets the auth code from the request and exchanges it for a token containing user info.
      * @param req servlet request
      * @param resp servlet response
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException servlet exception
+     * @throws IOException IO exception
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String authCode = req.getParameter("code");
-        String userName = null;
+        String userName;
 
         if (authCode == null) {
             //TODO forward to an error page or back to the login
@@ -121,12 +117,12 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * Sends the request for a token to Cognito and maps the response
      * @param authRequest the request to the oauth2/token url in cognito
      * @return response from the oauth2/token endpoint which should include id token, access token and refresh token
-     * @throws IOException
-     * @throws InterruptedException
+     * @throws IOException IO Exception
+     * @throws InterruptedException Interrupted Exception
      */
     private TokenResponse getToken(HttpRequest authRequest) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<?> response = null;
+        HttpResponse<?> response;
 
         response = client.send(authRequest, HttpResponse.BodyHandlers.ofString());
 
@@ -144,9 +140,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     /**
      * Get values out of the header to verify the token is legit. If it is legit, get the claims from it, such
      * as username.
-     * @param tokenResponse
+     * @param tokenResponse Token response
      * @return username
-     * @throws IOException
+     * @throws IOException IO Exception
      */
     private String validate(TokenResponse tokenResponse, HttpServletRequest req) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -243,7 +239,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     /**
      * Gets the JSON Web Key Set (JWKS) for the user pool from cognito and loads it
      * into objects for easier use.
-     *
      * JSON Web Key Set (JWKS) location: https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json
      * Demo url: https://cognito-idp.us-east-2.amazonaws.com/us-east-2_XaRYHsmKB/.well-known/jwks.json
      *

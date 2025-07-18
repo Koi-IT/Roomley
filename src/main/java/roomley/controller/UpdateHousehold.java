@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import roomley.entities.Household;
 import roomley.persistence.GenericDao;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,11 +29,10 @@ public class UpdateHousehold extends HttpServlet {
      *
      * @param req  http request
      * @param resp http response
-     * @throws ServletException Servlet exception
      * @throws IOException      Input output exception
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession(false);
 
         if (session == null) {

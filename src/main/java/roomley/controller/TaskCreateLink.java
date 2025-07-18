@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -68,7 +65,7 @@ public class TaskCreateLink extends HttpServlet {
         Household currentHousehold = householdDao.getByPropertyEqual("householdId", currentMemberHousehold.getHousehold().getHouseholdId()).get(0);
 
         // Fetch the household with its members
-        Household houseWithMembers = ((GenericDao<Household, Integer>) householdDao)
+        Household houseWithMembers = (householdDao)
                 .getHouseholdWithMembers(currentHousehold.getHouseholdId());
 
         if (houseWithMembers == null || houseWithMembers.getHouseholdMembers().isEmpty()) {

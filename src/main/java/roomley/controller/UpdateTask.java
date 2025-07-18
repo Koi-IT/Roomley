@@ -2,13 +2,11 @@ package roomley.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import roomley.entities.Household;
 import roomley.entities.HouseholdMember;
 import roomley.entities.Task;
 import roomley.entities.User;
 import roomley.persistence.GenericDao;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,11 +29,10 @@ public class UpdateTask extends HttpServlet {
      * Post request to update tasks
      * @param req http request
      * @param resp http response
-     * @throws ServletException Servlet exception
      * @throws IOException Input output exception
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         // Grab session
         HttpSession session = req.getSession(false);
@@ -48,6 +45,7 @@ public class UpdateTask extends HttpServlet {
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
         GenericDao<HouseholdMember, Integer> memberDao = new GenericDao<>(HouseholdMember.class);
         GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
+        Task task = taskDao.getById(Integer.parseInt(taskId));
 
         // Verify user sub
         User user = (User) session.getAttribute("user");
@@ -63,7 +61,7 @@ public class UpdateTask extends HttpServlet {
         HouseholdMember currentMember = memberDao.getByPropertyEqual("user", currentUser.getId()).get(0);
 
         // Verify taskId
-        if (taskId == null || taskId.isEmpty()) {
+        if (taskId.isEmpty()) {
             logger.error("Missing taskId parameter");
 
             // TODO create errorPage.jsp
@@ -73,13 +71,9 @@ public class UpdateTask extends HttpServlet {
 
         }
 
-
-
-
         // Start update based on action
         if ("update".equals(action)) {
             // Update task name/description
-            Task task = taskDao.getById(Integer.parseInt(taskId));
             task.setTaskName(taskName);
             task.setTaskDescription(taskDescription);
             task.setUser(currentUser);
@@ -97,7 +91,6 @@ public class UpdateTask extends HttpServlet {
 
         } else {
             // Update task status
-            Task task = taskDao.getById(Integer.parseInt(taskId));
             task.setTaskStatus(!task.getTaskStatus());
             task.setUser(currentUser);
             taskDao.update(task);

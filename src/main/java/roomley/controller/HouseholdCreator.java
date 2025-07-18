@@ -233,9 +233,9 @@ public class HouseholdCreator extends HttpServlet {
 
     /**
      * Sets the user as a part of the household
-     * @param matchedUser
-     * @param household
-     * @return
+     * @param matchedUser matched user
+     * @param household user household
+     * @return household member
      */
     private HouseholdMember setHouseholdMember(User matchedUser, Household household) {
         HouseholdMemberId memberId = new HouseholdMemberId();

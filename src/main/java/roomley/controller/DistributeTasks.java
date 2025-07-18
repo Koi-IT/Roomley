@@ -45,9 +45,7 @@ public class DistributeTasks extends HttpServlet {
         HttpSession session = req.getSession(false);
 
         // Get Users in current users household
-        GenericDao<User, Integer> userDao = new GenericDao<>(User.class);
-        String username = req.getParameter("username");
-        User user = userDao.getByPropertyEqual("displayName", username).get(0);
+        User user = (User) session.getAttribute("user");
         Set<HouseholdMember> householdMembers = user.getHouseholdMembers();
         int userId = user.getId();
 
