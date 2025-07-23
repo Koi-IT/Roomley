@@ -1,11 +1,10 @@
 package roomley.entities;
 
-import org.hibernate.annotations.GenericGenerator;
+import roomley.persistence.GenericDao;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * The type Household.
@@ -26,7 +25,25 @@ public class Household {
     private int createdByUserId;
 
     @OneToMany(mappedBy = "household", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-    private List<HouseholdMember> householdMembers = new ArrayList<>();
+    private Set<HouseholdMember> householdMembers = new HashSet<>();
+
+    @OneToMany(mappedBy = "household", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Task> tasks = new HashSet<>();
+
+    /**
+     * @return tasks
+     */
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    /**
+     * @param tasks tasks
+     */
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
 
     /**
      * Instantiates a new Household.
@@ -43,7 +60,7 @@ public class Household {
      * @param createdByUserId  the created by user id
      * @param householdMembers the household members
      */
-    public Household(int householdId, String groupName, int createdByUserId, List<HouseholdMember> householdMembers) {
+    public Household(int householdId, String groupName, int createdByUserId, Set<HouseholdMember> householdMembers) {
         this.householdId = householdId;
         this.groupName = groupName;
         this.createdByUserId = createdByUserId;
@@ -109,7 +126,7 @@ public class Household {
      *
      * @return the household members
      */
-    public List<HouseholdMember> getHouseholdMembers() {
+    public Set<HouseholdMember> getHouseholdMembers() {
         return householdMembers;
     }
 
@@ -118,7 +135,7 @@ public class Household {
      *
      * @param householdMemberList the household members
      */
-    public void setHouseholdMembers(List<HouseholdMember> householdMemberList) {
+    public void setHouseholdMembers(Set<HouseholdMember> householdMemberList) {
         householdMembers = householdMemberList;
     }
 
@@ -126,7 +143,10 @@ public class Household {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Household household = (Household) o;
-        return householdId == household.householdId && createdByUserId == household.createdByUserId && Objects.equals(groupName, household.groupName) && Objects.equals(householdMembers, household.householdMembers);
+        return householdId == household.householdId
+                && createdByUserId == household.createdByUserId
+                && Objects.equals(groupName, household.groupName)
+                && Objects.equals(householdMembers, household.householdMembers);
     }
 
     @Override
@@ -143,4 +163,24 @@ public class Household {
 
     }
 
-}
+    public void distributeTasks(GenericDao<Task, Integer> taskDao) {
+
+                // Filter unassigned tasks
+                List<Task> unassignedTasks = tasks.stream()
+                        .filter(task -> task.getUser() == null)
+                        .sorted(Comparator.comparingInt(Task::getTaskDifficulty).reversed())
+                        .collect(Collectors.toList());
+
+                for (Task task : unassignedTasks) {
+                    HouseholdMember bestMember = householdMembers.stream()
+                            .min(Comparator.comparingInt(HouseholdMember::getTotalAssignedTaskDifficulty))
+                            .orElseThrow();
+
+                    task.setUser(bestMember.getUser());
+                    taskDao.update(task);
+                }
+
+        }
+
+    }
+

@@ -4,8 +4,10 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * The type Household member.
@@ -31,6 +33,9 @@ public class HouseholdMember implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<Task> tasks = new HashSet<>();
+
     /**
      * Instantiates a new Household member.
      */
@@ -54,6 +59,8 @@ public class HouseholdMember implements Serializable {
         this.user = user;
     }
 
+
+
     /**
      * Gets role.
      *
@@ -71,6 +78,20 @@ public class HouseholdMember implements Serializable {
     public void setRole(HouseholdRole role) {
         this.role = role;
     }
+
+//    /**
+//     * @return
+//     */
+//    public Set<Task> getTasks() {
+//        return tasks;
+//    }
+//
+//    /**
+//     * @param tasks
+//     */
+//    public void setTasks(Set<Task> tasks) {
+//        this.tasks = tasks;
+//    }
 
     /**
      * The enum Household role.
@@ -140,25 +161,38 @@ public class HouseholdMember implements Serializable {
         this.household = household;
     }
 
+    /**
+     * @return Task Difficulty
+     */
+    public int getTotalAssignedTaskDifficulty() {
+        return user.getTasks().stream()
+                .filter(task -> task.getUser().equals(this.user))
+                .mapToInt(Task::getTaskDifficulty)
+                .sum();
+    }
+
+
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (!(o instanceof HouseholdMember)) return false;
         HouseholdMember that = (HouseholdMember) o;
-        return Objects.equals(id, that.id) && Objects.equals(role, that.role) && Objects.equals(household, that.household) && Objects.equals(user, that.user);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, role, household, user);
+        return Objects.hash(id);
     }
+
 
     @Override
     public String toString() {
         return "HouseholdMember{" +
                 "id=" + id +
                 ", role=" + role +
-                ", household=" + household +
-                ", user=" + user +
+                ", householdId=" + (household != null ? household.getHouseholdId() : "null") +
+                ", userId=" + (user != null ? user.getUserId() : "null") +
                 '}';
     }
 

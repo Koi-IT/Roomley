@@ -44,50 +44,15 @@ public class DistributeTasks extends HttpServlet {
         // Invalidate Session
         HttpSession session = req.getSession(false);
 
+        if (session == null || session.getAttribute("user") == null) {
+            resp.sendRedirect("login.jsp"); // or your login page
+            return;
+        }
+
         // Get Users in current users household
         User user = (User) session.getAttribute("user");
-        Set<HouseholdMember> householdMembers = user.getHouseholdMembers();
-        int userId = user.getId();
-
-        // Get Tasks in current users household
         GenericDao<Task, Integer> taskDao = new GenericDao<>(Task.class);
-        GenericDao<HouseholdMember, Integer> householdMemberDao = new GenericDao<>(HouseholdMember.class);
-        List<HouseholdMember> members = householdMemberDao.getByPropertyEqual("id.userId", userId);
-        Household household = (!members.isEmpty()) ? members.get(0).getHousehold() : null;
-
-        List<Task> householdTasks = taskDao.getByPropertyEqual("household", household)
-                .stream()
-                .filter(task -> task.getUser() == null) // Only unassigned tasks
-                .collect(Collectors.toList());
-
-        // Prepare a Map to keep track of members and their assigned tasks + difficulty sums
-        Map<HouseholdMember, List<Task>> assignments = new HashMap<>();
-        Map<HouseholdMember, Integer> difficultyTotals = new HashMap<>();
-
-        // Initialize for each member
-        for (HouseholdMember member : householdMembers) {
-            assignments.put(member, new ArrayList<>());
-            difficultyTotals.put(member, 0);
-        }
-
-        // Sort tasks by difficulty descending (you can do this with a Comparator)
-        householdTasks.sort((t1, t2) -> Integer.compare(t2.getTaskDifficulty(), t1.getTaskDifficulty()));
-
-        // Now assign each task to the member with the lowest difficulty total
-        for (Task task : householdTasks) {
-            HouseholdMember bestMember = difficultyTotals.entrySet()
-                    .stream()
-                    .min(Map.Entry.comparingByValue())
-                    .get()
-                    .getKey();
-
-            assignments.get(bestMember).add(task);
-            difficultyTotals.put(bestMember, difficultyTotals.get(bestMember) + task.getTaskDifficulty());
-
-            // Also update the task's assigned user in DB
-            task.setUser(bestMember.getUser());
-            taskDao.update(task);
-        }
+        user.distributeTasks(taskDao);
 
         // Redirect home
         resp.sendRedirect("taskGrabber");

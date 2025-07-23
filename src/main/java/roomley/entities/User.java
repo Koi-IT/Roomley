@@ -2,6 +2,7 @@ package roomley.entities;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import roomley.persistence.GenericDao;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -37,6 +38,9 @@ public class User {
 
     @Column(name = "role")
     private String role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Task> tasks = new HashSet<>();
 
     @OneToMany(mappedBy = "invitedUser")
     private List<Invitation> receivedInvitations;
@@ -343,6 +347,22 @@ public class User {
                 ", lastLogin=" + lastLogin +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    public Set<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void distributeTasks(GenericDao<Task, Integer> taskDao) {
+        // Assuming user belongs to one household:
+        householdMembers.stream()
+                .findFirst()
+                .map(HouseholdMember::getHousehold)
+                .ifPresent(household -> household.distributeTasks(taskDao));
     }
 
 }
